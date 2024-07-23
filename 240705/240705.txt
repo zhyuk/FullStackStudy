@@ -1,0 +1,333 @@
+[형식]
+SELECT [DISTINCT] 컬럼 | 집계함수 | *
+FROM 테이블
+WHERE 행조건
+GROUP BY 그룹으로 묶어야하는 컬럼명 | 그룹함수
+HAVING 집계함수조건 또는 GROUP BY절의 결과에 조건을 걸어야하는 것
+ORDER BY 컬럼정렬순서;
+
+
+# 집계함수
+
+- 테이블 내의 행들에 대해서 연산한 후 단 하나의 결과 값으로 되돌리는 함수로서 SUM(합계), AVG(평균), MAX(최대값), MIN(최소값), COUNT(행 수 카운트) 등이 있습니다.
+- 집계함수는 NULL 값 (= 빈 문자열 값 포함)을 제외한다. ==> SUM(COMM)/COUNT(COMM) 시 2200/12가 아닌, 2200/4로 계산함.
+- COUNT 함수를 제외한 모든 집계함수는 숫자값에 관련된 컬럼에만 사용할 수 있다.
+- COUNT(*)은 집계함수 내에서 유일하게 NULL값도 포함하는 함수다.
+
+[조건] 
+	- WHERE절에는 집계함수를 쓸 수 없다.
+	- HAVING절에는 집계함수를 쓸 수 있다.
+	- GROUP BY절이 없는 SELECT절에 사용하는 경우에는 컬럼을 기술할 수 없다.
+
+
+
+SELECT SUM(SAL) FROM EMP; // SAL컬럼의 총합 출력
+
+SELECT AVG(SAL) FROM EMP; // SAL컬럼의 평균 출력
+
+SELECT MAX(SAL), MIN(SAL) FROM EMP; // SAL컬럼의 최대,최소값 출력
+
+SELECT COUNT(COMM) FROM EMP; // SAL컬럼의 수 출력(오라클은 행 단위로 가져오기 때문에 SAL 컬럼을 가진 행 수를 카운트함)
+
+
+# GROUP BY절
+: 데이터의 중복을 제거하고 SELECT절에 집계함수와 컬럼을 같이 기술하고자 하는 경우 사용
+
+[조건]
+	- GROUP BY절에는 그룹함수, 그룹으로 묶고자하는 컬럼명을 기술할 수 있다.
+	- 단, GROUP BY절을 이용하는 경우에는 SELECT절에 들어올 수 있는 컬럼은 GROUP BY절에 기술한 컬럼만 기술 가능하다.
+
+// 사번정보 테이블에서 부서별 연봉 합계를 가져오세요.
+SELECT DEPTNO, SUM(SAL)AS "연봉 합계" FROM EMP GROUP BY DEPTNO; 
+
+// 사번정보(EMP) 테이블에서 부서별(DEPTNO) 연봉(SAL)의 합계, 연봉(SAL)의 평균을 가져오세요
+SELECT DEPTNO, SUM(SAL), AVG(SAL) FROM EMP GROUP BY DEPTNO;
+
+// 사번정보 테이블에서 부서별 최고 연봉, 최소 연봉을 가져오세요.
+SELECT DEPTNO, MAX(SAL), MIN(SAL) FROM EMP GROUP BY DEPTNO;
+
+// 사번정보 테이블에서 커미션별 커미션의 수를 가져오세요.
+SELECT COMM, COUNT(COMM) FROM EMP GROUP BY COMM;
+
+// 사번정보 테이블에서 커미션별 행 수를 가져오세요.
+SELECT COMM, COUNT(*) FROM EMP GROUP BY COMM;
+
+HAVING 절에 컬럼에 대한 조건, 그룹함수를 이용한 조건 가능
+
+// 사번정보 테이블에서 부서별 연봉의 평균이 2000 이상인 부서만 가져오세요.
+SELECT DEPTNO, AVG(SAL) FROM EMP GROUP BY DEPTNO HAVING AVG(SAL) >= 2000
+
+// 부서별 급여의 최대값이 2900을 초과하는 경우 부서별 최대값과 최소값 자료만 출력
+SELECT DEPTNO, MAX(SAL), MIN(SAL) FROM EMP GROUP BY DEPTNO HAVING MAX(SAL) > 2900;
+
+// 테이블에서 1000 이상의 급여를 가지고 있는 사람들에 대해서만 부서별로 평균을 구한 후 구해진 부서별 평균 급여가 2000 이상인 부서번호와 부서별 평균 급여를 부서의 오름차순 출력
+SELECT DEPTNO, AVG(SAL) FROM EMP WHERE SAL >= 1000 GROUP BY DEPTNO HAVING AVG(SAL) >= 2000 ORDER BY DEPTNO ASC;
+
+// 직종별, 부서별 급여의 합과 인원수를 구한 후 20번 부서의 내용만 출력
+SELECT JOB, DEPTNO, SUM(SAL), COUNT(*) FROM EMP WHERE DEPTNO = 20 GROUP BY JOB, DEPTNO; // WHERE절 조건을 권장함
+SELECT JOB, DEPTNO, SUM(SAL), COUNT(*) FROM EMP GROUP BY JOB, DEPTNO HAVING DEPTNO = 20;
+
+// 부서별 급여의 평균과 합을 구한 후 각 부서별 인원이 5명 이상인 부서들만 출력
+SELECT DEPTNO, AVG(SAL), SUM(SAL) FROM EMP GROUP BY DEPTNO HAVING COUNT(*) >= 5;
+
+// 각 부서별, 직책 종류가 어떻게 되는지 검색
+SELECT DEPTNO, JOB FROM EMP GROUP BY DEPTNO, JOB; // 권장사항 : 중복 제거 후 출력해 과부화 방지 가능
+SELECT DISTINCT DEPTNO, JOB FROM EMP ORDER BY DEPTNO, JOB;
+
+// 테이블에서 부서별로, 사번별로 이름을 출력하세요
+SELECT DEPTNO, EMPNO, ENAME FROM EMP ORDER BY DEPTNO, EMPNO;
+
+# DUAL 테이블
+- 산술 연산이나 가상 칼럼 등의 값을 한 번만 출력하고 싶을 때 유용하게 사용할 수 있는 테이블로서 DUMMY 라는 칼럼 한 개로 구성되어 있다.
+==> SELECT 50 * 50 FROM EMP; 인 경우 EMP 테이블은 12줄이기 때문에 12줄 모두에 50*50의 값이 출력된다. 굳이 하나의 값이 여러 줄에 출력되는 것을 대체해 나옴. SELECT 50 * 50 FROM DUAL;로 사용
+
+# 숫자 함수
+- 오라클은 + - * /만 존재함. 따라서 나머지를 구하는 경우에는 함수를 사용해야 한다. 
+- CEIL (소수점 아래를 버리고 정수자리수 무조건 올림)
+- FLOOR (소수점 아래를 버림)
+- ROUND (특정 자릿수에서 반올림)
+- MOD (나머지)
+
+[형식]
+CEIL(실수값) -> SELECT CEIL(34.5678) FROM DUAL;
+FLOOR(실수값) -> SELECT FLOOR(34.5678) FROM DUAL;
+ROUND(실수값) -> SELECT ROUND(34.5678) FROM DUAL;
+ROUND(실수값,소수점자리수) -> SELECT ROUND(34.5678, 2) FROM DUAL;
+MOD(피젯수,젯수) -> SELECT MOD(34, 2) MOD(34, 5), MOD(34, 7) FROM DUAL;
+
+
+
+// 사번이 짝수인 사원들의 EMPNO, ENAME, JOB 출력
+SELECT EMPNO, ENAME, JOB FROM EMP WHERE MOD(EMPNO, 2) = 0;
+
+
+# 문자 함수
+[형식]
+LOWER ('변환할 문자열값' 또는 변환할 컬럼명)
+UPPER ('변환할 문자열값' 또는 변환할 컬럼명)
+LENGTH('문자열값' 또는 컬럼명)
+SUBSTR('문자열값' 또는 컬럼명, 시작번호, 추출할 개수)
+INSTR(대상,찾을 글자, 시작위치, 몇 번째 발견)
+LPAD('문자열값' 또는 컬럼명, 칸수, '채울문자열값')
+RPAD('문자열값' 또는 컬럼명, 칸수, '채울문자열값')
+LTRIM('문자열값' 또는 컬럼명, '자를 문자열')
+RTRIM('문자열값' 또는 컬럼명, '자를 문자열')
+TO_CHAR (데이터, '출력형식')
+
+- LOWER (소문자로 변환), UPPER (대문자로 변환)
+SELECT 'DataBase', LOWER('DataBase') FROM DUAL; // DataBase 라는 문자를 모두 소문자로 변환
+
+- CONCAT(첫문자열, 두번째문자열) : 두 개의 단어만 결합가능
+SELECT CONCAT('Data', 'Base') FROM DUAL; // Data와 Base 문자열 결합
+
+SELECT CONCAT(CONCAT(ENAME, ', '), JOB) FROM DUAL; // 오라클 내 함수는 중첩가능
+
+- LENGTH (글자의 개수)
+SELECT LENGTH('DATA'), LENGTH('오라클') FROM DUAL;
+
+SELECT DEPTNO, EMPNO, ENAME, LENGTH(ENAME) FROM EMP WHERE DEPTNO = 10;
+
+// 사원정보테이블에서 이름이 4글자 이상인 사람의 정보를 출력
+SELECT * FROM EMP WHERE LENGTH(ENAME) <= 4; 
+
+- SUBSTR('문자열값' 또는 컬럼명, 시작번호, 추출할 개수)
+시작번호가 음수인 경우 : 오른쪽 -> 왼쪽으로 숫자 계산
+시작번호가 양수인 경우 : 왼쪽 -> 오른쪽으로 숫자 계산
+
+EX) 	'가 나 다 라 마 바 사'
+	 1  2  3  4  5  6  7
+	-7 -6 -5 -4 -3 -2 -1
+
+
+SELECT SUBSTR('DataBase', 2, 3) FROM DUAL; // ata 출력
+SELECT SUBSTR('DataBase', -4, 3) FROM DUAL; // Bas 출력
+
+// 사원정보 테이블에서 부서번호가 20인 사람의 이름, 입사년도 정보를 가져오는데, 입사년도 컬럼의 값 중 첫번째 글자부터 2개 출력
+SELECT ENAME, SUBSTR(HIREDATE, 1, 2) FROM EMP WHERE DEPTNO = 20;
+
+// 82년도에 입사한 사원
+SELECT ENAME, HIREDATE FROM EMP WHERE SUBSTR(HIREDATE, 1, 2) = '82'; // 개발자 입장에선 편리하지만, 프로그램 입장에서는 계산 후 실행해야 하기 때문에 코드가 무거울 수 있다.
+SELECT ENAME, HIREDATE FROM EMP WHERE HIREDATE BETWEEN '82/01/01' AND '82/12/31';
+
+// 이름이 S로 끝나는 사원
+SELECT ENAME FROM EMP WHERE SUBSTR(ENAME, -1, 1) = 'S';
+SELECT ENAME FROM EMP WHERE ENAME LIKE '%S';
+
+- INSTR(대상,찾을 글자, 시작위치, 몇 번째 발견) : 특정 문자의 위치를 반환
+몇번째 발견 : 생략가능. 생략 시 기본값은 1
+[시작위치]
+	- 음수 : 역방향
+	- 양수 : 정방향
+
+// 대문자 B의 위치를 반환
+SELECT INSTR('DataBase', 'B') FROM DUAL; // 5 반환
+
+SELECT INSTR('DataBase', 'a', 1, 2) FROM DUAL; // 정방향으로 2번째 a의 위치를 반환 -> 4 반환
+
+SELECT INSTR('DataBase', 'a', 5, 1) FROM DUAL; // 정방향 5번자리부터 a의 위치 반환 -> 6 반환
+
+// 부서번호가 30인 사람들의 부서번호, 이름, 이름에서 E의 위치를 반환한 값 출력. E가 없을 시 0
+SELECT DEPTNO, ENAME, INSTR(ENAME, 'E') FROM EMP WHERE DEPTNO = 30;
+
+- LPAD, RPAD (특정 기호로 채우기)
+지정한 칸수만큼 만든 후 
+LPAD('문자열값' 또는 컬럼명, 칸수, '채울문자열값')
+=> 해당 문자열을 오른쪽정렬로 배치한 뒤 왼쪽에 비어있는 칸은 채울 문자열로 넣는다.
+RPAD('문자열값' 또는 컬럼명, 칸수, '채울문자열값')
+=> 해당 문자열을 왼쪽정렬로 배치한 뒤 오른쪽에 비어있는 칸은 채울 문자열로 넣는다.
+
+// DataBase 문자열의 칸을 20칸으로 설정, 기존의 DataBase 문자를 우측정렬한 뒤 빈 칸을 $로 채운다. => 문자열 칸을 20칸으로 확장 후 빈 공간을 $로 왼쪽부터 채워라.
+SELECT LPAD('DataBase', 20, '$') FROM DUAL;
+SELECT RPAD('DataBase', 20, '$') FROM DUAL;
+
+- TRIM (특정 문자 잘라내기)
+LTRIM('문자열값' 또는 컬럼명, '자를 문자열') : 자른 문자열에 해당되는 문자열이 존재하면 해당 문자열 또는 컬럼의 왼쪽에 연속되어있는 문자열만 제거함.
+RTRIM('문자열값' 또는 컬럼명, '자를 문자열') : 자른 문자열에 해당되는 문자열이 존재하면 해당 문자열 또는 컬럼의 오른쪽에 연속되어있는 문자열만 제거함.
+TRIM('자를 문자열' FROM '해당 문자열값' 또는 컬럼명)
+
+SELECT LTRIM('aaaaaDataBase Programingaaaa', 'a'), RTRIM('aaaaaDataBase Programingaaaa', 'a'), TRIM('a' FROM 'aaaaaaaDataBase Programingaaaaaaaa') FROM DUAL;
+
+# 일반 함수
+	- NVL(해당컬럼, null일 때 돌려줄 값) : 첫 번째 인자값이 null이면 두번째 인자값으로 변경
+		SELECT ENAME, SAL, NVL(COMM,0)
+		SELECT AVG(NVL(COMM, 0)) AS AVG FROM EMP; // COMM의 인자값이 null이면 0으로 대체 후 평균값 출력
+		SELECT AVG(COMM) AS AVG FROM EMP; // COMM의 평균값 출력
+	[조건]
+		1. 첫번째 인자의 자료형에 맞는 값으로 두번째 대체인자값을 지정해주어야 한다.
+		-> SELECT ENAME, NVL(MGP, 9999) FROM EMP; // (O)
+		SELECT ENAME, NVL(MGP, 'CEO') FROM EMP; //(X)
+		
+- NVL2(해당컬럼, null이 아닐 때 돌려줄 값, null일 때 돌려줄 값)
+- COALESCE(데이터, 데이터, ...) : 데이터가 null이 아닌 것의 첫번째 값을 반환
+
+- 산술관련
+- POWER(N,M) : N의 M 제곱승, SQRY(N) : N의 루트(제곱근)값
+SELECT PROWER(5,3), ROUND((SQRT(2),4) FROM DUAL;
+
+- 슈도컬럼 (Psudo) : 오라클에서 제공하는 의사컬럼을 말함.
+	처음에는 값이 정해져있는 것이 없다가 실행하는 순간 값을 가지게 되는 컬럼
+	자료형 : DATE (년/월/일 => 시:분:), TIMESTAMP (년/월/일 시:분:초.나노세컨드초)
+
+	[슈도컬럼 종류]
+	SYSDATE : DATE 자료형과 동일함. 문자형 값도 가지고 있다.
+	SYSTIMESTAMP : TIMESTAMP 자료형과 동일함. 문자형 값을 가지고 있지 않다.
+
+SELECT SYSDATE, SYSTIMESTAMP FROM DUAL;
+
+- ROUND 함수의 다양한 적용
+
+// 월의 16일을 기준으로 반올림
+SELECT HIREDATE, ROUND(HIREDATE, 'MONTH') FROM EMP WHERE DEPTNO = 10;
+
+// 년의 7월 1일부터 반올림
+SELECT HIREDATE, ROUND(HIREDATE, 'YEAR') FROM EMP WHERE DEPTNO = 10;
+
+- TRUNC 함수의 다양한 적용
+SELECT HIREDATE, TRUNC(HIREDATE, 'MONTH') FROM EMP WHERE DEPTNO = 10; // 일의 값을 버리세요 (01일로 초기화)
+
+
+- TO_CHAR (데이터, '출력형식') : 해당 데이터를 출력형식대로 문자형자료형 값으로 변환하는 함수
+	데이터 : 숫자값, 날짜값. **문자형값은 넣을 수 없다.**
+SELECT SYSDATE, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH12:MI:SS AM DAY') FROM DUAL;
+	
+	[이것저것]
+	nls_date_language=국가명 -> 국가의 표준표기법으로 표기해주세요.
+	000,000,000 -> 우측정렬 / 999,999,999 -> 좌측정렬 => 0 작성 시 기본값인 우측정렬, 9 작성 시 좌측 정렬
+
+- TO_DATE(데이터, '출력형식')
+	데이터 : 날짜형으로 변경할 수 있는 문자열값만 가능. 문자형데이터를 날짜형으로 출력형식에 맞춰서 출력해주는 함수.
+
+
+# DECODE문
+
+[형식] : JAVA의 switch ~ case문과 유사
+DECODE (
+컬럼명,
+케이스1, '출력값1',
+케이스2, '출력값2',
+...,
+'마지막값'
+) [AS 별칭명]
+
+ex)
+decode(
+deptno,
+10, 'A부서',
+20, 'B부서',
+'C부서'
+) as dname
+----------------------------------------
+[형식1] : JAVA의 switch ~ case문과 유사
+- CASE문 형식 1 : 
+CASE	컬럼명
+	WHEN 케이스1 THEN 값1
+	WHEN 케이스2 THEN 값2
+	...
+
+	[ELSE 값N]
+END [AS 별칭명]
+----------------------------------------
+[형식2] : JAVA의 if~ else if ~ else문과 유사
+CASE	
+	WHEN 조건1 THEN 값1
+	WHEN 조건2 THEN 값2
+	...
+
+	[ELSE 값N] 
+END [AS 별칭명]
+
+ex)
+CASE	
+	WHEN deptno = 10 THEN 'A부서'
+	WHEN deptno = 20 THEN 'B부서'
+	'C부서'
+END as dname
+----------------------------------------
+
+
+사원정보 테이블에서 ENAME을 '직원성명'이라는 컬럼으로 JOB 컬럼을 '직책'이라는 컬럼으로 출력하고, 해당 사원의 직책이 'SALESMAN'인 경우에는 'O'이라고 출력되도록 그렇지 않을 경우 'X'로 출력되도록한 뒤 해당 컬럼을 '세일즈맨 여부'로 나오도록 처리
+
+SELECT ename AS 직원성명, job "직책", 
+DECODE(
+JOB, 
+'SALESMAN', 'O',
+'X'
+) AS "세일즈맨 여부"
+FROM EMP;
+
+사원정보 테이블에서 사원명, 직책, 연봉을 출력, 만약 직책이 'ANALYST'인 경우 급여의 5% 인상된 금액으로, 만약 직책이 'SALESMAN'인 경우 급여의 10% 인상된 금액, 직책이 'MANAGER'인 경우는 급여의 15% 인상된 금액 직책이 'CLERK'인 경우는 급여의 20% 인상된 금액으로 출력
+
+SELECT ENAME, JOB, SAL,
+DECODE(
+JOB,
+'ANALYST', SAL + SAL *  0.05,
+'SALESMAN', SAL + SAL * 0.1,
+'MANAGER', SAL + SAL * 0.15,
+'CLERK', SAL + SAL * 0.2
+) AS "인상된 급여"
+FROM EMP;
+
+
+사원정보테이블에서 이름,연봉을 출력하고 연봉이 1500 이상이면 'MID'로 출력, 연봉이 3000 이상이면 'HI'로 출력, 연봉이 5000 이상이면 'TOP'으로 출력, 1500 미만이면 'LOW'로 출력되고 케이스에 대한 컬럼명은 '비고'로 나오도록 처리
+->
+
+1. 
+SELECT ENAME, SAL, 
+CASE	
+	WHEN SAL >= 5000 THEN 'TOP'
+	WHEN SAL >= 3000 THEN 'HI'
+	WHEN SAL >= 1500 THEN 'MID'
+	ELSE 'LOW'
+END AS 비고
+FROM EMP;
+
+2. 
+SELECT ENAME, SAL,
+CASE	SAL
+	WHEN >= 5000 THEN 'TOP'
+	WHEN >= 3000 THEN 'HI'
+	WHEN >= 1500 THEN 'MID'
+	ELSE 'LOW'
+END AS 비고
+FROM EMP;
+

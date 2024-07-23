@@ -1,0 +1,26 @@
+#메소드 안 synchronized
+
+내부에 작성된 코드만 동기화작업
+
+메인스레드
+synchronized(Thread-0 객체명){
+	실행코드;
+}
+
+Thread-0 스레드
+synchronized(this) {
+	실행코드
+}
+
+==> 메인스레드 synchronized 안에 작성된 코드가 Thread-0 스레드 synchronized안에 작성된 코드가 끝날 때까지 대기
+
+
+#notify()
+- synchronized 블록에서만 사용 가능
+- static 키워드가 붙은 곳에서는 사용 불가. -> main 메소드 내 사용불가
+
+#네트워크 & 서버
+공유폴더 확인
+
+#서버 과제
+클라이언트가 0명이 됐을 때 서버,클라이언트 모두 종료되는 것

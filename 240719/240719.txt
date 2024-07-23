@@ -1,0 +1,6 @@
+https://github.com/sks05194/jwork/blob/main/jdbc_project1/src/miniProject/ConnManager.java
+
+
+계정 LMS/1111 생성 후 작업
+
+회원가입 조건걸기.

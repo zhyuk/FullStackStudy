@@ -1,0 +1,2 @@
+-- ¼îÇÎ¸ô Å×ÀÌºí »ý¼º
+create table member (mid varchar2(20) constraint member_mid_pk primary key, mpw varchar2(20) not null, mnm varchar2(200) not null, mph varchar2(11) not null, mzip varchar2(7), maddr varchar2(200));

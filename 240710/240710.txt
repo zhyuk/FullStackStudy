@@ -1,0 +1,66 @@
+-- 'RESEARCH' 부서가 아닌 다른 부서에서 근무하는 사원의 사번, 이름, 부서번호 출력
+select empno, ename, deptno from emp where deptno != (select deptno from dept where dname = 'RESEARCH');
+select empno, ename, deptno from emp where not deptno = (select deptno from dept where dname = 'RESEARCH');
+select empno, ename, deptno from emp where not deptno <> (select deptno from dept where dname = 'RESEARCH'); -- <>도 아니다를 의미
+select empno, ename, deptno from emp where not deptno ^= (select deptno from dept where dname = 'RESEARCH'); -- ^=도 아니다를 의미
+
+#다중 행 서브 쿼리 (여러 줄 한 칸을 반환)
+	- 서브 쿼리에서 반환되는 결과가 하나 이상의 행일 때 사용
+	- 서브 쿼리의 select절 안의 컬럼은 한 개여야만 한다.
+	- 다중 행 연산자(IN, AND, ALL)를 사용
+	
+
+# ALL 연산자
+(대대) 컬럼명 > ALL(여러행 값) -> 여러행의 값 중 가장 큰 값을 반환
+(소소) 컬럼명 < ALL(여러행 값) -> 여러행의 값 중 가장 작은 값을 반환
+
+# ANY 연산자 ANY(10,20,30)
+(대소) 컬럼명 > ANY(여러행 값) -> 여러 행의 값 중 가장 작은 값 반환 : 컬럼 > 10
+(소대) 컬럼명 < ANY(여러행 값) -> 여러 행의 값 중 가장 큰 값 반환 : 컬럼 < 30
+
+# INSERT 문 
+	* insert into : 하나의 테이블에 데이터를 삽입할 때 사용하는 명령문
+	[형식] 
+	- 단축형식 : insert into 테이블명 values (값1, 값2,...);
+	- 정식형식 : insert into 테이블명 (컬럼1, 컬럼2, ...) values (값1, 값2, ...);
+	
+	* insert all into : 여러 개의 테이블에 여러 행(줄)의 데이터를 삽입할 때 사용하는 명령문
+	[형식] 
+	- insert all into 테이블명1 (T 컬럼1, T1의 컬럼2, ...) values (S1 컬럼1(값1), S1 컬럼2(값2),...) into 테이블명2(T2 컬럼1, T2 컬럼2, ...) values (값1,값2,...)... select S1 컬럼1, S1 컬럼2, ... | * from 데이터를 끌어와야하는 테이블명 where 조건문; 
+	- insert all into 테이블명1 values (값1, 값2, ...) into 테이블명2 values (값1, 값2,....) seelct 서브쿼리명령문;
+	- insert all into 테이블명1 into 테이블명2 values (값1, 값2, ...) select 서브쿼리명령문;
+
+# 다중 컬럼 서브 쿼리
+	- 반드시 서브쿼리와 비교할 컬럼도 다중컬럼이면서 소괄호로 묶어주어야만 한다.
+	(=, IN 연산자만 가능)
+
+	다중 행 서브쿼리 : WHERE SAL = (SELECT SAL FROM ~~~)
+	다중 컬럼 서브쿼리 : WHERE (EMPNO, DEPTNO) = (SELECT EMPNO,DEPTNO FROM ~~~)
+
+# 조인 (JOIN)
+	- 두 개 이상의 테이블을 결합하여 데이터를 추출하는 기법
+
+	* 조인의 유형 (American National Standards Institute : 미국 표준 연구소)
+	내부조인(INNER JOIN) : (= 교집합)
+	- 두 테이블에 공통을 존재하는 컬럼을 이용하여 합치는 방식
+		1. 동등조인 (Equi Join) : 공통으로 존재하는 컬럼 값이 있는 경우의 데이터를 추출하는 조인 방식(INNER JOIN, ANSI INNER JOIN)
+		2. 교차조인 (CROSS JOIN) : 조인 조건이 없는 조인 방식 (CATASIAN PRODUCT, ANSI CROSS JOIN)
+		-> 	총 컬럼갯수(디그리 = 차수) : A 테이블 컬럼수 + B 테이블 컬럼 수
+			총 행수(카디널리티) : A 테이블 행수 * B 테이블 행수
+
+	외부조인(OUTER JOIN) : (= A 또는 = B 또는 합집합(A,B 모두))
+	- 특정 테이블의 모든 데이터를 기준으로 다른 테이블의 정보를 추출(다른 테이블에 값이 없어도 출력됨.)
+		1. 왼쪽 외부 조인 (LEFT OUTER JOIN) = A : 왼쪽 테이블의 모든 데이터와 오른쪽 테이블의 동일 데이터를 추출 (LEFT OUTER JOIN (+), ANSI LEFT OUTER JOIN)
+		2. 오른쪽 외부 조인 (RIGHT OUTER JOIN) = B : 오른쪽 테이블의 모든 데이터와 왼쪽 테이블의 동일 데이터를 추출(RIGHT OUTER JOIN (+), ANSI RIGHT OUTER JOIN)
+		3. 완전 외부 조인 (FULL OUTER JOIN) = 합집합 : 양쪽의 모든 데이터를 추출 (ANSI FULL OUTER JOIN)
+
+	*Equi Join (동등조인, 가장 많이 사용)
+	- where절에서 조인 조건을 기술
+	- ANSI조인인 경우는 ON절에서 조인조건을 기술함
+	- 권장사항 : 조인 조건 개수 = 연결 테이블 수 -1 // 권장사항이지만 필수라고 생각할 것 -> 조건을 거는 테이블이 2개일 경우 조건 1개는 나와야 함, 조건을 거는 테이블이 5개인 경우 조건 4개
+	- 명확성을 위해 컬럼명 앞에 테이블명 또는 테이블 별칭을 설정
+	- 테이블의 별칭을 기술하는 경우는 공백을 이용하며, as키워드를 절대 사용하면 안됨. 
+
+
+-- 부서번호를 기준으로 같은 값을 가진 사원 테이블과 부서 테이블의 결합
+select * from emp,dept where emp.deptno = dept.deptno

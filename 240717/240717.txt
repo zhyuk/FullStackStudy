@@ -1,0 +1,66 @@
+
+클래스 작명 방법 : 테이블명VO 또는 테이블명DTO 또는 테이블명
+
+Model => 데이터베이스와 관련있는 객체들
+VO (=Value Object) : 데이터를 저장하는(=담아두는) 객체
+DTO (=Data Transfer Object) : 데이터를 전송하는 객체
+- 데이터베이스의 테이블과 유사한(=동일한) 멤버필드와 기능을 가진 객체
+
+DAO (=Data Access Object) : 데이터에 접근할 수 있는 객체
+- SQL쿼리문을 가지고 있는 객체
+
+- VO(=DTO) 클래스는 데이터베이스의 테이블과 동일한 멤버필드(자료형도 동일)를 가지고, 해당 멤버필드 한 개당 각각 getter,setter 메소드를 가지고 있는 클래스임. (=데이터를 담거나 전송하는 기능을 담당하는 클래스)
+
+
+
+#객체가 생성될 때 클래스의 멤버필드를 초기화하는 방법과 순서
+	- 초기화하는 방법 : 명시적 초기화, 초기화블록, 생성자 초기화, setter 메소드 초기화
+	- 초기화 순서 : 명시적 초기화 > static 초기화블록 > 일반 초기화블록 > 생성자 > setter 메소드
+
+a = 2  -> 4 -> 6
+b = 1 -> 3 -> 5 -> 7
+class Reset{
+	private int a = 2; // 명시적 초기화 방식
+	private static int b = 1; // 명시적 초기화 방식
+
+	// static 초기화 블록 : static멤버필드의 초기값을 설정할 때만 사용
+	// this 키워드 사용 불가, static이 아닌 필드는 기술 불가
+	static{
+		b = 3; 
+	}
+
+	// 일반 초기화 블록 : static 멤버필드, 일반 멤버필드 초기값 설정 시 사용
+	{
+		this.a = 4;
+		this.b = 5;	
+	}
+
+	// 생성자
+	public Reset(){
+		this.a = 6;
+		this.b = 7;
+	}
+}
+
+#싱글톤
+
+[형식]
+public class SingleTon{
+	private static SingleTon sin; // 클래스자료형으로 객체를 내부에서 생성, static 메소드인 getter에서 사용되기 때문에  static 붙음
+	private SingleTon(){} // 생성자의 접근제어자 private 처리 --> 외부에서 생성자를 호출해서 객체를 생성하는 것을 막기 위해
+	
+	// 객체를 반환해줄 static getter 메소드 선언 -> 외부에서 접근 가능한 접근제어자로 지정해야 함, 
+	public static SingleTon getInstance(){ // getInstance / getSin(get멤버필드명) / getIns 등으로 작명
+		if (sin == null) sin = new SingleTon(); // 멤버필드에서 new SingleTon();를 하면 계속 생성될 수 있음. 따라서 메소드 내에서 생성, 1번만 생성하기 위해 if문으로 조건기술해줌.
+		return sin;
+	}
+
+}
+
+public class Ex{
+	public static void main(String[] args){
+		// SingleTon st = new SingleTon(); (X)
+		SingleTon st = SingleTon.getInstance(); // &100
+		SingleTon st1 = SingleTon.getInstance(); // &100, 다른 객체지만 동일한 주소값을 갖고 있음
+	}
+}

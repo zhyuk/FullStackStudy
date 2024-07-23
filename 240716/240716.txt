@@ -1,0 +1,54 @@
+클래스 선언형식
+[접근제어자 : public/default] [기타제어자 : final/abstract] class 클래스명 {
+	//멤버필드 선언문
+	[접근제어자 : ppdp] [기타제어자 : static/final] 자료형 객체명;
+
+	//기본생성자 선언문
+	[접근제어자 : ppdp] 클래스명(){
+		//생성자호출문 => this(매개인자값); 또는 super(); super(5);
+		//출력문 => System.out.println("기본생성자");
+		//조건문 => if~else if ~ else문, switch문
+		//반복문 => for, while, do~while문
+		//지역변수(객체) 선언문 => [final] int i = 0; 또는 Emp emp = new Emp();
+		//멤버필드 초기화문 => this.md = 5;
+		// 메소드 호출문 => setMd(5);
+	}
+
+	//기타생성자 선언문
+	[접근제어자 : ppdp] 클래스명(자료형 매개변수명, ...){
+		//생성자호출문 => this(); 또는 super(); super(5);
+		//출력문 => System.out.println("기타생성자");
+		//조건문 => if~else if ~ else문, switch문
+		//반복문 => for, while, do~while문
+		//지역변수(객체) 선언문 => [final] int i = 0; 또는 Emp emp = new Emp();
+		//멤버필드 초기화문 => this.md = 5;
+		// 메소드 호출문 => setMd(5);
+	}
+
+	//메소드 선언문
+	[접근제어자 : ppdp] [기타제어자] 리턴타입 메소드명(자료형 매개변수명, ...) {
+		//출력문 => System.out.println("메소드선언문");
+		//조건문 => if~else if ~ else문, switch문
+		//반복문 => for, while, do~while문
+		//지역변수(객체) 선언문 => [final] int i = 0; 또는 Emp emp = new Emp();
+		//멤버필드 초기화문 => this.md = 5;
+		// 메소드 호출문 => setMd(5);
+		[return 반환할 값;]
+	}
+}
+
+
+===============================
+쇼핑몰 홈페이지 메뉴 중 회원가입 메뉴
+테이블명 : member
+필요한 정보 : 
+- 아이디 (영어 대소문자, 숫자까지만 가능, 총 20자리)
+- 비밀번호 (영어 대소문자, 숫자까지만 가능, 총 20자리)
+- 이름 (200byte)
+- 전화번호 정보
+- 주소 (우편번호) (주소)
+
+
+create table member (mid varchar2(20) primary key , mpw varchar2(20) not null, mnm varchar2(200) not null, mph varchar2(11) not null , mzip number(7), maddr varchar2(200));
+
+create table member (mid varchar2(20) constraint member_mid_pk primary key, mpw varchar2(20) not null, mnm varchar2(200) not null, mph varchar2(11) not null, mzip varchar2(7), maddr varchar2(200));

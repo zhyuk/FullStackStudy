@@ -1,0 +1,82 @@
+** 인덱스를 타는 경우와 타지않는 경우
+
+	1. LIKE 연산자를 사용하였을 경우
+	- LIKE 연산자를 사용하는 경우 %를 앞에 넣어 사용하게 되면 INDEX를 타지 않는다.
+	- (X) : select empno, ename, deptno from emp where ename like '%S%';
+	- (O) : select empno, ename, deptno from emp where ename like 'S%';
+
+	2. 부정형으로 조건을 사용한 경우 (!=, ^=, <> 등 부정형 연산자는 사용 불가)
+	- 부정문은 INDEX를 활용하지 못한다. 비교연산자 또는 NOT EXIST 사용
+	* not exist : 존재하지 않는을 의미
+	- (X) : select empno, ename, deptno from emp where deptno != 30;
+	- (O) : select empno, ename, deptno from emp where deptno < 30;
+	- (O) : select empno, ename, deptno from emp where not exists (select deptno from dept where deptno = 30);
+
+	3. 내부적으로 데이터 형 변환이 일어난 경우
+	- 서로 대입되는 항목끼리 데이터 타입이 다르면 내부적인 형 변화에 따라 컬럼이 변형된 효과를 나타낸다.
+	- HIREDATE가 DATE 타입의 컬럼인 경우
+	- (X) : select empno, ename, deptno, hiredate from emp where hiredate ='19811203'; => hiredate가 내부적으로 char 자료형으로 형 변환이 일어남.
+	- (O) : select empno, ename, deptno, hiredate from emp where hiredate = to_date('19811203', 'YYYYMMDD');
+
+	4. INDEX가 걸려있는 컬럼 절을 변형한 경우
+	- 수식이나 함수 등으로 INDEX 컬럼을 변형해야 하는 경우 INDEX 컬럼을 변형하지 말고 여기에 대입되는 컬럼이나 상수 부분에 적용해야 한다.
+	- HIREDATE가 인덱스컬럼인 경우
+	- (X) : select empno, ename, deptno, hiredate from emp where to_char(hiredate,'YYYYMMDD') >= '19810101';
+	- (O) : select empno, ename, deptno, hiredate from emp where hiredate >= to_date('19811203', 'YYYYMMDD'); => 컬럼의 변형이 일어나면 인덱스를 사용할 수 없음. 따라서 값을 변형해줘야한다.
+
+# 시퀀스
+	- 시퀀스는 유일(UNIQUE)한 값을 생성해주는 오라클 객체
+	- 시퀀스를 생성하면 기본 키와 같이 순차적으로 증가하는 칼럼을 자동적으로 생성할 수 있게 된다.
+	- SEQUENCE를 생성할 때 값을 지정하지 않으면 1부터 1씩 증가.
+	- 즉, 테이블 내의 유일한 숫자를 자동으로 생성하는 자동 번호 발생기라 보면 됨.
+
+	
+	* 시퀀스 형식
+	CREATE SEQUENCE sequence_name
+	[START WITH n] : 시퀀스 시작값 지정(미지정 시 1로 자동 설정됨)
+	[INCREMENT BY n] : 증가되는 간격설정값(미설정 시 1씩 증가로 자동 설정됨)
+	[{MAXVALUE n | NOMAXVALUE}] : 최대증가값 설정(미설정 시 NOMAXVALUE)
+	[{MINVALUE n | NOMINVALUE}] : 최소증가값 설정(미설정 시 NOMINVALUE)
+	[{CYCLE | NOCYCLE}] : 반복횟수값 설정(미설정 시 NOCYCLE)
+	CACHE | NOCACHE : 메모리에 미리 저장할 공간 할당(미지정 시 NOCAHE);
+
+	CACHE => 메모리에 시퀀스값들을 미리 할당하여 저장해 놓음. => 1 ~ 5번까지의 값을 갖고있는 의미
+	NOCACHE => 메모리에 시퀀스값 1개만 미리 할당해 저장해 놓음. ==> 그 다음 값 1개만을 갖고있는 의미
+
+#PSEUDO(슈도 컬럼: 의사컬럼)
+	- CURRVAL : 현재 값을 반환한다.
+	- NEXTVAL : 현재 시퀀스값의 다음 값을 반환한다.
+
+	- CURRVAL에 새로운 값이 할당되기 위해서는 NEXTVAL로 새로운 값을 생성해야 한다.
+	- 즉, NEXTVAL로 새로운 값을 생성한 다음에 이 값을 CURRVAL에 대체하게 된다는 이야기이다.
+
+	CREATE SEQUENCE 시퀀스명 ~~~~~~;
+	시퀀스명.NEXTVAL / 시퀀스명.CURRVAL 
+
+	* NEXTVAL, CURRVAL을 사용할 수 있는 경우
+	1. SELECT문의 SELECT절(아래 불가능부분 제외)
+	2. INSERT문의 SELECT절, VALUES절
+	3. UPDATE문 SET절
+	4. CREATER문의 SELECT절(서브쿼리)
+	
+	* NEXTVAL, CURRVAL을 사용할 수 없는 경우
+	1. VIEW의 SELECT절 // VIEW는 데이터를 저장하고 있지 않음
+	2. DISTINCT 키워드가 있는 SELECT문
+	3. SELECT문의 GROUP BY, HAVING, ORDER BY절
+	4. SELECT, DELETE, UPDATE문의 WHERE 조건
+	5. CREATE TABLE, ALTER TABLE의 DEFAULT // 컬럼에 DEFAULT 조건을 줄 때 사용불가.
+
+# 시노님(SYNONYM : 동의어 - 테이블에 대한 별칭 부여)
+	- DBA 권한이 부여된 계정만 생성 가능.
+	- 비공개동의어(PRIVATE SYNONYM), 공개동의어(PUBLIC SYNONYM)이 있다.
+	- 비공개동의어(PRIVATE SYNONYM) : 만든 계정에서만 접근 가능하며, 다른계정은 권한을 부여받아야 접근할 수 있다.
+	- * 뷰처럼 쿼리문 자체를 저장하고 있음. (테이블, 데이터 저장 X)
+	(단, DBA 권한 계정은 모두 접근 가능)
+	[생성형식]
+	CREATE OR REPLACE [PRIVATE -디폴트값(생략가능) | PUBLIC] SYNONYM [스키마명.]시노님명 FOR [스키마명.]객체명;
+	** 객체명에는 테이블명, 뷰명, 프로시저명, 함수명, 패키지명, 시퀀스명 등이 올 수 있다.
+	** 시노님은 별도의 수정구문이 없으므로 삭제 후 재생성을 해야한다.
+
+	[삭제형식] 
+	1. DROP SYNONYM [스키마명.]시노님명; // 비공개동의어 삭제
+	2. DROP PUBLIC SYNONYM [스키마명.]시노님명; // 공개동의어 삭제

@@ -1,0 +1,229 @@
+==#DCL (Data Control Language, 데이터 제어어)
+	- 데이터의 보안, 무결성, 회복, 병행 수행 제어 등을 정의하는데 사용하는 언어 **TCL 포함
+	** TCL : commit, rollback, savepoint
+	- GRANT : 데이터베이스 사용자에게 사용 권한을 부여
+		형식 : GRANT 권한명1, 권한명2, ... TO 사용자명;
+	- REVOKE : 사용저계정의 권한을 회수
+		형식 : REVOKE 회수할 권한명1, 회수할 권한명2, ... FROM 사용자명;
+* 권한 관리
+	- 사용자에 의해 사용되는 권한
+	. CREATE SESSION : 데이터베이스에 연결할 수 있는 권한, USER로 연결(접속)할 수 있는 권한
+	. CREATE TABLE : 테이블을 생성할 수 있는 권한
+	. CREATE VIEW : 뷰를 생성할 수 있는 권한
+	. CREATE SEQUENCE : 시퀀스를 생성할 수 있는 권한
+	. CREATE PROCEDURE  :  함수를 생성할 수 있는 권한
+
+	- CONNECT 롤
+		. 사용자가 데이터베이스에 접속 가능하도록 가장 기본적인 시스템 권한을 묶어 놓았다.
+		. CREATE TABLE, CREATE SEQUENCE, CREATE CLUSTER, CREATE SESSION, ALTER SESSION, CREATE SYNONYM, CREATE DATABASE LINK
+
+	- RESOURCE 롤
+	- 유저를 생성하면 일반적으로 CONNECT, RESOURCE롤을 부여한다.
+		. 사용자가 객체를 생성할 수 있도록 시스템 권한을 묶어놓았다.
+		. CREATE TABLE, CREATE SEQUENCE, CREATE CLUSTER, CREATE TRIGGER, CREATE PROCEDURE
+
+* 선택적 권한 부여
+	- DBA 권한을 가진 USER가 자신의 계정에 접근하는 USER의 권한을 선택하여 부여할 수 있다.
+	GRANT SELECT ON [스키마명.]테이블명, ... TO [USER];
+	GRANT INSERT ON [스키마명.]테이블명, ... TO [USER];
+	GRANT DELETE ON [스키마명.]테이블명, ... TO [USER];
+	GRANT UPDATE ON [스키마명.]테이블명, ... TO [USER];
+
+	또는
+	GRANT SELECT, INSERT, DELETE, UPDATE ON [스키마명].테이블명 TO [USER];
+
+* 선택적 권한 취소
+	REVOKE SELECT ON [스키마명.]테이블명 FROM [USER];
+	REVOKE INSERT ON [스키마명.]테이블명 FROM [USER];
+	REVOKE DELETE ON [스키마명.]테이블명 FROM [USER];
+	REVOKE UPDATE ON [스키마명.]테이블명 FROM [USER];
+
+	또는
+	REVOKE SELECT, INSERT, DELETE, UPDATE ON [스키마명.]테이블명 FROM [USER];
+	--------------------------
+
+	다른 계정에 SELECT, INSERT, UPDATE, DELETE 모든(ALL) 권한 부여;
+	GRANT ALL ON [스키마명.]테이블명 TO USER명;
+	
+	다른 계정에 모든 테이블에 대한 SELECT 권한 부여;
+	GRANT SELECT ANY TABLE TO USER명; // ANY TABLE은 스키마명을 붙일 수 없음. DBA 권한을 갖고 있는 계정으로 이동해 해당 계정의 모든 테이블에 대한 권한을 부여하는 방식임
+
+	GRANT ALL ON ANY TABLE TO ORAUSER;
+	-- ALL과 ANY는 같이 사용할 수 없다.
+
+// SAMP 계정에 TEST.DEPT 테이블에 대해 SEELECT, INSERT, UPDATE, DELETE 권한 부여
+GRANT SELECT, INSERT, DELETE, UPDATE ON TEST.DEPT TO SAMP;
+GRANT ALL ON TEST.DEPT TO SAMP;
+
+// SAMP 계정에 부여한 TEST 계정의 모든 테이블에 대한 SELECT 권한을 회수
+REVOKE SELECT ANY TABLE FROM SAMP;
+
+==========================================
+SELECT * FROM SESSION_PRIVS; --> 계정에 부여된 권한을 확인할 수 있는 명령어
+DROP USER 사용자계정명; -->  사용자 계정을 삭제하는 명령어
+	단, 계정 내에서 한 번이라도 작업한 것이 있다면 명령어 뒤에 CASCADE 명령어 작성해 작업한 것까지 모두 삭제해야함.
+SELECT * FROM ALL_USERS; --> 모든 계정을 확인할 수 있는 명령어
+==========================================
+
+1. 사용자에게 부여된 시스템 권한 확인
+select * from dba_sys_privs where grantee = '사용자명';
+
+2. 사용자에게 부여된 롤 확인(시스템 권한이 롤에 포함됨)
+select * from dba_role_privs where grantee = '사용자명';
+
+3. 사용자에게 부여된 롤에 부여된 시스템 권한 확인
+select * from dba_sys_privs where grantee = '롤명';
+
+4. 타 사용자에게 부여한 객체(테이블 등) 권한 확인
+select * from dba_tab_privs where grantee = '테이블소유자명';
+select * from dba_tab_prive where grantee = '권한부여자명';
+
+
+#의사 컬럼
+
+* ROWNUM 키워드
+	- 인덱스에서 저장하는 ROWID(행주소)값이기도 함.
+	- 저장된 행 순서대로 자동으로 순번을 부여함.
+	- 단순쿼리인 경우에는 where절에만 사용 가능.
+		단, 서브쿼리 사용 시 select절에도 표현할 수 있다.
+	- 페이징처리를 하려면 서브 쿼리를 이용하여 할 수 있다.
+		* 페이징 : 한 번에 보여지는 수를 조정하는 것
+	- order by절 이용 시 꼭 서브 쿼리에서 사용할 것
+
+	- 형식 : ROWNUM < 값 또는 ROWNUM <= 값 // 단순쿼리일 때는 크다, 크거나 같다로 활용 불가
+		* 값은 양의 정수로 표현
+
+* 페이징 쿼리
+	- 페이징 처리시에는 꼭 별칭을 지정해줘야만 제대로 인식될 수 있다.
+	select * from (select rownum rn, c2.* from customers c2 where cust_gender = 'M') where rn between 10 and 13;
+	select * from(select rownum rn, c2.* from customers c2 where cust_gender = 'M') where rn >= 50 and rn <= 100;
+
+
+
+#MERGE명령문
+	- 조건에 의해 한꺼번에 추가(INSERT), 갱신(UPDATE), 삭제(DELETE)할 수 있는 명령문
+	- ON절에 있는 조건에 UPDATE할 컬럼이 들어가면 안됨. 오류 발생
+
+	[형식]
+	MERGE INTO 변경을 원하는 테이블명1 [별칭] -- 테이블명, 서브쿼리 가능
+	USING 데이터를 가져올 테이블명2 [별칭] -- 뷰명, 테이블명, 서브쿼리 등 가능
+	ON (테이블1과 테이블2를 엮을 조건) 
+	WHERE MATCHED THEN -- 이 절에는 반드시 UPDATE문이 와야 한다. // ON절의 조건에 해당되면 UPDATE절, DELETE절 실행
+	UPDATE SET 테이블1의 컬럼1 = 테이블2의 컬럼1, 테이블1의 컬럼2 = 테이블2의 컬럼2, ...
+	[DELETE WHERE 조건 ** 반드시 UPDATE절과 같이 써야 한다.]
+	[WHEN NOT MATCHED THEN -- 이 절에는 INSERT문이 올 수 있다. // ON절의 조건에 부합하지 않으면 INSERT절 실행
+	INSERT (테이블1의 컬럼1, 테이블1의 컬럼2, ...) VALUES (테이블2의 컬럼1, 테이블2의 컬럼2, ...);]
+
+#집합연산자
+	집합연산자 : UNION, UNION ALL - 합집합, INTERSECT - 교집합, MINUS - 차집합.
+
+	[형식]  SELECT A_COL1, A_COL2, ... FROM A 집합연산자 SELECT B_COL1, B_COL2, ... FROM B ORDER BY A_COL1, A_COL2 [DESC], .... ;(ORDER BY절에는 B_COL이 올 수 없음)
+
+	[집합연산자의 제한 조건]
+	- 두 테이블의 컬럼 갯수와 자료형, 나열순서가 같아야 한다.
+	- ORDER BY절은 모든 쿼리문을 다 기술한 뒤 맨 마지막에 한 번만 기술가능하다. ( ORDER BY절에 사용할 수 있는 컬럼은 왼쪽(=위)에 기술된 테이블의 컬럼으로만 가능하다.)
+	- LOB(BLOB, CLOB, BFILE) 자료형, LONG 자료형에는 사용할 수 없다.
+	- 정렬을 하지 않는 경우는 알아서 오름차순으로 정렬된다.
+
+	* UNION : 합집합
+	- 두 개의 테이블의 데이터를 모두 포함한 결과를 반환함.
+	- 중복값 제거. 중복값은 1개만 표현함
+
+	* UNION ALL : 합집합
+	- UNION과 거의 다 동일하지만 중복을 허용하여 모두 출력한다.
+
+	* INTERSECT : 교집합
+	- 두 개의 테이블의 데이터 중 공통된 항목만 반환함.
+	- 중복을 허용하지 않는다.
+
+	* MINUS : 차집합
+	- 두 개의 테이블의 데이터 중 공통된 항목을 제외한 데이터만 반환하는데, 단, 먼저 처리된 테이블의 항목만 반환한다. 나중에 처리된 테이블의 결과는 제외.
+	- 중복을 허용하지 않는다.
+
+
+================================
+#JDBC (Java DataBase Connection) : 자바와 DB를 연결하는 기술
+*.jar (Java Archive - 자바 아카이브) : 클래스, 추상클래스, 인터페이스 등 실행가능한 runtime 파일 등을 같이 묶어서 압축해놓은 파일형식. 
+자바에서 실행하거나 사용하기 편리한 파일이다.
+
+1. 데이터베이스와 자바를 연결하기 위한 드라이버를 준비한다.
+해당 데이터베이스에서 내장되어있는 경우, 또는 MAVEN REPOSITORY
+	오라클(oracle) => ojdbc6.jar(11g 이상)
+	MySQL(mysql) => mysql-connector-j.jar
+	MariaDB => mariadb-java-client.jar
+	
+	* 오라클 사전세팅
+	1) 오라클 설치위치에서 (C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib) 내 ojdbc6.jar 파일을 복사해서 다른 폴더에 보관
+	2) 이클립스 프로젝트명 우클릭 - Bulid path - Configure Bulid Path - Java Build Path - Libraries - ClassPath - Add External JARs... 버튼 - 1에서 ojdbc6.jar 파일 복사해둔 폴더 위치 세팅 - Apply - Apply and Close
+
+2. 드라이버 설치(자바 소스코드로 작성)
+	Class.forName("패키지경로포함.클래스명까지 기술"); 
+	* 드라이버 경로 찾기
+	ojdbc6.jar 파일 복사해둔 폴더 이동 - ojdbc6.jar 압축해제 - ojdb6 - oracle - jdbc - driver 폴더 내 OracleDriver 클래스 찾기
+
+	- 오라클
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+
+	- MySQL 
+	Class.forName("com.mysql.jdbc.Driver");
+	
+	- MariaDB
+	Class.forName("org.mariadb.jdbc.Driver");
+
+3. 데이터베이스와 자바를 연결해주는 연결객체 생성(연결통로를 open하는 단계)
+	** url 경로, username(사용자계정 정보), password(사용자계정의 비밀번호 정보)
+	Connection (java.sql 패키지에서 제공하는 인터페이스)
+	데이터베이스 연결객체 생성 형식 : Connection conn = Drivermanager.getConnection(url, username, password);
+	
+
+	- Oracle
+	@ 기호를 기준으로 좌측은 대소문자 구별하고 우측은 구별하지 않음.
+	url정보 : "jdbc:데이터베이스시스템종류(oracle/mariadb/mysql 등):오라클드라이버버전:@localhost:포트번호:SID명"
+	oracleXE의 경우 : String url =  "jdbc:oracle:thin:@localhost:1521:XE"; // localhost 대신 127.0.0.1로 기술가능
+	String username = "TEST"; String password = "1111";
+
+	- MySQL
+	String url = "jdbc:mysql://localhost:3306/DB명"; // MySQL과 MariaDB의 포트번호는 3306임.
+	String username = 'ROOT"; String password = "사용자 생성 시 사용한 비밀번호(1111)";
+
+	- MariaDB
+	String url = "jdbc:mariadb://localhost:3306/DB명";
+	String username = 'ROOT"; String password = "사용자 생성 시 사용한 비밀번호(1111)";
+
+4. SQL명령문(Statement)을 담고 실행할 객체 생성
+	명령문 객체 자료형 : Statement, PreparedStatement
+
+	- Statement 형식 
+		3번에서 만든 Connection 연결 객체(=conn)에 접근해서 createStatement() 메소드를 호출하여 명령문을 담을 객체를 생성한다.
+		--> Statement st = conn.createStatement();
+
+5. 명령문 객체에 SQL명령문(문자열로 기입)을 담고 실행하기
+[형식] 
+select문 : 명령문객체명.executeQuery("SQL명령문"); ==> ResultSet로 데이터를 반환함.
+DML문 : 명령문객체명.executeUpdate("SQL명령문"); ==> 처리한 행수를 반환함.(정수값)
+
+SELECT => executeQuery("SQL명령문기술") // sql명령문을 기술할 때 반드시 ;(세미콜론)을 제거하고 기술해야함.
+INSERT, UPDATE, DELETE => executeUpdate("SQL명령문기술"); // sql명령문을 기술할 때 반드시 ;(세미콜론)을 제거하고 기술해야함.
+
+st.executeQuery("select * from dept"); 
+st.executeQuery("SELECT * FROM DEPT"); //  오라클은 코드의 대소문자 구별하지 않기 때문에 두 가지의 방법이 존재함.
+	
+6. 다 사용한 ResultSet, Statement, Connection 객체들은 모두 close해주는 것이 좋다.
+닫는 것은 생성한 순서의 역순으로 닫아야 한다.
+
+	생성순서 : Connection 생성 -> Statement 생성 -> ResultSet 생성
+	닫는순서 : ResultSet 닫기 -> Statement 닫기 -> Connection 닫기
+
+
+** 5번 select문인 경우 데이터를 ResultSet 객체로 받아옴.
+ResultSet 객체에 받아온 데이터를 한 줄, 한 컬럼씩 떼어오는 방법
+반복문을 이용하여 떼어오기
+
+rs.next() 메소드를 이용 : 떼어올 다음 줄이 있는 경우 true 반환 및 해당 1줄을 rs 객체에 담아준다.
+한줄 데이터를 담고 있는 객체를 이용하여 컬럼 1개씩 값을 떼어오는 방법
+정수값인 경우 : rs.getInt(컬럼순서값) 또는 rs.getInt("컬럼명")
+실수값인 경우 : rs.getDouble(컬럼순서값) 또는 rs.getDouble("컬럼명")
+문자열값인 경우 : rs.getString(컬럼순서값) 또는 rs.getString("컬럼명")
+Date자료형인 경우 : String으로 받아오거나 java.sql.Date 또는 java.util.Date 자료형으로 받아올 수 있음
+		rs.getDate(컬럼순서값) 또는 rs.getDate("컬럼명")
+		rs.getString(컬럼순서값) 또는 rs.getString("컬럼명")
