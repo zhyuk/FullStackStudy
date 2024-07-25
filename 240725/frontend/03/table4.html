@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Element</title>
+    <style>
+        /*  margin: 0 auto;
+            움직일 수 있는 영역이 존재하는 블록레벨요소의 수평 정렬을 설정하는 속성 및 속성값
+            반드시 수평정렬을 하고자 하는 블록레벨 자신의 태그에 기술을 해야한다.
+        */
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        td,
+        th {
+            border: 1px solid black;
+        }
+
+        /*  text-align 속성 : 움직일 수 있는 영역이 존재하는 인라인레벨 요소의 수평방향의 정렬을 설정하는 속성
+            ** 반드시 움직이고자하는 인라인레벨 요소를 감싸고 있는 부모태그에 기술을 해야한다.
+            인라인레벨의 속성을 변경하는 속성들은 상속이 된다.
+        */
+        table {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>colspan - Column Span속성</h2>
+    <p>- 원하는 컬럼을 묶어주는 속성입니다.</p>
+    <p>- 시작 컬럼(th또는 td태그)에 기술하며, 묶을 컬럼수를 지정합니다.</p>
+    <p>형식 : colspan="컬럼수값" 또는 colspan='컬럼수값'</p>
+
+    <table>
+        <tr>
+            <th>이 름</th>
+            <th colspan="2">전화 번호</th>
+        </tr>
+        <tr>
+            <td>Bill Gates</td>
+            <td>5557 - 7854</td>
+            <td>7284 - 8889</td>
+        </tr>
+    </table>
+
+    <table style="margin-top: 100px;">				
+        <tr><th>제목1</th><th colspan="2">제목2</th></tr>
+        <tr><td>내용1</td><td>내용2</td><td>내용3</td></tr>
+        <tr><td colspan="3">내용4</td></tr>
+        <tr><td>내용6</td><td>내용7</td><td>내용8</td></tr>
+        </table>				
+        
+</body>
+
+</html>

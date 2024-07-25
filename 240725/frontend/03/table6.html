@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Element</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        thead {
+            color: white;
+            background-color: gray;
+        }
+
+        th,
+        td {
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Caption 태그</h2>
+    <p>테이블의 표 제목을 기술할 때 사용하는 태그임.</p>
+
+    <table>
+        <!-- 테이블 내에서만 사용 가능 -->
+        <caption>표제목(월별 저축현황)</caption>
+        <thead>
+            <tr>
+                <th>Month(월)</th>
+                <th>Savings(금액)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>January</th>
+                <th>$100</th>
+            </tr>
+            <tr>
+                <th>February</th>
+                <th>$50</th>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

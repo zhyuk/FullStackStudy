@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Element</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th {
+            width: 20%;
+            text-align: right;
+            color: white;
+            background-color: gray;
+            padding-right: 10px;
+        }
+
+        td {
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>rowspan - Row Span 속성</h2>
+    <p class>- 원하는 행(줄)을 묶어주는 속성입니다.</p>
+    <p>- 시작행의 th 또는 td태그에 기술하며, 묶을 행수를 지정합니다.</p>
+    <p>- 형식 : rowspan="개수값" 또는 rowspan='개수값'</p>
+
+    <table>
+        <tr>
+            <th>Name :</th>
+            <td>Bill Gates</td>
+        </tr>
+        <tr>
+            <th rowspan="2">Telephone : </th>
+            <td>5557 - 7854</td>
+        </tr>
+        <tr>
+            <td>7283 - 8889</td>
+        </tr>
+    </table>
+
+
+    <table style="margin-top: 100px;">
+        <tr>
+            <td>1</td>
+            <td colspan="2">2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td rowspan="2">4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>7</td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
