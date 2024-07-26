@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Element</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- figure : 시맨틱 태그
+     - 콘텐츠를 그룹으로 묶을 때 사용
+     - 특이케이스 블록레벨 요소
+     - 좌우의 여백도 존재한다.
+     -->
+    <figure>
+        <table>
+            <tr>
+                
+                <th>브라우저</th>
+                <th>제조업체</th>
+                <th>다운로드</th>
+            </tr>
+            <tr>
+                <td style="text-align: center;"><b>크롬(Chrome)</b></td>
+                <td>Google</td>
+                <td>https://www.google.com/chrome/</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;"><b>파이어폭스(Firefox)</b></td>
+                <td>Mozilla</td>
+                <td>https://www.mozilla.org/ko/Firefox/</td>
+            </tr>
+
+            <tr>
+                <td style="text-align: center;"><b>엣지(Edge)</b></td>
+                <td>Microsoft</td>
+                <td>https://www.microsoft.com/ko-kr/windows/microsoft-edge</td>
+            </tr>
+        </table>
+        <!-- figcaption은 작성하는 위치에 존재함. table의 caption처럼 정해진 위치가 아님.
+            특이케이스 블록레벨 요소. 위아래 여백 존재 X    
+        -->
+        <figcaption>국내에서 자주 사용하는 <b>모던 브라우저</b></figcaption>
+    </figure>
+</body>
+
+</html>

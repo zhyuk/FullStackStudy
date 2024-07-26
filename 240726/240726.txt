@@ -1,0 +1,42 @@
+#CSS
+
+*css가 적용되는 범위
+인라인 < 내부 < 외부
+// 적용할 수 있는 범위는 외부가 가장 넓다.
+
+* css가 적용되는 우선순위
+인라인 > 내부 > 외부
+// 외부보다 인라인스타일 시트가 적용된다.
+
+#form 요소
+: 사용자가 입력한 데이터를 서버로 전송하기 위해 사용하는 태그들
+
+형식) (문법=Syntax): 
+<form [action="데이터를 전송할 페이지 이동경로(기본값 : 자신의 페이지경로)" method="데이터전송방식(기본값 : get)" target="이동할 페이지를 어떠한 상태로 보일지를 결정(기본값 : _self)" autocomplete="on(기본값) 또는 off"]>
+<input type="타입속성명" 속성명="값" ...></input>
+<select 속성명="값" 속성명="값">...</select>
+<button type="submit">전송</button>
+</form>
+
+* 서버 또는 다른 페이지로 데이터를 전송하기 위한 조건
+1. 입력 요소들은 반드시 form 태그로 묶어야 한다.
+2. 입력한 요소에 반드시 name 속성이 기술이 되어야 한다.
+3. 입력한 요소를 전송할 수 있는 submit버튼이 존재해야한다.
+
+* get 방식 : 전송하는 데이터는 url 뒤에 쿼리스트링방식으로 전송한 데이터를 키(name)과 값(value)의 쌍으로 붙여서 보낸다.
+예 ) http://localhost:8080/abc/def.html?id=admin&pw=1234
+
+* form 태그에 action,method를 기술하지 않을 경우 action의 기본값은 나의 페이지, method의 기본값은 get임.
+* submit의 기능 : submit버튼을 감싸고 있는 form태그안의 입력값들을 전송(action을 활성화시키는 기능을 가지고 있음)
+
+
+#select 태그
+형식)
+<select name="값" 속성명="속성값" 속성유형 .....>
+<option value="값">내용</option> // 프론트에서는 사과로, 데이터를 전송할 때는 apple을 전송할 수 있음.
+<option value="값">내용</option>
+<option value="값">내용</option>
+... 
+또는 
+<option>값</option> // value 미작성 시 데이터가 전송될 때 텍스트 자체가 값으로 전송됨
+</select>

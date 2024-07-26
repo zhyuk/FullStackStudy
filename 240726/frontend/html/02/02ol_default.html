@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>순서가 있는 목록 태그</title>
+</head>
+
+<body>
+    <h1>OL 순서가 있는 목록 태그(ordered list)</h1>
+
+    <pre>
+        - width : 부모태그의 width 100% 인식, height : 컨텐츠 높이 만큼을 인식<br>
+        - 특수한 블록레벨 요소의 태그<br>
+        - 위, 아래 여백을 가지고 있다.<br>
+        - 마커 미 설정 시 기본값은 숫자값임.<br>
+        - li 태그를 자식태그로 가짐.<br>
+
+        <p>
+        ol태그<br>
+        - 다른 블록레벨 요소와 다르게 왼쪽 패딩을 가지고 있다.(마커영역 -40px정도)<br><br>
+
+        li태그<br>
+        - 다른 블록레벨 요소와 다르게 위, 아래 여백이 아예 없다.<br>
+        </p>
+    </pre>
+
+    <h1>기기 작동 순서</h1>
+    <ol>
+        <li>우측 상단의 전원버튼을 켭니다.</li>
+        <li>격자무늬 메뉴버튼을 누릅니다.</li>
+        <li>종료합니다.</li>
+    </ol>
+    <h1>1박 2일 가족 여행 코스</h1>
+    <ul>
+        <li> 1일차
+            <!-- 마커를 영어 대문자로 설정 -->
+             <!-- 중첩사용 시 부모 li태그에 위,아래 여백이 없어 자식의 ol태그도 위,아래 여백이 삭제됨 -->
+            <ol type="A">
+                <li>해녀박물관</li>
+                <li>낚시체험</li>
+            </ol>
+        </li>
+        <li> 2일차
+            <!-- 마커를 영어 소문자로 설정. 시작값이 3번째인 c부터 시작 -->
+            <ol type="a" start="3">
+                <li>용눈이오름</li>
+                <li>만장굴</li>
+                <li>카약체험</li>
+            </ol>
+        </li>
+    </ul>
+</body>
+
+</html>

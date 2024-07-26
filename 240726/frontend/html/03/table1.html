@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table element</title>
+
+</head>
+
+<body>
+    <h3>table 태그</h3>
+    - 행과 열(그리드형식 = 표 구조)의 구조를 제공해주는 기능<br>
+    - 특수 블럭레벨 요소임<br>
+    - 위아래 여백이 없으며, 임대영역이 부모태그의 100%, 가용영역은 컨텐츠 너비만큼이다.<br>
+    - 자식, 자손 요소로는 thead, tbody, tr, caption, th, td 태그 등이 올 수 있다.<br><br>
+
+    <h3>thead, tr태그</h3>
+    - thead : 머릿말에 해당되는 태그를 묶어주는 기능<br>
+    - tr : 한 행을 나타내는 기능
+    - 특수 블럭레벨 요소임<br>
+    - 위아래 여백이 없으며, 부모태그의 100%를 인식한다.<br>
+    - margin은 사용되나 표현되질 못하며, padding은 적용할 수 없다.<br><br>
+
+    <h3>caption 태그</h3>
+    - 표 제목을 기술할 때 사용하는 태그<br>
+    - table태그 안의 맨 처음 기술해주는 것이 좋다.<br> <!-- 권장사항-->
+    <small>(맨 마지막에 기술해도 알아서 맨 위로, 센터정렬로 온다.)</small><br>
+    - 특수 블럭레벨 요소로, 위아래 여백이 없다.<br>
+    - table태그가 아닌 다른 곳에 기술되면 caption태그는 적용되지 않는다.(사라짐)<br><br>
+
+    <h3>th(table heading), td(table description) 태그</h3>
+    - th : 표에서 열(칸)의 속성명을 기술하는 태그임(=컬럼명)<br>
+    - td : 표에서 열(칸)의 값을 기술하는 태그임.<br>
+    - 특수한 인라인레벨 요소임<br>
+    - width, height, padding값 조절 가능.(margin 불가)<br>
+    - 블럭레벨 요소를 담을 수 있는 요소임.<br><br>
+    <br><br>
+
+    <h2>Table태그(기본값)</h2>
+    <table>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>80</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th>제목1</th>
+            <th>제목2</th>
+            <th>제목3</th>
+        </tr>
+        <tr>
+            <td>내용1</td>
+            <td>내용2</td>
+            <td>내용3</td>
+        </tr>
+        <tr>
+            <td>내용1</td>
+            <td>내용2</td>
+            <td>내용3</td>
+        </tr>
+        <tr>
+            <td>내용1</td>
+            <td>내용2</td>
+            <td>내용3</td>
+        </tr>
+    </table>
+
+
+    <!-- <h2>Table태그(width 100%로 변경)</h2> -->
+    <table width="100%">
+        <!-- <caption>정보테이블</caption> -->
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Age</th>
+        </tr>
+
+
+        <tr>
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>80</td>
+        </tr>
+    </table>
+</body>
+
+</html>

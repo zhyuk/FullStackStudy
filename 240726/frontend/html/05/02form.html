@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form 요소</title>
+    <style>
+        form {
+            border: 1px solid #000;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>The Select Element</h2>
+    <p>select태그(엘리먼트)는 드롭다운 목록을 정의하는 태그입니다.</p>
+
+    <form>
+        <!-- selected, size 속성 -->
+        <label for="fruits">Choose a fruit:</label>
+        <select name="fruits" id="fruits">
+            <!-- 사용성을 위해 보통 첫번째 option은 아래의 방식처럼 기술 -->
+            <option value="">선택해주세요.</option>
+            <option>Apple</option>
+            <option value="Water Melon">멜론</option>
+            <option value="Orange">오렌지</option>
+            <option value="lemon">레몬</option>
+        </select><br><br>
+
+        <!-- multiple 속성 / xhtml이나 html4에선 multiple="multiple"로 기술해야함 -->
+        <label for="colors">Choose a colors:</label>
+        <!-- size 속성 : 몇 개의 목록을 보여줄지 지정하는 속성 -->
+        <select name="colors" id="colors" size="4" multiple>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+        </select><br><br>
+
+        <!-- optgroup 요소 -->
+        <label for="cars">Choose a car:</label>
+        <select name="cars" id="cars">
+            <!-- optgroup :  옵션의 제목역할을 함. -->
+            <optgroup label="Swedish Cars">
+                <option value="volvo">볼보</option>
+                <option value="saab">사브</option>
+            </optgroup>
+
+            <optgroup label="German Cars">
+                <option value="mercedes">메르세데스</option>
+                <option value="audi">아우디</option>
+            </optgroup>
+        </select><br><br>
+        <input type="submit" value="전송">
+    </form>
+</body>
+
+</html>

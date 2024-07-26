@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표 만들기</title>
+    <style>
+        table {
+            width: 100%;
+        }
+
+        td {
+            font-weight: bold;
+        }
+
+        table,
+        td {
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <caption>colgroup 연습</caption>
+        <!-- table의 자식으로 올 수 있는 colgroup : 컬럼의 속성을 미리 적용할 수 있게 해준다. -->
+        <colgroup>
+            <col span="2" width="20%">
+            <col span="2" style="background: blue;">
+        </colgroup>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+
+        <tr>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+
+</html>

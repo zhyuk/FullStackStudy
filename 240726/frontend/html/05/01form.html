@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form 요소</title>
+    <style>
+        form {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>form 태그들</h2>
+
+    <!-- action 속성, label 요소, input 요소 -->
+    <!-- form : 특수 케이스 블록레벨 -->
+    <!-- <form action="01form.html" method="get"> -->
+        <form action="01form.html" method="post">
+
+        <!-- form 태그 내 입력요소들은 대부분 특수케이스 인라인레벨 
+            width,height, margin, padding 등 모두 조절 가능
+        -->
+
+        <!-- label의 for 속성 : 입력요소의 id값이 동일한 곳을 포커스해줌 -->
+        <label for="firstname">First Name :</label>
+        <input type="text" id="firstname" name="first1" value="홍">
+        <br><br>
+
+        <!-- label 태그 안에 입력요소 입력 시 for 속성과 같은 역할을 함 -->
+        <label>Last name :
+            <input type="text" name="lastname" value="길동">
+        </label><br><br>
+        <label>Middle name :
+            <input type="text" name="middlename" value="중간">
+            <br><br>
+        </label>
+        <label for="job">Job : </label><input type="text" id="job" value="학생"><br><br>
+        <!-- <input type="submit" value="가입하기"> -->
+        <!-- form태그 내 button의 기본 type은 submit임 -->
+        <button>가입하기</button>
+        <!-- <button type="submit">가입하기</button> -->
+    </form><br>
+
+    <!-- form 태그 밖에 존재하는 button의 기본 type은 button임 -->
+    <button style="margin: 10px 0;">가입하기</button>
+    <!-- <button type="button">가입하기</button> -->
+
+    <!-- form태그에 action, method를 기술하지 않을 경우, action의 기본값 : 나의 페이지로 이동, method의 기본값 : get -->
+    <form>
+        <input type="text" name="two1" value="홍"><br>
+        <input type="text" name="two2" value="길동"><br>
+        <input type="text" name="two3" value="중간"><br>
+        <input type="text" id="job" value="학생"><br><br>
+
+        <button type="submit">가입하기</button>
+    </form>
+</body>
+
+</html>
