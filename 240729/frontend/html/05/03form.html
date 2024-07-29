@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>The datalist Element</h2>
+    <p>datalist 엘리먼트는 입력양식 옵션을 미리 정의하여 보여주는 태그입니다.</p>
+
+    <form action="03form.html">
+        <input list="browsers" name="browser">
+        <!-- input 태그의 list값과 datalist의 id값이 동일해야 하며, 자동완성 기능처럼 구현할 수 있다. -->
+        <datalist id="browsers">
+            <!-- value값 생략 시 값이 value값으로 전송 -->
+            <option>Internet Explorer</option>
+            <option value="Firefox"></option>
+            <option value="Chrome"></option>
+            <option value="Opera"></option>
+            <option value="Safari"></option>
+        </datalist>
+        <!-- submit 타입의 input 태그는 자동으로 "제출" 단어가 출력된다.
+            * 브라우저가 인식하는 국가에 따라 다르게 출력됨 
+        -->
+        <input type="submit">
+        <button type="submit">전송</button>
+    </form>
+
+    <p><b>참고:</b>
+    datalist 태그는 Safari 12.1. 이전 버전에서는 지원이 되지 않습니다.
+    </p>
+</body>
+</html>
