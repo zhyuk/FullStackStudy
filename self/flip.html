@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flip</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+    <style>
+        .font {
+            font-family: "Lobster", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            width: 100%;
+            /* border: solid 1px green; */
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            margin-top: 100px;
+            /* border: solid 1px greenyellow; */
+        }
+
+
+        li {
+            width: 300px;
+            height: 450px;
+            margin: 0 auto;
+            overflow: hidden;
+            /* border: solid 1px red; */
+        }
+
+        li:hover .flip {
+            transform: rotateY(180deg);
+        }
+
+        .flip {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
+        }
+
+        .flip>div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .flip>div img {
+            width: 100%;
+        }
+
+        .front {
+            background: #000;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: rgb 3.5s ease-in-out infinite;
+        }
+
+
+        .back {
+            transform: rotateY(180deg) translate3d(0, 0, 3px);
+        }
+
+
+        @keyframes rgb {
+            10% {
+                color: #D063A5;
+            }
+
+            20% {
+                color: #FF70A6;
+            }
+
+            30% {
+                color: #FF6E2E;
+            }
+
+            40% {
+                color: #FFA12D;
+            }
+
+            50% {
+                color: #FFEC02;
+            }
+
+            60% {
+                color: #9FC948;
+            }
+
+            70% {
+                color: #019F63;
+            }
+
+            80% {
+                color: #04A8B5;
+            }
+
+            90% {
+                color: #0083D3;
+            }
+
+            100% {
+                color: #5A52AB;
+            }
+        }
+    </style>
+</head>
+
+<body class="font">
+    <div id="wrap">
+        <ul>
+            <li>
+                <div class="flip">
+                    <div class="front">
+                        <div class="box">MINJI</div>
+                    </div>
+                    <div class="back"><img src="./img/minji.png" alt="민지"></div>
+                </div>
+            </li>
+            <li>
+                <div class="flip">
+                    <div class="front">
+                        <div class="box">HANI</div>
+                    </div>
+                    <div class="back"><img src="./img/hani.png" alt="하니"></div>
+                </div>
+            </li>
+            <li>
+                <div class="flip">
+                    <div class="front">
+                        <div class="box">DANIELLE</div>
+                    </div>
+                    <div class="back"><img src="./img/danielle.png" alt="다니엘"></div>
+                </div>
+            </li>
+            <li>
+                <div class="flip">
+                    <div class="front">
+                        <div class="box">HAERIN</div>
+                    </div>
+                    <div class="back"><img src="./img/haerin.png" alt="해린"></div>
+                </div>
+            </li>
+            <li>
+                <div class="flip">
+                    <div class="front">
+                        <div class="box">HYEIN</div>
+                    </div>
+                    <div class="back"><img src="./img/hyein.png" alt="혜인"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>엘레베이터 만들기</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #wrap {
+            width: 600px;
+            height: 800px;
+            margin: 0 auto;
+            margin-top: 30px;
+            position: relative;
+            /* border: solid 1px red; */
+        }
+
+        .elevator {
+            width: 100%;
+            height: 100%;
+            /* border: solid 1px blue; */
+            overflow: hidden;
+            position: absolute;
+            z-index: 2;
+        }
+
+        .left-door,
+        .right-door {
+            width: 50%;
+            height: 100%;
+            float: left;
+            background: gray;
+            border: solid 1px black;
+            transition: transform 3s ease-in-out;
+        }
+
+        .elevator:hover .left-door {
+            transform: translateX(-350px);
+        }
+
+        .elevator:hover .right-door {
+            transform: translateX(350px);
+        }
+
+        .inner {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="elevator">
+            <div class="left-door"></div>
+            <div class="right-door"></div>
+        </div>
+
+        <div class="inner"></div>
+    </div>
+</body>
+
+</html>
