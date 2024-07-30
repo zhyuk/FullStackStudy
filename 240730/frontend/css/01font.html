@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서체(폰트) 스타일 연습</title>
+    <style>
+        /* div.ball {
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            background-color: greenyellow;
+            animation: rgb 3.5s ease-in-out  infinite;
+        }
+
+        @keyframes rgb {
+            10% {border: solid 1px red;}
+            20% {border: solid 1px orange;}
+            30% {border: solid 1px yellow;}
+            40% {border: solid 1px green;}
+            50% {transform: translate(200px,30px) scale(1.5);}
+            60% {border: solid 1px blue;}
+            70% {border: solid 1px purple;}
+            80% {border: solid 1px black;}
+            90% {border: solid 1px gray;}
+            100% {border: solid 1px white;}
+        } */
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="ball"></div>
+    </div>
+    <!-- font-style, font-size -->
+    html5의 기본 폰트 사이즈입니다.<br>
+    <span style="font-size: 16px;">span 폰트 사이즈 입니다. (기본)</span>
+    <p style="font-style: italic;">p태그의 기본 폰트 사이즈입니다.</p>
+
+    <!-- 0을 제외한 값은 px, pt, em 등 단위가 존재해야 함. -->
+    <p style="font-size: 3;">폰트 사이즈 3 입니다.(기본)</p>
+    <p style="font-size: 5;">폰트 사이즈 5 입니다.(기본)</p>
+    <p style="font-size: 7;">폰트 사이즈 7 입니다.(기본)</p>
+
+    <p style="font-size: 12pt;">폰트 사이즈 12pt입니다.(기본)</p>
+    <p style="font-size: 16px;">폰트 사이즈 16px입니다.(기본)</p>
+
+    <p style="font-size: 2pt;">폰트 사이즈 2pt입니다.</p>
+    <p style="font-size: 2px;">폰트 사이즈 2px입니다.</p>
+    <p style="font-size: 3pt;">폰트 사이즈 3pt입니다.</p>
+    <p style="font-size: 3px;">폰트 사이즈 3px입니다.</p>
+
+    <p style="font-size: 5pt;">폰트 사이즈 5pt입니다.</p>
+    <p style="font-size: 5px;">폰트 사이즈 5px입니다.</p>
+    <p style="font-size: 7pt;">폰트 사이즈 7pt입니다.</p>
+    <p style="font-size: 7px;">폰트 사이즈 7px입니다.</p>
+
+    <p style="font-size: 2.5em;">글꼴의 크기를 2.5em 으로 변경합니다.</p>
+    <p style="font-size: 0.7em;">글꼴의 크기를 0.7em 으로 변경합니다.</p>
+    
+    <!-- 
+        em : 해당 엘리먼트가 기존에 가지고 있던 사이즈의 배수로 증가
+        * %와 동일함.
+        rem : 브라우저의 기본 폰트 사이즈의 배수로 증가
+    -->
+    <p style="font-size: 20px;">
+        <!-- 20px의 2배 => 40px -->
+        <span style="font-size: 2em;">2em</span><br>
+        <!-- 브라우저의 기본 폰트 사이즈인 16px의 2배 => 32px -->
+        <span style="font-size: 2rem;">2rem</span>
+    </p>
+
+    <p style="font-size: 250%;">style 속성을 이용한 글자 크기 변경</p>
+    <p style="font-size: 100%;">style 속성을 이용한 글자 크기 변경</p>
+    <p style="font-size: 10%;">style 속성을 이용한 글자 크기 변경</p>
+
+    <!-- color -->
+    <h1 style="color: rgb(255, 192, 192);">RGB 색상값으로 표현된 연분홍색</h1>
+    <h1 style="color: rgba(0, 128, 128, 1);">RGBA 색상값으로 표현된 청록색</h1>
+    <p style="color: hsl(240, 100%, 50%);">HSL 색상값으로 표현</p>
+    <p style="color: hsla(180, 100%, 50%, 0.5);">HSLA 색상값으로 표현 0.5</p>
+    <p style="color: #f00;">폰트 색상 레드</p>
+    <p style="color: #ff0000;">폰트 색상 레드</p>
+    <p style="color: blue;">폰트 색상 블루</p><br><br>
+
+    <!-- font-family -->
+    <p>기본 폰트 서체 사용</p>
+    <p style="font-family: 돋움체">폰트 돋움체 사용</p>
+    <p style="font-family: 궁서체">폰트 궁서체 사용</p>
+    <br><br><br>
+    <hr>
+
+    <h2>복합적인 사용</h2>
+    <!-- 속성값 내부에 큰 따옴표를 기술해야하는 경우, 속성값에는 작은 따옴표를 이용해야 한다. => 큰 따옴표 2개일 경우, 위치를 제대로 인식하지 못한다. -->
+    <p style='font-size: 16px; color: red; font-family: "Times New Roman", 궁서체;'>폰트 사이즈5, 컬러는 레드, 폰트는 궁서체 사용</p>
+
+    <!-- font-variant -->
+    <h1>font-variant 속성을 이용한 폰트의 variant 설정</h1>
+    <p style="font-variant: normal;">normal 스타일이 적용</p> <!-- 기본값.-->
+    <p style="font-variant: small-caps;">Ssmall-caps적용: first-second, Firist-second, First-Second</p>
+
+    <!-- font-weight -->
+    <h1>font-weight 속성을 이용한 글꼴의 두께 설정</h1>
+    <p style="font-weight: normal;">이 텍스트의 두께는 normal 스타일이 적용되어 있습니다.</p>
+    <p style="font-weight: 600;">이 텍스트의 두께는 600이 적용되어 있습니다.</p>
+    <p style="font-weight: bolder;">이 텍스트의 두께는 bolder 스타일이 적용되어 있습니다.</p>
+    <p style="font-weight: lighter;">이 텍스트의 두께는 lighter 스타일이 적용되어 있습니다.</p>
+
+    <!-- text-align -->
+    <h1 style="text-align: center;">Centered Heading</h1>
+    <p style="text-align: center;">Centered paragraph.</p>
+    <img src="https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E" style="text-align: center; width: 260px;">
+    <p style="text-align: center;">
+        <img src="https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E" style="width: 260px;">
+    </p>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="get">
+        <!-- fieldset 태그 : form 태그 내 얼마없는 블록레벨
+            마진, 패딩, 아웃라인 등 기본 속성을 갖고있음. 
+            주로 form 요소 내 입력요소를 그룹화할 때 사용한다.
+        -->
+        <fieldset>
+            <label> 아이디 :
+                <input type="text" id="user_id" name="user_id">
+            </label>
+            <label> 비밀번호 : 
+                <input type="password" id="user_pw" name="user_pw" size="10">
+            </label>
+
+            <!-- submit 타입의 input 태그는 value값을 통해 버튼에 들어갈 텍스트를 변경할 수 있다. -->
+            <input type="submit" value="로그인">
+        </fieldset>
+    </form>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼 요소</title>
+</head>
+
+<body>
+    <form>
+        <fieldset>
+            <legend>신청 과목</legend>
+            <p>이 달에 신청할 과목을 선택하세요 (1과목만 가능)</p>
+            <!-- radio 속성 : 단일선택만 가능, 한 번이라도 체크 시 체크를 해제할 수 없음. 
+             * 반드시 name 속성을 동일하게 작성해야 단일선택만 가능하다.
+             -->
+            <label><input type="radio" name="subject" value="speaking">회화</label>
+            <label><input type="radio" name="subject" value="grammar">문법</label>
+            <label><input type="radio" name="subject" value="writing">작문</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>메일링</legend>
+            <!-- checkbox 속성 : 다중선택 가능, 체크해제 가능 -->
+            <p>메일로 받고 싶은 뉴스 주제를 선택해 주세요 (복수 선택 가능)</p>
+            <label><input type="checkbox" name="mailing" value="news">해외 단신</label>
+            <label><input type="checkbox" name="mailing" value="dialog">5분 회화</label>
+            <label><input type="checkbox" name="mailing" value="pops">모닝팝스</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>과 티셔츠 설문</legend>
+            <p>올해 과 티(T)를 만들려고 합니다. 원하는 색상을 추천해 주세요.</p>
+            <label>선호색상
+                <input type="color" name="color">
+                <input type="color" name="color" value="#00ff00">
+            </label>
+        </fieldset>
+        <input type="submit" value="전송">
+    </form>
+
+    <!-- * radio, checkbox 속성
+        radio, checkbox 속성은 value값을 필수로 작성해야 한다.
+        미기술 시 on으로 출력되어 내가 선택한 항목이 무엇인지 확인할 수 없다.
+
+        웹 접근성을 위해 radio, checkbox 속성은 label 필수로 작성해주는 것이 좋다.
+    -->
+</body>
+
+</html>

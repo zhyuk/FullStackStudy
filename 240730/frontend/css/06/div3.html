@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div 태그</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        table,
+        th,
+        td {
+            border: solid 1px black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 5px;
+        }
+
+        th {
+            background-color: gray;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>The div element</h1>
+    <!------------------------------------>
+    <div style="text-align: center; border: 5px solid red;">
+        <h1 style="width: 100px; height: 100px; background-color: gray;"></h1>
+        <p style="width: 100px; height: 100px; background-color: green;"></p>
+
+        <h1 style="width: 100px; height: 100px; background-color: yellow;">1</h1>
+        <h1 style="width: 100px; height: 100px; background-color: yellow; margin: 0 auto;">2</h1>
+
+        <div
+            style="width: 200px; border: 1px solid #2a1a1a; background-color: lightblue; margin: 0 auto; padding: 50px 0;">
+            텍스트<br> 중앙(center, middle) 정렬<br> 효과</div>
+
+        <h2>This is a heading in a div element</h2>
+        <p>This is a heading in a div element.</p>
+
+        <table style="background-color: #f00; margin-bottom: 10px;">
+            <caption style="font-weight: bold; margin-bottom: 10px;">Monthly savings</caption>
+            <tr>
+                <th>Month</th>
+                <th>Savings</th>
+            </tr>
+
+            <tr>
+                <td>January</td>
+                <td>$100</td>
+            </tr>
+            <tr>
+                <td>February</td>
+                <td>$50</td>
+            </tr>
+        </table>
+
+    </div><br><br><br>
+    <!------------------------------------>
+    <div style="width: 80%; margin: 0 auto; border: 1px solid #333; background-color: lightblue;">
+        <h2>This is a heading in a div element</h2>
+        <p>This is a heading in a div element</p>
+        <!-- <table style="background-color: #f00; margin:10px auto;"> -->
+        <!-- <table style="background-color: #f00; margin: 5px auto; text-align:center;"> -->
+        <table style="background-color: #f00; width: 100%;">
+            <caption style="margin-bottom: 10px; font-weight: bold;">Monthly savings</caption>
+            <tr>
+                <th>Month</th>
+                <th>Savings</th>
+            <tr>
+                <td>January</td>
+                <td>$100</td>
+            </tr>
+            <tr>
+                <td>February</td>
+                <td>$50</td>
+            </tr>
+            </tr>
+        </table>
+    </div><br><br><br>
+
+    <!------------------------------------>
+    <div>
+        <div><span style="text-align: center;">테이블 셀 태그와 마찬가지로 각각의 셀은 높이 값을 가지는 블록 요소의 특성을 가지게 됩니다.</span></div>
+    </div><br><br><br>
+    <!-- 
+    * 수평정렬의 기본값은 왼쪽(left) 단, 특수케이스의 경우는 다를 수 있음.
+    * 수직정렬의 기본값은 위쪽(top) 단, 특수케이스의 경우는 다를 수 있음.
+    -->
+</body>
+
+</html>

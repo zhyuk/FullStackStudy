@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span,
+        p {
+            display: inline-block;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        form {
+            background: red;
+        }
+
+        button,
+        input,
+        textarea {
+            vertical-align: bottom;
+        }
+    </style>
+</head>
+
+<body>
+    <span><span class="inspan">스팬</span></span>
+    <span>
+        <h1>h1을 감싼 스팬</h1>
+    </span>
+    <span><span class="inspan">스팬</span></span>
+    <p><span class="inspan">span</span></p>
+    <img src="../img/img_forest.jpg"><br>
+
+    <form action="">
+        <input type="text">
+        <textarea></textarea>
+        <input type="submit" value="전송">
+        <button type="submit">전송</button>
+    </form>
+
+    <!-- 
+        * vertical-align 속성 : 인라인레벨 요소의 수직정렬을 진행하는 속성
+        속성을 적용할 인라인레벨 요소의 속성에 직접 넣어야 함.
+
+        * 인라인레벨 요소 안에 블록레벨이 올 경우, 인라인레벨 요소를 무시하고 상위 블록레벨의 너비의 100%를 너비로 가진다.
+        여기서는 body의 너비를 가짐
+
+        * display:inline-block 속성 : 블록레벨의 요소는 너비를 컨텐츠 너비만큼으로 변경, 인라인레벨의 요소는 전체 마진,패딩을 조절할 수 있도록 변경
+    -->
+</body>
+
+</html>
