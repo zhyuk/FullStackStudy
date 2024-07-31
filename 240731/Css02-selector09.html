@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상클래스(:) 선택자 - 기타 선택자</title>
+    <style>
+        /* p {color: #000;} */
+        /* * {color: #000;} */
+        /* 선택한 엘리먼트가 아닌 모든 요소들의 글자 색상 */
+        body> :not(p) {
+            color: #f00;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    <h1>This is a heading</h1>
+    <div>This is some text in a div element.</div>
+    <a href="https://www.naver.com" target="_blank">Link to Naver!</a>
+</body>
+
+</html>

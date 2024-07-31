@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상클래스 선택자- 구조 의사 클래스(structural pseudo-class)</title>
+    <style>
+        /* 가장 첫번째 p태그 안의 모든 서체 색상 */
+        p:first-of-type {
+            color: blue;
+        }
+
+        /* 가장 마지막 p태그 안의 후손 em 요소들의 서체 색상 */
+        p:last-of-type em {
+            color: red;
+        }
+
+        /* 가장 첫번째 p 요소 안의 모든 서체 색상 
+            -> 자식요소 중 첫번째로 나온 태그가 p인 요소만. */
+        /* p:first-child {color: blue;} */
+
+        /* p요소 중 끝에서 세 번째 em 엘리먼트의 배경색 */
+        p:nth-of-type(3) em {
+            background: hotpink;
+        }
+
+        /* 2번째 p요소의 배경색 => nth-of-type(값) : 값은 1부터 시작 */
+        p:nth-of-type(2) {
+            background: red;
+        }
+
+        /* 홀수번째의 해당 요소의 배경색 */
+        span:nth-of-type(odd) {
+            background: green;
+        }
+
+        /* 짝수번째의 해당 요소의 배경색 */
+        span:nth-of-type(even) {
+            background: yellow;
+        }
+
+        /* 3의 배수에 해당되는 요소 선택 */
+        h1:nth-of-type(3n+0) {
+            background: skyblue;
+        }
+
+        /* 3의 배수에 더하기 1을 한 것에 해당되는 요소의 배경색. n은 0부터 시작 */
+        h1:nth-of-type(3n+1) {
+            background: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>p1번. I am a <em>strong</em> person. I am a<em> strong </em>person.</p>
+        <p>p2번. I am a <em>strong</em> person. I am a <em>strong</em> person.</p>
+        <p>p3번. I am a <em>strong</em> person. I am a <em>strong</em> person.</p>
+        <p>p4번. I am a <em>strong</em> person. I am a <em>strong</em> person.</p>
+        <hr>
+    </div>
+    <div>
+        <p>p1번. I am a <em>strong</em> person. I am a<em> strong </em>person.</p>
+        <p>p2번. I am a <em>strong</em> person. I am a <em>strong</em> person.</p>
+        <p>p3번. I am a <em>strong</em> person. I am a <em>strong</em> person.</p>
+        <p>p4번. I am a <em>strong</em> person. I am a <em>strong</em> person.</p>
+        <hr>
+    </div>
+
+    <p>p1번. I am a <em>strong</em> person. I am a<em> strong </em>person.</p>
+    <p>p2번. I am a <em>strong</em> person. I am a <em>strong</em> person.</p>
+    <p>p3번. I am a <em>strong</em> person. I am a <em>strong</em> person.</p>
+    <p>p4번. I am a <em>strong</em> person. I am a <em>strong</em> person.</p>
+
+    <span>span1번. I am a strong person.</span><br>
+    <span>span2번. I am a strong person.</span><br>
+    <span>span3번. I am a strong person.</span><br>
+    <span>span4번. I am a strong person.</span><br>
+    <span>span5번. I am a strong person.</span><br>
+    <hr>
+
+    <h1>H1_1번. I am a strong person.</h1>
+    <h1>H1_2번. I am a strong person.</h1>
+    <h1>H1_3번. I am a strong person.</h1>
+    <h1>H1_4번. I am a strong person.</h1>
+    <h1>H1_5번. I am a strong person.</h1>
+    <h1>H1_6번. I am a strong person.</h1>
+    <h1>H1_7번. I am a strong person.</h1>
+    <h1>H1_8번. I am a strong person.</h1>
+    <h1>H1_9번. I am a strong person.</h1>
+    <hr>
+
+    <!-- 
+    p:last-of-type em : 가장 마지막 p태그의 자식요소 em에만 스타일 적용
+    
+    p:first-child : p태그가 자식요소의 첫번째 위치에 존재하는 경우만 스타일 적용
+
+    p:first-of-type : 자식요소 중 처음으로 나오는 p태그에만 스타일 적용
+
+    p:nth-last-of-type(3) : 끝에서 3번째로 존재하는 p태그에만 스타일 적용
+
+    p:nth-of-type(3) : 정방향 기준으로 3번째로 존재하는 p태그에만 스타일 적용
+
+    ** 3의 배수 : 3n+0 또는 3n (n은 0부터 시작함)
+    -->
+</body>
+
+</html>

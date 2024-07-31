@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상선택자(:)와 가상엘리먼트(::)</title>
+    <style>
+        /* 브라우저에서 보여지는 첫 번째 줄 선택, 블록 요소에만 사용 가능 */
+        p::first-line {
+            background-color: yellow;
+        }
+
+        /* p {background-color: yellow;} */
+        /* optional selector : form 컨트롤 요소(엘리먼트) 중 required(필수입력) 속성이 없는 요소를 의미한다.
+            :optional 선택자는 익스플로러9버전 이하는 지원되지 않는다.
+        */
+        input:optional {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>WWF의 임무 성명</h1>
+    <p>지구의 자연 환경의 저하를 막고, 세계의 생물학적 다양성을 보존하고, 재생 가능한 천연 자원의 사용이 지속 가능한지 확인하고, 오염과 낭비 소비의 감소를 촉진함으로써, 인간이 자연과 조화를 이루며
+        살아가는 미래를 건설하기 위해서이다.</p>
+
+    <h1>optional selector</h1>
+    <form>
+        <label>이름:<input type="text" name="username" value="홍길동"></label><br>
+        <label>비밀번호:<input type="password" name="userpwd" value="12345" required></label>
+        <button>전송</button>
+    </form>
+</body>
+
+</html>

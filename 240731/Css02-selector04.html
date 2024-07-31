@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상클래스(:) 선택자= 동적 의사 클래스(dynamic pseudo-class)</title>
+    <style>
+        /* a태그의 href 4가지 동작에 따를 기술 순서
+        선택요소:link => 아무것도 실행되지 않은 상태(초기 상태)
+        선택요소:visited => 해당 링크를 방문하고 난 후의 상태(방문기록에 남은 상태)
+        선택요소:hover => 마우스포인터가 위에 올려져만 있는 상태
+        선택요소:active => 마우스를 누르고 있는 상태
+
+        (권장) :hover 속성은 :link와 :visited 속성 뒤에 와야 한다.
+        (권장) :active 속성은 :hover 속성 뒤에 와야 한다.
+        위의 규칙이 지켜지지 않을 경우 :active나 :hover 속성이 적용 안될 수 있다.
+        (권장순서) :link -> :visited -> :hover -> :active
+        */
+
+        a:link {
+            color: red;
+        }
+
+        a:visited {
+            color: green;
+        }
+
+        a.highlight:hover {
+            color: green;
+        }
+
+        a:hover {
+            color: yellow;
+        }
+
+        a:hover {
+            color: hotpink;
+        }
+
+        a:active {
+            color: blue;
+        }
+
+        /* :hover 클래스선택자를 지정할 때 클래스명이나 아이디명으로 지정했으면, :active 클래스선택자를 지정하는 경우에도 클래스명이나 아이디명으로 지정해줘야 정상적으로 작동한다. */
+        a.highlight:active {
+            color: gray;
+        }
+
+        input {
+            border: 3px solid #FFEFD5;
+            width: 300px;
+            padding: 10px;
+            outline: none;
+            /* outline : focus가 된 상태일 때 입력요소 밖에 검정색 테두리를 의미. 
+            :focus를 사용하기 위해 outline: none 처리해야만 한다.*/
+        }
+
+        input:focus {
+            border: 3px solid #cd853f;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>CSS Links</h2>
+    <p><b><a href="https://www.daum.net" target="_blank">DAUM으로 이동</a></b></p>
+
+    <p><a href="https://www.naver.com" class="highlight" target="_blank">네이버로 이동</a></p>
+    <br><br>
+
+    <h1>input 요소의 스타일 설정</h1>
+    <form>아래의 입력 양식을 마우스로 클릭해 보세요! <br><br>
+        <div><input type="text" id="email" name="email" placeholder="마우스로 클릭해보세요!"></div>
+
+        <div><input type="text" id="name" name="name" placeholder="이름입니다."></div>
+
+        <input type="submit" value="전송">
+    </form>
+</body>
+
+</html>

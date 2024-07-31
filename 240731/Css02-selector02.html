@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조합 선택자</title>
+    <style>
+        div {
+            border: 1px solid #000;
+            padding: 10px;
+        }
+
+        /* 하위 선택자(자손, 후손 선택자) */
+        div p {
+            background-color: yellow;
+        }
+
+        /* 자식 선택자 */
+        div > span {
+            background-color: red;
+        }
+    </style>
+</head>
+<!-- div > span : div 태그의 자식태그로 있는 span 태그만 적용.
+    div span : div 태그 내부의 모든 span 태그에 적용
+-->
+<body>
+    <h2>조합 선택자(Combinator selectors)</h2>
+    둘 이상의 단순 선택자를 포함할 수 있다.<br>
+    단순 선택자 사이에 결합자(+)를 포함할 수 있다.<br>
+
+    <div>
+        <p>Paragraph 1 in the div.</p>
+        <p>Paragraph 2 in the div.</p>
+        <section>
+            <p>Paragraph 3 in the div.</p>
+        </section>
+    </div>
+    <br>
+    <div>
+        <span>Paragraph 1 in the div.</span><br>
+        <span>Paragraph 2 in the div.</span><br>
+        <section><span>Paragraph 3 in the div.</span></section>
+    </div>
+    <br>
+
+    <p>Paragraph 4. in the div.</p>
+    <p>Paragraph 5. in the div.</p>
+</body>
+
+</html>

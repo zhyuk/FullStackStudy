@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상클래스 (:) 선택자- 상태 의사 클래스(UI element states pseudo-class)</title>
+    <style>
+        /* 체크된 input요소 선택 */
+        input:checked {
+            height: 50px;
+            width: 50px;
+        }
+
+        /* input 요소에서 disabled(비활성화) 속성을 가진 요소 */
+        input:disabled {
+            background: red;
+        }
+
+        /* input 요소에서 disabled(비활성화) 속성이 없는 요소) */
+        input:enabled {
+            background: #ff0;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <label>First name: <input type="text" name="first" value="Mickey"></label><br>
+        <label>Last name: <input type="text" name="last" value="Mouse"></label><br>
+        <label>Country : <input type="text" name="country" value="Disneyland" disabled></label><br><br>
+        <hr>
+
+        <label><input type="radio" value="male" name="gender">Male</input></label>
+        <label><input type="radio" value="female" name="gender">Female</input></label>
+        <label><input type="checkbox" name="vehicle" value="Bike">I have a bike</input></label>
+        <label><input type="checkbox" name="vehicle" value="Car">I have a car</input></label><br><br>
+
+        <input type="hidden" name="hid" value="감춘 값">
+        <input type="text" name="gen" value="감추지 않은 값" readonly>
+
+        <input type="submit"><input type="reset">
+    </form>
+</body>
+
+</html>

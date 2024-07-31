@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상엘리먼트(::) 선택자 - 의사 요소(pseudo-element)선택자</title>
+    <style>
+        /* ::선택자는 앞의 요소 및 뒤의 요소에 공백이 있으면 안됨.
+        모두 붙여서 기술해야 한다.
+        p ::before(X), p:: before(X), p::before(O)
+        */
+
+        /* span 엘리먼트 안의 content(내용) 뒤에 추가 */
+        span::after {
+            content: " - Rem ember this";
+            color: red;
+        }
+
+        /* p 엘리먼트 안의 content(내용) 앞에 추가 */
+        p::before {
+            content: "Read this -";
+            color: blue;
+        }
+
+        /* p 엘리먼트 안의 첫번째 글자 선택 */
+        /* :;first-letter 선택자는 블록 요소에서만 사용 가능 */
+        p::first-letter {
+            font-size: 200%;
+            color: #8a2be2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>의사 요소(pseudo-element) 선택자</h1>
+    해당 HTML 요소의 특정 부분만을 선택할 때 사용
+
+    <p>My name is Donald</p>
+    <span>My name is Donald</span>
+    <p>I live in Ducksburg</p>
+    <span>I live in Ducksburg</span>
+
+</body>
+
+</html>

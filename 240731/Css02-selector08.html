@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상클래스 (:) 선택자- 상태 의사 클래스(UI element states pseudo-class)</title>
+    <style>
+        /* 링크의 타겟이 되는 엘리먼트 요소를 선택 */
+        p:target {
+            border: 2px solid #d4d4d4;
+            background-color: #e5eecc;
+        }
+
+        .no {
+            background: #e9e9e9;
+            float: left;
+            padding: 20px;
+            margin: 5px;
+        }
+
+        .no:target {
+            color: #f63;
+        }
+
+        nav {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>This is a heading</h1>
+    <a href="#news1">
+        <p>Jump to New content 1</p>
+    </a>
+    <p><a href="#news2">Jump to New content 2</a></p>
+
+    <p>Click on the links above and the :target selector highlight the current active HTML anchor.</p>
+
+    <p id="news1"><b>New content 1...</b></p>
+    <p id="news2"><b>New content 2...</b></p>
+
+    <div id="no1" class="no">div 01</div>
+    <div id="no2" class="no">div 02</div>
+    <div id="no3" class="no">div 03</div>
+    <nav></nav>
+    <a href="#no1"><button>1</button></a>
+    <a href="#no2"><button>2</button></a>
+    <a href="#no3"><button>3</button></a>
+<nav></nav>
+    <!-- 위의 링크를 클릭하면 :target selector에 의해 선택된 활성화된 HTML 앵커 태그를 강조 표시합니다. -->
+</body>
+
+</html>
