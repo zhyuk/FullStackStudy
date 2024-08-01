@@ -1,0 +1,37 @@
+/* Css03_b_display01.html 관련 CSS */
+div { border: 1px solid #000; border-radius: 5px; } 
+h1 { margin-top: 0; } 
+a { text-decoration: none; font-weight: bolder; color: white; padding-right: 50px; } 
+
+#ust { list-style-type: none; background-color: black; margin: 0; padding: 10px; } 
+#ust { padding: 0; } 
+#ust > li { display: inline; width: 400px; height: 100px; } 
+#ust > li { display: inline; margin: 50px; } 
+li { display: inline-block; width: 400px; height: 100px; } 
+li { display: inline-block; margin: 50px; } 
+span.spst { display: block; background-color: red; padding: 50px; } 
+span.spst { display: block; background-color: red; margin: 100px; } 
+
+/* Css03_b_dispaly02.html 관련 CSS */
+#imgNone > img, #imgHidden > img { width: 200px; height: 100px; } 
+div#imgNone:hover img { display: block; } 
+#imgNone img { display: none; } 
+
+div#imgHidden:hover img { visibility: visible; } 
+#imgHidden img { visibility: hidden; } 
+
+span.sibspan { display: inline-block; width: 200px; height: 200px; background-color: red; margin: 10px; } 
+.ibspan { display: inline-block; width: 200px; height: 200px; background-color: red; margin: 10px; } 
+
+/* 
+참고 : 
+display: block;
+요소를 블럭 레벨 요소로 변경해주는 속성. 블럭 속성을 적용할 수 있도록 해준다.
+
+display: inline;
+요소를 인라인 레벨 요소로 변경해주는 속성. 인라인 속성을 적용할 수 있도록 해준다.
+
+display: inline-block;
+인라인 요소 : 인라인 속성을 유지하면서 블럭 속성의 일부 속성을 사용할 수 있도록 해준다.
+블럭 요소 : 블럭 레벨 속성을 ㅇ지하면서 인라인의 일부 속성을 사용할 수 있도록 해준다.
+*/

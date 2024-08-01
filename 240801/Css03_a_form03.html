@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form 속성</title>
+    <style>
+        textarea {
+            width: 80%;
+            height: 150px;
+            padding: 12px 20px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            font-size: 16px;
+            resize: none;
+        }
+    </style>
+</head>
+
+<body>
+    <p>textarea 창 사이즈 고정하기</p>
+    <form>
+        <textarea placeholder="이곳에 텍스트를 입력하세요."></textarea>
+    </form>
+
+    <!-- 
+    * 입력창의 입력되는 텍스트의 폰트 사이즈는 기본값(16px)보다 작다. => font-size 속성을 통해 폰트 사이즈를 변경하면 자동으로 입력창의 높이도 조절된다.(높이 설정을 안한 경우만)
+    
+    * resize 속성 : 사이즈를 재조정하는 속성
+        - none : 크기 조절 불가능
+        - both : 너비 높이 모두 변경 가능
+        - horizontal : 너비만 변경 가능
+        - vertical : 높이만 변경 가능
+        - block : 블록레벨 요소에서 사용. 높이만 변경 가능
+        - inline : 인라인레벨 요소에서 사용. 너비만 변경 가능
+    -->
+</body>
+
+</html>

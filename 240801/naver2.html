@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버 : 회원가입</title>
+    <link rel="stylesheet" href="./css/naver.css">
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="content">
+            <div class="logo">
+                <img src="./img/naver_logo.png" alt="로고이미지" title="네이버 로고 이미지">
+            </div>
+            <div class="info">실명 인증된 아이디로 가입</div>
+
+            <form id="join">
+                <table id="table1">
+                    <tr>
+                        <td class="id"><input type="text" name="id" placeholder="아이디" class="id">
+                            <div class="domain">@naver.com</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" name="password" placeholder="비밀번호" class="password"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="email" class="email" placeholder="[선택] 이메일주소 (비밀번호 찾기 등 본인 확인용)">
+                        </td>
+                    </tr>
+                </table>
+
+                <table id="table2">
+                    <tr>
+                        <td><input type="text" name="name" class="name" placeholder="이름"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="birth" class="birth" placeholder="생년월일 8자리"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="phone" class="phone" placeholder="통신사 선택"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul class="gender">
+                                <li><label><input type="radio" value="male" name="gender">남자</label></li>
+                                <li><label><input type="radio" value="female" name="gender">여자</label></li>
+                            </ul>
+                            <ul class="contry">
+                                <li class="select"><label><input type="radio" value="local" name="contry"
+                                            checked>내국인</label></li>
+                                <li><label><input type="radio" value="foreigner" name="contry">외국인</label></li>
+                            </ul>
+                            <div class="clear"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="phone-num" class="phone-num" placeholder="휴대전화번호"></td>
+                    </tr>
+                </table>
+
+                <table id="table3">
+                    <tr>
+                        <td class="checkbox">
+                            <input type="checkbox" name="checkbox" id="checkbox"><label for="checkbox"
+                                class="checkbox"><small>[필수]</small> 인증 약관 전체동의
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="btn"><button type="submit">인증요청</button></div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/naver.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #wrap {
+            width: 700px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 100px;
+            border-collapse: collapse;
+            border-radius: 5px;
+        }
+
+        table,
+        tr,
+        td {
+            border: solid 1px red;
+        }
+
+        td.id {
+            width: 80%;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px 0 15px 40px;
+            background: transparent;
+            border: none;
+            color: gray;
+            outline: none;
+        }
+
+        input:focus {
+            border: 3px solid #0CAA5C;
+        }
+
+        .input {
+            background-image: url(../240731/img/searchicon.png);
+            background-size: 30px;
+            background-repeat: no-repeat;
+            background-position: 5px center;
+
+        }
+
+        button {
+            height: 50px;
+            margin: 0 20px;
+            width: calc(100% - 40px);
+            background-color: #0CAA5C;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+            transform: translateY(300px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <form>
+            <table class="table1">
+                <tr>
+                    <td><input type="text" placeholder="아이디" name="id" id="id"></td>
+                    <td><input type="text" value="@naver.com" readonly class="readonly" style="padding-left: 5px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="password" placeholder="비밀번호" class="input"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="email" placeholder="[선택] 이메일주소 (비밀번호 찾기 등 본인 확인용)" class="input"></td>
+                </tr>
+            </table>
+
+            <table style="margin-top: 30px;">
+                <tr>
+                    <td colspan="2"><input type="text" placeholder="이름"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="text" placeholder="생년월일 8자리"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="text" placeholder="통신사 선택"></td>
+                </tr>
+                <tr>
+                    <td style="width: 50%;"><label for=""><input type="radio" name="male" id="">남자</label><label
+                            for=""><input type="radio" name="male" id="">여자</label></td>
+                    <td style="width: 50%;"><label for=""><input type="radio" name="male" id="">내국인</label><label
+                            for=""><input type="radio" name="male" id="">외국인</label></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="text" placeholder="휴대전화번호"></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <table style="margin-top: 30px; border-radius: 5px; padding: 15px 0 15px 40px;">
+                <tr>
+                    <td><small style="color: #0CAA5C;">[필수]</small> <span style="font-weight: 600; color: white;">인증 약관
+                            전체동의</span></td>
+                </tr>
+            </table>
+
+            <button type="submit">인증요청</button>
+        </form>
+
+    </div>
+</body>
+
+</html>

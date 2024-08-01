@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        form {
+            width: 500px;
+            /* border: solid 1px red; */
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+            background-image: url(../240731/img/searchicon.png);
+            background-position: 10px 8px;
+            background-repeat: no-repeat;
+            border: 3px solid lightgray;
+            padding: 5px 5px 5px 40px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus + div.input-box {
+            height: 400px;
+        }
+
+
+        div.input-box {
+            width: 100%;
+            height: 0;
+            background-color: lightblue;
+            margin-top: -40px;
+            border-radius: 20px;
+            /* display: none; */
+        }
+
+
+        div.text-box {
+            width: 200px;
+            font-weight: 700;
+            position: relative;
+            /* border: solid 1px red; */
+            margin: 0 auto;
+        }
+        
+        div.text {
+            text-align: center;
+            /* border: solid 1px blue; */
+        }
+
+        span {
+            font-size: 55px;
+            margin-left: -8px;
+        }
+
+        span:nth-of-type(1) {
+            color: blue;
+            font-size: 60px;
+            margin-left: 0;
+        }
+
+        span:nth-of-type(2) {
+            color: red;
+        }
+
+        span:nth-of-type(3) {
+            color: yellow;
+        }
+
+        span:nth-of-type(4) {
+            color: blue;
+        }
+
+        span:nth-of-type(5) {
+            color: green;
+        }
+
+        span:nth-of-type(6) {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text-box">
+        <div class="text">
+            <span>G</span>
+            <span>o</span>
+            <span>o</span>
+            <span>g</span>
+            <span>l</span>
+            <span>e</span>
+        </div>
+    </div>
+    <form>
+        <input type="text" placeholder="Google 검색 또는 URL 입력">
+        <div class="input-box"></div>
+    </form>
+</body>
+
+</html>

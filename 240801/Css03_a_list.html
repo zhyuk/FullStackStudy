@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css list 속성 및 외부 스타일시트 참조</title>
+    <link rel="stylesheet" type="text/css" href="./css/css03_a_list.css">
+    <!-- 
+        - rel : 문서와의 관계를 명시하는 속성
+        - type : 링크된 문서의 MIME타입을 정의하는 속성(type 생략가능)
+        ** MIME(Multipurpose Internet Mail Extensions : 다목적의 인터넷 메일 확장자) : 웹을 통해 여러 형태의 파일을 전달하는데 사용하는 속성.
+
+        옛날에는 이메일과 함께 동봉할 파일을 텍스트 문자로 전환해서 이메일 시스템을 통해 전달하기 위해 개발되어 Internet Mail Extensions라 불리기 시작함.
+    -->
+
+    <style>
+        /* @import 시스템코드는 엣지에서 적용이 안 될 수 있다. */
+        /* @import url("./css/css03_a_list.css"); */
+    </style>
+</head>
+
+<body>
+    <h2>list-style property</h2>
+    <ul>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Coca Cola</li>
+    </ul>
+
+    <ul class="a">
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Coca Cola</li>
+    </ul>
+
+    <ul class="b">
+        <li>Apple</li>
+        <li>Lemon</li>
+        <li>Orange</li>
+    </ul>
+
+    <ul class="c">
+        <li>Red</li>
+        <li>Green</li>
+        <li>Blue</li>
+    </ul>
+
+    <!-- ul.a : inside를 이용해 들여쓰기 적용 후, margin: 0 50px로 인해 좌측 50px만큼의 마진으로 더 들여쓰기가 됨.
+    
+    list-style-type : none => 마커만 사라지고 패딩은 존재한다. 
+    
+    list-style-type : none 속성과 list-style-position: inside 속성은 함께 쓸 수 없다. 마커 숨기기 속성과 마커 들여쓰기 속성이기 때문에 두 개의 공존이 불가능하다.
+    -->
+</body>
+
+</html>
