@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float 속성</title>
+    <style>
+        /* clear 속성값:
+            left - 해당 요소에 바로 인접한 좌측에 플로팅 요소가 허용되지 않음
+            right - 해당 요소에 바로 인접한 우측에 플로팅 요소가 허용되지 않음
+            both - 해당 요소에 바로 인접한 양쪽에 플로팅 요소가 허용되지 않음
+            inherit - 상위 요소(부모요소)의 클리어 값을 상속받음.
+        */
+        .divClass {
+            float: left;
+            padding: 15px;
+        }
+
+        .div1 {
+            background: red;
+        }
+
+        .div2 {
+            background: yellow;
+        }
+
+        .div3 {
+            background: green;
+        }
+
+        p {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Float 사용의 다른 방법</h2>
+    <div style="width: 300px; margin: 0 auto; border: 2px solid #000;">
+        <div class="div1 divClass">Div 1</div>
+        <div class="div2 divClass">Div 2</div>
+    </div>
+
+    <div class="div2 divClass" style="clear: left;">Div 2</div>
+    <div class="div2 divClass">Div 2</div>
+    <div class="div3 divClass">Div 3</div>
+
+    <p>Float 사용의 다른 방법</p>
+    <p>Float 사용의 다른 방법</p>
+
+    <div class="div1 divClass">Div 1</div>
+    <div class="div2 divClass">Div 2</div>
+    <div class="div3 divClass">Div 3</div>
+
+    <!-- float 속성을 사용한 경우, 다음 요소에 clear:both; 혹은 div.clear를 통해 float 속성으로 인해 생각했던 것과 전혀 다른 방향으로 구현되는 것을 방지해야 한다. -->
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+/* Css04_d_font01.html 관련 CSS */
+h1#a { font-family: "Song Myung", serif; } 
+/* h1#a {font-family: "Nanum Pen Script", cursive;} */
+h1#b { font-family: "Diphylleia", serif; } 
+h1#c { font-family: "Yeseva One", serif; } 
+.ft { font-family: Copperplate, Papyrus, fantasy; } 
+
+@font-face { font-family: makeFont; /* 폰트명 선언 */
+ src: url(../font/YEONGJUSeonbi.otf) format("opentype"); /* src: url(../font/HakgyoansimGureumR.ttf) format("truetype"); */}
+
+div#ff { font-family: makeFont; font-weight: bolder; } 

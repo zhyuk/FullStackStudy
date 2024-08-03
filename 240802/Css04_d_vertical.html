@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/css04_d_vertical.css">
+</head>
+
+<body>
+    <form class="vertical_form">
+        <textarea name="" id="" class="vertical_input" placeholder="textarea창입니다."></textarea>
+        <input type="text" class="vertical_input" id="uid" name="uid" placeholder="text창입니다.">
+        <input type="password" class="vertical_input" id="upw" name="upw" placeholder="password창입니다.">
+        <button class="vertical_input" type="button">버튼</button>
+        <input type="button" class="vertical_input" value="버튼">
+    </form>
+
+    <table class="vertical_table">
+        <caption>&lt;&lt; 회원정보 &gt;&gt;</caption>
+        <tr>
+            <th>회원번호</th>
+            <th>회원명</th>
+            <th>성별</th>
+            <th>가입일자</th>
+        </tr>
+
+        <tr>
+            <td>20240802001</td>
+            <td>홍길동</td>
+            <td>남자</td>
+            <td>2024-01-07</td>
+        </tr>
+        <tr>
+            <td>20240802002</td>
+            <td>고영희</td>
+            <td>여자</td>
+            <td>2024-03-02</td>
+        </tr>
+        <tr>
+            <td>20240802003</td>
+            <td>김연수</td>
+            <td>여자</td>
+            <td>2024-07-01</td>
+        </tr>
+    </table>
+
+    <div id="vertical_div">
+        <h1>The vertical-align Property</h1>
+        <p>vertical-align은 오로지 inline과 table-cell 엘리먼트에만 적용된다. block level 엘리먼트에는 사용할 수 없다.</p>
+
+        <h2>vertical-align : baseline (default)</h2>
+        <p>해당 요소의 하단을 부모 요소의 baseline을 기준으로 맞춰 정렬한다.<br> baseline이 없으면 부모 요소의 아래쪽 가장자리를 기준으로 맞춰 정렬한다.</p>
+        <p><img src="../240731/img/img_girl.jpg" width="200" height="200">
+            <span>image with a default alignment.</span>
+        </p>
+
+        <h2>vertical-align : baseline (default)</h2>
+        <p><img class="base" src="../240731/img/img_girl.jpg" width="200" height="200">
+            <span>image with a default alignment.</span>
+        </p>
+
+        <h2>vertical-align : top</h2>
+        <p>해당 요소의 상단을 부모 요소의 위쪽 가장자리에 맞춰 정렬한다.</p>
+        <p><img class="top" src="../240731/img/img_girl.jpg" width="200" height="200">
+            <span>image with a default alignment.</span>
+        </p>
+
+
+        <h2>vertical-align : middle</h2>
+        <p>부모 요소의 x-height의 중간점을 기준으로 수직 가운데 정렬을 한다. <small>x-height = 소문자 x의 높이 = 1ex</small></p>
+        <p><img class="middle" src="../240731/img/img_girl.jpg" width="200" height="200">
+            <span>image with a default alignment.</span>
+        </p>
+
+
+        <h2>vertical-align : bottom</h2>
+        <p>해당 요소의 하단을 부모 요소의 아래쪽 가장자리에 맞춰 정렬한다.</p>
+        <p><img class="bototm" src="../240731/img/img_girl.jpg" width="200" height="200">
+            <span>image with a default alignment.</span>
+        </p>
+    </div>
+</body>
+<!-- 
+    * vertical-align 속성은 top, middle, bottom을 제외하고도 text-top, text-bottom의 속성값도 갖고있다.
+    
+    * 입력요소의 타입에 따라, 버튼과 입력요소에 따라 vertical-align의 천성이 다 다르기 때문에 
+    .vertical_input { vertical-align: bottom; }로 초기화같은 개념으로 모두 위치를 맞춰주는 것이 좋다.
+-->
+
+</html>

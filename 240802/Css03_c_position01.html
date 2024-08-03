@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css position</title>
+    <link rel="stylesheet" href="./css/css03_c_position.css">
+</head>
+
+<body>
+    <div class="static">
+        <h2>1. static(정적)</h2>
+        기본적인 배치임. 기본값(디폴트)으로 별도로 지정하지 않아도 되는 속성임. <br>
+    </div>
+
+    <div>
+        <div class="sticky" style="width:300px; z-index: 999;">
+            <h2>3. sticky (붙어있는)</h2>
+            상대적 위치의 x축, y축 좌표를 기준으로 설정한 위치에 달라 붙어 있는다.
+        </div>
+    </div>
+
+    <div style="position: relative; top: 50px; left: 150px;">
+        <div class="sticky" style="width:300px;">
+            <h2>3. sticky (붙어있는)</h2>
+            상대적 위치의 x축, y축 좌표를 기준으로 설정한 위치에 달라 붙어 있는다.
+        </div>
+    </div>
+
+    <div class="relative">
+        <h2>4. relative (상대적)</h2>
+        자신이 위치해야하는 좌측상단 좌표를 기준으로 위치를 지정한다.<br>
+        위치 top, right, left, bottom으로 지정 가능하다.<br>
+        이동한 만큼 다른 영역을 침범한다.
+    </div>
+
+    <div class="fixed">
+        <h2>5. fixed(고정)</h2>
+        위치 top, right, left, bottom으로 지정 가능하며, 단위는 px, %등으로 지정 가능하다.<br>
+        지정한 위치에 위에 떠 있는 것처럼 고정된다.
+    </div>
+
+    <div class="relative2">
+        <h2>6. relative와 absolute를 같이 사용하는 경우</h2>
+        현재 영역은 relative영역입니다.
+        <div class="absolute2">
+            <h2>7. 현재 영역은 absolute영역입니다.</h2>
+            absolute2 div 엘리먼트를 감싸고 있는 relative2 div 엘리먼트의 x축, y축을 기준으로 하여 위치한다.
+        </div>
+    </div>
+
+    <div class="absolute1">
+        <h2>8. absolute (절대적)</h2>
+        위치 top, right, left, bottom으로 지정 가능하며, 단위는 px, %등으로 지정 가능하다.<br>
+        지정한 위치에 위에 떠 있는 것처럼 고정된다.
+        별도의 상대적 영역 지정이 없으면 브라우저의(body영역)의 x축, y축을 기준으로 하여 위치한다.
+    </div>
+
+    <div class="sticky">
+        <h2>2. sticky (붙어있는)</h2>
+        body의 x축, y축 좌표를 기준으로 설정한 위치에 달라 붙어 있는다.
+    </div>
+
+    <span>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita molestias reiciendis corporis quae mollitia,
+        maxime dolores veniam neque, eveniet et explicabo ullam libero incidunt quas ex sapiente cupiditate laborum
+        odio. <br><br>
+
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus facilis voluptatum perspiciatis quis sapiente,
+        libero laudantium nostrum quos natus eaque velit eum in fuga minima placeat maiores accusamus provident
+        repellendus.<br><br>
+
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores voluptate magnam vel. Quas dicta eos,
+        veritatis iure quia rem ullam quod voluptatum fuga. Consectetur nihil debitis officia suscipit dolorum
+        eligendi.<br><br>
+
+        Sed neque nisi qui culpa vitae debitis reprehenderit illo a rerum architecto eum, sint ullam delectus ipsam esse
+        rem odio praesentium exercitationem dignissimos ipsum quo atque perferendis. Quasi, assumenda aliquid.<br><br>
+
+        Quam tempora minima itaque architecto reiciendis fugit? Eos, provident quaerat assumenda earum debitis
+        blanditiis ad. Sit asperiores pariatur nam nisi perspiciatis commodi ut sequi libero sed odio, sint nostrum
+        deserunt.<br><br>
+
+        Esse culpa voluptate laboriosam ea excepturi aperiam autem vero odit itaque sed nulla tenetur sunt sequi qui
+        iusto quae inventore sint officiis placeat in dolorem eligendi quam, quisquam laudantium! Tempore.<br><br>
+
+        Tempore nesciunt aperiam reiciendis delectus, recusandae iste voluptates neque minus itaque voluptatem! Corporis
+        quam iure distinctio mollitia? Sint maiores, id excepturi sequi ratione totam dolorem repellat modi, illum
+        voluptate saepe.<br><br>
+
+        Maiores officia similique necessitatibus, molestiae ratione dicta minima nesciunt, ad sequi doloremque fugiat
+        inventore recusandae odio est beatae. Voluptate suscipit dolor odit mollitia voluptas ipsam? Ea iste maxime
+        nostrum. Fugit.<br><br>
+
+        Impedit maxime, cum beatae tempora labore blanditiis iste voluptates, nisi eius unde deserunt ipsa odit ipsum
+        dolores recusandae, provident exercitationem dicta dolorum quasi error ea? Veritatis quasi corporis asperiores
+        neque?<br><br>
+
+        Odit fugit quisquam deleniti sed asperiores vero debitis quasi quae quod autem. Consectetur voluptatem quae,
+        laudantium esse eum officia cupiditate iusto perferendis, hic tempore ab sit quia enim, dicta adipisci.<br><br>
+
+        Nostrum, commodi id. Tenetur beatae eaque incidunt praesentium nihil ea! Est excepturi sequi officiis iste vero.
+        Enim accusamus rem eveniet laborum? Iusto vel possimus, rerum minima asperiores inventore quae ipsa.<br><br>
+
+        Iure soluta sit eius quis! Necessitatibus tenetur error suscipit nam dignissimos harum magni! Esse vitae,
+        necessitatibus aut debitis unde exercitationem nisi veniam quo. Molestias deleniti ex aliquam repudiandae quis
+        quos?<br><br>
+
+        Soluta voluptas praesentium sint dolores optio odio repellendus vitae, minus harum voluptates quaerat error,
+        earum eligendi provident ipsum rerum. Blanditiis cum dolores ex pariatur sit consequatur dolorum quae eveniet
+        rerum?<br><br>
+
+        Aliquid, harum laboriosam, incidunt quae obcaecati assumenda nesciunt explicabo, nam ipsum impedit consequuntur
+        blanditiis dolorum similique deleniti accusantium ratione repudiandae voluptate vero libero alias labore.
+        Voluptatibus, cupiditate sit. Animi, ullam.<br><br>
+
+        Libero quae repellendus sit a aut sapiente eligendi, autem at excepturi numquam quisquam suscipit minus, atque
+        voluptatem odit beatae quod? Neque delectus quisquam quod dicta repellat! Quasi reprehenderit obcaecati
+        nostrum.<br><br>
+
+        Atque, sapiente at, incidunt sed molestias explicabo laudantium modi quidem saepe quam fugit asperiores, ea
+        aperiam velit eaque ducimus sunt ipsam veritatis? Modi, quod. Consequatur voluptas quasi blanditiis tempore
+        expedita!<br><br>
+
+        Nulla, corporis. Provident officiis, repellat laboriosam molestias pariatur similique, porro neque incidunt,
+        perferendis ratione vel? Nobis nulla a alias ad vitae nesciunt ipsum, optio fugit error soluta natus, pariatur
+        esse.<br><br>
+
+        Eveniet ipsa reprehenderit amet, fugiat temporibus nulla assumenda deleniti distinctio velit ex tempora,
+        perferendis fugit, consequatur nemo itaque cupiditate aliquid possimus id eaque ut quis repellat voluptatibus
+        sit! Quaerat, hic?<br><br>
+
+        Repellendus fugiat quia debitis voluptates molestias quod omnis aliquid cupiditate sit sunt dicta blanditiis
+        laudantium optio numquam natus quasi voluptatem neque, veniam dolorum aliquam! Nemo cumque numquam quam natus
+        doloribus?<br><br>
+
+        Ipsum beatae est assumenda aspernatur vitae recusandae ipsam labore autem officia consequatur, qui quos voluptas
+        voluptatum ipsa vero dolorum corrupti, unde repellendus repellat accusantium esse porro voluptates quidem dolor.
+        Vitae.<br><br>
+
+        Reiciendis optio ullam sit illum incidunt praesentium inventore, soluta sunt placeat nobis in totam voluptate
+        saepe vero deleniti. Fugiat consequuntur iusto aperiam reiciendis facere similique, culpa incidunt excepturi
+        quia animi?<br><br>
+
+        Perspiciatis repellat nulla sunt in iste, eum saepe est asperiores repellendus ullam tenetur nemo expedita vero
+        voluptas soluta odit fugit culpa nihil ipsa maxime sint similique aut deserunt. Neque, explicabo!
+    </span><br><br>
+</body>
+<!-- 
+    * position : relative 속성 => static일 때, 위치를 조정해야 할 경우 사용/자식 요소일 때, 나를 부모 요소로 인식하기 위할 때 사용
+
+    * position : sticky 속성 => 내가 설정한 top, left의 위치에 도착하면 그 자리에 붙게 하기 위해 사용함.
+    => 메뉴바가 스크롤에 따라 내려오고 올라오는데 지정한 좌표값에 도달하면 따라오지 않는다. 
+
+    * position : fixed 속성 => 자신을 감싸고 있는 태그가 존재해도 자신의 부모로는 body태그만 인식하는 속성이다.(방향의 기준점이 body태그가 됨) => 내가 지정한 좌표값에 고정되어 있는 속성
+    
+    * position : absolute 속성 => 엘리먼트의 영역이 고정되어 있지 않고 붕 떠있는 속성임. 좌표값만 고정됨
+    : 부모를 지정해주지 않으면 body 태그를 기준으로 좌표를 정할 수 있다.
+    : 부모를 지정해주면(relative 속성을 부모 태그에 부여한 경우) 부모 태그를 기준으로 좌표를 정할 수 있다.
+
+    * z-index 속성 : position 속성이 존재하는 요소에만 적용할 수 있다. **단, static 속성값일 때는 적용되지 않음.
+-->
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label {
+            display: inline-block;
+            padding: 15px 30px;
+            border: 1px solid #ddd;
+        }
+
+        label:first-of-type {
+            border-right: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        form>label:not(label:first-of-type) {
+            border-radius: 0 5px 5px 0;
+        }
+
+        input.labelM:checked~label[for="genM"] {
+            border: 1px solid green;
+            color: green;
+        }
+
+        input[type=radio] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <input type="radio" value="남자" name="gender" id="genM" checked>
+        <input type="radio" value="여자" name="gender" id="genW">
+        <label for="genM" class="labelM">남자</label><label for="genW" class="labelW">여자</label>
+        <br><br><br><br>
+        <input type="submit" value="전송">
+    </form>
+</body>
+
+</html>
