@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버 : 회원가입</title>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <link rel="shortcut icon" href="./img/naver/naver-icon.svg">
+    <link rel="stylesheet" href="./css/naver/naver.css">
+</head>
+
+<body class="pretendard">
+    <div id="page_wrap">
+        <div class="content_inner">
+            <div class="img_content">
+                <img src="./img/naver/naver_logo.png" class="main_logo" alt="네이버 텍스트 이미지" title="네이버 메인타이틀 로고">
+            </div>
+
+            <div class="join_check">
+                <input type="checkbox" id="check" value="check" name="check">
+                <label for="check">실명 인증된 아이디로 가입</label>
+            </div>
+
+            <form id="join_form">
+                <table class="join_table title_font">
+                    <tr>
+                        <td class="userid">
+                            <input type="text" id="userid" class="input padding_inner" name="userid" placeholder="아이디">
+                            <span class="email_domain">@naver.com</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" id="password" class="input padding_inner" name="password"
+                                placeholder="비밀번호"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="email" class="input padding_inner" name="email"
+                                placeholder="[선택] 이메일주소 (비밀번호 찾기 등 본인 확인용)"></td>
+                    </tr>
+                </table>
+
+                <table class="join_table">
+                    <tr>
+                        <td><input type="text" id="name" class="input padding_inner" name="name" placeholder="이름"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="birth" class="input padding_inner" name="birth"
+                                placeholder="생년월일 8자리"></td>
+                    </tr>
+                    <tr>
+                        <td class="telecom">
+                            <button type="button" class="padding_inner telecom_btn">통신사 선택</button>
+                            <ul class="telecom-list font_white">
+                                <li>SKT</li>
+                                <li>SKT 알뜰폰</li>
+                                <li>KT</li>
+                                <li>KT 알뜰폰</li>
+                                <li>LG U+</li>
+                                <li>LG U+ 알뜰폰</li>
+                            </ul>
+                            <div class="clear"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="radio_td">
+                            <ul class="gender">
+                                <li><input type="radio" id="male" name="gender" value="male">
+                                    <label for="male">남자</label>
+                                </li>
+                                <li><input type="radio" id="female" name="gender" value="female">
+                                    <label for="female">여자</label>
+                                </li>
+                            </ul>
+                            <ul class="contry">
+                                <li><input type="radio" id="korean" name="contry" value="korean" checked>
+                                    <label for="korean">내국인</label>
+                                </li>
+                                <li><input type="radio" id="forigner" name="contry" value="forigner">
+                                    <label for="forigner">외국인</label>
+                                </li>
+                            </ul>
+                            <div class="clear"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="number" class="input padding_inner" name="number"
+                                placeholder="휴대전화번호"></td>
+                    </tr>
+                </table>
+
+                <table class="join_table">
+                    <tr>
+                        <td class="padding_inner">
+                            <input type="checkbox" id="agree" name="agree" value="agree">
+                            <label for="agree" class="font_white"><small class="bold font_green
+                                ">[필수]</small> 인증 약관동의</label>
+                        </td>
+                    </tr>
+                </table>
+
+                <button type="submit" class="font_white bold padding_inner">인증요청</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $(".telecom_btn").click(function () {
+                $(".telecom-list").toggleClass("active");
+                $("td.telecom").toggleClass("active");
+            })
+        })
+
+    </script>
+</body>
+
+</html>
