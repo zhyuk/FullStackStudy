@@ -22,7 +22,7 @@ ul { list-style: none; }
 #page_wrap .content_inner { width: 500px; height: 100vh; margin: 0 auto; position: relative; } 
 
 .img_content { width: 100px; margin: 0 20px; margin-top: 10px; user-select: none; -moz-user-select: none; -webkit-user-select: none; } 
-.img_content img.main_logo { width: 100%; } 
+.img_content img.main_logo { width: 100%; -webkit-user-drag: none; } 
 
 .join_check { width: calc(100% - 40px); margin: 0 20px; margin-top: 30px; font-size: var(--text); text-align: right; } 
 .join_check input[type=checkbox] { display: none; } 
