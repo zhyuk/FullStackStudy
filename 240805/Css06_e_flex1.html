@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 Flexible Box Layout</title>
+    <style>
+        .flexbox {
+            background-color: dimgray;
+            width: 400px;
+            height: 150px;
+            border-radius: 15px;
+            display: -webkit-flex;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #row_reverse {
+            -webkit-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+        }
+
+        .item {
+            background-color: darkgray;
+            border-radius: 10px;
+            width: 80px;
+            height: 50px;
+            padding: 20px;
+            margin: 10px;
+            color: white;
+            font-size: 26px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .flexbox2 {
+            background-color: dimgray;
+            width: 400px;
+            height: 250px;
+            border-radius: 15px;
+            display: -webkit-flex;
+            display: flex;
+        }
+
+        #column {
+            -webkit-flex-direction: column;
+            flex-direction: column;
+        }
+
+        #column_reverse {
+            -webkit-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+        }
+
+        .item2 {
+            background-color: darkgray;
+            border-radius: 10px;
+            width: 80px;
+            height: 50px;
+            margin: 10px;
+            color: white;
+            font-size: 26px;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        플렉서블 레이아웃 스타일은 서로 다른 크기의 화면과 기기에서도 HTML 요소들이 자동으로 재정렬되어, 웹 페이지의 레이아웃을 
+        언제나 똑같이 유지할 수 있게 해주는 속성이다.
+        블록레벨 요소의 수평, 수직 정렬을 쉽게 설정할 수 있도록 해주는 속성임.
+    -->
+
+    <h1>flex-direction 속성을 이용한 row 방향 배치</h1>
+
+    <h3>flex-direction의 속성값이 row입니다.</h3>
+    <div class="flexbox">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+    </div>
+
+    <h3>flex-direction의 속성값이 row-reverse입니다.</h3>
+    <div id="row_reverse" class="flexbox">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+
+    <h1>flex-direction 속성을 이용한 column 방향 배치</h1>
+    <h3>flex-direction의 속성값이 column입니다.</h3>
+    <div id="column" class="flexbox2">
+        <div class="item2">1</div>
+        <div class="item2">2</div>
+        <div class="item2">3</div>
+        <div class="item2">4</div>
+        <div class="item2">5</div>
+
+        <div class="item2">1</div>
+        <div class="item2">2</div>
+        <div class="item2">3</div>
+        <div class="item2">4</div>
+        <div class="item2">5</div>
+    </div>
+    <br><br><br>
+    <h3>flex-direction의 속성값이 column-reverse입니다.</h3>
+    <div id="column_reverse" class="flexbox2">
+        <div class="item2">1</div>
+        <div class="item2">2</div>
+        <div class="item2">3</div>
+    </div>
+</body>
+
+</html>

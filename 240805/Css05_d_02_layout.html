@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시맨틱요소를 이용한 Layout</title>
+    <link rel="stylesheet" href="css/css05_d_layout.css" type="text/css">
+</head>
+
+<body>
+    <h2>CSS Layout Float</h2>
+    <ul>
+        <li>&lt;header&gt; - 문서 또는 섹션에 대한 헤더를 정의</li>
+        <li>&lt;nav&gt; - 탐색 링크 집합(메뉴바, 네비게이션)을 정의</li>
+        <li>&lt;section&gt; - 문서에서 섹션(내용이나 단락의 집합)을 정의</li>
+        <li>&lt;article&gt; - 독립적인 내용을 정의</li>
+        <li>&lt;footer&gt; - 문서 또는 섹션에 대한 바닥글 정의. 제작정보나 저작권정보, 기업 정보 표시</li>
+    </ul>
+
+    <header>
+        <h2>header 부분</h2>
+    </header>
+    <section>
+        <nav>
+            <ul>
+                <li>section의 nav의 ul - li - a부분</li>
+                <li><a href="#LD">London</a></li>
+                <li><a href="#PR">Paris</a></li>
+                <li><a href="#TK">Tokyo</a></li>
+            </ul>
+        </nav>
+
+        <!-- <article> -->
+        <article style="overflow-y: scroll;">
+            <h1 id="LD">London</h1>
+            <p>런던은 영국의 수도이다. 이 도시는 영국에서 가장 인구가 많은 도시이며, 수도권은 1,300만 명이 넘는다.</p>
+            <p>템즈강에 서 있는 런던은 2천년 동안 주요 정착지였으며, 그 역사는 로마에 의해 건국된 것으로 거슬러 올라간다. 로마는 이곳을 런던이라고 이름 지었다.</p><br><br>
+
+            <h1 id="PR">Paris</h1>
+            <p>파리는 그 자체로 하나의 세계를 이룬다! 몽마르트, 라탱 지구, 시테 섬을 비롯한 파리의 여러 구역은 각각 하나의 나라가 된다. 파리에는 루브르 박물관부터 미래지향적인 루이비통 재단까지
+                이어지는 예술의 역사가 담겨있다.
+                끊임없는 문화, 미식 축제의 향연이 이어지는 축제의 도시 파리를 만나보자.</p><br><br>
+
+            <h1 id="TK">Tokyo</h1>
+            <p>도쿄는 일본 혼슈 동부에 있는, 메이지 시대 이후 사실상 일본의 수도이자 최대 도시이다.
+                행정 구역 상으로는 도쿄도에 속하지만, 도쿄도는 다마 지역이나 이즈 제도, 오가사와라 제도의 넓은 지역은 포함하고 있어서 도시라는 뜻의 "도쿄"와는 그 의미가 조금 다르다.
+            </p>
+            <p>모든 국민은 법률이 정하는 바에 의하여 공무담임권을 가진다. 헌법개정은 국회재적의원 과반수 또는 대통령의 발의로 제안된다. 국가는 대외무역을 육성하며, 이를 규제·조정할 수 있다.</p>
+            <br><br>
+        </article>
+    </section>
+
+    <footer>
+        <p>Footer</p>
+    </footer>
+</body>
+
+</html>

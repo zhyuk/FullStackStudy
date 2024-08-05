@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 Flexible Box Layout</title>
+    <style>
+        .flexbox {
+            background-color: dimgray;
+            width: 400px;
+            height: 250px;
+            border-radius: 15px;
+            display: -webkit-flex;
+            display: flex;
+            opacity: 0.4;
+        }
+
+        .item {
+            background-color: darkgray;
+            border-radius: 10px;
+            width: 80px;
+            height: 80px;
+            /* margin: 10px; */
+            color: white;
+            font-size: 26px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .flexbox:hover {
+            opacity: 1.0;
+        }
+
+        #center {
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        #centerBox {
+            /* -webkit-justify-content: center; */
+            justify-content: center;
+        }
+
+        .itemDiv {
+            background-color: darkgray;
+            border-radius: 10px;
+            margin: auto 0;
+            color: white;
+            font-size: 26px;
+            text-align: center;
+            padding: 7px 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>justify-content 속성을 이용한 수평 수직 정렬(텍스트 수평, 수직 포함)</h1>
+    <h3>justify-content의 속성값이 center입니다.</h3>
+    <div id="center" class="flexbox">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+
+    <h3>justify-content의 속성값이 center입니다.</h3>
+    <div id="centerBox" class="flexbox">
+        <div class="itemDiv">1</div>
+        <div class="itemDiv">2</div>
+        <div class="itemDiv">3</div>
+    </div>
+
+</body>
+<!-- 
+itemDiv {margin: auto 0;} ==> .itemDiv 클래스를 가진 요소는 플렉스박스이기 때문에 상하의 마진값도 auto로 처리할 수 있다.
+
+부모 플렉스박스 요소에 align-items: center; 속성을 적용했기 때문에 centerBox 아이디값을 가진 div박스의 높이는 컨텐츠의 높이만큼으로 변경된다. -->
+
+</html>

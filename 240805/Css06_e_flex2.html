@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 Flexible Box Layout</title>
+    <style>
+        .flexbox {
+            background-color: dimgray;
+            width: 400px;
+            height: 250px;
+            border-radius: 15px;
+            /* display: -webkit-flex; */
+            display: flex;
+        }
+
+        #start {
+            /* -webkit-justify-content: flex-start; */
+            justify-content: flex-start;
+        }
+
+        #center {
+            /* -webkit-justify-content: center; */
+            justify-content: center;
+        }
+
+        #between {
+            /* -webkit-justify-content: space-between; */
+            justify-content: space-between;
+        }
+
+        #around {
+            /* -webkit-justify-cotnet: space-around; */
+            justify-content: space-around;
+        }
+
+        #end {
+            /* -webkit-justify-content: flex-end; */
+            justify-content: flex-end;
+        }
+
+        .item {
+            background-color: darkgray;
+            border-radius: 10px;
+            width: 80px;
+            height: 50px;
+            color: white;
+            font-size: 26px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .flexbox1 {
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            border-radius: 15px;
+            /* padding: 20px 0; */
+            height: 100px;
+
+            /* display: -webkit-flex; */
+            display: flex;
+
+            -webkit-justify-content: center;
+            justify-content: center;
+        }
+
+        .item1 {
+            background-color: darkgray;
+            border-radius: 10px;
+            width: 80px;
+            height: 50px;
+            color: white;
+            font-size: 26px;
+            text-align: center;
+            line-height: 50px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>justify-cotent 속성을 이용한 수평 정렬</h1>
+
+    <h3>justify-cotent의 속성값이 flex-start입니다.</h3>
+    <div id="start" class="flexbox">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+
+    <h3>justify-cotent의 속성값이 center입니다.</h3>
+    <div id="center" class="flexbox">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+
+    <h3>justify-cotent의 속성값이 flex-end입니다.</h3>
+    <div id="end" class="flexbox">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+
+    <h3>justify-cotent의 속성값이 space-between입니다.</h3>
+    <div id="between" class="flexbox">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+
+    <h3>justify-cotent의 속성값이 space-around입니다.</h3>
+    <div id="around" class="flexbox">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+
+    <h3>flex의 기본</h3>
+    <div class="flexbox" style="flex-direction: column">
+        <div class="flexbox1">
+            <div class="item1">1</div>
+            <div class="item1">2</div>
+            <div class="item1">3</div>
+        </div>
+        <div class="flexbox1">
+            <div class="item1">1</div>
+            <div class="item1">2</div>
+            <div class="item1">3</div>
+        </div>
+    </div>
+
+    <br>
+    <div style="width: 400px; height: 200px; background: gray">
+        <div style="width: 80px; height: 50px; background: #fff; margin: auto">1</div>
+    </div>
+    <!-- 플렉서블 박스가 아닌 곳의 margin: auto 값은 상하에 적용되지 않고 좌우에만 적용된다. -->
+
+    <!-- 
+    text-align: center; 속성을 가진 엘리먼트에 line-height 속성을 height 값만큼 주게 되면, 수직/수평 모두 중앙에 위치해보이게 만들 수 있다.
+    -->
+</body>
+
+</html>

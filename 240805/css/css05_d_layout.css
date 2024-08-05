@@ -1,0 +1,97 @@
+/* Layout01.html 관련 css */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: #666;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+/* Responsive layout 반응형 레이아웃
+ - 화면의 가로 사이즈가 650px 미만으로 적용됨. (650px 미포함) */
+@media screen and (max-width: 650px) {
+    /* nav {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        현재 위치에서 0,0 이동, 블록레벨 요소의 너비를 100%로 설정하기 때문에 이것은 모두 기본값과 동일함. 따라서 필요없는 속성임.
+    } */
+
+    nav ul {
+        height: 100px;
+        background: #ccc;
+        list-style-type: none;
+        margin: 0;
+    }
+
+    article {
+        /* width: 100%; ==> article 태그는 블록요소로 이미 width값을 100%로 갖고 있기 때문에 필요없는 속성 */
+        height: 500px;
+        background-color: #f1f1f1;
+    }
+
+    /* section {
+        position: relative;
+        padding: 0;
+        margin: 0;
+        top: 0;
+        left: 0;
+        현재 위치에서 0,0씩 이동, padding, margin이 0인 태그에 각각 0으로 변경하는 속성이기 때문에 이것도 모두 필요없는 속성
+    } */
+}
+
+/* 화면의 가로 사이즈가 650px이상부터 (650px 포함) 적용됨. */
+@media screen and (min-width: 650px) {
+    article {
+        float: left;
+        padding: 20px;
+        width: 70%;
+        height: 500px;
+        background-color: #f1f1f1;
+    }
+
+    nav {
+        float: left;
+        width: 30%;
+        padding: 20px;
+        background: #ccc;
+    }
+
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        /* ul의 마커영역 padding까지 삭제함. */
+    }
+
+    section {
+        height: 500px;
+        background: #ccc;
+        /* 원래 위치에서 0,0 이동 ==> 필요없는 속성
+        position: relative;
+        top: 0;
+        left: 0; 
+        */
+    }
+
+    /* section::after {
+        clear: both;
+    } */
+}
