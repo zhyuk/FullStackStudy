@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {font-size:40px;}
+        /* 자간 : 양수인 경우는 무조건 간격이 넓어짐, 음수인 경우에 간격이 좁아진다.  */
+        /* 글자 사이의 자간 : letter-spacing */
+        .letter1 {letter-spacing:1em;}
+        .letter1r {letter-spacing:1rem;}
+        /* .letter1r {letter-spacing:40px;} */
+        .letter2 {letter-spacing:0.5em;}
+        .letter3 {
+            /* letter-spacing:50px; */
+            letter-spacing:-5px;
+        }
+
+        /* 단어자 사이의 자간 : word-spacing */
+        #letter1 {word-spacing : 0.2em;}
+        #letter2 {word-spacing : 0.5em;}
+        #letter3 {word-spacing : 50px;}
+ </style>
+</head>
+<body>
+    <h1>HTML5</h1>
+    <h1>기본:HTML5</h1>
+    <h1 class="letter1r">1em:HTML5</h1>
+    <h1 class="letter1">1em:HTML5</h1>
+    <h1 class="letter2">0.5em:HTML5</h1>
+    <h1 class="letter3">50px:HTML5</h1><hr>
+
+    <h1>기본:HTML5</h1>
+    <h1 id="letter1">HTML5 word-spacing</h1>
+    <h1 id="letter2">HTML5 word-spacing</h1>
+    <h1 id="letter3">HTML5 word-spacing</h1>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# meta 태그
+    - meta 태그(Empty Tag = 빈태그) : 시작 엘리먼트만 존재하는 태그로 head 태그 사이에 기술하면서, 해당 웹페이지의 새로고침 기능, 페이지의 저작권, 검색어 등의 정보 설정 가능, 컨텐츠에 대한 전반적인 설정 등을 변경하거나 설정할 때 사용되는 태그.
+    - [권장사항] 
+        1. 되도록이면 title 태그보다 위에 기술
+        2. 인코딩(utf-8), 뷰포트, 저작권 명시(메타-네임, 컨텐트)
+
+    * <meta http-equiv="refresh" content="5"> : 새로고침 기능
+        - http-equiv="refresh" : 새로고침에 대한 기능을 제공 
+        - content="5" : 5초 뒤 마다 새로고침을 진행
+        - 예시: <meta http-equiv="refresh" content="5;https://www.naver.com"> ==> 5초 뒤에 네이버 페이지로 이동
+        
+    * <meta name="keyword" content="HTML, meta, tag, element, reference"> : 검색 시 키워드 설정
+    * <meta name="description" content="HTML meta tag page"> : 웹 페이지에 대한 설명을 정의
+    * <meta name="author" content="Himedia"> : 문서의 저자를 정의
+    * <meta http-equiv="X-UA-Compatible" content="ie=edge"> : 버전이 낮은 익스플로러 브라우저를 엣지브라우저처럼 인식하여 호환되도록 해주는 설정

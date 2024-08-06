@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오디오 재생하기</title>
+    <style>
+        .top {
+            position: relative;
+            width:500px;
+            height:300px;
+            background: url(../240731/img/bg2.jpg) no-repeat top left;
+            background-size: cover;
+            /* cover: 전체 컨테이너를 덮도록 배경 이미지 크기 조정하는 속성값 */
+        }
+
+        audio {
+            width:500px;
+            height: 30px;
+            position:absolute;
+            bottom: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <dl>
+        <dt>audio 속성들</dt>
+        <dd>1. autoplay: 자동재생. 크롬, 엣지 등 지원 안 되는 브라우저가 있음. 파이어폭스 지원됨.</dd>
+        <dd>2. contols : 화면에 컨트롤 할 수 있는 막대를 표시함. 재생, 멈춤, 진행바, 볼륨, 진행속도 등을 표시</dd>
+        <dd>3. loop: 반복 재생</dd>
+        <dd>4. muted : 음소거 기능. </dd>
+        <dd>5. preload: 페이지가 브라우저에 로드될 때 오디오 파일이 같이 로드되어야하는지 여부와 그 방법을 명시함. </dd>
+        <dd> preload="metadata"등으로 명시함. </dd>
+        <dd> autoplay 속성이 preload 속성보다 우선순위가 높다. 
+            즉 autoplay 속성이 정의되어 있으면 preload 속성은 무시될 수 있다.  </dd>
+        <dd>-auto : 페이지가 로드될 때 브라우저가 오디오 파일을 같이 로드함. </dd>
+        <dd>-metadata(디폴트 권장) : 페이지가 로드될 때 메타데이터(metadata)만 로드함. </dd>
+        <dd>- none : 페이지가 로드될 때 브라우저가 오디오 파일을 로드하지 않음. (이 경우에는 영상의 정보가 뜨지 않을 수 있다. ) </dd>
+    </dl>
+    <div class="top">
+        <audio src="./img/bgsound.mp3" title="비에 어울리는 피아노 경음악" preload="none" controls loop muted></audio>
+        <!-- <audio src="./img/bgsound.mp3" title="비에 어울리는 피아노 경음악" controls loop autoplay></audio>      -->
+    </div><br><br>
+    
+</body>
+</html>

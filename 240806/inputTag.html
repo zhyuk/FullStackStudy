@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input 요소</title>
+    <style>
+        * { box-sizing: border-box; vertical-align: bottom;}
+
+        .subm1 {
+            /* display:block; */
+            width: 150px;
+            height:50px;
+        }
+
+        .subm{
+            background-color: #fff;
+            border: 1px solid #dedede;
+            cursor:pointer;
+            padding:5px 10px 6px 7px;
+        }
+
+        .subm img {
+            border: 0;
+            padding: 0;
+            width: 16px;
+            height: 16px;
+        }
+
+        .subm:hover {
+            background-color: #969793;
+            border:1px solid #c6d880;
+            color: #529215;
+        }
+
+        .subm:active {
+            background-color: #ff0000;
+            border:1px solid #f8b89b;
+            color: #ffffff;
+        }
+
+        #make_sbtn {
+            border-radius: 5px;
+            background-color: rgb(71,182,226);
+            border:none;
+            color:white;
+            font-size: 17px;
+            letter-spacing: 2px;
+            font-weight: bolder;
+        }
+
+        input[type=image] {border-radius: 5px;}
+        input#in2 {display:none;}
+
+        label[for=in2] {
+            display: inline-block;
+            padding: 10px 50px;
+            cursor:pointer;
+            border:none;
+            border-radius: 3px;
+            background-color: rgb(63,101,237);
+            color:#fff;
+        }
+
+</style>
+</head>
+<body>
+    <h2>input fields types</h2>
+    <!-- <form> -->
+    <form action="inputTag.html" method="post" enctype="multipart/form-data">
+        <label>파일 선택: <input type="file" name="in1"></label><br><br>
+
+        <label for="in2">파일선택</label><input type="file" name="in2" id="in2" multiple><br>
+
+        <p>
+            <button type="button" class="subm1" onclick="alert('일반버튼입니다.')">일반버튼</button>
+            <button type="submit" class="subm subm1">
+                <img src="../240731/img/tick.png" alt="전송버튼">전송하기
+            </button>
+
+            <input type="image" class="subm1" src="../240731/img/submit.png" alt="제출버튼" title="submit버튼을 이미지로">&nbsp;
+            <input type="submit" class="subm1" id="make_sbtn" value="submit">&nbsp;
+            <input type="reset" class="subm1" value="reset">&nbsp;
+            <input type="button" class="subm1"  value="button">&nbsp;
+        </p>
+    </form>
+
+    <!-- 
+        *  반드시 메소드가 post 방식이며, 인코딩 타입이 enctype="multipart/form-data일 때만 파일을 전송할 수 있다.
+            - multipart : 파일 이름, 파일 정보(언제 파일 생성했는지, 확장자 등) 볼 수 있는 것.
+    -->
+</body>
+</html>

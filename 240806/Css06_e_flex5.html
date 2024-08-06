@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex 정리</title>
+    <style>
+        * { box-sizing: border-box;}
+
+        body {
+            box-sizing: border-box;
+            font-family: sans-serif;
+            font-weight: 600;
+        }
+
+        .container {
+            display: flex;
+            background: #ccc;
+            border: 1px solid black;
+            width:90vw;
+            height:200px;
+        }
+
+        .box {
+            background-color: rgb(0,255,0);
+            border:1px solid black;
+            width:100px;
+            height:100px;
+            margin:10px;
+            text-align: center;
+            line-height:100px;
+        }
+
+        /* flex-basis : Flex Item의 크기를 설정하는 속성. 
+        초기값(default value)은 auto임. 
+        flex-basis 값을 준 경우 box의 좌우 너비가 변함. */
+
+        .box:nth-child(1) {
+            flex-basis:200px;
+            /* flex-shrink: 0; */
+        }
+
+        /* flex-grow: 
+        플렉서블 박스에 공간이 남을 경우 Flex Item의 flex-basis 크기가 
+        얼마나 더 할당 가능한지 나타내는 속성. 
+        초기값(default value)은 0, 음수는 불가능.  */
+        
+        /* 
+        .box:nth-child(2) {flex-grow:1;}
+        .box:nth-child(3) {flex-grow:2;}
+        .box:nth-child(4) {flex-grow:2;} 
+        */
+        /* 
+        flex-shrink: 
+        flex-grow와 반대의미, 플랙서블 박스에 공간이 부족해질 때 
+        Flex Item의 요소의 x축 크기가 얼마나 줄어들 수 있는지 지정하는 값. 
+        초기값(default value)은 1이고, 음수로의 설정은 불가능하다. 
+        0은 고정사이즈 유지. 
+        */
+        /* .box:nth-child(2) {flex-shrink: 3;} */
+        </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+        <div class="box">box4</div>
+        <div class="box">box5</div>
+        <div class="box">box6</div>
+    </div>
+</body>
+</html>

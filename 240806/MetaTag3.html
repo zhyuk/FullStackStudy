@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--     
+    name="viewport" : 웹 페이지의 뷰포트(보여지는 화면)를 설정하는 속성 
+    width=device-width : 기기에 따라 달라지는 장치의 화면 너비에 맞게 웹 페이지의 너비를 설정함. 
+    요소의 너비가 아닌 장치의 브라우저 너비를 말함. 
+
+    initial-scale=1.0 :
+    브라우저에 의해 웹 페이지가 처음으로 로드될 때 초기(맨 처음) 화면의 확대/축소 레벨을 설정함. 
+    *initial-scale의 값은 0~1.0사이 설정이 가능하지만, 제대로된 반응형을 원한다면 값은 1로 지정해준다. 
+    1은 해당 디바이스의 width 크기를 100% 인식하라는 의미로 원본 비율이 유지된다. 
+    (모바일 화면으로 해야 정확한 확인 가능) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML meta tag </title>
+    <style>
+        body {padding:0; margin:0;}
+    </style>
+
+</head>
+<body>
+    <p>
+        <b>To understand this example, you should open this page on a phone or a tablet.</b>
+    </p>
+    <img src="../240731/img/img_chania.jpg" alt="img_chania" style="width:500px;height:250px;">
+    <img src="../240731/img/img_chania.jpg" alt="img_chania" style="width:1500px;height:250px;">
+
+    <img src="../240731/img/img_chania.jpg" alt="img_chania" style="width:500px;height:250px; max-width:100%">
+    <img src="../240731/img/img_chania.jpg" alt="img_chania" style="width:1500px;height:250px; max-width:100%">
+    <p>max-width속성은 최대 사이즈를 제한하는 속성이다.
+        만약 지정사이즈를 넘어가면 해당 사이즈를 무효화시키고, max-width의 값으로 강제 설정된다. 
+        max-width속성은 단독으로 사용될 경우 디바이스 장치에 따라 적용이 제대로 되지 않을 수 있다. 
+        제대로 된 반응형 효과를 원한다면 meta태그의 viewport속성을 설정한 후 max-width를 같이 적용할 경우 
+        제대로된 반응형 효과를 얻을 수 있다. 
+    </p>
+
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Volutpat odio facilisis mauris sit amet massa. Commodo odio aenean sed adipiscing diam donec adipiscing tristique. Mi eget mauris pharetra et. Non tellus orci ac auctor augue. Elit at imperdiet dui accumsan sit. Ornare arcu dui vivamus arcu felis. Egestas integer eget aliquet nibh praesent. In hac habitasse platea dictumst quisque sagittis purus. Pulvinar elementum integer enim neque volutpat ac.
+
+        Senectus et netus et malesuada. Nunc pulvinar sapien et ligula ullamcorper malesuada proin. Neque convallis a cras semper auctor. Libero id faucibus nisl tincidunt eget. Leo a diam sollicitudin tempor id. A lacus vestibulum sed arcu non odio euismod lacinia. In tellus integer feugiat scelerisque. Feugiat in fermentum posuere urna nec tincidunt praesent. Porttitor rhoncus dolor purus non enim praesent elementum facilisis. Nisi scelerisque eu ultrices vitae auctor eu augue ut lectus. Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus. Et malesuada fames ac turpis egestas sed. Sit amet nisl suscipit adipiscing bibendum est ultricies. Arcu ac tortor dignissim convallis aenean et tortor at. Pretium viverra suspendisse potenti nullam ac tortor vitae purus. Eros donec ac odio tempor orci dapibus ultrices. Elementum nibh tellus molestie nunc. Et magnis dis parturient montes nascetur. Est placerat in egestas erat imperdiet. Consequat interdum varius sit amet mattis vulputate enim.
+    </p>
+    
+</body>
+</html>

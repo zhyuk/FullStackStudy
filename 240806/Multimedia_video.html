@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비디오 재생하기</title>
+    <style>
+        body {margin-top:20px; margin-left:50px;}
+
+        video {
+            width:600px;
+            height:300px;
+            background: url(../img/bg2.jpg) no-repeat top left;
+            background-size: 600px 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>video 태그</h1>
+    <p>미디어 파일을 재생할 수 있도록 지원해주는 요소임. 속성은 audio와 동일함.</p>
+    <video src="./img/Painting.mp4" controls autoplay muted loop></video>
+    <!-- 영상은 autoplay와 muted를 같이 기술하면 자동재생이 된다.  -->
+
+    <h1>source 태그</h1>
+    <p>여러 미디어 파일을 한꺼번에 지정할 수 있는 요소임. </p>
+    <dl>
+        <dt>속성값들</dt>
+        <dd>src: 미디어 파일 경로 지정함. </dd>
+        <dd>
+            type: 미디어 파일의 형식을(타입) 웹 브라우저에서 미리 알려줌. 
+            해당 파일의 재생 가능 여부를 확인할 수 있다.
+        </dd>
+    </dl>
+
+    <!-- video태그가 지원이 되지 않는 경우에만 메세지가 나타난다.  -->
+     <video controls autoplay poster="../240731/img/img_flower.png">
+        <source src="./img/soundofnature.mp4" type="video/mp4">
+        <source src="./img/Painting.webm" type="video/webm">
+        이 브라우저는 video를 지원하지 않습니다. 
+     </video>
+    
+</body>
+</html>
