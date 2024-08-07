@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation 효과</title>
+    <style>
+        /* 
+        키프레임명(animation-name) : 메타코드를 사용하여 애니메이션을 지정해준다.
+        방향 : top left 
+        @keyframes 키프레임명 {
+            from {top: 0; background-color: yellow;}
+            to {top: 200px; background-color: red;}
+        }
+            또는 시간을 %로 나누어 애니메이션 지정
+        @keyframes 키프레임명 {
+            0% {background: red; left: 0; top: 0;}
+            25% {background: yellow; left: 200px; top: 0;}
+            50% {background: blue; left: 200px; top: 200px;}
+            75% {background: green; left: 0; top: 200px}
+            100% {background: red; left: 0; top: 0;}
+        }
+
+        animation형식 : animation: 키프레임명 시간설정(s또는ms) [속도함수지정] [지연시간설정(s또는ms)] [반복재생횟수] [방향지정] [지연시 고정값 지정];
+        -------------------------------------------------------------------------------------------------------------------
+        * 시간(animation-duration) : 애니메이션이 실행되는 총 시간 설정
+            : (디폴트값 0초) s(초)나 ms(1/1000)초로 설정가능
+
+        * 속도함수값(animation-timing-function) 
+            - ease : 디폴트값. 느리게 시작 점점 빨라지다가 느리게 종료
+            - liner : 시작부터 끝까지 동일한 속도로 처리
+            - ease-in : 시작을 느리게 함
+            - ease-out : 끝을 느리게 함
+            - ease-in-out : 시작과 끝을 느리게 처리
+            * ease와 ease-in-out은 비슷하지만, ease는 중간부분은 점점 빠르게, ease-in-out은 거의 동일한 속도로 진행된다.
+        
+        * 지연시간설정(animation-delay) 
+            : 숫자값을 지정: 1초 => 1s 1/1000초 => 1ms (디폴트값 : 0)
+
+        * 반복재생횟수값 (animation-iteration-count)
+            : 지정한 숫자만큼 반복. 숫자값으로 지정(디폴트값 : 1)
+            - infinite : 무한 반복
+
+        * 방향지정값 (animation-direction)
+            : 애니메이션이 진행되는 방향 설정. 정항뱡은 0% -> 100%
+            - normal : (디폴트값) 정방향으로 진행됨(앞으로 진행)
+            - reverse : 역방향으로 진행됨. (뒤에서 앞으로 진행)
+            - alternate : 앞으로 진행되었다가 뒤에서 앞으로 진행됨
+            - alternate-reverse : 뒤에서 앞으로 진행되었다가 다시 앞으로 진행됨.
+
+        * 지연시 고정값 지정 (animation-fill-mode)
+            : 지연시간이 설정됐을 때 요소에 적용할 수 있는 속성
+            - none : (디폴트값) 기본 배경색을 지연시간 동안 유지 
+            - forwards : 지연시간동안 기본 배경색 출력
+            - backwards : 지연시간동안 첫 프레임 출력
+            - both : 지연시간동안 첫 프레임 유지
+
+            none/forwards : 요소가 갖고있는 천성 또는 내가 설정한 스타일 출력
+            backwards/both : 애니메이션 첫 프레임 출력
+        */
+
+        div {
+            width: 100px;
+            height: 100px;
+            background: hotpink;
+            position: relative;
+            /* animation: mymove 10s linear 0s infinite; */
+            animation: mymove 10s linear 5s 1 backwards;
+            /* animation-direction: reverse; */
+        }
+
+        /* @keyframes mymove {
+            from {
+                left: 0;
+                top: 0;
+            }
+
+            to {
+                left: 200px;
+                top: 200px;
+                background-color: yellow;
+            }
+        } */
+
+        @keyframes mymove {
+            0% {background: yellow; left: 0; top: 0;}
+            25% {background: black; left: 100px; top: 50px;}
+            50% {background: blue; left: 150px; top: 0;}
+            75% {background: green; left: 250px; top: 50px}
+            100% {background: red; left: 300px; top: 0;}
+        }
+    </style>
+</head>
+
+<body>
+    <h1>The animation Property</h1>
+
+    <p>요소를 움직이는 애니메이션 효과를 준 예제입니다.</p>
+    <div></div>
+</body>
+
+</html>

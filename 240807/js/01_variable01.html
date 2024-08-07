@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수 선언 및 사용</title>
+    <script>
+        /*
+        변수 선언 초기화 재할당(재사용), 재선언 
+        var 변수명; 또는 var 변수명 = 값;
+        let 변수명; 또는 let 변수명 = 값;
+        const 상수명 = 값;
+
+        var a; // 선언 => undefined
+        a = 1; // 초기화 및 재할당
+        a = '가나다'; // 재할당
+
+        var a = 5; // 재선언
+        
+        var => 전역 : 재선언, 재할당
+        let => 지역 : 재할당
+        const => 상수 : 둘 다 안됨.
+
+        호이스팅(Hoisting) :
+        해당 지역에서 모든 선언부를 가장 최상단으로 강제로 끌어올리는 방법
+        호이스팅이 가능한 경우 : var변수 선언, 선언적함수로 선언하는 경우만 가능
+        */
+
+        // alert("자바스크립트의\n줄바꿈입니다.");
+        // console.log("자바스크립트의\n줄바꿈입니다.");
+        /* body가 아닌 새로운 창에서 줄바꿈을 할 때는 \n 사용. <br>은 body에서만
+
+
+
+        // var 예약어 사용
+        /*
+        undefined은 변수를 선언하고 값을 할당하지 않은 상태,
+        null은 변수를 선언하고 빈 값을 할당한 상태(빈 객체)이다.
+        즉, undefined는 자료형이 없는 상태이다.
+
+        undefined : 어떠한 값이 할당되었는지 알 수가 없다. 할당이 되어있지 않은 값
+        null : 값이 비어있다라는 의미, 비어있는 값
+        '' 또는 "" : 빈 문자열 값
+        */
+
+        box;
+        document.write("1. " + box + "<br>"); // undefined
+
+        var box = ''; // 호이스팅되어 1. box의 값도 출력될 수 있음.
+        document.write("2. " + box + "<br>"); // '' (빈 문자열)
+
+        var box = null;
+        document.write("3. " + box + "<br>"); // null
+
+        box = 30;
+        document.write("4. ", box, "<br>"); // + 대신 ,를 사용해서도 결합할 수 있음.
+
+        box = "재선언 가능"
+        document.write("5. ", box, "<br>"); // 숫자 대신 문자를 넣어도 에러없이 출력됨. => 자료형에 국한되지 않기 때문에.
+
+        let a = true;
+        // a = true; // 키워드 생략하더라도 var로 자동으로 생성함. let 키워드는 호이스팅 X
+        document.write("6. " + a + "<br>"); 
+
+        // let 예약어 사용
+        // let a = true; // let 예약어는 호이스팅되지 않음. 따라서 에러 출력
+        a = true;
+        document.write("7. " + a + "<br>"); 
+
+        // let a = "재선언 불가"; // let 키워드는 재선언할 수 없다. 따라서 에러 출력
+        a = "재할당 가능";
+        document.write("8. " + a + "<br>");
+
+        // const 예약어 사용
+        // 선언만 하는 것은 불가
+        // const b; => 선언만 하면 자동으로 값이 undefined로 할당되기 때문에 재할당할 수 없는 상수는 선언만은 불가함. 
+        // const b = "상수";
+        const b = "재선언 불가";
+        b = "재할당 불가";
+        document.write(b + "<br>");
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

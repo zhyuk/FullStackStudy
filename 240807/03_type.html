@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자료형 - 숫자, 논리형</title>
+    <script>
+        // 숫자형 - Number
+        var box; // undefined
+        // document.write(typeof (box), "<br>"); // 값이 undefined인 경우, 자료형도 알 수 없기 때문에 undefined 출력된다.
+        box = 100;
+        box = 30;
+        document.write(box, "<br>");
+        document.write(typeof (box), "<br>");
+
+        // 문자형 - String
+        box = "50원";
+        document.write(box, "<br>");
+        document.write(typeof (box), "<br>");
+        // NaN : Not A Number -> 숫자형으로 치환할 수 있는 조건이 아님을 나타냄. ==> Number()를 통해 문자열을 숫자형으로 변경할 때는, 문자열에 숫자값만 존재해야한다.
+        document.write(Number(box), "<br>");
+        document.write(typeof (Number(box)), "<br>"); // typeof는 내가 치환해주는 자료형으로 반환해준다.
+
+        // 논리형 - Boolean
+        var a = true;
+        var b = false;
+        var c = 10 > 5; // 비교연산자가 있는 경우, true/false 반환
+        // Boolean() 생성자 함수
+        // 매개인자값으로 0, null, undefined, '', "" 값을 넣을 경우는 false 반환
+        // 존재하는 값을 넣을 경우는 true 반환
+        var d = Boolean(2);
+
+        document.write(a, "<br>");
+        document.write(b, "<br>");
+        document.write(c, "<br>");
+        document.write(d, "<br>");
+
+        var t;
+        document.write("값을 할당받지 못한 상태: " + t + "<br>");
+        t = "hello";
+        document.write("값이 초기화된 상태: " + t + "<br>");
+        t = null;
+        document.write("값이 비워진 상태: " + t + "<br>");
+        t = "";
+        document.write("값이 빈문자열인 상태: " + t + "<br>");
+
+        // 배열 자료형 : 배열의 칸수가 정해져있지 않다.(추가할 때마다 생성됨), 요소값의 자료형이 달라도 상관없다.
+        let fruits = ["Banana", 50, false, "Mango"];
+        document.write(fruits[0] + ", " + fruits[1] + ", " + fruits[2] + ", " + fruits[3] + "<br>");
+
+        // object 자료형 : java의 HashMap자료형과 유사함
+        // java의 object자료형과는 다른 개념임.
+        // 키는 무조건 문자열로 인식한다.
+        const car = { type: "Fiat", model: "500", color: "white" };
+        document.write(Object.keys(car)[0] + ":" + car.type + "<br>");
+        document.write(Object.keys(car)[1] + ":" + car["model"] + "<br>"); // 배열객체처럼 []를 사용하여 가져올 경우, 반드시 ["키 이름"]으로 묶어줘야한다.
+        document.write(Object.keys(car)[2] + ":" + car.color + "<br>");
+        // keys(변수명) : 변수의 키들만 배열객체에 모아둔다. => [type, model, color] 
+        // Object.keys(car)[0] => 모아둔 키 배열의 인덱스번호 0번째 키 출력
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

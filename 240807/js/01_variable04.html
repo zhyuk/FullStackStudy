@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수 선언 및 사용</title>
+</head>
+
+<body>
+    <h2>변수 선언 및 사용</h2>
+    <p id="demo" style="border: 1px solid #000">
+        <span>하하하</span>
+    </p>
+    <script>
+        const x = 10;
+        document.write("전역1 : " + x + "<br>");
+        {
+            const x = 2;
+            document.write("지역: " + x + "<br>");
+        }
+        document.write("전역2 : " + x + "<br>");
+        document.getElementById("demo").innerHTML = x;
+        // innerHTML : 안에 속한 공백,자식요소 등 모든 것을 지운 뒤 값을 넣는다.
+    </script>
+
+    <!-- 
+    작성 권장사항
+        * var 키워드 대신 let 사용 권장. => 지역,전역의 개념을 사용할 수 있도록
+    -->
+</body>
+
+</html>

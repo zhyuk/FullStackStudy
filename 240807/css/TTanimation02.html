@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation 효과</title>
+    <style>
+        /* 
+        transform 속성 : 이미지의 변형을 설정하는 속성
+        형식: transform : 변형함수;
+
+        2차원 변형함수 종류
+        1. translate(x), translate(y), translate(x,y) : 지정한 크기만큼 x축, y축으로 이동
+        2. scale(x), scale(y), scale(x,y) : 지정한 크기만큼 x,y축으로 확대/축소.
+        ** 1보다 작으면 축소, 1보다 크면 확대, 단위사용불가, 음수인 경우 이미지 뒤집힘 효과 발생
+
+        3-1. rotate(각도값) : 
+            ** 각도값 : 0deg~360deg(양수,음수 가능, deg단위 생락불가)
+            ** 음수인 경우 반시계방향 회전, 양수인 경우 시계방향 회전
+
+        3-2. rotateX(각도값) : 각도값(0~360deg), 단위 deg지정(생략불가), 수직방향 기울임지정.
+        3-3. rotateY(각도값) : 각도값(0~360deg), 단위 deg지정(생략불가), 수평방향 기울임지정.
+        3-4. rotateZ(각도값) : 각도값(0~360deg), 단위 deg지정(생략불가), 시계, 반시계방향 기울임지정.
+        
+        3-3. rotate3d(x축 radian값, y축 radian값, z축 radian값, 회전각도값(deg))
+            ** 단위 없이 숫자만 지정시는 radian값으로 인식 1 => 180deg/원주율과 동일
+            ** 회전각도값만 deg값으로, 나머지는 radian(래디안)값으로 지정가능. 래디안값은 단위 사용불가
+
+        ** transition : 단축속성
+        - 내가 적용한 속성을 지정한 진행시간동안 변경되게 보이는 속성임. 
+        transition : 변형되는 스타일의 대상(transition-property), 진행시간(transition-duration), 속도함수(transition-timing-function), 지연시간(transition-delay) 등을 설정할 수 있는 단축속성
+        형식: transition : [대상 - (기본값 : all)] [진행시간 - (기본값 : 0s)] [속도함수 - (기본값 : ease)] [지연시간 - (기본값 : 0s)];
+
+        1. 대상(transition-property) : all(해당 요소의 모든 style 속성) | none (아무 속성도 변경 안됨) | 원하는 스타일속성
+            ** 속성이 여러 개인 경우 ,로 나열하여 지정 (단 단축속성인 경우 한 개의 속성값만 사용가능.)
+            예) background-color, transform
+
+        2. 진행시간(transition-duration) : 시간값
+            ** 시간을 s(second- 초 단위) | ms(milliseconds- 밀리초 단위) 예: 0.5s (0.5초 동안 진행)
+
+        3. 속도함수(transition-timing-function) : 속도함수명(animation함수와 동일)
+
+        prespective 속성 : 원근감을 표현할 수 있는 속성.
+        형식: perspective: 값;
+            ** 값은 픽셀크기로 지정. 단 변형함수의 부모 엘리먼트에 지정해야 한다.
+        perspective-origin속성 : perspective의 보조옵션 속성. 원근감의 위치의 축을 지정. 기본값(50%)
+        형식 : perspective-origin: 값;
+            ** px단위값, 백분률값, left, right, center 등의 지정고정값등으로 가능
+        */
+
+        img:nth-of-type(2):hover {
+            -webkit-transform: -webkit-translate(-50px, -20px);
+            transform: translate(-50px, -20px);
+            transition: 0.5s ease;
+            box-shadow: -10px 10px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        img:nth-of-type(4):hover {
+            -webkit-transform: -webkit-scale(0.8, 0.8);
+            transform: scale(0.8, 0.8);
+            /* -webkit-transform: -webkit-scale(-0.8, -0.8);
+            transform: scale(-0.8, -0.8); */
+            transition: 0.5s ease;
+            box-shadow: -10px 10px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        img:nth-of-type(6):hover {
+            /* -webkit-transform: -webkit-rotate(-120deg);
+            transform: rotate(-120deg); */
+            /* -webkit-transform: -webkit-rotateZ(-120deg);
+            transform: rotateZ(-120deg); */
+            -webkit-transform: -webkit-rotate(360deg) -webkit-scale(0.5, 0.5);
+            transform: rotate(360deg) scale(0.5, 0.5);
+            /* -webkit-transform: -webkit-rotate(-40deg) -webkit-scale(0.5, 0.5);
+            transform: rotate(-40deg) scale(0.5, 0.5); */
+            transition: 1s ease-in;
+            box-shadow: -10px 10px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        img:nth-of-type(8):hover {
+            /* -webkit-transform: -webkit-rotateX(360deg);
+            transform: rotateX(360deg); */
+            /* -webkit-transform: -webkit-rotateY(360deg);
+            transform: rotateY(360deg); */
+            -webkit-transform: -webkit-rotateZ(360deg);
+            transform: rotateZ(360deg);
+            translate: rotate3d(1, 1, 1, 45deg);
+            transition: 2s ease-in;
+        }
+
+        #depth1,
+        #depth2 {
+            float: left;
+        }
+
+        #depth1>img:hover {
+            -webkit-transform: -webkit-rotateX(30deg);
+            transform: rotateX(30deg);
+            transition: 1s ease-in;
+        }
+
+        #depth2 {
+            perspective: 300px;
+            /* perspective-origin: left; */
+            perspective-origin: 50%;
+        }
+
+        #depth2>img:hover {
+            transform: rotateX(30deg);
+            transition: 1s ease-in;
+        }
+
+        .lastBox {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            text-align: center;
+            margin: 50px 20px;
+        }
+
+        .lastBox:hover {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+            /* transition: all 1s ease-in-out; */
+            transition: background-color 5s, width 5s ease;
+            /* transition에 height을 적용하지 않았기 때문에 height값은 바로 변경됨. */
+        }
+
+        .lastBox:hover+div {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+            /* transition: all 1s ease-in-out; */
+            transition-property: background-color, width;
+            transition-duration: 5s;
+            transition-timing-function: ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>The animation Property</h1>
+    <p>요소를 움직이는 애니메이션 효과를 준 예제입니다.</p>
+
+    <div>
+        <img src="../../240731/img/cute_dog.jpg">
+        <img src="../../240731/img/cute_dog.jpg"><br><br>
+
+        <img src="../../240731/img/cute_dog.jpg">
+        <img src="../../240731/img/cute_dog.jpg"><br><br>
+
+        <img src="../../240731/img/cute_dog.jpg">
+        <img src="../../240731/img/cute_dog.jpg"><br><br>
+
+        <img src="../../240731/img/cute_dog.jpg">
+        <img src="../../240731/img/cute_dog.jpg"><br><br>
+    </div>
+
+    <div id="depth1"><img src="../../240731/img/cute_dog.jpg"></div>
+    <div id="depth2"><img src="../../240731/img/cute_dog.jpg"></div>
+    <div style="clear: both;"></div>
+
+    <div class="lastBox">마지막 박스1</div>
+    <div class="lastBox">마지막 박스2</div>
+</body>
+
+</html>
