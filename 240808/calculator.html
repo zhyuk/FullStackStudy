@@ -56,6 +56,17 @@
             border-radius: 10px;
             outline: none;
         }
+        div.display {
+            width: 90%;
+            padding: 20px 10px 60px 10px;
+            margin: 0 auto;
+            margin-top: 30px;
+            background: white;
+            font-size: 36px;
+            text-align: right;
+            border: solid 1px black;
+            border-radius: 10px;
+        }
 
         table {
             width: 90%;
@@ -97,7 +108,7 @@
 
         td:active {
             color: red;
-            transition: translate .5s;
+            transition: translate .5s ease-in;
             transform: translateY(3px);
         }
     </style>
@@ -107,6 +118,7 @@
     <div class="container">
         <div class="calculator">
             <input type="text" class="font display" value="0" readonly>
+            <!-- <div class="display font">0</div> -->
 
             <table class="font">
                 <tr>
