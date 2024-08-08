@@ -29,11 +29,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            /* border: 1px solid red; */
         }
 
-        div.content {
+        div.calculator {
             width: 400px;
+            min-width: 400px;
             height: 600px;
+            min-height: 600px;
             margin: 0 auto;
             background: lightgray;
             border-radius: 20px;
@@ -41,25 +44,16 @@
             /* border: solid 1px blue; */
         }
 
-        div.display {
-            width: 100%;
-            height: 100px;
-            margin-top: 20px;
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* border: solid 1px blue; */
-        }
-
-        div.display>input {
-            width: 95%;
-            height: 100%;
-            text-align: right;
-            padding: 10px;
+        input {
+            display: block;
+            width: 90%;
+            padding: 20px 10px 60px 10px;
+            margin: 0 auto;
+            margin-top: 30px;
             font-size: 40px;
+            text-align: right;
+            border: 1px solid black;
             border-radius: 10px;
-            border: solid 1px black;
             outline: none;
         }
 
@@ -85,7 +79,6 @@
 
         td {
             width: 25%;
-            height: 20%;
             background: white;
             border: solid 1px black;
             border-radius: 50px;
@@ -101,6 +94,7 @@
         :not(tr:nth-of-type(1))>td:last-child:active {
             color: red;
         }
+
         td:active {
             color: red;
             transition: translate .5s;
@@ -111,11 +105,8 @@
 
 <body>
     <div class="container">
-        <div class="content">
-            <div class="display">
-                <input type="text" class="font" value="0" readonly>
-            </div>
-
+        <div class="calculator">
+            <input type="text" class="font display" value="0" readonly>
 
             <table class="font">
                 <tr>
