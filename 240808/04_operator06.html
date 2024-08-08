@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            border: 1px solid #000;
+            padding: 20px;
+        }
+    </style>
+    <script>
+        var t1 = "학교종이", t2 = " 땡땡땡", t3 = " 어서 모이자 ";
+        var t4 = 8282;
+        var result;
+        result = t1 + t2 + t3 + t4;
+        document.write(result, "<hr>");
+
+        function tabCreate() {
+            let style = "border: 1px solid #000; border-collapse: collapse";
+            // 이스케이프문자 \" : 큰 따옴표를 문자로 출력
+            var str = "<table style=\"" + style + "\"> ";
+            str += "<tr>";
+            str += "<td>1</td><td>2</td><td>3</td>";
+            str += "</tr>";
+            str += "</table>";
+            document.write(str);
+            // 페이지가 로드된 후에 tabCreate() 함수가 실행된다. 따라서 해당 함수가 호출되면 스타일은 적용되지 않고, 안의 모든 자식요소를 밀어버린 후 적용된다.
+        }
+        // document.getElementsByTagName("td")[0].innerHTML = t1;
+        // document.getElementsByTagName("td")[1].innerHTML = t2;
+        // document.getElementsByTagName("td")[2].innerHTML = t3;
+    </script>
+</head>
+
+<body>
+    <button type="button" onclick="tabCreate()">테이블생성하기</button>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 자바스크립트의 == 연산자는 다른 언어와는 다르게 강제 형변환을 실행한다.
+        document.write('254 == "254": ', 254 == "254", "<br>");
+
+        document.write("false == null: ", false == null, "<br>");
+        document.write("false == undefined: ", false == undefined, "<br>");
+        document.write("false == 0: ", false == 0, "<br>");
+
+        // 일반동치 연산자(==)에서 숫자 1은 true로 인정해준다.
+        document.write("true == 1: ", true == 1, "<br>");
+        // 자바스크립트는 1이상의 값을 true라고 보지 않으므로 false
+        document.write("true == 2: ", true == 2, "<br>");
+        document.write("true != 2: ", true != 2, "<br>");
+        // 일반동치 연산자(==)에서 강제형변환을 통해 값이 존재하지 않는다는 의미로 인식하여 true가 반환된다.
+        document.write("undefined == null: ", undefined == null, "<br><hr>");
+
+        // === 연산자: 형변환 처리를 하지 않고 비교함
+        document.write('254 === "254": ', 254 === "254", "<br>");
+
+        document.write("false === null: ", false === null, "<br>");
+        document.write("false === undefined: ", false === undefined, "<br>");
+        document.write("false === 0: ", false === 0, "<br>");
+
+        document.write("true === 1: ", true === 1, "<br>");
+        document.write("true !== 2: ", true !== 2, "<br>");
+        // undefined와 null은 엄연히 다른 값이기 때문에 완전동치연산자(===)에서는 당연히 false가 출력된다.
+        document.write("undefined === null: ", undefined === null, "<br>");
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>혼합대입연산자</title>
+    <script>
+        var num1 = 10 // 13 -> 10 -> 30 -> 0
+        var num2 = 3;
+
+        num1 += num2; // num1 = num1 + num2;
+        document.write(num1, ", "); // 13
+
+        num1 -= num2; // 13 - 3 = 10
+        document.write(num1, ", "); // 10
+
+        num1 *= num2; // 10 * 3 = 30
+        document.write(num1, ", "); // 30
+
+        num1 %= num2; // 30 % 3 = 10이지만 %는 나눗셈 진행 후 나머지를 반환하기 때문에 0임.
+        document.write(num1); // 0
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date 생성자 및 함수</title>
+    <style>
+        #demo,
+        #demo2 {
+            color: red;
+        }
+    </style>
+    <script>
+        function spDate() {
+            /*
+            Date() : 현재시간의 정보를 영문표기법 문자열값으로 반환 => 내장된 함수형 객체를 가져올 수 없음.
+            new Date() : 현재시간의 정보와 로컬함수 등 전반적인 데이터를 담고 있는 객체 생성 => 쓸 수 있는 내장된 함수형 객체도 가져오기 때문에 사용가능.
+            Date.now() : 현재시간의 정보를 UTC 기준으로 1970년 1월 1일 0시 0분 0초부터 현재까지 경과된 밀리초(ms => 1/1000)를 반환함.
+            */
+            let a = Date.now();
+            console.log('로직 시작시간: ' + a);
+
+            var d = new Date();
+            // new Date("2020-10-01") // 10월. Date("YYYY-MM-DD")의 형식으로 작성하면 month에 -1을 하지 않아도 됨
+            // new Date(2020, 10, 1) // 11월. setMonth()도 동일함.
+            d.setFullYear(2020);
+            d.setMonth(9); // 9+1 = 10월을 설정함
+            d.setDate(1);
+
+            // 삼항식: 조건 ? true값 : false값;
+            var mon = d.getMonth() + 1 > 9 ? d.getMonth() + 1 : "0" + (d.getMonth() + 1);
+            var dd = d.getDate() > 9 ? d.getDate() : "0" + d.getDate();
+            var t = d.getHours() > 9 ? d.getHours() : "0" + d.getHours();
+            var min = d.getMinutes() > 9 ? d.getMinutes() : "0" + d.getMinutes();
+
+            var w = d.getDay();
+            var week = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+            var n = d.getFullYear() + "년" + mon + "월" + dd + "일" + t + ":" + min + " " + week[w];
+
+            document.getElementById("demo").innerHTML = n;
+            let b = Date.now();
+            console.log('로직 종료시간 : ' + b);
+
+            document.getElementById('demo2').innerHTML = '걸린시간: ' + ((b - a) / 1000);
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Date의 set() 함수</h2>
+    <span onclick="spDate()" style="color: blue; cursor: pointer;">설정한 시간은?</span>
+    <span id="demo"></span><br>
+    <span id="demo2"></span><br>
+</body>
+
+</html>

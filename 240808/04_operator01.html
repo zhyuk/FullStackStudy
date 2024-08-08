@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>산술 연산자</title>
+    <script>
+        var num1 = 15;
+        var num2 = 2;
+        var result;
+
+        result = num1 + num2;
+        document.write("덧셈: " + result, "<br>");
+
+        result = num1 - num2;
+        document.write("뺄셈: " + result, "<br>");
+
+        result = num1 * num2;
+        document.write("곱셈: " + result, "<br>");
+
+        result = num1 / num2;
+        document.write("나눗셈의 몫: " + result, "<br>");
+
+        result = num1 % num2;
+        document.write("나눗셈의 나머지: " + result, "<br>");
+
+        var test = 3 + -2 * 6;
+        document.write(test);
+    </script>
+</head>
+
+<body>
+<!-- 
+    * 나눗셈
+        - a / b: a를 b로 나누고 그 나눗셈의 몫을 반환
+        - a % b: a를 b로 나누고 그 나눗셈의 나머지를 반환
+        
+    * 정수값 / 정수값인 경우에도 필요에 따라 실수값으로 출력될 수 있다. 
+    => js는 자료형의 제한이 없고 값에 따라 자료형이 정해지기 때문에
+-->
+</body>
+
+</html>

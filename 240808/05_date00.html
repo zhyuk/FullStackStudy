@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date 자료형</title>
+    <script>
+        var today = new Date(); // Date 자료형의 객체 생성 => Date() 함수 내에 로컬함수 등 사용할 수 있는 모든 것을 복제해온다.
+        // var today = Date(); // 로컬함수 등 사용할 수 있는 모든 것이 아닌 생성자 함수만 복제해오기 때문에 에러 발생. 
+
+        // getMonth() : 0~11까지 (원래의 달 수보다 1이 작게 리턴됨).
+        var mon = today.getMonth() + 1;
+        var week = ["일", "월", "화", "수", "목", "금", "토"];
+
+        // getDay : 0(일요일)~6(토요일)까지 가져오는 함수
+        var day = week[today.getDay()];
+
+        document.write(today.getFullYear() + "년 " + mon + "월 " + today.getDate() + "일 " + day + "요일");
+    </script>
+</head>
+
+<body>
+<!-- 
+    # Date 자료형 
+        월(달)의 정보를 가져올 때 0~11까지로 반환해준다.
+        즉, 원래의 달 수보다 1이 작게 리턴되기 때문에 값을 출력 시 +1을 해줘야한다.    
+-->
+</body>
+
+</html>

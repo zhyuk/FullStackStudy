@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>증감연산자</title>
+    <script>
+        var num1 = 10;
+        var num2 = 20;
+        var result;
+        num1--;
+        document.write(num1--, "<br>");
+        document.write(num1, "<br>");
+
+        num1++;
+        document.write(num1++, "<br>");
+        document.write(num1, "<br>");
+
+        result = num2++;
+        document.write(result + " / " + num2, "<br>");
+
+        result = ++num2; 
+        document.write(result, "<br>");
+    </script>
+</head>
+
+<body>
+
+</body>
+<!-- 
+    * 출력창의 후위연산자 : 값이 먼저 출력된 후 연산자가 처리된다.
+    예) document.write(num1--, "<br>"); => num1의 값 출력 후 num1 - 1 진행.
+    * 출력창의 전위연산자 : 연산자 처리된 값이 출력된다.
+    예) document.write(--num1, "<br>"); => num1 - 1 진행 후 해당 값을 출력.
+-->
+
+</html>

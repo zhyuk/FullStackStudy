@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 형변환에 따른 예약값
+        document.write('Number(null): ', Number(null), "<br>");
+        document.write('Number(""): ', Number(""), "<br>");
+        document.write('Number(false): ', Number(false), "<br>");
+        document.write('Number(true): ', Number(true), "<hr>");
+
+        // 형변환에 의한 예약값이 없는 경우
+        document.write('Number(NaN): ', Number(NaN), "<br>");
+        document.write('Number(undefined): ', Number(undefined), "<hr>");
+
+        // 동등연산자(일반 동치 연산자)에 따른 자동 형변환 값
+        // 비교 연산의 대상이 다른 자료형인 경우 숫자형으로 변환하여 비교한다.
+        document.write('"" == 0: ', "" == 0, "<br>"); // ""(빈 문자값)을 숫자값으로 치환하여 0과 값 비교 => true
+        document.write('"" == false: ', "" == false, "<br>");
+        document.write('0 == false: ', 0 == false, "<br>"); // false라는 값을 숫자값으로 치환하여 0과 값 비교 => true
+        document.write('1 == true: ', 1 == true, "<hr>"); // true라는 값을 숫자값으로 치환하여 1과 값 비교 => true
+
+        // 동등연산자(일반 동치 연산자)로 인한 형변환 불가 경우
+        // null, undefined, NaN => 형변환 불가 예약값
+        document.write('NaN == null: ', NaN == null, "<br>");
+        document.write('NaN == undefined: ', NaN == undefined, "<br>");
+        document.write('NaN == NaN: ', NaN == NaN, "<br>"); // NaN은 자료형조차 없기 때문에 NaN끼리도 값을 비교할 수 없음.
+
+        // 완전 동치 연산자(일치 연산자)
+        document.write('NaN === NaN: ', NaN === NaN, "<br>");
+
+        document.write("<br><hr>");
+        if (Number("50원") == "NaN") document.write("NaN값입니다."); // "50원"은 숫자형으로 변환할 수 없음 -> NaN 반환
+        else document.write("NaN값이 아닙니다.") // NaN끼리도 값을 비교할 수 없기 때문에 무조건 "NaN값이 아닙니다." 출력
+
+        document.write("<br>");
+        if (isNaN(Number("50원")) === true) document.write("NaN값입니다."); // NaN 값의 비교를 위해 isNaN() 사용
+        else document.write("NaN값이 아닙니다.")
+    </script>
+</head>
+
+<body>
+    <!-- 
+    # Number를 이용해서 형변환.
+        * ''/ "", false, null => 0 반환
+        * true 혹은 그 외 존재하는 숫자값 => 1 반환
+        * 값은 존재하지만 숫자형으로 치환할 수 없는 값 => NaN 반환
+-->
+</body>
+
+</html>

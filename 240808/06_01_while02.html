@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        .blue {
+            color: #00f;
+        }
+
+        .red {
+            color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var i = 20;
+        while (i >= 10) { // i = 20 -> 19 -> 18 .... -> 10 -> 9(while문 탈출)
+            if (i % 2 == 0) { // i가 짝수일 때는 blue로, 홀수일 때는 red로 
+                document.write('<span class="blue">' + i + '</span> ');
+            } else {
+                document.write("<span class='red'>" + i + "</span> ");
+            }
+            i--;
+        }
+        // console.log(i);
+    </script>
+</body>
+
+</html>
