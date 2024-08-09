@@ -1,0 +1,17 @@
+<!DOCTYPE html><html><head><title>switch조건문</title></head>
+<body>
+<h2>자바스크립트 if .. else문</h2>
+<script>
+	var a = prompt("1부터 9까지의 숫자를 입력하세요.");
+	var str;
+	switch(Number(a)){
+		case 1: case 3: case 6: case 7: case 8: str = "은"; break;
+		case 2: case 4: case 5: case 9:  str = "는"; break;
+	}
+	// if (a % 2 != 1) {
+	if (a % 2 != 0) {
+		document.write(a + str + " 홀수<br>");
+	} else {
+		document.write(a + str + " 짝수<br>");
+	}
+</script></body></html>
