@@ -1,0 +1,10 @@
+# 외부파일 연결
+
+    * 외부 css, 내부 css, 외부 js, 내부 js 기술 순서
+        1. 웹에서 제공해주는 외부css (url로 제공받는 css를 의미) <link rel="stylesheet href="url경로">
+        2. 내가 작성한 외부css <link rel="stylesheet href="css페이지경로">
+        3. 웹에서 제공해주는 외부js ((url로 제공받는 js를 의미)) <script src="url경로"></script>
+        4. 내가 작성한 외부js <script src="js페이지경로"></script>
+        5. 내부css <style></style> 안에 기술
+        6. 내부js <script></script> 안에 기술
+

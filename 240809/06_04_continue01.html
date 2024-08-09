@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>continue</title>
+</head>
+
+<body>
+	<h1>continue 문</h1>
+	<script>
+		var exceptNum = 3;
+		for (var i = 0; i <= 10; i++) {
+			if (i % exceptNum == 0) continue;
+			document.write(i + " ");
+		}
+	</script>
+
+	<h1>continue 문</h1>
+	<p>홀수단, 홀수번째 구구단 출력하기</p>
+	<script>
+		gugudan:  //label명 : 분기점
+		for (var i = 2; i <= 9; i++) {
+			for (var j = 1; j <= 9; j++) {
+				if ((i * j) % 2 == 0) {
+					// continue;
+					continue gugudan;
+				}
+				document.write(i + " * " + j + " = " + (i * j) + "<br>");
+				if (j == 9) document.write("<hr>");
+			}
+		}
+	</script>
+</body>
+
+</html>

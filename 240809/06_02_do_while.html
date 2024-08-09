@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반복문</title>
+</head>
+
+<body>
+    <h1>do/while문</h1>
+    <script>
+        var i = 0;
+        do {
+            document.write("hello! ");
+            i++; // 반드시 탈출조건 존재해야 함.
+        } while (i < 3);
+        document.write("<br>");
+
+        var i = 1, j = 1;
+        while (i < 3) {
+            document.write("i : " + (i++) + "<br>");
+        }
+
+        do {
+            document.write("j : " + (j++) + "<br>"); // do-while문으로 조건에 충족하지 않아도 1번은 실행된다.
+        } while (j > 3);
+    </script>
+</body>
+
+</html>

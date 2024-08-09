@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>break 제어문</title>
+</head>
+
+<body>
+	<h1>break 문</h1>
+	<script>
+		/* 
+		lectures
+		0 : "html"
+		1 : "css"
+		2 : 123
+		3 : "jsp"
+		length : 4
+		*/
+		var lectures = ["html", "css", 123, "jsp"];
+		var topic = "123";
+
+		for (let i = 0; i < lectures.length; i++) {
+			if (lectures[i] == topic) {
+				document.write(topic, " 과목은 ", i + 1, "번째 과목입니다.");
+				break;
+			}
+		}
+	</script>
+
+	<h1>break 문</h1>
+	<script>
+		gugudan:
+		for (var i = 2; i <= 9; i++) {
+			document.write(i + '단<br>');
+			for (var j = 1; j <= 9; j++) {
+				if (i > 3)
+					break gugudan;
+				document.write(i + " * " + j + " = " + (i * j) + "<br>");
+				if (j == 9) document.write("<hr>");
+			}
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+            for in 확장문 형식
+            for (인덱스변수 in 배열객체) {
+                객체의 모든 열거할 수 있는 프로퍼티의 개수만큼 반복적으로 실행하고자 하는 실행문;
+            }
+
+            ** 대입받은 변수를 이용하면 루프 안에서 객체의 열거할 수 있는 프로퍼티에 순차적으로 접근할 수 있다.
+        */
+
+        var arr = [1, 2, 3, 'str', true];
+        /*
+        arr
+        0 : 1
+        1 : 2
+        2 : 3
+        3 : 'str'
+        4 : true
+        length : 5
+
+        인덱스번호로 값 가져오는 방법 : arr[0] 또는 arr['0']
+        배열객체의 길이를 가져오는 방법 : arr.length
+        */
+        console.log('arr2: ' + arr);
+        console.log('arr2: ', arr);
+
+        for (var x in arr) {
+            x = x + 1;  // 인덱스변수는 값을 문자형으로 가져온다.
+            document.write(arr[x] + " ");
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

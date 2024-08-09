@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열 관련 함수</title>
+</head>
+
+<body>
+    <script>
+        // charAt(인덱스) : 문자열의 한 글자만 추출
+        var str = "안녕하세요!"; // 자료형이 String
+        var str1 = new String("안녕하세요!"); // 자료형이 Object
+        document.write('str.charAt(2) : ' + str.charAt(2) + "<br>");
+        document.write('str[5] : ', str[5] + "<br>");
+        document.write('str.length : ' + str.length + "<br>");
+
+        // Array.isArray() : 배열객체 여부 판별
+        var arr = [1, true, "JavaScript"]; // 배열객체는 type이 object임
+        document.write('배열여부arr : ' + Array.isArray(arr) + "<br>");
+        document.write('배열여부str : ' + Array.isArray(str) + "<br>");
+
+        console.log('type: ' + typeof arr); // Array가 아닌 object 출력
+
+        // 객체 | 변수 | 데이터 instanceof Array : 배열객체 여부 판별
+        // ** object 타입을 갖고있는 객체여야만 제대로 판별할 수 있다.
+        document.write((arr instanceof Array) + "<br>");
+        document.write((str instanceof Array) + "<br>");
+        document.write((str instanceof String) + "<br>"); // String 타입은 맞지만, new를 활용한 객체타입이 아니기 때문에 false 출력
+        document.write((str1 instanceof String) + "<br>");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var data = prompt("숫자 5개 입력(,로 구분)", "0") // 입력 예시: 10,5,100,55,25
+
+        // split : () 안의 구분자를 기준으로 문자 배열로 만들어주는 속성 
+        var arr = data.split(","); // ["10", "5", "100", "55", "25"]
+        var max = arr[0];
+        var min = arr[0];
+        console.log('min: ' + min + ',max: ' + max);
+
+        for (var i = 0; i < arr.length; i++) {
+            console.log("arr[" + i + "]요소 : " + arr[i]);
+
+            if (parseInt(max) < parseInt(arr[i])) max = arr[i];
+            console.log("max[" + i + "]" + max + "arr[" + i + "]" + arr[i]);
+
+            if (parseInt(min) > parseInt(arr[i])) min = arr[i];
+            console.log("min[" + i + "]" + min + 'arr[' + i + ']' + arr[i]);
+        }
+        document.write("최대값: " + max + ", 최소값: " + min);
+    </script>
+</head>
+
+<body>
+    <hr>
+    <input type="button" onclick="func1();" value="Number 결과">
+    <input type="button" onclick="func2();" value="parseInt 결과">
+
+    <script>
+        function func1() {
+            // var won1 = Number("1000원"); // 숫자를 제외한 그 외의 값이 들어와서 NaN 값을 반환하게 됨.
+            // var dollar1 = Number("1$"); // 숫자를 제외한 그 외의 값이 들어와서 NaN 값을 반환하게 됨.
+            // alert(wont1 + " : " + dollar1);
+
+            var won1 = Number("1000");
+            var dollar1 = Number("1");
+            alert(won1 + " : " + dollar1);
+        }
+
+        function func2() {
+            // 원1000원 (X), 원1000 (X), 1000원100 (1000)
+            var won2 = parseInt("1000원100"); // 숫자값으로 시작하고, 연속된 숫자값까지만을 숫자값으로 변경해준다.
+            // var won2 = parseInt("원1000원"); // 숫자값으로 시작하지 않아 NaN 값 반환
+            var dollar2 = parseInt("1$");
+            alert(won2 + " : " + dollar2);
+        }
+    </script>
+</body>
+<!--
+    # parseInt()
+        : 문자형 안의 숫자를 숫자형으로 변경해주는 함수
+
+    # 줄바꿈
+        * <body> 안 줄바꿈 : <br>
+        * 알림창, 입력창 등 창 안 줄바꿈 : \n
+-->
+
+
+</html>

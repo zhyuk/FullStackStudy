@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전역함수와 지역함수</title>
+    <script>
+        function btn() {
+            document.getElementById("demo").innerHTML = "기온은 섭씨" + toCelsius(77) + "도 입니다.";
+
+            function toCelsius(num) {
+                // 화씨를 섭씨로 변경하는 수식
+                return Math.floor((num - 32) * (5 / 9));
+                // Math.floor : 정수값만 저장. 소숫점자리 숫자는 버림
+            }
+
+            function toCelsius1() {
+                document.write("기온은 섭씨 32도 입니다.");
+            }
+            // 1번 : 값에 toCelsius1 함수를 던짐.(호출은 아니므로 실행 X)
+            // return {toCelsius1 : toCelsius1};
+            // 2번 : 값에 toCelsius1() 함수 호출문을 던짐.(실행됨.)
+            // return {toCelsius : toCelsius1()};
+            return toCelsius1();
+        }
+    </script>
+</head>
+
+<body>
+    <h2>JavaScript Functions</h2>
+    <pre style="border: 1px solid #000; font-weight: bolder;">
+    지역 함수(local function) : 함수 안에 정의된 내장 함수를 의미.
+    - 포함된 함수 안의 블록 사이에서만 쓰일 수 있다.
+    - 포함된 함수의 실행이 종료되면 지역 함수도 소멸된다.
+    - 함수 내부에서 선언된 변수명과 변수값은 함수 외부에서는 사용할 수 없다.
+
+    전역 함수(global function) : 여러 코드 블록에서 동시에 쓰일 수 있는 함수를 말한다.
+    전역변수 : 여러 코드 블록에서 동시에 쓰일 수 있는 변수를 말한다.
+    - 함수 밖에서 선언된 변수의 경우 함수 내부의 코드 블록에서도 동시에 사용할 수 있다.
+    </pre>
+
+    <p>버튼을 클릭해보세요.</p>
+    <p id="demo"></p>
+    <button onclick="btn()">클릭</button>
+
+    <script>
+        // 1번 -> 반환값이 {toCelsius1 : toCelsius1}임. --> 따라서 toCelsius1 함수를 실행하기 위해서는 toCelsius1()로 작성해야함.
+        // btn().toCelsius1();
+        // 2번 ->
+        // btn().toCelsius1;
+        btn();
+    </script>
+</body>
+
+</html>
