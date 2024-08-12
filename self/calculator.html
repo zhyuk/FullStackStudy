@@ -55,6 +55,7 @@
             border: 1px solid black;
             border-radius: 10px;
             outline: none;
+            overflow: hidden;
         }
 
         input::placeholder {
@@ -128,13 +129,13 @@
             <table class="font">
                 <tr>
                     <td colspan="2" onclick="ac()">ac</td>
-                    <td colspan="2">Enter</td>
+                    <td colspan="2" onclick="enter()">Enter</td>
                 </tr>
                 <tr>
                     <td onclick="number('7')">7</td>
                     <td onclick="number('8')">8</td>
                     <td onclick="number('9')">9</td>
-                    <td onclick="number('+')">+</td>
+                    <td onclick="operator('+')">+</td>
                 </tr>
                 <tr>
                     <td onclick="number('4')">4</td>
@@ -150,13 +151,13 @@
                 </tr>
                 <tr>
                     <td colspan="2" onclick="number('0')">0</td>
-                    <td onclick="operator('.')">.</td>
+                    <td onclick="number('.')">.</td>
                     <td onclick="operator('/')">/</td>
                 </tr>
             </table>
         </div>
     </div>
-    <script src="./calculator.js"></script>
+    <script src="./js/calculator/calculator.js"></script>
 </body>
 
 </html>
