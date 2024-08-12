@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object 자료형</title>
+</head>
+
+<body>
+    <h2>JavaScript Functions</h2>
+    <p>버튼을 클릭해보세요.</p>
+
+    <p id="demo"></p>
+    <button type="button" onclick="person.fullName()">클릭</button>
+
+    <script>
+        /*
+        JavaScript object = java Map = json 방식
+        형식 : {키 : 값, 키 : 값, ...}
+        */
+
+        // this키워드 : 함수의 소유자(소유객체)를 의미함.
+        // 이 스크립트에서는 this가 person객체가 됨
+
+        // * object 객체의 키와 요소값에 접근하는 방법
+        //  - object.keys(오브젝트객체명) 키명만 가져오기 => 키만 배열형식으로 반환
+        //  - 요소값 가져오기
+        //      1. 오브젝트객체명.키명
+        //      2. 오브젝트객체명['키명'] => 키명은 반드시 문자열값으로 기술할 것 -> 문자열값이 아닐경우 변수로 인식함
+
+        const person = {
+            firstName: "John",
+            lastName: "Doe",
+            id: 5566,
+            // object객체의 값으로 존재하는 함수
+            fullName: function () {
+                document.getElementById('demo').innerHTML = this.firstName + " " + this.lastName;
+            }
+        };
+
+        document.write(person['firstName'], ",", person.lastName);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arguments 객체</title>
+    <script>
+        function fnc() {
+            document.write('fnc() 호출');
+        }
+
+        function fnc(a) {
+            document.write('fnc(a) 호출 : ' + a);
+        }
+
+        function fnc(a, b) {
+            document.write('fnc(a, b) 호출 : ' + a, ',', b, "<br>");
+        }
+
+        fnc(); // undefined, undefined
+        fnc(1); // 1, undefined
+        fnc(5, 3); // 5, 3
+        // 매개변수의 갯수와 상관없이 함수명이 동일하면 마지막에 작성된 함수로 덮어쓰기된다.
+    </script>
+</head>
+
+<body>
+    <h2>arguments 객체</h2>
+    <p>자바스크립트 함수의 내장객체이며, 매개변수의 정보를 가지고 있다.</p>
+    <p id="demo"></p>
+    <p id="demo2"></p>
+
+    <script>
+        // arguments : 함수를 호출할때 매개인자의 정보를 배열로 저장하는 객체
+        // 자바스크립트에서 제공하는 내장 객체
+        function myFunction(a, b) {
+            return "0번째 매개변수의 값은 " + arguments[0] + "이며, 총 매개변수의 개수는 " + arguments.length + "개 이다.";
+        }
+        document.getElementById("demo").innerHTML = myFunction(4, 3);
+
+        // 함수의 매개변수를 일치시키지 않아도 arguments객체를 통해 해당 매개변수를 가져올 수 있다.
+        function findMax() {
+            // Infinity : 양의 무한대 값을 나타내는 숫자형 값. 보다 큰 값은 존재할 수 없음.
+            // -Infinity : 음의 무한대 값을 나타내는 숫자형 값. 보다 작은 값은 존재할 수 없음.
+
+            let max = -Infinity; // 최대값을 찾기 위해 가장 작은값 -Infinity 할당
+            for (let i = 0; i < arguments.length; i++) {
+                console.log(arguments[i]);
+                if (arguments[i] > max) max = arguments[i];
+            }
+            return max;
+        }
+        document.getElementById("demo2").innerHTML = findMax(4, 5, 6);
+
+
+        // arguments 내장객체를 통해 자바의 메소드 오버로딩처럼 진행할 수 있다.
+    </script>
+</body>
+
+</html>

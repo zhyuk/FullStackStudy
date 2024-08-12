@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid #000;
+        }
+
+        #outDiv {
+            border: none;
+            padding-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>toString()함수</h2>
+    <p>자바스크립트의 toString() 함수는 함수를 문자열로 반환합니다.</p>
+
+    <p id="demo"></p>
+
+    <script>
+        function myFunction(a, b) { return a * b; }
+
+        // 객체명.toString() : 해당 객체를 string 자료형으로 반환하면서 문자열로 출력해주세요.
+        var str = myFunction.toString();
+        document.getElementById("demo").innerHTML = "<div><h2>&nbsp;myFunction() 함수 정의</h2>" + "<hr><div id='outDiv'>" + "<pre><br>" + str + "<br><br></pre>" + "</div></div>";
+
+        // 선언적 함수를 변수로 받는 방법
+        str = myFunction; // 함수객체를 던지는 경우
+        document.write(str(5, 4));
+    </script>
+</body>
+
+</html>

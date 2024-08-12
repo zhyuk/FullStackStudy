@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow() 함수</title>
+</head>
+
+<body>
+    <h2>Arrow() (화살표 =>) 함수</h2>
+    <p>- function 키워드, return 키워드 및 중괄호({})를 입력할 필요가 없다</p>
+    <p>- 단, 1줄 코드인(= 실행코드가 1개인 경우) 경우만 return, 중괄호 생략 가능.</p>
+    <p>- => (화살표연산자)를 사용하여 기술함.</p>
+    <p>- IE11이전 버전에서는 지원되지 않는다.</p>
+    <p id="demo"></p>
+    <p id="demo2"></p>
+
+    <script>
+        // 자바의 람다식(인터페이스를 이용한 함수축약식)과 유사
+        // 화살표 함수는 한 줄 실행문인 경우만 return 생략가능, {} 생략가능
+
+        // const x = function(x, y) { return x * y};를 축약한 형식이다.
+        // function x(x, y) { return x * y };
+        const x = (x, y) => x * y;
+        document.getElementById('demo').innerHTML = "x(5,5)의 호출값은 : " + x(5, 5); // return 키워드가 생략되어있지만 자동으로 return 처리됨.
+
+        const y = () => 50 % 3;
+        document.getElementById('demo2').innerHTML = "y()의 호출값은 : " + y();
+
+        // 실행코드가 1개가 아니기 때문에 {}(중괄호), return 키워드 생략불가.
+        const z = () => {
+            // arrow함수에서는 arguments 객체 사용 불가
+            console.log(arguments[0]);
+            document.write('z함수 실행 ');
+            return 5;
+        }
+
+        document.write(z(5));
+    </script>
+</body>
+
+</html>

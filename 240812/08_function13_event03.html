@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function CheckForm() {
+            // 체이닝방식 : .(접근연산자)를 이용하여 여러개의 속성을 나열하는 방법
+            // 체크박스 체크여부 확인
+            // checked : 
+            // 공간자리에 있는 경우 : 체크여부를 설정 (true => 체크, false => 해제)
+            // 값자리에 있는 경우 : 체크된 여부를 판별 (true : 체크된 상태, false : 해제된 상태)
+
+            // 자바스크립트에서 name 속성 혹은 id명을 갖고있는 태그에 접근할 수 있는 것은 form태그와 그 속의 입력요소만 가능함.
+            var chk1 = document.frmJoin.U_checkAgreement1.checked;
+            // frmJoin이라는 name 속성을 갖거나 id명이 frmJoin인 폼 태그.U_checkAgreement1 라는 name 속성을 갖거나 id를 가진 입력요소의 체크된 여부 판별
+            var chk2 = document.frmJoin.U_checkAgreement2.checked;
+
+            if (!chk1) {
+                alert('약관1에 동의해 주세요');
+                return false; // 함수를 호출한 곳에 return 값을 돌려주며 함수 실행종료
+            }
+
+            if (!chk2) {
+                alert('약관2에 동의해 주세요');
+                return false; // 함수를 호출한 곳에 return 값을 돌려주며 함수 실행종료
+            }
+
+            // 체크박스 체크여부 확인 [동일 이름을 가진 체크박스 여러개일 경우]
+            // name,id 중 frmJoin 이라는 값을 가진 폼태그 중에 name,id 중 fall 이라는 값을 가진 입력요소를 check 상태로 변경.
+            frmJoin.fall.checked = true;
+
+            var isSeasonChk = false;
+            var arr_Season = document.getElementsByName("SEASON");
+
+            for (var i = 0; i < arr_Season.length; i++) {
+                if (arr_Season[i].checked == true) {
+                    isSeasonChk = true;
+                    break;
+                }
+            }
+            if (!isSeasonChk) {
+                alert('계절의 종류를 한개 이상 선택해주세요');
+                return false;
+            }
+
+            return true; // 작성하지 않아도 true 값을 반환하지만, 정확하게 하기 위해 작성해주는 것이 좋다.
+        }
+    </script>
+</head>
+
+<body>
+    <!-- onsubmit : submit 버튼을 통해 form 태그의 action을 실행 이벤트를 감지하는 속성
+        return을 설정하지 않을경우 무조건 true임.
+    -->
+    <form name="frmJoin" onsubmit="return CheckForm()">
+        <label><input type="checkbox" id="U_checkAgreement1" name="U_checkAgreement1">약관동의</label>
+        <label><input type="checkbox" id="U_checkAgreement2" name="U_checkAgreement2">약관동의</label>
+        <br><br>
+
+        <label><input type="checkbox" id="spring" name="SEASON" value="1">봄</label>
+        <label><input type="checkbox" id="summer" name="SEASON" value="2">여름</label>
+        <label><input type="checkbox" id="fall" name="SEASON" value="3">가을</label>
+        <label><input type="checkbox" id="winter" name="SEASON" value="4">겨울</label>
+        <br><br>
+        <input type="submit" value="전송">
+    </form>
+</body>
+
+</html>

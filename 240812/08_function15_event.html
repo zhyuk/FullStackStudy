@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 핸들러 함수 강제실행</title>
+    <script>
+        var chk = true;
+        window.onload = function () {
+            document.getElementById('frm').onsubmit = function (e) {
+                // console.log('e : ' + e);
+
+                let tg = e.target; // tg = e.target = form#frm 내부 모든것 포함
+
+                if (tg.uid.value == null || tg.uid.value == '') {
+                    alert('아이디를 입력해주세요.');
+                    tg.uid.focus(); // form#frm 내부에 id값이 uid인 입력요소에 포커스해줌.
+                    return false; // submit 기능은 true일 때만 action 기능을 실행함. 따라서 실행되지 않게 막음
+                }
+
+                if (tg.upwd.value == null || tg.upwd.value == '') {
+                    alert('비밀번호를 입력해주세요.');
+                    tg.upwd.focuns(); // form#frm 내부에 id값이 upwd인 입력요소에 포커스해줌.
+                    return false; // submit 기능은 true일 때만 action 기능을 실행함. 따라서 실행되지 않게 막음
+                }
+
+                return true;
+            };
+
+            document.getElementById('btn').onclick = function () {
+                document.getElementById('sel').onchange(); //  sel이라는 id를 가진 태그에 접근해서 onchange() 함수가 있으면 실행
+            };
+
+            document.getElementById('sel').onchange = function (e) {
+                console.log('e: ' + e); // #btn.click을 통한 강제로 이벤트 발생 시 event 객체를 사용할 수 없어서 오류발생.
+                console.log('this: ' + this);
+                document.getElementById('selstr').value = e.target.value;
+                document.getElementById('selstr').value = this.value;
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <form id="frm">
+        <!-- 폼 요소의 경우 id=id와 같이 id값은 속성과 값이 동일하게 작성하면 스크립트가 제대로 인식하지 못할 수 있다.-->
+        <input type="text" name="uid" placeholder="아이디 입력" id="uid"><br>
+        <input type="password" name="upwd" id="upwd" placeholder="비밀번호 입력"><br>
+        <label><input type="text" name="selstr" id="selstr"></label><br>
+        선택옵션 : <br>
+        <select name="sel" id="sel">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select><br>
+        <br><br>
+
+        <button type="submit" id="btn">옵션강제변경</button>
+        <button type="submit">로그인</button>
+    </form>
+</body>
+
+</html>

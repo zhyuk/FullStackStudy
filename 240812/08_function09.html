@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset = "UTF-8"><title> 함수에 의한 변수의 범위 </title>
+<script>
+	var vr = 10;
+	{
+		var vr = 25;
+		document.write("블록함수 vr값: "+ vr + "<br>");
+	}
+	document.write("전역함수 vr값: "+ vr + "<br>");	
+	
+	var vari = 10;
+	function fnc() {
+		vari = 25;
+		document.write("지역함수 vari값: "+ vari + "<br>");
+	}	
+	document.write("전역함수 vari값: "+ vari + "<br>");
+	fnc();
+	document.write("전역함수 vari값: "+ vari + "<br>");
+</script></head><body></body></html>

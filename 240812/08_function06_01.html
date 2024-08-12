@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>함수의 오버로딩</h1>
+    <script>
+        function addNum(x) { return x; }
+        function addNum(x, y, z) { return x + y + z; }
+        function addNum(x, y) { return x + y; }
+
+        document.write("인수가 3개 모두 전달되면 반환값은 " + addNum(1, 2, 3) + "입니다.<br>");
+        document.write("인수가 2개만 전달되면 반환값은 " + addNum(1, 2) + "입니다.<br>");
+        document.write("인수가 1개만 전달되면 반환값은 " + addNum(1) + "입니다.<br>");
+        document.write("인수가 아무것도 전달되지 않으면 반환값은 " + addNum() + "입니다.");
+
+        function sum() {
+            var result = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                // result = result + arguments[i];
+                result += arguments[i];
+            }
+            return result;
+        }
+
+        console.log("arguments 객체를 이용한 오버로딩 처리");
+        console.log("인수가 2개(10,20)인 함수 호출 결과 : " + sum(10, 20));
+        console.log("인수가 3개(10,20,30)인 함수 호출 결과 : " + sum(10, 20, 30));
+        console.log("인수가 4개(10,20,30,40)인 함수 호출 결과 : " + sum(10, 20, 30, 40));
+        console.log("인수가 5개(10,20,30,40,50)인 함수 호출 결과 : " + sum(10, 20, 30, 40, 50));
+    </script>
+</body>
+
+</html>

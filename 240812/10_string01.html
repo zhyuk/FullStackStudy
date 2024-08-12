@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var str = "안녕 웹! Hello web! Hello java";
+        document.write("원본문자 :<h1>&nbsp;" + str + "</h1><br>");
+        document.write("문자열 길이 : " + str.length + "<br>");
+        document.write("해당 위치의 문자 : " + str.charAt(4) + "<br>");
+
+        document.write("해당 문자의 위치(정방향) : " + str.indexOf('e') + "<br>");
+        document.write("해당 문자의 위치(역방향) : " + str.lastIndexOf('e') + "<br>");
+
+        document.write("해당 문자의 유니코드 값 반환 : " + str.charCodeAt(1) + "<br>");
+        document.write("해당 유니코값의 문자 반환 : " + String.fromCharCode(65) + "<br>");
+
+        document.write("문자열 결합(뒤로) : " + str.concat("안녕 웹") + "<br>");
+        document.write("문자열 변경 : " + str.replace("web", "world") + "<br>");
+
+        // substr(시작인덱스번호, 시작인덱스번호의 문자열 포함하여 이후로 가져올 문자열의 갯수)
+        document.write("문자열 반환 substr(3,5) : " + str.substr(3, 5) + "<br>");
+
+        // substring(시작인덱스번호, 마지막인덱스번호(지정값-1))
+        // : 시작인덱스 ~ 마지막인덱스번호까지의 문자열을 추출함.
+        document.write("문자열반환 substring(3,5) : " + str.substring(3, 5) + "<br>");
+
+        // slice(시작인덱스번호, 마지막인덱스번호(지정값-1))
+        // : 시작인덱스 ~ 마지막인덱스번호까지의 문자열을 추출함.
+        document.write("문자열반환 slice(3) : " + str.slice(3) + "<br>");
+        document.write("문자열반환 slice(2,5) : " + str.slice(2, 5) + "<br>");
+
+        document.write("문자열 찾기(문자열값 반환) : " + str.match("web") + "<br>");
+        document.write("문자열 찾기 (인덱스 처음값 반환) : " + str.search("web") + "<br>");
+
+        document.write("모두 소문자로 : " + str.toLowerCase() + "<br>");
+        document.write("모두 대문자로 : " + str.toUpperCase() + "<br>");
+
+        var str1 = "  Hello web!     ";
+        console.log("공백 제거 전 : " + str1);
+        console.log("앞 뒤 공백 제거 : " + str1.trim());
+
+        document.write("공백제거 전 : " + str1 + "<br>");
+        document.write("앞 뒤 공백 제거 : " + str1.trim() + "<br>");
+
+        // java의 split()과 다름
+        var s = str1.split(" ");
+        document.write("s: [" + s + "]<br>");
+        document.write("s[2] 요소값은 : " + s[2] + "<br>");
+    </script>
+</head>
+
+<body>
+    <h3>String 관련 함수</h3>
+</body>
+
+</html>

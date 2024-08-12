@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>생성자 함수와 자동호출 함수</title>
+    <style>
+        .pClass {
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>JavaScript Functions</h2>
+    <p class="pClass">자바스크립트에서는 함수 생성자를 통하여 함수를 생성할 수 있습니다.</p>
+    <p id="demo"></p>
+
+    <p class="pClass">자바스크립트에서는 자동 호출 함수를 이용하여 호출하지 않아도 실행할 수 있다.</p>
+    <p id="demo2"></p>
+
+    <script>
+        const myFunction = new Function("a", "b", "return a * b");
+        // function myFunction(a, b) { return a * b; }
+
+        document.getElementById("demo").innerHTML = "myFunction(4,3)호출 결과 : " + myFunction(4, 3);
+
+        // 함수 선언 및 실행 : 즉시실행함수
+        (function (a, b) {
+            document.getElementById("demo2").innerHTML = "자동호출 함수 실행 " + a + b;
+        })("값은 : ", 1)
+    </script>
+
+    <!-- 
+    즉시실행함수 : 호출하지 않아도 바로 실행되는 함수로 호출문이 같이 붙어있다. => 유일하게 컴파일될 때 즉시 실행되어 즉시실행함수 중 가장 빨리 실행된다.
+    형식 : (function(){})() -> (함수선언)(함수호출)
+    -->
+</body>
+
+</html>

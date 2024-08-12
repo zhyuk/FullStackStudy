@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        이벤트핸들러함수란 : 웹문서내에서 어떠한 행위가 일어날 때 발생되는 기능을 제어하는 함수를 말함.
+
+        -- 해당 이벤트가 발생이 될 때 함수를 실행시킨다.
+        onload : 페이지가 로딩될 때 (대부분 window객체를 통해 접근하여 실행되는 함수임)
+        onchange : 값이 변경되었을 때 (입력요소에서 값 변경이 되는 요소들을 대상으로 접근하여 실행) => 주로 select의 값이 변경될 때 사용
+        onclick : 마우스를 클릭했을 때 (웹페이지내의 클릭할 수 있는 모든 요소들을 대상으로 접근하여 실행)
+
+        // 즉시실행함수 중 하나 (브라우저에 해당 코드가 로딩이 되는 시점에 실행됨.)
+        선택객체명.onload = function(){
+            실행코드들; ...
+        };
+
+        선택객체명.onchange = function(){
+            실행코드들; ...
+        };
+
+        선택객체명.onclick = function(){
+            실행코드들; ...
+        };
+        */
+
+        // window.onload = function(){자바스크립트코드; ...};
+        // 웹 페이지가 로딩되자마자 실행 => html 까지 로드된 후 실행
+        // 즉시실행함수
+        window.onload = function () { // 이벤트 핸들러 함수 선언(정의)
+            var i = 3;
+            console.log('로딩단계에서 실행되는 함수');
+            document.write(i + "의 제곱은 " + (i * i));
+        };
+        // 이벤트(load)에 의해 호출(실행)
+
+
+        (function () {
+            console.log('컴파일단계에서 실행되는 함수');
+            // document.write(i + "의 제곱은 " + (i * i));
+            // 컴파일단계가 로딩단계보다 먼저기 때문에 밑에 적혀있지만 먼저 실행된다. -> 로딩단계에서는 해당 함수는 실행되지 않음
+            // 컴파일단계에서 실행되기 때문에 document.write같은 html 태그에 접근할 수 없다.
+        })()
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

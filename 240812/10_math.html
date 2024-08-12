@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수학객체</title>
+
+    <script>
+        var num = 2.1254;
+        // Math.round(), floor(), ceil() : 모두 정수를 반환
+        var maxNum = Math.max(10, 5, 8, 30);
+        minNum = Math.min(10, 5, 8, 30);
+
+        roundNum = Math.round(num), // 반올림
+            floorNum = Math.floor(num), // 소수점 자리 버림
+            ceilNum = Math.ceil(num), // 소수점 자리가 1~4일지라도 무조건 반올림
+
+            // Math.random() : 0 ~ 1사이의 실수값 반환
+            rndNum = Math.floor(Math.random() * 10),
+            piNum = Math.PI,
+
+            absNum = Math.abs(-15), // 음수, 양수 모두 양수로 반환 -> 15 반환됨
+            powNum = Math.pow(5, 3), // 5의 3제곱
+            sqrtNum = Math.sqrt(9); // 루트 9
+
+        document.write("최대값 : " + maxNum, "<br>");
+        document.write("최소값 : " + minNum, "<br>");
+
+        document.write("반올림 : " + roundNum + "<br>");
+        document.write("반올림(소수점 둘째자리) : " + Math.round(num * 100) / 100 + "<br>"); // 2.1254 -> 212.54를 round처리 -> 213을 /100 -> 2.13
+
+        // toFixed([소수점자리수]) : 자리수는 0 ~ 100까지만 가능.
+        // 없는 자리수는 임의 수로 채움
+        document.write("반올림(소수점 둘째자리) : " + num.toFixed(2) + "<br><hr>");
+
+        
+        document.write("소수점 버림 : " + floorNum + "<br>");
+        document.write("무조건 올림 : " + ceilNum + "<br>");
+        document.write("원주율 : " + piNum + "<br>");
+        document.write("절대값 : " + absNum + "<br><hr>");
+
+        document.write("거듭제곱(승수) : " + powNum + "<br>");
+        document.write("제곱근(루트) : " + sqrtNum + "<br>");
+        document.write("랜덤값 : " + Math.random() + "<br>");
+        document.write("랜덤값(0 ~ 9 사이 : 10개 숫자) : " + rndNum + "<br>");
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

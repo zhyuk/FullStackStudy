@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        select {
+            padding: 2px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            alert('즉시실행');
+            // HTML 엘리먼트에 이벤트 핸들러 지정
+            // onclick: 해당 input버튼 요소에 onclick속성 및 연결될 test()함수 지정하기
+            document.getElementById('btn').onclick = test;
+            // document.getElementById('btn') = <input type="button" id="btn" value="테스트">
+            // test : 선언적 함수가 실행되지 않고 준비상태임. 클릭해야만 test() 함수 실행됨
+
+            // onchange: 해당 select dythdp onchange속성 및 연결될 test2()함수 지정하기
+            document.getElementById('sel').onchange = function () {
+                console.log('this', this); // this는 값이 변경된 객체임 -> 여기서는 #sel를 가진 select 태그
+                test2(this.value); // test2() 함수 호출. 매개변수로 select 태그의 value값 가져옴
+            }
+        };
+
+        function test() { alert('사용자 정의 함수'); }
+
+        function test2(email) {
+            // HTML의 특정 엘리먼트를 객체로 접근
+            var text = document.getElementById('email2');
+
+            // 특정 객체의 value 속성에 값을 지정
+            text.value = email;
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 이벤트 핸들러 지정을 위해 id 속성 필수 -->
+    <p><input type="button" id="btn" value="테스트"></p>
+    <p>
+        이메일: <input type="text" id="email1"> @ <input type="text" id="email2">
+
+        <select id="sel">
+            <option value="">직접입력</option>
+            <option value="naver.com">네이버</option>
+            <option value="gmail.com">구글</option>
+            <option value="daum.net">다음</option>
+        </select>
+    </p>
+
+    <!-- <script>
+        // window.onload 이벤트 핸들러를 사용하지 않고 즉시 실행함수로 사용하려면, 해당 위치에 작성해야한다.
+        cument.getElementById('btn').onclick = test;
+
+        document.getElementById('sel').onchange = function () {
+            console.log('this', this);
+            test2(this.value); 
+        }
+    </script> -->
+</body>
+
+</html>
