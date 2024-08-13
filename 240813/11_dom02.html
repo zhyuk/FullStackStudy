@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p class="intro">one : p Element</p>
+    <span class="intro"><em>two : span Element</em></span>
+    <p class="intro">three : p Element</p>
+    <hr>
+    <p id="demo"></p>
+
+    <form id="Frm">
+        <input type="text" id="uid" name="uid1" value="0번">
+        <input type="text" name="uid1" value="1번">
+        <input type="text" name="uid1" value="2번">
+    </form>
+
+    <script>
+        var x = document.getElementsByClassName('intro');
+        console.log('x: ' + x);
+        console.log('forms: ' + document.forms[0].uid);
+        console.log('Frm.uid: ' + Frm.uid);
+        console.log('Frm.uid1: ' + Frm.uid1);
+        console.log('Frm.uid1[1]: ' + Frm.uid1[1]);
+
+        document.write('x객체의 배열 길이: ' + x.length + "<br>"); // 배열형태로 가져오기 때문에 길이확인 가능
+        document.getElementById("demo").innerHTML += x[1].innerHTML;
+
+        document.getElementById("demo").innerHTML += "<br>tagName: " + x[1].tagName;
+        document.getElementById("demo").innerHTML += "<br>length: " + x.length;
+    </script>
+</body>
+
+</html>

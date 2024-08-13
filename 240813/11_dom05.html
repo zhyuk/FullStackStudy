@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성 설정</title>
+    <style>
+        input[type=text],
+        select,
+        button {
+            box-sizing: border-box;
+            width: 600px;
+            height: 50px;
+            margin-bottom: 10px;
+            max-width: 100%;
+        }
+
+        input[type=checkbox] {
+            width: 20px;
+            height: 20px;
+            margin: 0 5px 0 0;
+            vertical-align: bottom;
+        }
+
+        .labelClass {
+            margin-right: 20px;
+        }
+    </style>
+
+    <script>
+        // form 태그 모두 배열로 가져오기
+        var Frm = document.forms;
+        /*
+        Frm[0] : <form>...</form>
+        Frm[1] : <form onsubmit="return FormChk(this)">...</form>
+        */
+
+        // 체크박스 전체선택 해제
+        function allCheckBox() {
+            let chkArr = document.forms[0].season;
+            let cnt = 0;
+            chkArr.forEach(function (obj, idx) {
+                // if(chkArr[idx].checked == true) {
+                if (obj.checked == true) {
+                    cnt++;
+                }
+            });
+
+            if (cnt == chkArr.length) {
+                chkArr.forEach(function (obj, idx) {
+                    chkArr[idx].checked = false;
+                });
+            } else {
+                chkArr.forEach(function (obj, idx) {
+                    chkArr[idx].checked = true; // chkArr의 값에 모두 check처리됨
+                });
+            }
+        }
+
+        // 과목선택 버튼 클릭 시 select 옵션, 텍스트박스 변경
+        function selSubject() {
+            /*
+            * options : option태그를 모두 배열로 저장
+            options[0] : <option value="">과목선택</option>
+            options[1] : <option value="mat">수학</option>
+            options[2] : <option value="kor">국어</option>
+            options[3] : <option value="eng">영어</option>
+            options[4] : <option value="soc">사회</option>
+            options[5] : <option value="sci">과학</option>
+            */
+            Frm[1].selSub.options[2].selected = true;
+            Frm[1].subnm.value = Frm[1].selSub.options[2].innerText + '(' + Frm[1].selSub.options[2].value + ')';
+            // Frm[1].subnm.value = Frm[1].selSub.options[2].innerText;
+            // Frm[1].subnm.value += '(' + Frm[1].selSub.options[2].value + ')';
+        }
+
+        // 전체 폼 태그 리셋하기
+        function resetForms() {
+            for (let i = 0; i < Frm.length; i++) {
+                Frm[i].reset();
+            }
+        }
+
+        window.onload = function () {
+            // select option값 변경 시 텍스트박스 변경
+            Frm[1].selSub.onchange = function (e) {
+                console.log(e);
+                let idx = e.srcElement.selectedIndex;
+                Frm[1].subnm.value = Frm[1].selSub.options[idx].innerText + '(' + this.value + ')';
+
+                // if (this.value == '') Frm[1].subnm.value = Frm[1].selSub.options[idx].innerText;
+            }
+
+            // 체크박스 중 하나라도 해제된 경우 전체선택 해제하기
+            let chk = document.getElementsByName('season');
+            /*  chk[0] : <input type="checkbox" name="season" value="spring">
+                chk[1] : <input type="checkbox" name="season" value="sumber">
+                chk[2] : <input type="checkbox" name="season" value="fall">
+                chk[3] : <input type="checkbox" name="season" value="winter">
+            */
+
+            chk.forEach(function (o, i) {
+                /*
+                    o -> <input type="checkbox" name="season" value="spring">
+                    i -> 0
+
+                    o -> <input type="checkbox" name="season" value="sumber">
+                    i -> 1
+                */
+
+                // chk[i].onclick = function () {
+                o.onclick = function () {
+                    let cntchk = 0;
+                    chk.forEach(function (o1, i1) {
+                        if (o1.checked == true) cntchk++;
+                        // console.log('o1: ' + o1);
+                        // console.log('i1: ' + i1);
+                    });
+
+                    if (cntchk == chk.length) Frm[0].allChk.checked = true;
+                    else Frm[0].allChk.checked = false; // 전체선택 체크박스 체크 해제
+                    // Frm[0].allChk => <input type="checkbox" id="allChk" onclick="allCheckBox()">
+                };
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <form>
+        <h2>계절 선택(다중)</h2>
+        <input type="checkbox" id="allChk" onclick="allCheckBox()">
+        <label for="allChk" class="labelClass">전체선택</label><br><br>
+        <label class="labelClass"><input type="checkbox" name="season" value="spring">봄</label>
+        <label class="labelClass"><input type="checkbox" name="season" value="sumber">여름</label>
+        <label class="labelClass"><input type="checkbox" name="season" value="fall">가을</label>
+        <label class="labelClass"><input type="checkbox" name="season" value="winter">겨울</label>
+        <br><br><button type="submit">전송</button>
+    </form>
+    <hr>
+
+    <form onsubmit="return FormChk(this)">
+        <h2>과목 선택</h2>
+        <button type="button" onclick="selSubject()">과목선택</button><br>
+        <input type="text" name="subnm" placeholder="선택한 과목명이 나타납니다." disabled><br>
+        <select name="selSub">
+            <option value="">과목선택</option>
+            <option value="mat">수학</option>
+            <option value="kor">국어</option>
+            <option value="eng">영어</option>
+            <option value="soc">사회</option>
+            <option value="sci">과학</option>
+        </select><br><br>
+        <button type="submit">전송</button>
+    </form>
+    <hr>
+
+    <script>
+        // 텍스트박스에 포커스처리
+        function FormChk(val) {
+            console.log('val: ' + val);
+            if (val.subnm.value == '') {
+                alert('과목을 선택해주세요.');
+                val.subnm.focus();
+                return false;
+            }
+        }
+    </script>
+
+    <button type="button" onclick="resetForms()">리셋</button>
+</body>
+
+</html>

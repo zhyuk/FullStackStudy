@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버블링과 캡처링</title>
+    <style>
+        .three,
+        .evt {
+            padding: 10px 30px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body class="par">
+    <div class="one">
+        <div class="two">
+            <div class="three">클릭 div</div>
+        </div>
+    </div>
+
+    <h1 class="evt parevt">
+        <a href="09_bubblecapture.html" class="evt">내 페이지로 이동</a>
+    </h1>
+
+    <form onsubmit="return logEvent()">
+        <input type="text" name="uid">
+        <button type="submit">전송</button>
+    </form>
+
+    <script>
+        // 버블링 : 하위요소에서 상위요소로 이벤트 전파
+        // var divs = document.querySelectorAll('div'); // querySelectorAll('div') -> 요소를 배열로 가져옴
+        // divs.forEach(function (div) { // forEach(배열객체 요소 값, 인덱스)
+        //     div.addEventListener("click", logEvent);
+        // });
+
+        // var evts = document.getElementsByTagName('h1')[0];
+        var evts = document.getElementsByTagName('a')[0];
+        evts.addEventListener('click', logEvent);
+
+        // 캡처링 : (버블링과 반대) 상위요소에서 하위요소로 이벤트 탐색
+        var divs = document.querySelectorAll("div");
+        divs.forEach(function (div) {
+            div.addEventListener('click', logEvent, {
+                capture: true // default 값은 false입니다.
+            });
+        });
+
+        function logEvent(event) {
+            // event.stopPropagation(); // 버블링을 막는 기능
+            event.preventDefault(); // 태그의 기본 이벤트가 있으면 그 이벤트를 할 수 없도록 막는 코드. -> a 태그의 페이지 이동 이벤트 막음, 폼 태그의 action 이벤트 막음.
+            console.log(event.currentTarget.className); // 현재 타겟이 된 태그의 클래스명 가져옴
+            return false; // return을 감싸고 있는 함수의 실행을 종료해라 라는 뜻도 있기 때문에 되도록 가장 마지막에 작성하는 것이 좋다.
+        }
+    </script>
+</body>
+
+</html>

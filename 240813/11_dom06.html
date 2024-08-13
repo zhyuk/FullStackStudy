@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소 제어</title>
+    <style>
+        #addFruit,
+        #removeFruit {
+            box-sizing: border-box;
+            width: 344.47px;
+            height: 57px;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        button {
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #aaa;
+        }
+
+        button:focus {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+    <script>
+        function min_max() {
+            let len = document.getElementsByTagName('li').length;
+            if (len > 0) {
+                // console.log("1: " + document.getElementById('removeFruit'));
+
+                document.getElementById('removeFruit').setAttribute('placeholder', "삭제할 목록 인덱스번호 입력");
+                // console.log("2: " + document.getElementById('removeFruit'));
+
+                document.getElementById('removeFruit').setAttribute('max', (len - 1).toString());
+                // console.log("3: " + document.getElementById('removeFruit'));
+
+                document.getElementById('removeFruit').value = len - 1;
+                // console.log("4: " + document.getElementById('removeFruit'));
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>과일목록</h1>
+    <ul class="fruits">
+        <li>사과</li>
+        <li>바나나</li>
+    </ul>
+
+    <div style="position: fixed; top: 20px; right: 20px;">
+        <input type="search" id="addFruit" placeholder="추가할 과일 입력"><br>
+        <button onclick="addF()">[1]번 인덱스요소의 형 요소로 추가</button><br>
+        <script>
+            function addF() {
+                let newTag = document.createElement('li'); // <li></li>
+                let stdTag = document.getElementsByTagName('li')[1]; // <li>바나나</li> 가져옴
+                newTag.innerText = document.getElementById('addFruit').value != '' ? document.getElementById('addFruit').value : '오렌지'; // #addFruit의 value값이 빈 문자열이 아니면 <li>value값</li>, 아니면 <li>오렌지</li>
+
+                document.getElementsByClassName('fruits')[0].insertBefore(newTag, stdTag); // stdTag의 전에 newTag 추가. (앞에 추가됨)
+                // document.getElementsByClassName('fruits')[0].prepend(newTag); // 기준점을 잡을 수 없어서 newTag를 가장 위에 추가.
+                min_max();
+            }
+        </script>
+
+        <button onclick="addLastF()">마지막 목록으로 추가</button><br>
+        <script>
+            function addLastF() {
+                let newTag = document.createElement('li');
+                newTag.innerText = document.getElementById('addFruit').value != '' ? document.getElementById('addFruit').value : '오렌지'; // 입력한 값이 있으면 입력한 값으로, 없으면 오렌지를 newTag안에 추가
+
+                document.getElementsByClassName('fruits')[0].appendChild(newTag); // appendChild(Element객체) : 마지막 형제요소로 추가
+                min_max();
+            }
+        </script>
+
+        <button onclick="cloneF()">맨처음 목록 복제</button>
+        <script>
+            function cloneF() {
+                let newTag = document.getElementsByTagName('li')[0].cloneNode(true);
+                document.getElementsByClassName('fruits')[0].appendChild(newTag);
+                min_max();
+            }
+        </script>
+
+        <input type="number" id="removeFruit" placeholder="삭제할 목록 인덱스번호 입력" min="0" max="0"><br>
+        <button onclick="rmF()">선택목록 삭제</button><br>
+        <script>
+            function rmF() {
+                let len = document.getElementsByTagName('li').length;
+                if (len > 0) {
+                    let pa = document.getElementsByClassName('fruits')[0]; // ul 태그 가져와서 pa에 저장
+                    let selIdx = document.getElementById('removeFruit').value;
+                    let selEle = pa.getElementsByTagName('li')[selIdx];
+
+                    pa.removeChild(selEle);
+                } else {
+                    alert('삭제할 목록이 없습니다.');
+                    return;
+                }
+                min_max();
+            }
+
+            // 유일하게 컴파일 단계에서 실행되는 즉시실행함수
+            (function () { min_max(); })();
+        </script>
+    </div>
+</body>
+
+</html>

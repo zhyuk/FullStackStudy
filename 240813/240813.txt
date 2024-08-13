@@ -1,0 +1,12 @@
+#DOM, BOM
+    * 문서 객체 모델(DOM, Document Object Model) : XML 이나 HTML 문서에 접근하기 위한 일종의 인터페이스.
+        - 문서 내의 모든 요소를 정의
+        - 각각의 요소에 접근하는 방법을 제공
+        - W3C의 표준 갹체 모델임
+        https://velog.io/@spig0126/DOM%EC%9D%B4%EB%9E%80
+
+    *
+
+#innerHTML, innerText 차이
+    * innerHTML : 
+    

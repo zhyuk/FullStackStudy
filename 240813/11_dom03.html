@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 270px;
+            margin-left: 50px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>전구 on/off</p>
+        <img id="myImage" src="../240731/img/pic_bulboff.gif" style="width: 100px;" alt="전구 off"
+            title="전구가 꺼져있는 모습"><br>
+        <button onclick="document.getElementById('myImage').src='../240731/img/pic_bulbon.gif'">전원 on</button>
+        <button onclick="document.getElementById('myImage').src='../240731/img/pic_bulboff.gif'">전원 off</button>
+    </div><br>
+    <hr>
+
+    <p>hello World</p>
+    <p id="p1">Hello World</p>
+    <button onclick="styleChange()">스타일변경</button>
+    <hr>
+    <script>
+        function styleChange() {
+            let pTag = document.getElementById('p1');
+            pTag.style.color = "blue";
+            pTag.style.fontFamily = 'Broadway';
+            pTag.style.fontSize = '25pt';
+
+            // getElementsByTagName('p') : html 내 p태그들 모두 배열로 가져옴. 
+            document.getElementsByTagName('p')[1].style.fontWeight = 'bolder';
+            document.getElementsByTagName('p')[1].style.fontSize = '32px';
+        }
+    </script>
+
+    <a href="https://www.naver.com">
+        <h2>네이버</h2> <!-- body 너비의 100%를 너비로 가짐. 인라인레벨 안 블럭레벨 요소 : 인라인레벨을 부모로 인식 X-->
+    </a> <!-- h2가 body 너비의 100%의 너비를 갖기 때문에 누를 수 있는 영역이 한줄 전체임.-->
+    
+    <!-- <h2><a href="https://www.naver.com">네이버</a></h2> 누를 수 있는 영역이 네이버 텍스트 영역만임. -->
+
+    <button type="button" onclick="linkChange()">링크변경</button>
+    <hr><br>
+    <script>
+        function linkChange() {
+            let linkTag = document.getElementsByTagName('a')[0];
+            linkTag.href = 'https://www.daum.net';
+            linkTag.innerHTML = '<h2>다음</h2>';
+        }
+    </script>
+</body>
+
+</html>
