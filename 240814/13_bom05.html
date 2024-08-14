@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>location</title>
+    <script>
+        /*
+            location : 해당 페이지로 이동 혹은 페이지의 주소값 반환의 기능
+                * location.href
+                    - 공간 자리에 위치 : 지정한 페이지로 이동
+                    - 값 자리에 위치 : 현재 웹문서의 url주소값 반환
+        */
+        function pPage() {
+            document.getElementById('demo').innerHTML = '이 웹페이지의 url주소는: ' + window.location.href;
+        }
+
+        function btn(val) {
+            switch (val) {
+                case 'n': //location.href = "https://www.naver.com";
+                    document.getElementsByTagName('a')[0].href = "https://www.naver.com"; // location.href로 와야지만 페이지 이동임. 해당 코드는 첫번째 a태그의 href 속성을 변경만 해주는 코드임.
+                    break;
+                case 'd': location.href = "https://www.daum.net"; break;
+                default: location.href = window.location.href;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h2>BOM</h2>
+    <h3>window.location object</h3>
+
+    <p id="demo"></p>
+    <a href="">페이지 이동</a>
+    <button onclick="pPage()">현재 페이지 url주소 반환</button><br></br>
+    <button onclick="btn('n')">네이버로 이동</button>
+    <button onclick="btn('d')">다음으로 이동</button>
+    <button onclick="btn('a')">현재 페이지</button>
+</body>
+
+
+</html>

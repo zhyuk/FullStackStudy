@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var koGreeting = {
+            greeting: "안녕",
+            name: "홍길동",
+            sayHello: function () {
+                return this.greeting + ',' + this.name;
+            }
+        };
+
+        var enGreeting = {
+            greeting: "Hello",
+            name: "HongKilDong"
+        };
+
+        console.log(koGreeting.sayHello());
+        // .call(함수) : 주체를 괄호 안의 함수로 바꾸고 해당 함수 실행
+        console.log(koGreeting.sayHello.call(enGreeting));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

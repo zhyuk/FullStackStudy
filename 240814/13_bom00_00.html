@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>window객체</h2>
+    <p>
+        - 자바스크립트의 최상위 객체이다.<br>
+        - DOM(Document Object Model = 문서 객체 모델), BOM(Brower Object Model = 브라우저 객체 모델), javascript 내장객체 등을 가지고 있다.<br>
+    </p>
+
+    <h3>DOM(document Object Model = 문서 객체 모델)</h3>
+    <p>
+        - 노드트리 구조의 웹문서 관련 태그(element), 텍스트(text), 속성(attribute)등의 내장객체 및 함수를 가지고 있다.<br>
+        - 전반적으로 html의 구조, 스타일, 이벤트에 관련된 기능을 설정할 때 용이한 객체이다.<br>
+        - DOM의 대표적인 내장객체 : document<br>
+        - 예시 : document, style, forms, body, innerText, innerHTML 등의 내장객체와 해당 객체에서 제공되는 함수들이 존재함.<br>
+    </p>
+
+    <h3>BOM(document Object Model = 브라우저 객체 모델)</h3>
+    <p>
+        - 자바스크립트와 브라우저간의 소통을 위해 만들어진 모델이다.<br>
+        - 전반적으로 브라우저와 그 이상의 외부환경을 설정할 때 용이한 객체이다.<br>
+        - BOM의 대표적인 내장객체 : screen<br>
+        - 예시 : screen, navigator, location, history 등의 내장객체와 해당 객체에서 제공되는 함수들이 존재함.<br>
+    </p>
+
+    <h3>javascript 내장객체</h3>
+    <p>
+        - 자바스크립트에서 제공되는 내장객체들을 말한다.<br>
+        - 함수형 내장객체(표준내장객체)와 표준내장객체에서 제공되는 객체들, 함수들이 존재한다.<br>
+        - 예시 : Array, Number, Function, arguments 등의 내장객체와 해당 객체에서 제공되는 함수들이 존재함.<br>
+    </p>
+
+    <script>
+        console.log('1. window 객체 : ' + window);
+        console.log('2. screen 객체 : ' + screen);
+        console.log('3. document 객체 : ' + document);
+        console.log('4. Array 객체 : ' + Array);
+    </script>
+</body>
+
+</html>

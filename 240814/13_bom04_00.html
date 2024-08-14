@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>screen</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            /* height: 1200px; */
+            margin: 0;
+            padding: 20px;
+        }
+
+        div {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="wfn()">창크기</button>
+    <button onclick="cfn()">innerWidth 적용</button>
+    <button onclick="vfn()">100vh 적용</button><br>
+
+    <script>
+        // 해상도 : 1792 * 1120
+        function wfn() {
+            let tDiv = document.getElementById('textDiv');
+            if (tDiv != null) tDiv.remove();
+
+            // screen : screnn에 해당되는 장치모두 => 컴퓨터, 노트북, 핸드폰, 태블릿 등의 너비(width)와 폭(height)
+            let body = document.body;
+            body.style.background = "#fff";
+
+            let divTag = document.createElement('div'); // div태그 생성
+            divTag.setAttribute('id', 'textDiv');
+
+            let str = "<br><small style='color: red;'>** screen 객체 : 컴퓨터, 노트북, 핸드폰, 태블릿 등</small>";
+            str += "<h2>screen 객체의 해상도(화면 또는 모니터) 너비(width)와 높이(height)</h2>";
+            str += "<br>screen.width : " + window.screen.width + "px";
+            str += "<br>screen.height : " + window.screen.height + "px";
+
+            // 작업표시줄을 제외한 화면의 너비(width)와 높이(height)
+            str += "<hr><h2>screen 객체의 해상도(화면 또는 모니터) 중 작업표시줄을 제외한 너비(width)와 높이(height)</h2>";
+            str += "<br>screen.availWidth: " + screen.availWidth + "px";
+            str += "<br>screen.availHeight: " + screen.availHeight + "px";
+
+            // 브라우저의 viewport의 너비(width)와 높이(height), 스크롤포함(대략 17px 안팎), margin, padding 미포함
+            str += "<hr><h2>브라우저의 viewport의 너비(width)와 높이(height), 스크롤포함(대략 17px 안팎)</h2>";
+            str += "<br>window.innerWidth: " + window.innerWidth + "px";
+            str += "<br>window.innerHeight: " + window.innerHeight + "px";
+
+            divTag.innerHTML = str;
+            body.appendChild(divTag);
+        }
+
+        function cfn() {
+            var pic = document.body;
+            pic.style.width = window.innerWidth + "px";
+            pic.style.height = window.innerHeight + "px";
+            pic.style.background = "green";
+        }
+
+        function vfn() {
+            var pic = document.body;
+            pic.style.width = "100vw";
+            pic.style.height = "100vh";
+            pic.style.background = "red";
+        }
+    </script>
+</body>
+
+</html>

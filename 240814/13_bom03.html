@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setInterval, clearInterval</title>
+</head>
+
+<body>
+    <!-- disabled : 입력할 수 없도록 비활성화. -->
+    <input type="text" id="autoNum" placeholder="인증번호입력(12345)" disabled>
+    <button type="button" id="authBtn" onclick="startTimer()">인증번호 전송</button>
+    <span id="demo"></span>
+    <script>
+        var myVar, m, s;
+
+        function startTimer() {
+            m = 4;
+            s = 0;
+            document.getElementById('authBtn').value = '';
+            // 1초마다 myTimer 함수 실행
+            myVar = setInterval(myTimer, 1000);
+            document.getElementById('authBtn').innerText = '인증번호 확인';
+            document.getElementById('authBtn').setAttribute('onclick', 'stopTimer()');
+            document.getElementById('autoNum').removeAttribute('disabled'); // 입력할 수 있도록 활성화처리
+        }
+
+        function stopTimer() {
+            if (document.getElementById('autoNum').value == '') {
+                alert('인증번호가 입력되지 않았습니다.');
+                return;
+            }
+
+            if (document.getElementById('autoNum').value == '12345') {
+                alert('인증완료되었습니다.');
+                stopTimerSub();
+            } else {
+                alert('인증번호가 일치하지 않습니다.');
+            }
+        }
+
+        function stopTimerSub() {
+            clearInterval(myVar); // 반복중지
+            document.getElementById('autoNum').setAttribute('disabled', true); // 비활성화처리 속성 추가
+            document.getElementById('authBtn').innerText = '인증번호 전송';
+            document.getElementById('authBtn').setAttribute('onclick', 'startTimer()'); // onclick 속성에 반복을 실행할 수 있는 함수로 변경
+        }
+
+        function myTimer() {
+            if (m == 4 && s == 0) { // 초기값일 때 
+                document.getElementById('demo').innerHTML = `0${m}:0${s}`;
+                m = 3;
+                s = 59;
+                return;
+            }
+
+            if (m < 4 && m > 0) { // m이 1과 3 사이의 값일 때
+                if (s >= 10) {
+                    document.getElementById('demo').innerHTML = `0${m}:${s}`;
+                    s--;
+                    return;
+                } else {
+                    if (s > 0) { // s = 1 ~ 9
+                        document.getElementById('demo').innerHTML = `0${m}:0${s}`;
+                        s--;
+                        return;
+                    } else { // s = 0
+                        document.getElementById('demo').innerHTML = `0${m}:0${s}`;
+                        m--; // m = 2
+                        s = 59;
+                        return;
+                    }
+                }
+            }
+
+            // m = 0 s = 59
+            if (m == 0) {
+                if (s >= 10) {
+                    document.getElementById('demo').innerHTML = `0${m}:${s}`;
+                    s--;
+                    return;
+                } else { // s = 1 ~ 9
+                    if (s != 0) {
+                        document.getElementById('demo').innerHTML = `0${m}:0${s}`;
+                        return;
+                    } else { // s = 0
+                        stopTimerSub();
+                        document.getElementById('demo').innerHTML = `0${m}:0${s}`;
+                        return;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

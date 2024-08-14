@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>navigator 객체</h2>
+    <p>s
+        - 스크립트를 구동 중인 애플리케이션에 대한 메서드와 속성을 가진 Navigator 객체의 참조를 반환하는 객체<br>
+        - 대부분 디바이스(장치)나 브라우저 종류를 알아내기 위해서 사용한다.<br>
+    </p>
+
+    <h3>현재 사용중인 브라우저 확인하기</h3>
+
+    <script>
+        console.log('navigator.userAgent: ', navigator.userAgent);
+        function getBrowserName(userAgent) {
+            // 여기서는 순서가 중요하며, 목록에 없는 브라우저는 거짓 양성이 될 수 있습니다.
+
+            // navigator.userAgent => Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36
+            if (userAgent.includes("Firefox")) {
+                return "Mozilla Firefox";
+            } else if (userAgent.includes("SamsungBrowser")) {
+                return "Samsung Internet";
+            } else if (userAgent.includes("Opera") || userAgent.includes("OPR")) {
+                return "Opera";
+            } else if (userAgent.includes("Edge")) {
+                return "Microsoft Edge (Legacy)";
+            } else if (userAgent.includes("Edg")) {
+                // "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36 Edg/104.0.1293.70"
+                return "Microsoft Edge (Chromium)";
+            } else if (userAgent.includes("Chrome")) { // 포함
+                return "Google Chrome or Chromium"; // 반환
+            } else if (userAgent.includes("Safari")) {
+                return "Apple Safari";
+            } else {
+                return "알려지지 않은 브라우저";
+            }
+        }
+        const browserName = getBrowserName(navigator.userAgent);
+        console.log(`당신이 사용중인 브라우저는 ${browserName}입니다.`);
+        // ` : 백틱. 자바의 printf와 같은 기능을 함.
+    </script>
+</body>
+
+</html>

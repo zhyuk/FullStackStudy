@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+        }
+
+        div#divBox {
+            width: 300px;
+            height: 300px;
+            padding: 20px;
+            margin: 10px;
+            line-height: 300px;
+            border: 1px solid #000;
+            background: aquamarine;
+            text-decoration: underline;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        p#textBox {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" onclick="window.close()">브라우저 닫기</button>
+    <div id="divBox" onclick="size()">div박스 크기 확인하기</div>
+    <!-- <div id="divBox" onclick="size()" style="width: 300px; height: 300px; margin: 10px; padding: 20px; border: 1px solid #000; ">div박스 크기 확인하기</div> -->
+    <br>
+    <hr>
+    <br>
+    <p id="textBox"></p>
+    <script>
+        function size() {
+            let tDiv = document.getElementById('divBox');
+            let txt = "<h1>divBox 요소의 정보</h1>";
+
+            // style 내장 객체는 반드시 inline stylesheet로 기술한 경우의 값만을 가져올 수 있다.
+            // txt += `divBox의 width: ${tDiv.style.width}, height: ${tDiv.style.height}<br>`;
+            // txt += `divBox의 padding(4방향 모두) : ${tDiv.style.padding}<br>`;
+            // txt += `divBox의 border-width(4방향 모두) : ${tDiv.style.borderWidth}<br><hr><br>`;
+
+            // ** 내부스타일시트의 스타일 속성값을 가져오는 방법
+            // getComputedStyle(태그객체명);
+            console.log('내부스타일시트 : ' + getComputedStyle(tDiv));
+            txt += `divBox의 width: ${getComputedStyle(tDiv).width}, height: ${getComputedStyle(tDiv).height}<br>`;
+            txt += `divBox의 padding(4방향 모두) : ${getComputedStyle(tDiv).padding}<br>`;
+            txt += `divBox의 border-width(4방향 모두) : ${getComputedStyle(tDiv).borderWidth}<br><hr><br>`;
+
+            // clientWidth = 해당 요소의 width + padding, clientHeight = 해당 요소의 height + padding 값 (border 미포함)
+            txt += `<h2>clientWidth : width + padding<br>clientHeight : height + padding 값(border 미포함)</h2>`;
+            txt += `divBox의 clientWidth : ${tDiv.clientWidth}, clientHeight : ${tDiv.clientHeight}<br>`;
+
+            // offsetWidth = 해당 요소의 width + padding + border, offsetHeight = 해당 요소의 height + padding + border 값 (border 포함)
+            txt += `<h2>offsetWidth : width + padding + border<br>offsetHeight : height + padding + border 값 (border 포함)</h2>`
+            txt += `divBox의 offsetWidth : ${tDiv.offsetWidth}, offsetHeight : ${tDiv.offsetHeight}`;
+
+            document.getElementById('textBox').innerHTML = txt;
+        }
+
+        // 사용자가 현재 페이지를 떠나 다른 페이지로 이동하려 할 때나 창을 닫으려고 할 때(=unload 상태) beforeunload 핸들러에서 추가 확인을 요청 할 수 있다.
+
+        window.onbeforeunload = function () {
+            // 메세지 커스텀 불가. 고정메세지로 나옴.
+            // 단 브라우저 버전에 따라 return 뒤의 값을 메세지로 설정하면 예전 버전의 브라우저에서는 내가 만든 메세지로 설정가능함.
+            // event.preventDefault();
+            return false;
+        }
+
+    </script>
+</body>
+
+</html>

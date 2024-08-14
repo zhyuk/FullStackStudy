@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 20px;
+            border: 1px solid #000;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="firstDiv">첫째 DIV</div>
+    <div id="secDiv">둘째 DIV</div>
+
+    <div class="divClass">DIV 클래스1</div>
+    <div class="divClass">DIV 클래스2</div>
+    <div class="divClass">DIV 클래스3</div>
+    <br><br><br>
+
+    <h2>querySelector() 함수</h2>
+    <p style="padding:20px 50px;border: 1px solid #000;">
+        - 형식 : document.querySelector("셀렉터명");<br>
+        - 제공한 선택자 또는 선택자 그룹과 일치하는 문서 내 첫 번째 Element를 반환한다.<br>
+        - 일치하는 요소가 없으면 null을 반환한다.
+    </p>
+
+    <h2>querySelectorAll() 함수</h2>
+    <p style="padding:20px 50px;border: 1px solid #000;">
+        - 형식 : document.querySelectorAll("셀렉터명");<br>
+        - 제공한 선택자 또는 선택자 그룹과 일치하는 문서 내 Elements를(배열객체요소) 반환한다.<br>
+        - 일치하는 요소가 없으면 빈 배열객체( [] )를 반환한다.
+    </p>
+    <br><br><br>
+
+    <script>
+        let a = document.querySelector('#firstDiv');
+        console.log('a: ', a);
+
+        let b = document.querySelector('#fDiv');
+        console.log('b: ', b);
+
+        let c = document.querySelector('#secDiv');
+        console.log('c: ', c);
+
+        // let d = document.querySelector('.divClass');
+        let d = document.querySelectorAll('.divClass')[1];
+        console.log('d: ', d, '\n\n');
+
+        let arr = document.querySelectorAll('.dClass');
+        console.log('arr 1: ', arr);
+
+        arr = document.querySelectorAll('.divClass');
+        console.log('arr 2:     ', arr);
+
+
+        /*
+        - arr
+        [0] : <div class="divClass">DIV 클래스1</div>
+        [1] : <div class="divClass">DIV 클래스2</div>
+        [2] : <div class="divClass">DIV 클래스3</div>
+
+        - d : <div class="divClass">DIV 클래스2</div>
+
+        ** Array의 내장객체에서 prototype에 접근 후 indexOf로 연결. -> 내 배열 객체에 값이 포함되어있으면 해당 배열의 인덱스번호 반환.
+            Array의 배열을 검사하는 것이 아닌 arr 배열객체 안에서 검사하기 위해 .call을 활용해 arr로 주체 변경
+            ==> arr 배열객체에서 d의 값이 있는지 검사 후 포함되어있으면 해당 배열의 인덱스번호 반환.
+        */
+        let idx = Array.prototype.indexOf.call(arr, d);
+        console.log('idx: ', idx);
+    </script> -->
+
+
+    <h2>배열요소 관련 함수</h2>
+    <script>
+        let arrObj = [1, 9, '하늘', '다람쥐', true];
+        document.write('arrObj: ', arrObj, "<br>");
+        console.log('1. arrObj: ', arrObj);
+
+        let index = Array.prototype.indexOf.call(arrObj, '다람쥐'); // arrObj 배열객체에 '다람쥐'값이 포함되어있으면 해당 배열의 인덱스번호 반환
+        console.log('2. index: ', index); // 3 출력
+
+        arrObj = ['09', '05', '01', '10', '17'];
+        console.log('3. arrObj: ', arrObj);
+        arrObj.sort(); // 배열을 첫번째 문자의 오름차순으로 변경 
+        console.log('3-1 sort. arrObj: ', arrObj);
+
+        arrObj = [9, 5, 1, 10, 17];
+        console.log('4. arrObj: ', arrObj);
+
+        arrObj.sort();
+        console.log('4-1 sort. arrObj: ', arrObj);
+
+        arrObj.reverse(arrObj);
+        console.log('5 revers. arrObj: ', arrObj);
+
+        let tf = arrObj.includes('하늘');
+        console.log('6-1 tf: ', tf);
+
+        tf = arrObj.includes(9);
+        console.log('6-2 tf: ', tf);
+
+        delete arrObj[2];
+        document.write('arrObj: ', arrObj, "<br>");
+        console.log("6 delete arrObj: ", arrObj);
+
+        arrObj = [];
+        console.log("7 arrObj[]: ", arrObj);
+
+    </script>
+    <br><br><br>
+</body>
+
+</html>

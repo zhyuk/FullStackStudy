@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout</title>
+</head>
+
+<body>
+    <p id="demo"></p>
+    <button onclick="clearTimeout(myVar)">Stop time</button>
+    <script>
+        // 6초 후에 myTimer 함수 1번만 실행 후 종료
+        // 알아서 종료되므로 솔직히 clearTimeout할 필요가 없다.
+        // 1/1000초 단위값 ( 밀리세컨드초 ms), 1000 => 1초
+        var myVar = setTimeout(myTimer, 6000);
+        function myTimer() { clearInterval(myVar1); }
+
+        // 1초마다 myTimer 함수 실행
+        var myVar1 = setInterval(myTimer1, 1000);
+        function myTimer1() {
+            var d = new Date();
+            // toLocaleTimeString() : 현재 시간을 브라우저에 설정된 언어형식으로 가져오는 함수. 시스템 내장 시간을 가져옴
+            document.getElementById('demo').innerHTML = d.toLocaleTimeString();
+        }
+
+        /*
+            해당 코드는 myVar1 객체가 1초마다 실행되다가, 버튼을 클릭 시 myVar 객체를 삭제시키기 때문에 myTimer() 함수를 호출할 수 없음.
+
+            setTimeout() 사용 -> clearTimeout() 사용
+            setInterval() 사용 -> clearInterval() 사용
+        */
+    </script>
+</body>
+
+</html>
