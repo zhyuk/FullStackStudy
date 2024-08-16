@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자(selector)</title>
+    <style type="text/css">
+        /* 구버전 스타일시트일 때 type을 작성해주어야 함.*/
+        .spotlight {
+            background: #ff0;
+        }
+
+        .redtext {
+            color: rgb(255, 0, 0);
+        }
+
+        .largetext {
+            font-size: 30pt;
+        }
+
+        .italictext {
+            font-style: italic;
+        }
+    </style>
+    <!-- 네트워크 전송 방식 (CDN : Content Delivery Network) : 온라인에서 제공하는 제이쿼리 라이브러리 파일을 네트워크를 통해 html에 불러오는 방식임. 3.7.1 : 현재 가장 최신 버전  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        // 선택자사용하기
+        // 형식 $('선택자') : document처럼 내장 객체(만든객체포함)를 제외하고는 선택자(css의 선택자와 동일)를 기술할 경우 따옴표(', ")로 묶어준다.
+        // addClass() : 해당 선택자에 class속성 추가하기
+        // removeClass() : 해당 선택자에 class속성값 제거하기. (class속성명은 제거 안됨)
+        // hide() : 해당 선택자 엘리먼트 숨기기(none과 동일). 영역까지 제거함
+        // show() : 해당 선택자 엘리먼트 보이기. 엘리먼트 고유 속성 그대로 보여짐
+
+        // classList.add(); // 자바스크립트에서 제공하는 클래스 추가하는 함수
+
+        /*
+            * 영역까지 없애서 숨기기
+                display : none;
+            * 숨김해제하기
+                display : block; / display : inline; / display : inline-block;
+
+            * 영역 유지하고 감추기
+                visibility : hidden;
+            * 감춤 해제
+                visibility : visiable;
+
+            jQuery의 hide(); => display : none;
+            jQuert의 show() => visibility: visiable;
+        */
+
+
+        function startFnc() {
+            $('span').addClass('redtext');
+            $('div').addClass('spotlight');
+            $('#simpletext1').addClass('largetext');
+            $('.simpletext1').addClass('italictext');
+            $('#fbtn').hide(); // display : none;
+            $('#ebtn').show(); // visibility : visible;
+
+            // let spanArr = document.querySelectorAll("span");
+            // spanArr.forEach(element => {
+            //     // element.setAttribute('class', 'redtext');
+            //     element.classList.add("redtext");
+            // });
+
+            // let spanArr = document.querySelectorAll("span");
+            // for (let i = 0; i < spanArr.length; i++) {
+            //     spanArr[i].classList.add("redtext");
+            // }
+        }
+
+        function endFnc() {
+            // $('span').removeClass('redtext');
+            $('div').removeClass('spotlight');
+            $('#simpletext1').removeClass('largetext');
+            $('.simpletext1').removeClass('italictext');
+            $('#fbtn').show(); // display : none;
+            $('#ebtn').hide(); // visibility : visible;
+        }
+
+        $(document).ready(function () {
+            $('#ebtn').hide();
+        })
+    </script>
+</head>
+
+<body>
+    <span id="simpletext1">simple</span>
+    <div class="simpletext1">jQuery</div>
+    <span id="simpletext2">basic</span>
+    <div id="simpletext3">example</div>
+    <button id="fbtn" onclick="startFnc()">제이쿼리 적용하기</button>
+    <button id="ebtn" onclick="endFnc()">제이쿼리 삭제하기</button>
+</body>
+
+</html>

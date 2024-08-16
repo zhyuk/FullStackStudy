@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery/3.7.0/jquery.js"></script>
+    <script>
+        $(function () {
+            // 종속 선택자
+            $('h1.tit').css("background-color", "yellow").css("border", "2px dashed #000");
+            // 그룹 선택자
+            $("h1, #tit3").css({ "background-color": "#00f", "border": "2px dashed #f00" });
+        });
+
+        // window.onload = function () {
+        //         document.querySelector('h1.tit').style.backgroundColor = "yellow"; // querySelectorAll은 배열로 가져옴
+        //         document.querySelector('h1.tit').style.border = "2px dashed #000";
+        //         document.querySelector("h1").style.backgroundColor = "#00f";
+        //         document.querySelector("h1").style.border = "2px dashed #f00";
+        //         document.querySelector("#tit3").style.backgroundColor = "#00f";
+        //         document.querySelector("#tit3").style.border = "2px dashed #f00";
+        //     }
+    </script>
+</head>
+
+<body>
+    <h1>제이쿼리</h1>
+    <h2>선택자</h2>
+    <h3 id="tit3">그룹 선택자</h3>
+    <h3>인접 선택자</h3>
+    <h1 class="tit">종속 선택자</h1>
+    <h3 class="tit">직접 선택자</h3>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery/3.7.0/jquery.js"></script>
+    <script>
+        $(function () {
+            // even : 홀수, odd : 짝수
+            $("#menu li:nth-of-type(even)").css({ "background": "red" });
+            $("#menu li:nth-of-type(odd)").css({ "background": "green" });
+
+            $("#menu li:even").css({ "background": "red" });
+            $("#menu li:odd").css({ "background": "green" });
+
+            // eq(인덱스번호(0부터)) : 인덱스번호에 해당되는 요소 선택
+            $("#menu1 li").eq(2).css({ "background": "yellow" });
+            $("#menu1 li:eq(2)").css({ "background": "yellow" });
+
+            // lt(인덱스번호) : 인덱스번호보다 작은, 전 요소 모두 선택(자신 제외)
+            $("#menu1 li:lt(2)").css({ "background": "aqua" });
+
+            // gt(인덱스번호) : 인덱스번호보다 큰, 후 요소 모두 선택(자신 제외)
+            $("#menu1 li:gt(2)").css({ "background": "hotpink" });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <h1>탐색 선택자</h1>
+        <ul id="menu">
+            <li>내용1</li>
+            <li>내용2</li>
+            <li>내용3</li>
+            <li>내용4</li>
+        </ul>
+    </div>
+    <div id="wrap1">
+        <h1>탐색 선택자</h1>
+        <ul id="menu1">
+            <li>내용1</li>
+            <li>내용2</li>
+            <li>내용3</li>
+            <li>내용4</li>
+            <li>내용5</li>
+        </ul>
+    </div>
+</body>
+
+</html>

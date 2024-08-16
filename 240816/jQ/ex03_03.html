@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery/3.7.0/jquery.js"></script>
+    <script>
+        function exeFnc() {
+            /*  
+                * text()
+                    - text() : 해당 요소의 자식요소 중 텍스트만 모두 가져온다. => js 값자리의 innerText 의미와 동일
+                    - text("매개인자값") : 해당 요소의 컨텐츠를 "매개인자값"으로 바꾼다. => js 공간자리의 innerText 의미와 동일
+
+                * html()
+                    - html() : 해당 요소의 자식요소를 HTML 형태로 모두 가져온다. =>  js 값 자리의 innerHTMl 의미
+                    - html("매개인자값") : 해당 요소의 기존 값을 모두 지우고 자식요소로 "매개인자값"을 넣는다. => js 공간 자리의 innerHTMl 의미
+            */
+
+            // :first => jQuery 탐색선택자 가장 맨 처음. 
+            // :last => jQuery 탐색선택자 가장 맨 마지막
+            $("#divBox1 li:first").text("첫번째 내용"); // divBox1 아이디 내 li 태그 중 첫번째(jQuery 제공)
+            $("#divBox1 li:last").text("마지막 내용"); // divBox1 아이디 내 li 태그 중 마지막(jQuery 제공)
+            $("li:first").text("첫번째 내용"); // 현재 문서에 존재하는 모든 li 태그 중 첫번째
+            $("li:last").text("마지막 내용"); // 현재 문서에 존재하는 모든 li 태그 중 마지막
+
+            $("#divBox2 li:first-of-type").css("background", "#ff0"); // divBox2 아이디 내 형제요소 li 태그 중 첫번째(CSS에서 제공)
+            $("#divBox2 li:last-of-type").css({ "background": "#0ff" }); // divBox2 아이디 내 형제요소 li 태그 중 마지막(CSS에서 제공)
+
+            $("#divBox3 p:first-of-type").css({ "background": "green" });
+            $("#divBox3 p:last-of-type").css({ "background": "yellow" });
+
+
+            $("li:first-of-type").css({ "background": "#ff0" }); // 현재 문서에 형제요소 li 태그 중 첫번째
+            $("li:last-of-type").css({ "background": "#0ff" });
+            $("button").hide();
+        };
+    </script>
+</head>
+
+<body>
+    <div id="divBox1">
+        <h1>탐색 선택자</h1>
+        <ul>
+            <li>
+                <p>123</p><img src="../../240731/img/img_flower.png" width="150">
+            </li>
+            <li>내용1-2</li>
+            <li>내용1-3</li>
+        </ul>
+        <ul>
+            <li>내용2-1</li>
+            <li>내용2-2</li>
+            <li>내용2-3</li>
+        </ul>
+    </div>
+
+
+    <div id="divBox2">
+        <h1>탐색 선택자</h1>
+        <ul>
+            <li>내용1-1</li>
+            <li>내용1-2</li>
+            <li>내용1-3</li>
+        </ul>
+        <ul>
+            <li>내용2-1</li>
+            <li>내용2-2</li>
+            <li>내용2-3</li>
+        </ul>
+    </div>
+
+    <div id="divBox3">
+        <h1>탐색 선택자</h1>
+        <div>
+            <p>내용1-1</p>
+            <p>내용1-2</p>
+            <p>내용1-3</p>
+        </div>
+        <div>
+            <p>내용2-1</p>
+            <p>내용2-2</p>
+            <p>내용2-3</p>
+        </div>
+    </div>
+    <br>
+    <button type="button" onclick="exeFnc()">제이쿼리 적용하기</button>
+</body>
+
+</html>

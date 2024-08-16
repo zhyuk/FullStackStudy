@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>셀렉터</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.js"></script>
+    <style type="text/css">
+        em {
+            font-size: 12pt;
+            line-height: 60px;
+        }
+
+        /* h2 {
+            background-color: yellow !important;
+        } */
+    </style>
+    <script type="text/javascript"> // 구버전의 자바스크립트일 때 type 속성 기술
+        $(document).ready(function () {
+            // 체이닝 기법 : 한 객체에 다양한 메소드를 줄줄이 이어서 사용하는 방법
+
+            // 제이쿼리는 우선순위 선택자가 없음. 그저 마지막에 작성된 코드로 적용된다.
+            // 제이쿼리에서 이길 수 없는 것은 스타일속성에 !important가 붙어있는 경우뿐이다.
+            // 아이디선택자
+            $("#tit").css("background-color", "green").css("border", "2px solid #000");
+            // 클래스 선택자
+            $(".tit").css("background-color", "red").css("border", "2px dashed #000");
+            // 요소 선택자
+            $("h2").css("background-color", "blue").css("border", "2px dashed #000");
+            // 후손 선택자
+            $("div em").css("border", "3px solid #000").css("padding", "7px 9px 11px 13px");
+            $("span em").css({ border: "1px dotted #000", padding: "7px 10px" });
+        });
+
+
+        // window.onload = function(){
+            // let titId = document.getElementById("tit");
+            // titId.style.backgroundColor = "green";
+
+        // }
+    </script>
+</head>
+
+<body>
+    <h1>h1태그 1</h1>
+    <h2 id="tit">아이디 선택자</h2>
+    <h2 class="tit">클래스 선택자</h2>
+
+    <h1>h1태그 2</h1>
+    <div><em>Hello!</em><em>jQuery</em><em>forever</em></div>
+    <span><em>Good Bye!</em><em>javascript</em></span>
+</body>
+
+</html>

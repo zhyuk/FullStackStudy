@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery/3.7.0/jquery.js"> </script>
+    <script>
+        $(function () {
+            // nth-child(번호n) , nth-of-type(번호n) : 번호는 1부터. 번호에 해당되는 요소를 선택
+            // 인덱스는 맨 처음 요소를 0부터 세지만, 번호는 맨 처음 요소를 1부터 셈
+            // n은 인덱스와 동일하게 0부터 셈
+            // nth-child : 정방향 (위 -> 아래)
+            // nth-last-child : 역방향 (아래 -> 위)
+            $("#menu1 li:even").css({ "background": "red" }); // :even만 jQuery의 탐색선택자 ==> 짝수 인덱스번호에 적용됨.
+
+            $("#menu1 li:nth-of-type(even)").css({ "background": "yellow" }); // nth-of-type(even) =>  짝수번째 li에 적용됨.
+            $("#menu1 li:nth-child(1)").css({ "background": "yellow" }); // 첫번째 li에 적용됨
+            $("#menu1 li:nth-child(2n)").css({ "border": "2px dashed red" }); // 2의 배수번째 li에 적용됨.
+            $("#menu1 li:nth-child(2n)").css({ "border": "2px dashed red" }); // 2의 배수번째 li에 적용됨.
+            $("#menu2 li:nth-last-child(2)").css({ "background": "aqua" }); 
+
+        });
+    </script>
+</head>
+
+<body>
+    <h1>탐색 선택자</h1>
+    <ul id="menu1">
+        <li>내용1-1</li>
+        <li>내용1-2</li>
+        <li>내용1-3</li>
+        <li>내용1-4</li>
+    </ul>
+    <ul id="menu2">
+        <li>내용2-1</li>
+        <li>내용2-2</li>
+        <li>내용2-3</li>
+        <li>내용2-4</li>
+    </ul>
+
+</body>
+
+</html>

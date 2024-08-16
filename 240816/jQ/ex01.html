@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실행 순서</title>
+    <script src="./jquery/3.7.0/jquery.js"></script>
+    <script>
+        // 제이쿼리는 선택자를 사용하기 위해서는 실행할 수 있는 환경이 미리 조성되어 있어야만 한다.
+        // 즉시실행 방법
+        // javascript 형식
+        // (function(){ 소스코드; ...;}) (); // 제일 먼저 실행. 로드 되기 전에 페이지가 컴파일 되는 시점에서 실행됨.
+        // window,onload = function(){소스코드들; ...;}; (세미콜론 생략 가능.) // 브라우저에 로딩되는 시점에 실행됨.
+
+        // jQuery 형식 => 둘 다 브라우저에 로딩되는 시점에 실행됨.
+        // $(document).ready(function(){소스코드들; ...;});
+        // $(function(){소스코드들; ...;});
+
+        // 콜백함수 (=형식 : 자바스크립트의 익명함수 형식)
+        // 매개인자로 존재하면서 실행과 반환을 자동으로 해주는 함수
+
+        jQuery(document).ready(function () {
+            alert('$(document).read ALERT 경고창');
+
+        })
+
+        $(function () {
+            alert('$(function()) ALERT 경고창');
+        });
+
+        (function () {
+            alert('(function) ALERT 경고창');
+        })();
+
+        window.onload = function () {
+            alert('window.onload ALERT 경고창');
+        }
+    </script>
+</head>
+
+<body>
+    본문 내 알림 글자를 띄웁니다.
+</body>
+
+</html>
