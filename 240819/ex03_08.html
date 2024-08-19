@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(function () {
+            $("p:first").css("color", "green").next().css('color', 'red').next().css({ 'color': 'aqua', 'font-weight': 'bolder' }).end().children('span').css({ 'color': 'orange', 'font-weight': 'bolrder' });
+
+            /*
+            $("p:first").css("color", "green") => <p>p태그1 : ... </p> // color:green 적용
+            .next() => <p>p태그1의 동생 p태그2 : ... </p> // color:red 적용
+            .next() => <p>p태그3</p> // color:aqua; font-weight:bolder 적용
+            .end() => <p>p태그1의 동생 p태그2 : ... </p>
+            .children('span') => <span>p태그2 안의 span태그</span> // color:orange; font-weight: bolder 적용
+            */
+        });
+    </script>
+</head>
+
+<body>
+    <p>p태그1 : <span>p태그1 안의 span태그</span></p>
+    <p>p태그1의 동생 p태그2 : <span>p태그2 안의 span태그</span></p>
+    <p>p태그3</p>
+</body>
+
+</html>

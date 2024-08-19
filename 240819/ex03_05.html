@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(function () {
+            $("#wrap a[target]").css({ "color": "red" }); // id가 wrap인 태그의 자손 중 a태그이면서 target 속성을 가진 자손태그들 적용
+            $("#wrap a[href^=https]").css({ "color": "green" }); // href^=https : href 속성이 https로 시작되는 태그만 적용
+            $("#wrap a[href$=net]").css({ "color": "blue" }); // href$=net : href 속성이 net으로 끝나는 태그만 적용
+            $("#wrap a[href*=google]").css({ "color": "black" }); // href*=google : href 속성에 google이 포함되는 태그만 적용
+            $("#wrap a[href*=co]").css({ "background": "hotpink" });
+            // $("#member_f input[type=text]").css({ "background": "red" });
+
+            // 제이쿼리에서 제공해주는 탐색선택자
+            $("#member_f :password").css({ "background": "aqua" }); // type=password인 태그만 적용
+            $("#member_f :text").css({ "background": "yellow" }); // type=text인 태그만 적용
+        });
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <p><a href="http://easyspub.co.kr" target="_blank">EasysPub</a></p>
+        <p><a href="https://naver.com">Naver</a></p>
+        <p><a href="http://daum.net">Daum</a></p>
+        <p><a href="http://google.co.kr">Google</a></p>
+    </div>
+    <form action="#" method="get" id="member_f">
+        <p>
+            <label for="user_id">아이디</label>
+            <input type="text" name="user_id" id="user_id">
+        </p>
+
+        <p>
+            <label for="user_pw">비밀번호</label>
+            <input type="password" name="user_pw" id="user_pw">
+        </p>
+
+        <p><textarea name="user_tx" id="user_tx"></textarea></p>
+    </form>
+</body>
+
+</html>

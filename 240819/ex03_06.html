@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        function ent() {
+            // :hidden 탐색 선택자 : 엘리먼트의 속성이 display: none인 태그만 인지함.
+            // $('#wrap p:hidden').css({ "display": "block", "background": "#ff0" });
+
+            // var z1 = $('#course :selected').val();
+            // var z1 = $('#course :selected')
+            var z1 = $("#zone1 :selected").val(); // id가 zone1인 태그의 자손태그들 중 선택된 태그의 value값을 가져옴.
+            // val() : val(매개변수)인 경우 value의 값을 매개변수로 변경하는 기능. 매개변수가 없는 경우 value값을 가져오는 기능을 함.
+            console.log("z1 : " + z1);
+            // console.log(z1[0].attributes[0].value);
+
+            // var z2 = $("#zone2 :checked").val(); // 0번 인덱스의 값만 가져올 수 있음.
+            var z2 = $("#zone2 :checked"); // 선택된 값을 배열객체 형태로 가져옴.
+            console.log("z2 : " + z2);
+            // 다중선택의 경우 선택된 모든 value값을 가져올 수 없다. 가져오기 위해서는 반복문을 통해 모두 출력될 수 있도록 해야한다.
+
+            // var z3 = $("#zone3 :checked").val();
+            var z3 = $("#zone3 :checked");
+            console.log("z3 : " + z3);
+        }
+    </script>
+</head>
+
+<body>
+    <button type="button" onclick="ent()">클릭</button>
+    <div id="wrap">
+        <p>내용1</p>
+        <p style="display: none;">내용2-1</p>
+        <p style="visibility: hidden;">내용2-2</p>
+        <p>내용3</p>
+    </div>
+    <form action="#">
+        <p id="zone1">
+            <select name="course" id="course">
+                <option value="opt1">옵션1</option>
+                <option value="opt2" selected>옵션2</option>
+                <option value="opt3">옵션3</option>
+            </select>
+        </p>
+
+        <p id="zone2">
+            <input type="checkbox" name="hobby1" value="독서">독서
+            <input type="checkbox" name="hobby2" value="자전거">자전거
+            <input type="checkbox" name="hobby3" value="등산" checked>등산
+            <!-- type=checkbox인 경우, 다중선택이 가능하기 때문에 배열객체로 반환한다. 아무것도 선택하지 않을 경우 빈 배열객체 반환 -->
+        </p>
+
+        <p id="zone3">
+            <input type="radio" name="gender" value="male">남성
+            <input type="radio" name="gender" value="female">여성
+        </p>
+    </form>
+</body>
+
+</html>

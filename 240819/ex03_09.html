@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            color: blue;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(function () {
+            // 이벤트핸들러 함수는 이벤트 객체(e)와 이벤트를 발생시킨 요소(this)를 가지고 있다.
+            // 이벤트 객체 사용하는 방법
+            /*
+            1. function의 매개인자로 객체를 생성하여 사용하는 방법
+            예시:
+            function(e){
+            let t = e.target;
+            }
+
+            2. 자바스크립트의 event 내장객체를 사용하는 방법
+            예시:
+            funtion(){
+                event.target;
+            }
+            */
+
+            $('button').click(function (e) {
+                // e.target과 this는 자바스크립트 객체이므로 jQuery함수를 적용하려면 jQuery형식으로 변경해주어야 한다.
+                // 예: $(e.target), $(this)
+
+                let t = e.target; // 사용자가 클릭한 태그 = 이벤트를 발생시킨 태그 = e.target
+                console.log('t: ' + t);
+                console.log('this: ' + this);
+
+                console.log($(this).attr('id'));
+                $('#' + $(this).attr('id')).css('color', 'red'); // 문자열 결합을 통해서도 선택자를 기술할 수 있다.
+
+                /* 
+                $(t) => 이벤트를 발생시킨 태그 = this = e.target = <button type="button" id="btn">엘리먼트에 스타일 입히기</button>
+                $(t).parent() => body
+                */
+                $(t).parent().css({ 'background': 'black', 'color': 'white' }); // 버튼태그는 적용안됨. => 버튼태그는 천성을 갖고있기 때문에 천성을 변경하기 위해서는 버튼태그에 직접 적용해야 함.
+
+                // 해당 엘리먼트의 자식 엘리먼트 찾기
+                $('div').children().css('border-bottom', '3px double red');
+                $('div').children('.selected').css('color', 'red');
+            });
+
+
+            // document.getElementById('btn').addEventListener('click', function () {
+            //     let t = e.target;
+            //     console.log('t: ' + t);
+            //     console.log('this: ' + this);
+
+            //     console.log(this.getAttribute("id"));
+
+            //     // 해당 엘리먼트의 자식 엘리먼트 찾기
+            //     document.getElementsByTagName('div');
+            // });
+        });
+    </script>
+
+</head>
+
+<body>
+    <button type="button" id="btn">엘리먼트에 스타일 입히기</button>
+    <p>이곳은 문단</p>
+
+    <div><span class="selected">이곳은 div의 자식 span</span></div>
+    <p>그리고 <span>여기는 또 다른 span</span> 문단</p>
+
+    <div>마지막으로 <span>이곳은 div의 차일드 span,</span>이곳은 div</div>
+</body>
+
+</html>

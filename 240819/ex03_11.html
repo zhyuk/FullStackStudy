@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(function () {
+            /*
+            $('선택자').find('요소 또는 선택자') : 선택한 요소의 하위 요소를 필터링(검색)할 때 사용. 범위: 자식, 자손 모두 검색 가능
+            $('선택자').filter(callback 또는 요소 또는 선택자) : 자기 자신의 레벨에서 필터링(검색)할 때 사용. 범위: 형제만 가능
+            */
+
+            $('#inner_1').find('.txt1').css({ 'background': 'yellow' }); // id가 inner_1인 태그의 자손요소 중 클래스명이 txt1인 요소만 적용 => find()는 자식,자손 모두 탐색 가능
+            $('#inner_1 p').filter('.txt2').css({ 'background': 'aqua' }); // id가 inner_1인 태그의 자식요소 p태그들 중 클래스명이 txt2인 요소만 적용 => filter()는 형제만 탐색 가능
+
+            /*
+            $('#inner_2 p') => 
+            0: <p>index 0</p>
+            1: <p>index 1</p>
+            2: <p>index 2</p>
+            3: <p>index 3</p>
+            */
+            $('#inner_2 p').filter(function (i, o) { // i : 인덱스번호, o : 요소
+                console.log(i, o);
+                // 단, 아이템매개변수는 생략 가느하지만 인덱스 매개변수는 생략불가
+                // 첫번째 매개변수 => 인덱스값, 두번째 매개변수 => 아이템(요소)
+                return i % 2 == 0; // 반드시 true값이 되어야 한다.
+            }).css({ 'background': 'yellowgreen' }); // 인덱스번호가 짝수인 요소에만 적용
+
+
+            $('#searchBtn').click(function () {
+                $('#inner_3 p').show(); // 다시 검색하기 위해 숨겨져있는 모든 것을 다시 보여줘야함.
+
+                let str = document.getElementById('searchStr').value; // 문자열로 가지고 옴
+                if (str == []) {
+                    alert('텍스트를 입력하세요.');
+                    document.getElementById('searchStr').focus();
+                }
+
+                $('#inner_3 p').filter(function (i, o) {
+                    console.log(`str: ${str}, o.innerTexr: ${o.innerText}`);
+                    if (!o.innerText.includes(str)) return true;
+                    // !o.innerText.includes(str) => 요소의 자식요소 중 str을 포함하고 있는지 T/F 반환 후 !로 인해 뒤집어버림. 
+                    else return false;
+                }).hide();
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="outer_wrap">
+        <h1>콘텐츠 탐색 선택자</h1>
+        <section id="inner_1">
+            <h2>find(), filter()</h2>
+            <p class="txt1">내용1</p>
+            <p class="txt2">내용2</p>
+        </section>
+        <section id="inner_2">
+            <h2>filter(function)</h2>
+            <p>index 0</p>
+            <p>index 1</p>
+            <p>index 2</p>
+            <p>index 3</p>
+        </section>
+
+        <p>
+            <input type="search" id="searchStr" placeholder="검색어를 입력하세요.">
+            <input type="button" id="searchBtn" value="검색">
+        </p><br><br>
+        <section id="inner_3">
+            <h2>filter(function) 사용예제</h2>
+            <p>홍길동</p>
+            <p>고길동</p>
+            <p>고영희</p>
+            <p>마이콜</p>
+            <p>둘리</p>
+        </section>
+    </div>
+</body>
+
+</html>

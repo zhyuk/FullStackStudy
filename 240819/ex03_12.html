@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        div {
+            margin: 20px;
+            border: 1px solid #000;
+        }
+    </style>
+    <script>
+        function btn() {
+            // clone() : 해당 선택요소 복사
+            var copyObj = $('.box1').children().clone(); // 복제본
+            console.log('copyObj: ' + copyObj);
+
+            var copyObj1 = document.getElementsByClassName('box1')[0].children; // 원본을 담아옴
+            console.log('copyObj1: ' + copyObj1);
+
+            // remove() : 해당 요소 제거
+            $('.box2').remove(); // 타겟과 타겟의 자식요소까지 모두 제거
+            // document.body.removeChild(document.getElementsByClassName('box2')[0]); // 타겟의 자식요소를 제거. 타겟은 내가 지우고싶은 요소의 부모요소로 잡아야함.
+
+            // empty() : 해당 요소의 하위 요소를 모두 제거
+            $('.box3').empty(); // 타겟의 자식요소 모두 제거. 타겟은 남아있음
+            // document.getElementsByClassName('box3')[0].innerHTML = ""; // 타겟의 자식요소를 모두 빈 문자열로(타겟만 남아있음)
+            // document.getElementsByClassName('box3')[0].removeChild(document.getElementsByClassName('box3')[0].getElementsByTagName('p')[0]); // 내용5 제거
+            // document.getElementsByClassName('box3')[0].removeChild(document.getElementsByClassName('box3')[0].getElementsByTagName('p')[0]); // **내용6 제거. 위에서 내용5를 먼저 지웠기 때문에 내용6의 인덱스번호는 1이 아닌 0이 된다.
+
+            $('.box3').append(copyObj); // 가장 마지막 자식요소로 copyObj 생성
+            // $('.box3').append(copyObj1); // 가장 마지막 자식요소로 copyObj1 생성 => 원본을 저장했기 때문에 box1의 자식요소는 사라지게 됨.
+
+            // for (let i = 0; i < copyObj1.length; i++) {
+            //     document.getElementsByClassName('box3')[0].appendChild(copyObj1[i].cloneNode(true));
+            //     // cloneNode(true) : 원본을 가져와서 복제
+            // }
+
+            // hide() : 해당 요소의 영역까지 제거. display:none처리
+            $('button').hide();
+            // // document.getElementsByTagName('button')[0].style.display = "none";
+        }
+    </script>
+</head>
+
+<body>
+    <div class="box1">
+        <p>내용1</p>
+        <p>내용2</p>
+    </div>
+    <div class="box2">
+        <p>내용3</p>
+        <p>내용4</p>
+    </div>
+    <div class="box3">
+        <p>내용5</p>
+        <p>내용6</p>
+    </div>
+    <button type="button" onclick="btn()">클릭</button>
+</body>
+
+</html>

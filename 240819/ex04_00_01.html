@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        /*
+        $("선택한 요소").replaceWith("새 요소") : 선택한 요소를 새 요소로 변경함
+        $("새 요소").replaceAll("해당 요소") : 선택한 요소로 해당 요소를 변경함
+        */
+        function gbb(val) {
+            console.log(val);
+            val.innerText = "클릭완료";
+            $('h2').replaceWith('<h3>replace method</h3>'); // h2 태그를 <h3>replace method</h3>'로 변경
+            $('<p>Change</p>').replaceAll('div'); // <p>Change</p>로 div 태그를 변경
+        }
+
+    </script>
+</head>
+
+<body>
+    <section class="box1">
+        <h2>제목1</h2>
+        <div>내용1</div>
+        <div>내용2</div>
+    </section>
+    <section class="box2">
+        <h2>제목2</h2>
+        <div>내용3</div>
+        <div>내용4</div>
+    </section>
+    <button type="button" onclick="gbb(this)">클릭</button>
+</body>
+
+</html>

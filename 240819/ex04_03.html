@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콜백함수</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        function btn() {
+            $('img').attr({ width: "100px", height: "100px" });
+            $('img').attr("src", function () {
+                return "../240731/img/" + this.title + '.jpg';
+            });
+
+            // let arr = document.getElementsByTagName('img');
+            // $('img').attr('src', "../240731/img/img_girl.jpg");
+
+            $('img').attr('title', function (index) {
+                return index + '번 img 엘리먼트 타이틀은 ' + this.title;
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <img alt="img_girl" title="img_girl"><img alt="cute_dog" title="cute_dog"><img alt="pic_trulli" title="pic_trulli">
+    <br><br>
+    <button type="button" onclick="btn()">클릭</button>
+</body>
+
+</html>

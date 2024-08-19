@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(function () {
+            // :contains(문자열) => 문자열 포함여부 확인 선택자
+            $("#inner_1 p:contains(내용1)").css({ "background": "green" });
+
+            // :has(요소명) => 해당 요소를 자식이나 자손으로 가지고 있는지의 여부 확인 선택자
+            $("#inner_1 p:has(strong)").css({ "background": "aqua" }); // id가 inner_1인 태그들의 자손요소 중 strong태그를 갖고있는 p태그 
+            // $("#inner_1 p :has(strong)").css({ "background": "aqua" }); // id가 inner_1인 태그들의 자손요소 p태그의 자식요소 중 strong태그를 갖고있는 태그 => 이 문서에서는 찾을 수 없음,
+
+            // :contents() => 자식(후손포함안됨)으로 존재하는 엘리먼트들
+            $("#outer_wrap").contents().css({ "border": "1px dashed red" });
+            // id가 outer_wrap인 태그의 자식요소들만 적용됨. 자손은 적용되지 않음
+
+            // :not("선택자") => 해당 선택한 요소가 아닌 것
+            $("#inner_2 p").not(":first").css({ "background": "yellow" }); // :frist가 아닌 p태그 모두 적용
+            $("#inner_2 p").eq(2).css({ "color": "red" });
+
+            // :end() => 바로 이전 선택 요소로 돌아가라는 기능을 제공해주는 함수. 현재 타겟의 요소를 종료한다는 의미
+            $("#inner_2 p").eq(2).end().css({ "color": "blue" });
+            /*
+            0 : <p>내용4</p>
+            1 : <p>내용5</p>
+            2 : <p>내용6</p>
+            3 : <p>내용7</p>
+            4 : <p>내용8</p>
+            5 : <p>내용9</p>
+
+            $("#inner_2 p").eq(2) => <p>내용6</p>
+            $("#inner_2 p").eq(2).end() => [0]~[5] 모두 타겟임.
+            */
+        });
+    </script>
+</head>
+
+<body>
+    <div id="outer_wrap">
+        <h1>콘텐츠 탐색 선택자</h1>
+        <section id="inner_1">
+            <h1>contains(), contents(), has()</h1>
+            <p><span>내용1</span></p>
+            <p><strong>내용2</strong></p>
+            <p><span>내용3</span></p>
+        </section>
+
+        <section id="inner_2">
+            <div>
+                <h1>not(), end()</h1>
+                <p>내용4</p>
+                <p>내용5</p>
+                <p>내용6</p>
+            </div>
+            <div>
+                <h1>not(), end()</h1>
+                <p>내용7</p>
+                <p>내용8</p>
+                <p>내용9</p>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
