@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>호버이벤트</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(function () {
+            /*
+            $("선택자나 해당 요소").hover(
+                마우스포인터가 들어와 있는 상태의 콜백함수,
+                마우스포인터가 영역을 벗어난 경우의 콜백함수
+            );
+            */
+
+            $('h1').hover(
+                function () {
+                    // 마우스 포인터가 선택 영역에 들어갔을 경우
+                    $(this).css('color', 'red');
+                }, function () {
+                    // 마우스 포인터가 선택 영역에서 나갔을 경우
+                    $(this).css('color', 'black');
+                }
+            );
+
+            // $('h1').on({
+            //     // 마우스를 눌렀을 때 -> active 상태와 유사
+            //     "mousedown": function () {
+            //         $(this).css('color', 'darkred');
+            //     },
+            //     // 마우스를 눌렀다 뗴었을 때 -> click 상태와 유사
+            //     "mouseup": function () {
+            //         $(this).css('color', 'green');
+            //     }
+            // });
+
+            // 호버와 유사한 기능
+            $('h2').on({
+                // 마우스 포인터가 선택 영역에 들어갔을 경우
+                "mouseover": function () {
+                    $(this).css('color', 'hotpink');
+                },
+                // 마우스 포인터가 선택 영역에서 나갔을 경우
+                "mouseleave": function () {
+                    $(this).css('color', 'black');
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>test1</h1>
+    <h2>test2</h2>
+</body>
+
+</html>

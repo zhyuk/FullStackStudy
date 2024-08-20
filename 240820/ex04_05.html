@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        ul {
+            float: left;
+            margin: 30px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('a').click(function () {
+                // this = event.target. event 내장객체 사용 시 event 객체를 매개변수로 받아야하며, 선언적 함수에는 사용할 수 없다.
+                $("img").attr("src", $(this).attr("href"));
+                // 현재 페이지에 이미지 표시하도록 설정
+                return false; // 함수내에서 return false; 작성 시, 해당 함수가 실행되는 것을 막으라는 의미. 즉, 페이지가 넘어가는 것을 막음.
+                // event.preventDefault(); // 자바스크립트 제공, 기본적으로 갖고있는 이벤트가 실행되는 것을 막아라.
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li><a href="../240731/img/cute_dog.jpg">사진1</a></li>
+        <li><a href="../240731/img/img_girl.jpg">사진2</a></li>
+    </ul>
+    <img>
+</body>
+
+</html>

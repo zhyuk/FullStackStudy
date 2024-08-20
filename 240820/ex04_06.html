@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        p {
+            margin: 14px;
+            cursor: pointer;
+        }
+
+        strong {
+            text-decoration: underline;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* #res {
+            font-size: 20px;
+            color: blue;
+            font-weight: bold;
+        } */
+    </style>
+    <script>
+        /* 
+        document.getElementById('res').innerHTML = "<p>내용넣기</P>"; // setter(설정)
+        제이쿼리객체.html() : => 값 자리의 innerHTML
+        제이쿼리객체의 자식요소들(태그, 텍스트 포함)을 html형식으로 가져오세요.
+        let pHTML = document.getElementById('res').innerHTML; // getter (값 얻어오기)
+        제이쿼리객체.html("소스코드") : => 공간자리의 innerHTML
+        제이쿼리객체의 자식요소를 모두 지우고 그 안의 자식으로 넣는데, html형식으로 넣으세요.
+
+        document.getElementById('res').innerText = "내용넣기"; // setter(설정)
+        제이쿼리객체.text() : => 값 자리의 innerText
+        제이쿼리객체의 자식 요소들 중 텍스트만 가져오세요.
+        let pHTML = document.getElementById('res').innerText; // getter (값 얻어오기)
+        제이쿼리객체.text() : => 공간자리의 innerText
+        제이쿼리객체의 자식요소를 모두 지우고 그 안의 자식으로 넣는데, 문자열로 넣으세요.
+        */
+
+        $(function () {
+            var htmlStr;
+            $("p").click(function () {
+                htmlStr = $(this).html();
+                // htmlStr = $(this).text();
+                // console.log(htmlStr);
+                report(htmlStr);
+            });
+        });
+
+        function report(msg) {
+            $("#res").html(msg);
+            // $("#res").text(msg);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- strong 태그 : 시맨틱 요소 중 하나. 중요한 내용을 담고있다는 의미 -->
+    <p><strong>html()은</strong>엘리먼트의 <span id="tag">내용을</span></p>
+    <p>HTML 형식의<span id="text">문자열로</span>리턴한다.</p>
+
+    <p>버튼을 포함한 <button name="oktbtn" onclick="alert('버튼클릭')">button</button></p>
+    <div id="res"></div>
+
+</body>
+
+</html>

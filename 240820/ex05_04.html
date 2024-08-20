@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        em {
+            font-size: 20pt;
+            line-height: 20pt;
+            margin: 20px;
+            color: blue;
+        }
+    </style>
+    <script>
+        var colorArr = ['yellow', 'red', 'orange'];
+        $(document).ready(function () {
+            /* 
+            0: <em>one</em>
+            1: <em>two</em>
+            2: <span><em>three</em></span>    
+            */
+            // $('p em').css('background', 'yellow').each(function () {
+            //     $('.result1').append($(this).text() + " ");
+            //     // <span class="result1">one two three</span>
+            // });
+
+            $('p em').css('background', function (i) { // i = 0, 1, 2
+                return colorArr[i]; // 각각 colorArr[0], colorArr[1], colorArr[2]의 색상 적용
+            }).each(function () {
+                $('.result1').append($(this).text() + " ");
+                // <span class="result1">one two three</span>
+
+            });
+
+            /*
+            0 : <em>four</em>
+            1 : <em>six</em>
+            * <span><em>five</em></span>는 자손요소이기 때문에 포함되지 않음.
+            */
+            $('div > em').css('background', 'pink').each(function () {
+                $('.result2').append($(this).text() + " ");
+                // <span class="result2">four six </span>
+
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <p>
+        <em>one</em>
+        <em>two</em>
+        <span><em>three</em></span>
+    </p>
+    <div>
+        <em>four</em>
+        <span><em>five</em></span>
+        <em>six</em>
+    </div>
+
+    <div>
+        <span>ancestor descendant로 검색된 엘리먼트:</span>
+        <span class="result1"></span>
+    </div>
+
+    <div>
+        <span>parent &gt; child로 검색된 엘리먼트:</span>
+        <span class="result2"></span>
+    </div>
+
+</body>
+
+</html>

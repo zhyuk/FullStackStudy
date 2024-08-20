@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(function () {
+            var arr1 = ["서울", "대전", "부산", "전주"];
+            var arr2 = ["한국", "미국", "일본", "중국"];
+            var obj = { "name": "정부장", "area": "서울" };
+
+            // inArray(value, array) : 배열에 해당 값이 있으면 해당 요소의 **인덱스 반환**, 없으면 -1 반환
+            // js의 indexOf() 함수와 유사한 기능 => 배열객체.indexOf(요소값)
+            var arrIdx = $.inArray('부산', arr1); // js => arr1.indexOf("부산");
+            console.log("부산의 인덱스 번호는 : " + arrIdx);
+
+            // isArray(array) : 배열 객체인지 아닌지의 여부 판단. **bollean**으로 값 반환
+            var okArray1 = $.isArray(arr1); // js => Array.isArray(arr1);
+            var okArray2 = $.isArray(obj);
+            console.log("okArray1 객체는 " + (okArray1 == true ? "배열이다." : "배열이 아니다."));
+            console.log("okArray2 객체는 " + (okArray2 == true ? "배열이다." : "배열이 아니다."));
+
+            // merge(배열객체1, 배열객체2) : 배열객체1에 배열객체2 요소를 모두 붙여서 배열객체1을 ***새로운 배열***로 반환
+            // 중복값 제거 안됨.
+            // 순서는 배열객체1이 먼저 이후 배열객체2가 나중으로 정렬됨.
+            $.merge(arr2, arr1); // arr2 = ["한국", "미국", "일본", "중국", "서울", "대전", "부산", "전주"];
+            console.log('arr2: ' + arr2);
+
+            // $("요소선택자").index("선택요소") : 요소선택자들 중에서 선택 요소의 인덱스 번호를 반환함. (0부터)
+            var idxNum = $('li').index($('#list3'));
+            /* $('li') =>
+            0 : <li>내용1</li>
+            1 : <li>내용2</li>
+            2 : <li id="list3">내용3</li>
+            3 : <li>내용4</li>
+            ** 기술된 순서대로 인덱스번호가 붙는다.
+            */
+            console.log('idxNum: ' + idxNum);
+        });
+    </script>
+</head>
+
+<body>
+    <h1>배열 관련 함수</h1>
+    <ul>
+        <li>내용1</li>
+        <li>내용2</li>
+        <li id="list3">내용3</li>
+        <li>내용4</li>
+    </ul>
+</body>
+
+</html>

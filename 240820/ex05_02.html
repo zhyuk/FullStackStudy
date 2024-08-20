@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // 그룹선택자의 엘리먼트들이 html요소의 인덱스에 맞춰 오름차순으로 정렬됨.
+            var $searchEles = $('p, span, div.simpletext1');
+            /* 그룹선택자로 가져올 경우, html요소의 순서에 맞춰 정렬.
+            0 :<span>simple</span>
+            1 : <div class="simpletext1">jQuery</div>
+            2 : <p>example</p>
+            length : 3
+            */
+
+            var resultText = '엘리먼트 개수: ' + $searchEles.length + "<br>"; // $searchEles.length : 3
+            console.log("searchEles: " + $searchEles);
+
+            // $searchEles 자체가 제이쿼리 선택자를 담고있기 때문에 자바스크립트 객체이지만 올 수 있음.
+            $searchEles.each(function () {
+                console.log("this: " + this.tagName); // SPAN, DIV, P => tagName은 태그명을 대문자로 반환함.
+                console.log("$(this): " + $(this).prop("tagName")); // SPAN, DIV, P => prop("tagName") => 태그명을 가져오는 동적함수. 자바스크립트 내장 객체의 속성도 가져올 수 있음.
+
+                resultText += $(this).text() + ", ";
+                // resultText = '엘리먼트 개수: 3<br>simple, jQuery, example
+            });
+
+            // $.each($searchEles, function () {
+            //     console.log("$(this): " + $(this).prop('tagName'));
+            //     resultText += $(this).text() + ", ";
+            // });
+
+            // 0 : <span>simple</span>
+            // 1 : <div class="simpletext1">jQuery</div>
+            // 2 : <p>example</p>
+            // length : 3
+
+            $searchEles.each(function (i, v) { // i = 0, v = <span>simple</span>
+                console.log(i + " :" + $(this).text());
+                console.log(i + " : " + $(v).text()); // v가 요소값을 가져오는 것이고, this는 이벤트가 발생된 요소를 의미하기 때문에 this = v 
+                console.log("========================");
+            });
+
+            $(document.body).append(resultText);
+            // body의 마지막 자식요소로 resultText 추가
+
+            $searchEles.click(function () {
+                // tagName은 태그명을 대문자로 반환하기 때문에 대문자로 작성해줘야한다.
+                if (this.tagName == 'P') alert('p태그입니다.');
+                else alert('p태그가 아닙니다.');
+
+            });
+        });
+
+
+    </script>
+</head>
+
+<body>
+    <span>simple</span>
+    <div class="simpletext1">jQuery</div>
+    <div>basic</div>
+    <p>example</p>
+</body>
+
+</html>

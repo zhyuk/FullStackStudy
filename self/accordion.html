@@ -88,6 +88,47 @@
         div.accordion-box li>div.answer {
             display: none;
         }
+
+        section #modal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+        }
+
+        section #modal.active {
+            display: block;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            font-size: 40px;
+            background-color: transparent;
+            border: none;
+            color: hotpink;
+        }
+
+        #modal .modal-inner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1280px;
+            height: 800px;
+            margin: 0 auto;
+            display: none;
+            border: 1px solid blue;
+            background: black;
+        }
+
+        #modal .modal-inner.active {
+            display: block;
+        }
     </style>
 </head>
 
@@ -169,6 +210,16 @@
                 </ul>
             </div>
         </section>
+
+        <section>
+            <img src="./img/newjeans/logo.png" alt="뉴진스 로고이미지">
+
+            <div id="modal">
+                <div class="modal-inner">
+                    <button type="button" class="close-btn">X</button>
+                </div>
+            </div>
+        </section>
     </main>
     <script>
         $(function () {
@@ -176,6 +227,21 @@
             $(".quest").click(function () {
                 $(this).next(".answer").slideToggle();
             })
+
+            $('img').click(function () {
+                $('#modal').toggleClass('active');
+                $('#modal .modal-inner').toggleClass('active');
+            });
+
+            $('#modal').click(function () {
+                $('#modal').toggleClass('active');
+                $('#modal .modal-inner').toggleClass('active');
+            });
+
+            $('.close-btn').click(function () {
+                $('#modal').toggleClass('active');
+                $('#modal .modal-inner').toggleClass('active');
+            });
         })
     </script>
 </body>

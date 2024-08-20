@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        div {
+            float: left;
+            margin: 25px;
+        }
+    </style>
+    <script>
+        $(function () {
+            /*
+                prepend함수들 : 추가할 요소를 해당 부모요소의 제일 처음 요소로 html형식으로 추가하세요.
+                $("부모선택자 또는 부모 요소").prepend("추가할 자식요소")
+                $("추가할 자식요소").prependTo("부모선택자 또는 부모 요소")
+            */
+            var fruits = ["apple", "banana", "orange", "melon"];
+
+            $.each(fruits, function (index, value) {
+                $("#fruit_list").prepend($("<li>" + value + "</li>"));
+                // A.prepend(B) : A에 B를 추가
+            });
+
+            var cars = ['sonata', 'grandure', 'genesis'];
+            $.each(cars, function (index, value) {
+                $("<li>" + value + "</li>").prependTo("#car_list");
+                // A.prependTo(B) : B에 A를 추가
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div>
+        <b>과일 리스트</b>
+        <ul id="fruit_list">
+            <li>grape</li>
+        </ul>
+    </div>
+    <div>
+        <b>차종 리스트</b>
+        <ul id="car_list">
+            <li>soul</li>
+        </ul>
+    </div>
+</body>
+
+</html>

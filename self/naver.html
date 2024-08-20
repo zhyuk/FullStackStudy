@@ -31,21 +31,23 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><input type="password" id="password" class="input padding_inner" name="password"
-                                placeholder="비밀번호"></td>
+                        <td class="password"><input type="password" id="password" class="input padding_inner"
+                                name="password" placeholder="비밀번호"></td>
                     </tr>
                     <tr>
-                        <td><input type="text" id="email" class="input padding_inner" name="email"
+                        <td class="email"><input type="text" id="email" class="input padding_inner" name="email"
                                 placeholder="[선택] 이메일주소 (비밀번호 찾기 등 본인 확인용)"></td>
                     </tr>
                 </table>
 
+                <ul class="message1 message"></ul>
                 <table class="join_table">
                     <tr>
-                        <td><input type="text" id="name" class="input padding_inner" name="name" placeholder="이름"></td>
+                        <td class="name"><input type="text" id="name" class="input padding_inner" name="name"
+                                placeholder="이름"></td>
                     </tr>
                     <tr>
-                        <td><input type="text" id="birth" class="input padding_inner" name="birth"
+                        <td class="birth"><input type="text" id="birth" class="input padding_inner" name="birth"
                                 placeholder="생년월일 8자리"></td>
                     </tr>
                     <tr>
@@ -84,10 +86,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><input type="text" id="number" class="input padding_inner" name="number"
+                        <td class="number"><input type="text" id="number" class="input padding_inner" name="number"
                                 placeholder="휴대전화번호"></td>
                     </tr>
                 </table>
+
+                <ul class="message message2"></ul>
 
                 <table class="join_table">
                     <tr>
@@ -95,7 +99,7 @@
                             <input type="checkbox" id="agree" name="agree" value="agree">
                             <label for="agree" class="font_white"><small class="bold font_green
                                 ">[필수]</small> 인증 약관동의</label>
-                            <button type="button">버튼</button>
+                            <button type="button" class="check-btn">∨</button>
                             <ul class="check-list">
                                 <li>개인정보 이용</li>
                                 <li>고유식별정보 처리</li>
@@ -117,7 +121,42 @@
             $(".telecom_btn").click(function () {
                 $(".telecom-list").toggleClass("active");
                 $("td.telecom").toggleClass("active");
-            })
+            });
+
+
+            $(".check-btn").click(function () {
+                $(".check-list").toggleClass("active");
+            });
+
+
+            $(".telecom-list li").click(function () {
+                $('.telecom_btn').css("color", "white");
+                $('.telecom_btn').text($(this).text());
+                $(".telecom-list").removeClass("active");
+            });
+
+
+            $(".check-list li").click(function () {
+                $(this).css("color", "white");
+            });
+
+            $("input").not($("input[name=password]")).not("input[name=email]").on('blur', function () {
+                // console.log($(this).val());
+                if ($(this).val() == '') {
+                    $(this).parent("td").css("border", "2px solid red");
+                    // console.log(this.name);
+                    switch (this.name) {
+                        case 'userid': $('.message1').append("<li class='userid'>아이디: 필수 정보입니다.</li>"); break;
+                        case 'name': $('.message2').append("<li class='name'>이름: 필수 정보입니다.</li>"); break;
+                        case 'birth': $('.message2').append("<li class='birth'>생년월일: 필수 정보입니다.</li>"); break;
+                        case 'number': $('.message2').append("<li class='number'>휴대전화번호: 필수 정보입니다.</li>"); break;
+                    }
+                } else {
+                    $(this).parent("td").css("border", "1px solid var(--color-gray)");
+                }
+            });
+
+
         })
     </script>
 </body>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        div {
+            float: left;
+            margin: 25px;
+        }
+    </style>
+    <script>
+        $(function () {
+            // jQuery의 each()함수 형식
+            // $.each(배열객체명, 콜백함수);
+            // $(배열객체명).each(콜백함수);
+
+            var fruits = ["apple", "banana", "orange", "melon"];
+            // 배열객체명.forEach(function(요소값, 인덱스번호){실행코드;...})
+            fruits.forEach(function (obj, idx) {
+                console.log(obj, idx);
+            });
+
+            $.each(fruits, function (index, value) {
+                $("#fruit_list").append($("<li>" + value + "</li>"));
+            });
+
+            // 배열객체이기 때문에 따옴표를 사용할 수 없다.
+            // $("fruits").each(function (index, value) {
+            //     $("#fruit_list").append($("<li>" + value + "</li>"));
+            // });
+
+            $(fruits).each(function (index, value) {
+                $("#fruit_list").append($("<li>" + value + "</li>"));
+            });
+
+            /*
+                append함수들 : 선택된 요소의 맨 막내자식으로 추가하는데 html형식으로 추가하세요.
+                $("부모선택자 또는 부모요소").append("추가할 자식요소");
+                $("추가할 자식요소").appendTo("부모선택자 또는 부모요소");
+            */
+
+            var cars = ['sonata', 'grandure', 'genesis'];
+            $.each(cars, function (index, value) {
+                $("<li>" + value + "</li>").appendTo("#car_list");
+                // $("#cars_list").append("<li>" + value + "</li>");
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div>
+        <b>과일 리스트</b>
+        <ul id="fruit_list">
+            <li>grape</li>
+        </ul>
+    </div>
+    <div>
+        <b>차종 리스트</b>
+        <ul id="car_list">
+            <li>soul</li>
+        </ul>
+    </div>
+</body>
+
+</html>

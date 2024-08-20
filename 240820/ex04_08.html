@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        .text {
+            display: none;
+            background: yellow;
+        }
+    </style>
+    <script>
+        $(function () {
+            $(".a1").on("click", function (e) {
+                // preventDefault() : 이벤트를 발생시킨 객체의 기본 이벤트를 차단
+                e.preventDefault();
+                $(".txt1").css({ "background": "#ff0" });
+                // return false;
+            });
+
+            $('.a1').hover(function () {
+                $('.txt1').show();
+                // $('.txt1').css("display", "block");
+            }, function () {
+                $('.txt1').hide();
+                // $('.txt1').css("display", "none");
+            });
+            // hover()와 동일함.
+            // $('.a1').on({
+            //     "mouseover": function () { $('.txt1').show(); },
+            //     "mouseleave": function () { $('.txt1').hide(); }
+            // });
+
+
+            $(".a2").click(function (e) {
+                $(".txt2").show();
+            });
+            // click()과 동일
+            // $(".a2").on("click", function (e) {
+            //     $(".txt2").show();
+            // });
+
+            // click()과 동일한 자바스크립트
+            // document.getElementsByClassName('a2')[0].onclick = function () {
+            //     document.querySelector('txt2').style.display = "block";
+            // };
+
+            $(".btn1").on({
+                "dblclick": function () { // dblclick : 더블클릭
+                    $(".txt3").css({ "background": "#0f0" });
+                }, "mousedown": function () {
+                    $(".txt3").show();
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <p>
+        <a href="https://www.naver.com/" class="a1">a1 네이버</a>
+    <p class="txt1 text">txt 내용1</p>
+    </p>
+    <p>
+        <a href="https://www.daum.net/" class="a2" target="_blank">a2 다음</a>
+    <p class="txt2 text">txt 내용2</p>
+    </p>
+    <p>
+        <button class="btn1">btn1버튼</button>
+    <p class="txt3 text">txt 내용3</p>
+    </p>
+</body>
+
+</html>

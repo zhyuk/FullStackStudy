@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(function () {
+            $('input[name=val_test]').focus();
+
+            // keyup() : 키보드 버튼을 눌렀다떼자마자 이벤트 실행
+            $('input').not('#kInp').keyup(function () {
+                var value = $(this).val();
+                report(value);
+            });
+
+            $('button').click(function () {
+                $('input').not('#kInp').val('button으로 새로운 값 설정');
+            });
+
+            // 선억적 함수면서 로컬(지역)함수임. 로컬함수는 외부에서 호출할 수 없음
+            function report(msg) {
+                $('#res').text(msg);
+            }
+
+            /*
+            콜백함수형식 = 익명함수형식
+            function([매개변수]){실행문;...}
+
+            on 함수 호출 형식
+            1. 한 개의 이벤트만 적용 : on("이벤트속성자", 콜백함수);
+            2. 여러 개의 이벤트를 적용 : 
+            on({
+                "이벤트속성자1" : 콜백함수1,
+                "이벤트속성자2" : 콜백함수2,
+                ...
+            });
+            3. 여러 개의 이벤트에 한 개의 기능을 적용
+            on("이벤트속성자1 이벤트속성자2 ...", 콜백함수);
+            */
+
+            // 여러 개의 이벤트에 한 개의 기능 적용
+            $('input[name=user_id]').on('keyup focus', function () {
+                // keydown이 될 때 focus도 함께 적용되기 때문에 원치않은 실행이 진행될 수 있다.
+                // 따라서 서로 영향을 받지 않는 이벤트를 같이 작성하는 것이 좋다.
+                console.log('키보드를 눌렀다 뗴었을 때\n포커스가 생성이 되었을 때 이벤트 발생');
+            });
+
+            // 여러 개의 이벤트 적용
+            $('input[name=user_id]').on({
+                "keyup": function () {
+                    console.log("키보드를 눌렀다 떼었을 때 이벤트 발생");
+                },
+                "focus": function () {
+                    console.log("포커스가 생성이 되었을 때 이벤트 발생");
+                }
+            });
+
+            $("#kInp").keydown(function (e) {
+                console.log(e);
+                var a = e.keyCode;
+                alert('키보드 코드값은 : ' + a);
+            });
+        })
+    </script>
+
+</head>
+
+<body>
+    <button>reset</button>
+    <input type="text" name="val_test" value="val 메소드" size="50">
+    <input type="text" name="user_id">
+    <input type="text" id="kInp">
+    <div id="res"></div>
+</body>
+
+</html>

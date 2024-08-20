@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(function () {
+            var arr = [
+                { title: '다음', url: 'www.daum.net' },
+                { title: '구글', url: 'www.google.com' }
+            ];
+
+            // $(arr).each(function(index, item){
+            $.each(arr, function (index, item) {
+                // index = 0 , item = { title: '다음', url: 'www.daum.net' }
+                // index = 1 , item = { title: '구글', url: 'www.google.com' }
+                let result = '';
+
+                result += index + " : " + item.title + ' , ' + item.url;
+                // result += index + " : " + item['title'] + ' , ' + item.url; // 위와 동일한 코드임.
+
+                console.log('result: ' + result);
+
+                result += index + " : " + item;
+                console.log('index: ', index, ', item: ', item);
+            });
+            console.log("==== The End 1 ====");
+
+            $.each($("#menu2 li"), function (i, o) {
+                console.log(i + " : " + o);
+            });
+            console.log("==== The End 2 ====");
+        });
+    </script>
+</head>
+
+<body>
+    <h1>탐색 선택자</h1>
+    <ul id="menu1">
+        <li>내용1-1</li>
+        <li>내용1-2</li>
+        <li>내용1-3</li>
+    </ul>
+    <ul id="menu2">
+        <li>내용2-1</li>
+        <li>내용2-2</li>
+        <li>내용2-3</li>
+    </ul>
+</body>
+
+</html>

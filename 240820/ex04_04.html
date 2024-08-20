@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        #divBox {
+            width: 300px;
+            border: 1px solid #555;
+            padding: 10px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            /*
+            정적이벤트와 동적이벤트
+            정적이벤트 : 이미 존재하는 엘리먼트에 이벤트를 등록하는 방식
+            동적이벤트 : 스크립트를 통해 생성된 엘리먼트에 이벤트를 등록하는 방식(이벤트 상속 포함)
+            */
+
+            // click() : 클릭이벤트를 처리하고자 할때. 정적이벤트임
+            // $('button[name="btn"]') => <button name='btn'>클릭</button>
+            $('button[name="btn"]').click(function () {
+                $("body").append('click!!!!<br>');
+            });
+
+
+            /*
+            동적이벤트(라이브 이벤트) 등록 방식
+            $(부모이상급요소).on(이벤트속성, 지정자(선택자), 콜백함수) : on 함수 이용. 
+            선택자를 해당 이벤트가 발생될 지정자보다 상위 요소(부모, 조상 요소들)를 선택자로 해야한다.
+            이벤트속성은 이벤트의 종류를 문자열로 작성.
+            지정자는 이벤트를 받는 타겟임.
+            */
+
+            //동적이벤트(라이브 이벤트) 등록 방식. 이벤트 상속됨.
+            // $(document).on("click", "button[name='add']", function () { 
+            // $("body").on("click", "button[name='add']", function(){ // body는 #grdiv보다 상위 클래스기 때문에 적용됨
+            $("#grdiv").on("click", "button[name='add']", function () {
+                $("#divBox").append("<button name='add'>+</button>");
+            });
+
+            // 선택자와 지정자가 같을 경우 실행되지 않는다.
+            // $("button[name='add']").on("click", "button[name='add']", function () {
+            //     $("#divBox").append("<button name='add'>+</button>");
+            // });
+
+
+            // 동적이벤트(라이브 이벤트) 등록 방식이 아님. 이벤트는 상속되지 않는다.
+            // $("button[name='add']") => <button name='add'>+</button>
+            // $("button[name='add']").on("click", function () {
+            //     // $("#divBox") => <div id='divBox'></div>
+            //     $("#divBox").append("<button name='add'>+</button>");
+            // });
+
+            // $("button[name='add']").click(function () {
+            //     $("#divBox").append("<button name='add'>+</button>");
+            // });
+            // 제이쿼리로 추가된 태그는 동적 이벤트 등록 방식을 사용해야 해당 태그도 이벤트를 적용할 수 있다.
+
+        });
+
+        /*
+        자바스크립트 선언적 함수 선언을 하고 호출문으로 호출하는 경우, 이벤트가 상속된다.
+        */
+        function btnadd() {
+            $("#divBox").append("<button name='add'>+</button>");
+        }
+    </script>
+</head>
+
+<body>
+    <button name="btn">클릭</button><br>
+    <div id="grdiv">
+        <button name="add">+</button>
+        <!-- <button name="add" onclick="btnadd()">+</button> -->
+        <div id="divBox"></div>
+    </div>
+</body>
+
+</html>
