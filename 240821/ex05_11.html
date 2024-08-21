@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        body {
+            font: 12pt "Malgun Gothic", "맑은고딕", sans-serif;
+        }
+
+        /* .btn {font-size: 12pt;} */
+        /* select#rel_site {
+            width: 200px;
+            height: 50px
+        } */
+    </style>
+    <script>
+        $(function () {
+            var fSize = 12;
+            $('.zBtn .btn').on('click', zInOut);
+
+            function zInOut() {
+                // 콜백함수로 사용해서 $(this) 키워드 사용가능
+                if ($(this).hasClass('zOut')) {
+                    if (fSize <= 8) return false;
+                    fSize--;
+                } else if ($(this).hasClass('zIn')) {
+                    if (fSize >= 50) return false;
+                    fSize++;
+                } else fSize = 12;
+
+                $('.fontSize').text(fSize + 'pt');
+
+                /*
+                    속성명 : 객체로 사용시 -(대시)제거 카멜기법으로 표기.
+                    css속성명 그대로 사용하는 경우는 따옴표로 묶어줌.
+                */
+                $('body').css({ 'font-size': fSize + 'pt' });
+                $('#rel_site, #rel_site option').css({ 'font-size': fSize + 'pt' });
+                $('.btn').css({ 'font-size': fSize + 'pt' });
+            }
+        });
+
+    </script>
+</head>
+
+<body>
+    <p class="zBtn">
+        <button class="btn zOut">-</button>
+        <button class="btn originBtn">100%</button>
+        <button class="btn zIn">+</button>
+    </p>
+    <p class="fontSize">12pt</p>
+
+    <div id="wrap">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, at doloremque! Odit, eligendi quia facere
+        expedita perspiciatis, id atque cupiditate iusto perferendis dolorem saepe quae, ratione quasi qui. Voluptatum,
+        consequatur. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate nisi accusantium corporis in,
+        eum ab, veniam beatae sequi incidunt, nesciunt nobis. Magnam excepturi saepe, dolores id voluptate cupiditate
+        sit animi
+    </div>
+
+    <select id="rel_site">
+        <option value="">사이트 선택</option>
+        <option value="www.google.com">구글</option>
+        <option value="www.naver.com">네이버</option>
+        <option value="www.daum.net">다음</option>
+    </select><br>
+
+    <input type="checkbox" name="allchk" id="allchk">
+    <label for="allchk">모두체크</label>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(function () {
+            // bind() : on()함수와 유사한 기능을 처리. 2개 이상의 이벤트를 연결할 때 사용함.
+            // 현재는 권장하지 않는 함수임. on함수를 사용하는 것이 표준권장
+            $('#button1').bind({
+                'click': button1_clicked,
+                'mousedown': button1_down,
+                'mouseup': button1_up
+                // mousedown + mouseup = click
+                // 기술한 순서에 따라 실행되는 것이 아닌, 해당 이벤트의 발생 순서 및 처리 순서에 따라 실행됨.
+            });
+
+            // $('#button1').on({ // 위의 bind() 함수와 동일하게 작동됨.
+            //     'click': button1_clicked,
+            //     'mousedown': button1_down,
+            //     'mouseup': button1_up
+            // });
+
+            $('#button2').click(button2_clicked);
+            $('#clear').click(function () {
+                // $('#resultDiv').html('');
+                $('#resultDiv').empty(); // empty() : 자식요소 모두 제거
+            });
+        });
+
+        function button1_clicked() {
+            $('#resultDiv').append('<br>버튼1 클릭됨');
+        };
+        function button1_down() {
+            $('#resultDiv').append('<br>버튼1 눌림');
+        };
+        function button1_up() {
+            $('#resultDiv').append('<br>버튼1 떼어짐');
+        };
+        function button2_clicked() {
+            $('#resultDiv').append('<br>버튼2 클릭됨');
+        };
+    </script>
+</head>
+
+<body>
+    <button id="button1">버튼1</button>
+    <button id="button2">버튼2</button>
+    <button id="clear">지우기</button>
+    <hr>
+    <div id="resultDiv"></div><br>
+    <hr>
+
+    <input type="search" name="uid" id="uid" placeholder="아이디 입력"><br>
+    <input type="password" name="upw" id="upw" placeholder="비밀번호 입력"><br>
+    <input type="password" name="rupw" id="rupw" placeholder="비밀번호 재입력">
+    <span id="msg"></span><br>
+    <input type="button" id="joinBtn" value="회원가입">
+
+    <script>
+        $('#joinBtn').on('click', function () {
+            if ($('#uid').val() == '' || $('upw').val() == '') {
+                alert('아이디나 비밀번호가 입력되지 않았습니다.');
+                return; // 클릭함수 종료시킴. => alert('회원가입 성공'); 실행 X
+            }
+
+            alert('회원가입 성공');
+        });
+
+        // $('#rupw').on('blur', function () {
+        //     if ($('#upw').val() != $('#rupw').val()) {
+        //         // alert('비밀번호 불일치'); // alert창과 focus()는 같이 쓸 수 없음. alert창도 focus 벗어난 걸로 인식하기 때문에 무한반복됨. => alert창 사용 시 focus() 금지. focus() 사용 시 alert() 사용 금지
+        //         $('#msg').css('color', 'red').text('비밀번호와 다른 값이 입력되었습니다.');
+        //         $('#rupw').focus();
+        //     } else {
+        //         // alert('비밀번호 일치');
+        //         $('#msg').css('color', 'green').text('비밀번호와 일치합니다.');
+        //     }
+        // });
+
+        // 비밀번호를 입력할 때마다 비교하는 방법
+        $('#rupw').on('keyup', function () {
+            if ($('#upw').val() != $('#rupw').val()) {
+                $('#msg').css('color', 'red').html('비밀번호와 다른 값이 입력되었습니다.');
+                $('#rupw').focus();
+            } else {
+                $('#msg').css('color', 'green').html('비밀번호와 일치합니다.');
+            }
+        });
+
+        // $('#rupw').on('input', function () {
+        //     if ($('#upw').val() != $('#rupw').val()) {
+        //         $('#msg').css('color', 'red').html('비밀번호와 다른 값이 입력되었습니다.');
+        //         $('#rupw').focus();
+        //     } else {
+        //         $('#msg').css('color', 'green').html('비밀번호와 일치합니다.');
+        //     }
+        // });
+    </script>
+</body>
+
+</html>

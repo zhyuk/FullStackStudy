@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        img {
+            width: 140px;
+            height: 120px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('img').eq(1).width(190).height(170);
+
+            $(document).on('mousedown', function (event) {
+                // event.which : 마우스 클릭위치의 값을 가져온다.
+                // 1 : 마우스좌클릭, 2: 휠클릭, 3 : 마우스 우클릭
+                console.log(event);
+                var mWhich = event.which;
+                $('#ptxt').empty();
+
+                if (mWhich <= 2) { // 좌클릭 또는 휠클릭 시 
+                    $('#ptxt').append('원본 가로사이즈: ' + $('.origin').width() + 'px<br>');
+                    $('#ptxt').append('원본 세로사이즈: ' + $('.origin').height() + 'px');
+                } else { // 우클릭 시
+                    $('#ptxt').append('확대 가로사이즈: ' + $('.large').width() + 'px<br>');
+                    $('#ptxt').append('확대 세로사이즈: ' + $('.large').height() + 'px');
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <img src="../240731/img/cellphone.jpg" class="origin"><br><br>
+    <img src="../240731/img/cellphone.jpg" class="large">
+    <p id="ptxt"></p>
+</body>
+
+</html>

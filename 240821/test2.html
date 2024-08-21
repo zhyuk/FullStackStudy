@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        img {
+            width: 400px;
+            max-width: 1120px;
+            min-width: 200px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="zOut">-</button>
+    <button class="default">100%</button>
+    <button class="zIn">+</button><br>
+    <img src="../240731/img/cute_dog.jpg">
+
+    <script>
+        let cnt = $('img').eq(0).width();
+        // console.log(cnt);
+
+        $('button').click(function () {
+            // console.log("버튼 클릭됨.");
+
+            if ($(this).hasClass('zOut')) {
+                if ($('img').eq(0).width == 200) return false;
+                cnt -= 50;
+                $('img').eq(0).width(cnt);
+
+            } else if ($(this).hasClass('zIn')) {
+                if ($('img').eq(0).width == 1120) return false;
+                cnt += 50;
+                $('img').eq(0).width(cnt);
+
+            } else if ($(this).hasClass('default')) {
+                cnt = 400;
+                $('img').eq(0).width(cnt);
+            }
+        })
+
+    </script>
+</body>
+
+</html>

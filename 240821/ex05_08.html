@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+        $(function () {
+            /*
+            is("탐색선택자") : 선택자의 상태에 따라 boolean값을 반환
+            탐색선택자로 올 수 있는 값
+            :checked - 체크된 상태인지
+            :selected - 선택된 상태인지
+
+            :visible - 보이는 요소인지
+            :hidden - 숨겨진 요소인지
+
+            :visible, :hidden 탐색자 : display:none; 속성만 감춰진 속성으로 인지함
+            */
+
+            /* $("#inner_1 p") => 
+            [0] : <p>내용1</p> 
+            [1] : <p style="display: none;">내용2</p>
+            [2] : <p style="visibility: hidden;">내용3</p>
+
+            // eq() : 인덱스번호를 가져오는 함수
+             */
+            var result_1 = $("#inner_1 p").eq(0).is(":visible"); // true
+            console.log(result_1);
+            var result_2 = $("#inner_1 p").eq(1).is(":visible"); // false
+            console.log(result_2);
+            var result_3 = $("#inner_1 p").eq(2).is(":visible"); // true. 영역은 존재하고 투명도만 조절된 태그임.
+            console.log(result_3);
+
+            var result_1 = $("#inner_1 p").eq(0).is(":hidden"); // false
+            console.log(result_1);
+            var result_2 = $("#inner_1 p").eq(1).is(":hidden"); // true
+            console.log(result_2);
+            var result_3 = $("#inner_1 p").eq(2).is(":hidden"); // false
+            console.log(result_3);
+
+            var result_4 = $("#chk1").is(":checked"); // false
+            console.log(result_4);
+            var result_5 = $("#chk4").is(":checked"); // true
+            console.log(result_5);
+
+            /* $("input[name=chk]") =>
+            [0] : <input type="checkbox" name="chk" id="chk1"> click => checked
+            [1] : <input type="checkbox" name="chk" id="chk2">
+            [2] : <input type="checkbox" name="chk" id="chk3">
+            [3] : <input type="checkbox" name="chk" id="chk4" checked>
+            [4] : <input type="checkbox" name="chk" id="chk5">
+            length : 5
+            */
+            $("input[name=chk]").click(function () {
+                if ($(this).is(":checked") == true) {
+                    console.log($(this).attr("id") + "요소는 체크된 상태입니다.");
+                } else {
+                    console.log($(this).attr("id") + "요소는 해제된 상태입니다.");
+                }
+
+                let cnt = 0; // 1 -> 2
+
+                $.each($("input[name=chk]"), function () {
+                    if ($(this).is(":checked")) cnt++ // $("input[name=chk]")[0], $("input[name=chk]")[3]에 의해 if문 2회 실행
+                });
+
+                // 2 == $("input[name=chk]").length => 같지 않음
+                if (cnt == $("input[name=chk]").length) {
+                    $("#allchk").prop("checked", true);
+                } else {
+                    // prop(속성명, 속성값) : 해당 속성을 속성값으로 변경
+                    $("#allchk").prop("checked", false);
+                }
+            });
+
+            $("input[name=allchk], label[for=allchk]").click(function () {
+                var allchk;
+                if (this.tagName == "INPUT") {
+                    allchk = $(this).is(":checked"); // true
+                } else {
+                    // .prev() : 바로 위의 형요소
+                    allchk = $(this).prev().is(":checked");
+                }
+
+                $.each($("input[name=chk]"), function () {
+                    // $("input[name=chk]")[0] ~ [4]의 checked 속성을 allchk 변수의 값으로 변경. => $("input[name=allchk]) 태그의 상태에 따라 체크, 체크해제 처리
+                    $(this).prop("checked", allchk);
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="outer_wrap">
+        <h1>is()</h1>
+        <section id="inner_1">
+            <h2>문단 태그 영역</h2>
+            <p>내용1</p>
+            <p style="display: none;">내용2</p>
+            <p style="visibility: hidden;">내용3</p>
+        </section>
+
+        <section id="inner_2">
+            <h2>폼 태그 영역</h2>
+            <p>
+                <input type="checkbox" name="allchk" id="allchk">
+                <label for="allchk">모두체크</label><br>
+
+                <input type="checkbox" name="chk" id="chk1">
+                <label for="chk1">체크1</label>
+
+                <input type="checkbox" name="chk" id="chk2">
+                <label for="chk2">체크2</label>
+
+                <input type="checkbox" name="chk" id="chk3">
+                <label for="chk3">체크3</label>
+
+                <input type="checkbox" name="chk" id="chk4" checked>
+                <label for="chk4">체크4</label>
+
+                <input type="checkbox" name="chk" id="chk5">
+                <label for="chk5">체크5</label>
+            </p>
+        </section>
+    </div>
+</body>
+
+</html>

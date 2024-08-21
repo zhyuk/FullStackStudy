@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        img {
+            width: 400px;
+            max-width: 1120px;
+            min-width: 200px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../240731/img/cute_dog.jpg">
+
+    <script>
+        let cnt = $('img').eq(0).width();
+        console.log(cnt);
+
+        $(document).on('wheel', function (event) {
+            // event.originalEvent.wheelDelta : 마우스의 위, 아래 스크롤값을 가져온다.
+            // 양수값: 휠 올림, 음수값: 휠 내림
+            var wheel = event.originalEvent.wheelDelta;
+            // console.log(wheel);
+
+            if (wheel >= 0) {
+                cnt += 50;
+                if (cnt > 1120) {
+                    cnt = 1120;
+                    return;
+                }
+            } else {
+                cnt -= 50;
+                if (cnt < 200) {
+                    cnt = 200;
+                    return;
+                }
+            }
+            $('img').eq(0).width(cnt);
+        });
+
+        $(document).on('mousedown', function (event) {
+            var mWhich = event.which;
+            // console.log(mWhich);
+
+            if (mWhich == 3) {
+                cnt = 400;
+                $('img').eq(0).width(cnt);
+            }
+        });
+
+    </script>
+</body>
+
+</html>

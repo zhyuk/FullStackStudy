@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        select#rel_site {
+            padding: 10px;
+        }
+
+        button {
+            height: 30px;
+        }
+
+        input[type='text'] {
+            height: 26px;
+        }
+
+        .clip {
+            display: none;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#rel_site").on('change', function () {
+                $('.txt').text($(this).val()); // $(this).val() : select 태그의 선택된 option 값
+            });
+
+            // change와 동일하게 동작함. 다만, select는 값이 변경될 때 동작하기 위해 change 권장.
+            // $("#rel_site").on('click', function () { 
+            //     $('.txt').text($(this).val());
+            // });
+
+            $('button').click(function () {
+                $("input").change(); // 매개변수가 없는 change() : 해당 태그의 onchange() 함수 강제 실행 => input 태그의 onchange() 함수 강제실행
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <h2>해당 요소의 값이 변경되면 change이벤트가 발생</h2>
+    <select id="rel_site">
+        <option value="">사이트 선택</option>
+        <option value="www.google.com">구글</option>
+        <option value="www.naver.com">네이버</option>
+        <option value="www.daum.net">다음</option>
+    </select>
+    <p class="txt"></p>
+    <br>
+    <hr><br>
+
+    <h2>버튼을 클릭하면 input의 change이벤트를 강제로 발생시킴</h2>
+    <button>클릭</button>
+    <input type="text" onchange="alert(this.value)" size="60" value="버튼클릭 시 input엘리먼트의 onchange이벤트 발생">
+    <br>
+    <hr>
+    <br>
+
+    <ul>
+        <li>홍길동</li>
+        <li>고길동</li>
+        <li>고영희</li>
+        <li>둘리</li>
+        <li>마이콜</li>
+    </ul>
+    <input type="search" placeholder="이름입력" id="inputName"><br>
+    <select id="bfat">
+        <option value="">추가할 위치 선택</option>
+        <option value="before">전에 추가</option>
+        <option value="atfer">후에 추가</option>
+    </select>
+
+    <input type="number" class="clip" placeholder="1~5까지 입력" min="1" max="5" style="width:100px;"><br>
+    <input type="button" class="clip" onclick="addMember()" value="새로운 회원 추가하기">
+
+    <script>
+        var position;
+        $(document).ready(function () {
+            $("#bfat").change(function () {
+                position = this.value;
+                $(".clip").show();
+            });
+        });
+
+        function addMember() {
+            let name = $('#inputName').val();
+            if (position == 'before') {
+                $(`li:nth-of-type(${$('input[type=number]').val()})`).before(`<li>${name}</li>`);
+            } else {
+                $(`li:nth-of-type(${$('input[type=number]').val()})`).after(`<li>${name}</li>`);
+            }
+
+            // 회원이 추가된 경우
+            $('input[type=number]').attr({
+                // max 속성은 li의 길이로 변경,
+                'max': `${$("li").length}`,
+                'placeholder': `1~${$('li').length}까지 입력`
+            });
+        }
+    </script>
+</body>
+
+</html>

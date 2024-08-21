@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <style>
+        img {
+            width: 140px;
+            height: 120px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $(function () {
+            /*
+            해당 엘리먼트의 width, height를 변경하는 함수
+            width(숫자값 또는 문자열로 기술);
+            height(숫자값 또는 문자열로 기술);
+            * 숫자값만 기술하는 경우 : 단위를 px로 인식함.
+            * 문자열로 기술하는 경우 : 반드시 단위를 기술해야함.
+            */
+            /* $('img') =>
+                [0] : <img src="../240731/img/cellphone.jpg" class="origin">
+                [1] : <img src="../240731/img/cellphone.jpg" class="large">
+                $('img').eq(1) => 인덱스번호가 1번인 img 태그. ->  <img src="../240731/img/cellphone.jpg" class="large">
+            */
+
+            $('img').eq(1).width(190); // 단위까지 기술하는 경우엔 '190px'로 기술
+            $('img').eq(1).height(170);
+            // 체이닝기법으로 처리하는 경우 : $('img').eq(1).width(190).height(170);
+
+            $('body img').on('click', function (event) {
+                // event.target은 이벤트가 발생한 대상 엘리먼트
+                // event.target == this
+                var $target = $(event.target);
+                // console.log(event.target.width);
+                $('#ptxt').empty();
+
+                if ($target.hasClass('origin')) {
+                    $('#ptxt').append('원본 가로사이즈: ' + $target.width() + 'px<br>');
+                    // document.getElementById('ptxt').innerHTML = ('원본 가로사이즈: ' + event.target.width + 'px<br>');
+                    $('#ptxt').append('원본 세로사이즈: ' + $target.height() + 'px');
+                } else {
+                    $('#ptxt').append('확대 가로사이즈: ' + $target.width() + 'px<br>');
+                    $('#ptxt').append('확대 세로사이즈: ' + $target.height() + 'px');
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <img src="../240731/img/cellphone.jpg" class="origin">
+    <img src="../240731/img/cellphone.jpg" class="large">
+    <p id="ptxt"></p>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>accordion demo</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <style>
+        h3:first-child {
+            background: red;
+        }
+
+
+        /* 이것처럼 직접 개발자 도구를 통해 스타일 제어를 해줘야 내가 원하는 방향으로 수정할 수 있음. */
+        .ui-icon,
+        .ui-widget-content .ui-icon {
+            background-image: url(../240731/img/sqpurple.gif);
+        }
+
+        .ui-icon-plus {
+            background-position: 0 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="accordion">
+        <h3>Section 1</h3>
+        <div>
+            <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget.
+                Integer ut neque. Vivamus nisi metus, molestie vel, gravida in,
+                condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros.
+                Nam mi. Proin viverra leo ut odio.</p>
+        </div>
+        <h3>Section 2</h3>
+        <div>
+            <p>Sed non urna. Phasellus eu ligula. Vestibulum sit amet purus.
+                Vivamus hendrerit, dolor aliquet laoreet, mauris turpis velit,
+                faucibus interdum tellus libero ac justo.</p>
+        </div>
+        <h3>Section 3</h3>
+        <div>
+            <p>Nam enim risus, molestie et, porta ac, aliquam ac, risus.
+                Quisque lobortis.Phasellus pellentesque purus in massa.</p>
+            <ul>
+                <li>List item one</li>
+                <li>List item two</li>
+                <li>List item three</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        $("#accordion").accordion({
+            active: false, // 페이지 로드 시 인덱스번호 번째가 열려있음. false 입력 시 아무것도 열려있지 않음.
+            animate: 1000, // 슬라이드가 1초동안 열림.
+            collapsible: true, // 제목 클릭 시 슬라이드가 열고 닫고 제어할 수 있음.
+            // event: "mouseover" // 마우스 오버 시 펼쳐지는 기능으로 변경
+            icons: { "header": "ui-icon-plus", "activeHeader": "ui-icon-minus" } // 아이콘 변경
+            // https://api.jqueryui.com/theming/icons/
+        });
+    </script>
+
+</body>
+
+</html>
