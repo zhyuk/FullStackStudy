@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>네이버 : 회원가입</title>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" href="./img/naver/naver-icon.svg">
     <link rel="stylesheet" href="./css/naver/naver.css">
 </head>
@@ -14,25 +18,29 @@
     <div id="page_wrap">
         <div class="content_inner">
             <div class="img_content">
-                <img src="./img/naver/naver_logo.png" class="main_logo" alt="네이버 텍스트 이미지" title="네이버 메인타이틀 로고">
+                <img src="./img/naver/naver_logo.png" class="main_logo" alt="네이버 텍스트 이미지" title="네이버 메인타이틀 로고"
+                    tabindex="1">
             </div>
 
             <div class="join_check">
-                <input type="checkbox" id="check" value="check" name="check">
-                <label for="check">실명 인증된 아이디로 가입</label>
+                <span tabindex="2">실명 인증된 아이디로 가입</span>
+                <i class='far fa-check-circle'></i>
             </div>
 
             <form id="join_form">
                 <table class="join_table title_font">
                     <tr>
                         <td class="userid">
-                            <input type="text" id="userid" class="input padding_inner" name="userid" placeholder="아이디">
+                            <input type="text" id="userid" class="input padding_inner valInput" name="userid"
+                                placeholder="아이디">
                             <span class="email_domain">@naver.com</span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="password"><input type="password" id="password" class="input padding_inner"
-                                name="password" placeholder="비밀번호"></td>
+                        <td class="password"><input type="password" id="password" class="input padding_inner valInput"
+                                name="password" placeholder="비밀번호">
+                            <i class='far fa-eye-slash'></i>
+                        </td>
                     </tr>
                     <tr>
                         <td class="email"><input type="text" id="email" class="input padding_inner" name="email"
@@ -43,16 +51,17 @@
                 <ul class="message1 message"></ul>
                 <table class="join_table">
                     <tr>
-                        <td class="name"><input type="text" id="name" class="input padding_inner" name="name"
+                        <td class="name"><input type="text" id="name" class="input padding_inner valInput" name="name"
                                 placeholder="이름"></td>
                     </tr>
                     <tr>
-                        <td class="birth"><input type="text" id="birth" class="input padding_inner" name="birth"
-                                placeholder="생년월일 8자리"></td>
+                        <td class="birth"><input type="text" id="birth" class="input padding_inner valInput"
+                                name="birth" placeholder="생년월일 8자리"></td>
                     </tr>
                     <tr>
                         <td class="telecom">
-                            <button type="button" class="padding_inner telecom_btn">통신사 선택</button>
+                            <button type="button" id="telecom" class="padding_inner telecom_btn">통신사
+                                선택</button>
                             <ul class="telecom-list font_white">
                                 <li>SKT</li>
                                 <li>SKT 알뜰폰</li>
@@ -74,6 +83,7 @@
                                     <label for="female">여자</label>
                                 </li>
                             </ul>
+
                             <ul class="contry">
                                 <li><input type="radio" id="korean" name="contry" value="korean" checked>
                                     <label for="korean">내국인</label>
@@ -82,12 +92,37 @@
                                     <label for="forigner">외국인</label>
                                 </li>
                             </ul>
+
+                            <ul class="sel-gender">
+                                <li><input type="radio" id="male" name="gender" value="male">
+                                    <label for="male">남자</label>
+                                </li>
+                                <li><input type="radio" id="female" name="gender" value="female">
+                                    <label for="female">여자</label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="none" name="gender" value="none">
+                                    <label for="none">선택안함</label>
+                                </li>
+                            </ul>
                             <div class="clear"></div>
                         </td>
                     </tr>
+
                     <tr>
-                        <td class="number"><input type="text" id="number" class="input padding_inner" name="number"
-                                placeholder="휴대전화번호"></td>
+                        <td class="contry padding_inner">
+                            <i class='fas fa-globe'></i>
+                            <select name="sel-con" id="sel-con">
+                                <option value="kor" selected>대한민국 +82</option>
+                                <option value="dnk">덴마크 +45</option>
+                                <option value="deu">독일 +49</option>
+                                <option value="esp">스페인 +34</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="number"><input type="text" id="number" class="input padding_inner valInput"
+                                name="number" placeholder="휴대전화번호"></td>
                     </tr>
                 </table>
 
@@ -96,38 +131,71 @@
                 <table class="join_table">
                     <tr>
                         <td class="padding_inner">
+                            <i class='far fa-check-circle'></i>
                             <input type="checkbox" id="agree" name="agree" value="agree">
                             <label for="agree" class="font_white"><small class="bold font_green
                                 ">[필수]</small> 인증 약관동의</label>
                             <button type="button" class="check-btn">∨</button>
                             <ul class="check-list">
-                                <li>개인정보 이용</li>
-                                <li>고유식별정보 처리</li>
-                                <li>통신사 이용약관</li>
-                                <li>인증사 이용약관</li>
-                                <li>네이버 개인정보 수집</li>
+                                <li><i class="material-icons">check</i>개인정보 이용</li>
+                                <li><i class="material-icons">check</i>고유식별정보 처리</li>
+                                <li><i class="material-icons">check</i>통신사 이용약관</li>
+                                <li><i class="material-icons">check</i>인증사 이용약관</li>
+                                <li><i class="material-icons">check</i>네이버 개인정보 수집</li>
                             </ul>
                         </td>
                     </tr>
                 </table>
 
-                <button type="submit" class="font_white bold padding_inner">인증요청</button>
+                <ul class="message message3"></ul>
+                <button type="button" id="submitBtn" class="font_white bold padding_inner">인증요청</button>
             </form>
         </div>
     </div>
 
     <script>
         $(function () {
+            // 실명 인증된 아이디로 가입 버튼 기능
+            $('.join_check').click(function () {
+                // console.log($(this).children('i').css('color'));
+                if ($(this).children('i').css('color') == 'rgb(12, 170, 92)') {
+                    $(this).children('i').css('color', 'var(--color-gray)');
+                    $('td.telecom').hide();
+                    $('td.contry').show();
+                    $('td.radio_td ul').hide();
+                    $('ul.sel-gender').css('display', 'flex');
+                } else {
+                    $(this).children('i').css('color', 'var(--color-green)');
+                    $('td.telecom').show();
+                    $('td.contry').hide();
+                    $('td.radio_td ul').css('display', 'flex');
+                    $('ul.sel-gender').hide();
+                }
+            })
+
+            // 비밀번호 보이기, 감추기 기능
+            $('td.password i').click(function () {
+                // console.log($(this).attr('class'));
+                if ($(this).hasClass('fa-eye-slash')) {
+                    $(this).removeClass('fa-eye-slash');
+                    $(this).addClass('fa-eye');
+                    $(this).prev('input').attr('type', 'text');
+                } else {
+                    $(this).addClass('fa-eye-slash');
+                    $(this).removeClass('fa-eye');
+                    $(this).prev('input').attr('type', 'password');
+                }
+            });
+
+            // 통신사 선택 기능
             $(".telecom_btn").click(function () {
                 $(".telecom-list").toggleClass("active");
                 $("td.telecom").toggleClass("active");
             });
 
-
             $(".check-btn").click(function () {
                 $(".check-list").toggleClass("active");
             });
-
 
             $(".telecom-list li").click(function () {
                 $('.telecom_btn').css("color", "white");
@@ -135,28 +203,126 @@
                 $(".telecom-list").removeClass("active");
             });
 
-
             $(".check-list li").click(function () {
                 $(this).css("color", "white");
+                $(this).children('i').css("color", "var(--color-green)");
             });
 
-            $("input").not($("input[name=password]")).not("input[name=email]").on('blur', function () {
-                // console.log($(this).val());
-                if ($(this).val() == '') {
-                    $(this).parent("td").css("border", "2px solid red");
-                    // console.log(this.name);
-                    switch (this.name) {
-                        case 'userid': $('.message1').append("<li class='userid'>아이디: 필수 정보입니다.</li>"); break;
-                        case 'name': $('.message2').append("<li class='name'>이름: 필수 정보입니다.</li>"); break;
-                        case 'birth': $('.message2').append("<li class='birth'>생년월일: 필수 정보입니다.</li>"); break;
-                        case 'number': $('.message2').append("<li class='number'>휴대전화번호: 필수 정보입니다.</li>"); break;
-                    }
+
+            // 입력창 기능
+            // $("input").not("input[name=email]").on('blur', function () {
+            //     // console.log($(this).val());
+            //     if ($(this).val() == '') {
+            //         $(this).parent("td").css("border", "2px solid red");
+            //         // console.log(this.name);
+            //         switch (this.name) {
+            //             case 'userid':
+            //                 if (!$('ul.message li').hasClass('userid')) $('.message1').append("<li class='userid'>아이디: 필수 정보입니다.</li>");
+            //                 $(this).addClass('active');
+            //                 break;
+            //             case 'password':
+            //                 if (!$('ul.message li').hasClass('password')) $('.message1').append("<li class='password'>비밀번호: 필수 정보입니다.</li>");
+            //                 $(this).addClass('active');
+            //                 break;
+            //             case 'name': if (!$('ul.message li').hasClass('name')) $('.message2').append("<li class='name'>이름: 필수 정보입니다.</li>");
+            //                 $(this).addClass('active');
+            //                 break;
+            //             case 'birth': if (!$('ul.message li').hasClass('birth')) $('.message2').append("<li class='birth'>생년월일: 필수 정보입니다.</li>");
+            //                 $(this).addClass('active'); break;
+            //             case 'number': if (!$('ul.message li').hasClass('number')) $('.message2').append("<li class='number'>휴대전화번호: 필수 정보입니다.</li>");
+            //                 $(this).addClass('active'); break;
+            //         }
+            //     } else {
+            //         $(this).parent("td").css("border", "1px solid var(--color-gray)");
+            //         $(this).removeClass('active');
+            //     }
+            // });
+
+            $('label[for="agree"]').click(function () {
+                // console.log($(this).prev().prev('i').hasClass('far'));
+                if ($(this).prev().prev('i').hasClass('far')) { // 기본값일 때임. 체크안했을때.
+                    $(this).prev().prev('i').removeClass('far');
+                    $(this).prev().prev('i').addClass('fas');
+                    $('.check-list li').each(function (idx, obj) {
+                        console.log(idx);
+                        $(this).css("color", "var(--color-white)");
+                        $(this).children('i').css("color", "var(--color-green)");
+                    });
                 } else {
-                    $(this).parent("td").css("border", "1px solid var(--color-gray)");
+                    $(this).prev().prev('i').addClass('far');
+                    $(this).prev().prev('i').removeClass('fas');
+                    $('.check-list li').each(function (idx, obj) {
+                        // console.log(idx);
+                        $(this).css("color", "var(--color-gray)");
+                        $(this).children('i').css("color", "var(--color-gray)");
+                    });
                 }
             });
 
+            $(".check-list li").click(function () {
+                $(this).css("color", "white");
+                $(this).children('i').css("color", "var(--color-green)");
+            });
 
+            let uRegex, selectTarget, result = false;
+            let msgObj = {
+                userid: '아이디: 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.',
+                password: '비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.',
+                name: '이름: 한글, 영문 대/소문자를 사용해 주세요. (특수기호, 공백 사용 불가)',
+                birth: '생년월일: 생년월일은 8자리 숫자로 입력해 주세요.',
+                number: '휴대전화번호: 휴대전화번호가 정확한지 확인해 주세요.',
+            };
+
+
+            // 유효성 검사
+            document.getElementById('submitBtn').addEventListener('click', validFnc);
+            $("input").not("input[name=email]").on('blur', validFnc);
+            function validFnc() {
+                let validInputs = document.querySelectorAll('.valInput');
+                // console.log(validInputs);
+
+                validInputs.forEach(function (obj, idx) {
+                    selectTarget = $(obj).attr('id');
+                    // console.log(selectTarget);
+
+                    let objVal = obj.value;
+                    // console.log(objVal);
+
+                    switch (selectTarget) {
+                        case 'userid': uRegex = /^[a-z0-9-_]{5,20}$/g; break;
+                        case 'password': uRegex = /^(\w|\W){8,16}$/; break;
+                        case 'name': uRegex = /^([a-zA-Z가-힣\s]){2,20}$/; break;
+                        case 'birth': uRegex = /^\d{8}$/; break;
+                        case 'number': uRegex = /^(010)-\d{4}-\d{4}$/; break;
+                    }
+
+                    if (!uRegex.test(objVal)) {
+                        if (!$('.message1 li').hasClass(selectTarget) && !$('.message2 li').hasClass(selectTarget)) {
+                            switch (selectTarget) {
+                                case 'userid': $('.message1').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
+                                case 'password': $('.message1').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
+                                case 'name': case 'birth': case 'number': $('.message2').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
+                            }
+                            result = false;
+                        }
+                        // console.log($('input').attr('id'));
+                        // console.log(selectTarget);
+                        // console.log($('.message1 li').hasClass(selectTarget));
+                    } else {
+                        $('.message1').children('.' + selectTarget).remove();
+                        $('.message2').children('.' + selectTarget).remove();
+                        $('.message3').children('.' + selectTarget).remove();
+                        $(obj).parent("td").css("border", "1px solid var(--color-gray)");
+                        $(obj).removeClass('active');
+                        result = true;
+                    }
+                    // console.log(result);
+                });
+
+                if ($(this).attr('id') == 'submitBtn') {
+                    if (result) alert('회원가입 성공');
+                }
+            }
         })
     </script>
 </body>
