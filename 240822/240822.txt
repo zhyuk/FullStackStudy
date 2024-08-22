@@ -1,0 +1,17 @@
+정규표현식 참고사이트: 
+        https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Regular_expressions
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Character_classes
+        https://developer.mozilla.org/ko/play
+
+
+# bootstrap
+        : 반응형 라이브러리
+
+        [필수조건]
+                1. meat viewport태그 기술
+                2. 필요한 css 링크 추가
+                3. 필요한 js 링크 추가
+
+                
+Bootstrap 예제 및 코드 확인 --> 
+https://getbootstrap.com/docs/5.3/examples/
