@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        클래스 만들기
+        java의 클래스처럼 변수와 함수, 생성자를 묶어놓은 집합체임.
+        클래스 안에 선언되는 변수나 함수에는 var, let, const, function 등의 키워드를 사용할 수 없다.
+        생성자나 함수 안에 this 키워드를 사용할 수 있다.
+
+        형식 : 
+        class 클래스명{
+                // 클래스변수(static) 선언
+                static 변수명 = '초기값';
+
+                // 생성자는 1개만 선언 가능하다.
+                constructor([매개변수, ...]){
+                    // 멤버변수 선언 및 초기화
+                    this.변수명 = 값;
+                    ...
+                }
+
+                // static 메소드 선언
+                static 함수명([매개변수, ...]){
+                    실행코드들;
+                    ...
+                }
+
+                // 멤버메소드 선언
+                함수명([매개변수, ...]){
+                    실행코드들;
+                    ...
+                }
+            }
+        */
+
+        class Shape {
+            // 클래스(static) 변수 - 객체를 통한 접근 불가
+            static name = 'static name변수';
+
+            // 객체변수(멤버변수) 선언됨. => 클래스명.변수명으로 접근 불가
+            name = '멤버 name 변수';
+
+            // 생성자
+            constructor(x, y) { // var s = new Shape(3, 7);에 의해 x = 3 , y = 7
+                // 멤버변수 선언됨.
+                // 만들어지는 객체에 따라 this가 인식하는 대상이 달라짐.
+                this.move(x, y); // Shape 클래스 내부의 move() 함수 실행
+            }
+
+            // 클래스 (static) 메소드 - 객체를 통한 접근 불가
+            static create(x, y) { return x * y; }
+
+            // 객체함수(멤버메소드) 선언됨. => 클래스명.함수명으로 접근 불가
+            move(x, y) {
+                this.x = x; // 객체변수 x 생성 후 값으로 3
+                this.y = y;
+            }
+
+            area() { return 50; }
+        }
+
+        var s = new Shape(3, 7); // Shape 클래스의 생성자 호출
+        console.log('s: ' + s);
+        console.log(`s.name: ${s.name}`);
+        console.log(`Shape.name: ${Shape.name}`);
+        console.log('============================');
+
+        console.log(`s.x: ${s.x}`);
+        console.log(`s.y: ${s.y}`);
+        console.log('============================');
+
+        s.name = '변경한 값으로 설정';
+        console.log(`s.name: ${s.name}`); // 객체를 통해 멤버변수 생성(추가) 및 초기화가 가능하다.
+        console.log(`Shape.name: ${Shape.name}`);
+        console.log('============================');
+
+        console.log(`Shape.create(2,5): ${Shape.create(2, 5)}`);
+        // console.log(`s.create(2,5): ${s.create(2, 5)}`); // 불가
+        console.log('============================');
+
+
+        // 자바스크립트의 클래스에는 static 키워드에 따라 객체로 접근할 수 있는지가 결정되기 때문에 구분하기 더 쉽다.
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

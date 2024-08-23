@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        ES6 문법
+            1. let 키워드 : 지역변수를 선언할 때 사용하는 키워드
+            2. const 키워드 : 지역상수를 선언할 때 사용하는 키워드
+            3. 템플릿문자열  : 백틱(`) 기호를 이용하여 문자열과 변수의 결합을 쉽게 하거나, 변수 또는 연산식을 문자열에 쉽게 기술할 수 있는 기능을 제공
+                - 형식 : `사용할 문자열 ${변수 또는 연산식 기술}`
+        */
+
+        let product = { name: '도서', price: '4,200원' };
+        document.write(`제품 ${product.name}의 가격은 ${product.price}입니다.<br>`);
+        document.write('===============================<br>');
+
+        let opr1 = 5, opr2 = 9;
+        document.write(`<br>구구단 ${opr1}단 시작<br><br>`);
+        for (let i = 1; i <= opr2; i++) {
+            document.write(`${opr1} * ${i} = ${opr1 * i}<br>`);
+        }
+        document.write('==========================================<br>');
+
+        document.write(`${opr1}와 ${opr2}를 곱한 결과값은 : ${res(opr1, opr2)}`);
+        function res(a, b) {
+            return a * b;
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

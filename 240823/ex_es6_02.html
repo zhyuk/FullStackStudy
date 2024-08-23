@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        ES6 문법
+            4. 전개연산자(Spread Operator) : 
+                - 나열된 자료를 추출하거나 연결할 때 사용하는 연산자,
+                - 변수명이나 객체명 앞에 (...)연산자를 사용함
+
+            형식 : ...객체명 또는 ...변수명
+            반드시 배열, 객체, 함수 인자 표현식([], {}, ())안에서만 사용 가능함.
+                - 배열객체 연산자 : [...객체명 또는 ...변수명]
+                - 객체 전개 연산자 : {...객체명 또는 ...변수명}
+        */
+
+        var arr1 = ['one', 'two'];
+        var arr2 = ['three', 'four', 'five'];
+        // 배열합치기
+        var combine = [arr1[0], arr1[1], arr2[0], arr2[1], arr2[2]];
+        console.log(`배열 합치기1: ${combine}`);
+
+        combine = [...arr1, ...arr2]; // ...arr1 : arr1 객체에 있는 값을 모두 가져온다. => arr1 객체의 값 + arr2 객체의 값
+        console.log(`배열 합치기2: ${combine}`);
+        console.log('====================================');
+
+        // 5. 구조분해할당 변수 : 배열형식으로 선언된 변수로 구조를 분해한 값을 자동으로 할당해주는 변수
+        var numArr = [10, 5, , 1, 99, 100];
+        var [a, b, c = '기본값 설정', ...others] = numArr;
+        /*
+            a = 10,
+            b = 5,
+            c = (원래는 empty값) => c = '기본값 설정' : 가져온 값이 null 혹은 empty인 경우 '기본값 설정'으로 대체됨.
+            ...others : numArr 배열객체의 남은 배열 모두를 배열형태로 가져옴. => others = [1, 99, 100]; 형태로 가져옴.
+            ** others과 같은 객체명은 정해진 것 없음. 내가 객체명 설정 가능.
+        */
+
+        // **불가** 전개연산자 객체는 반드시 맨 마지막에 기술되어야 한다.
+        // var [...others, a, b, c = '기본값 설정'] = numArr;
+
+        // 할당된 값이 없으면 기본값 적용, 할당된 값이 있으면 해당 값으로 적용됨
+        // var [c = '기본값 설정', a, b, ...others] = numArr;
+
+        console.log('numArr배열객체: ' + numArr);
+        console.log(`변수 a의 값은 : ${a}, 자료형은 ${typeof a}`);
+        console.log(`변수 b의 값은 : ${b}, 자료형은 ${typeof b}`);
+        console.log(`변수 c의 값은 : ${c}, 자료형은 ${typeof c}`);
+
+        console.log(`변수 others의 값은 : ${others}, 자료형은 ${typeof others}`);
+        console.log(`변수 others는 배열${Array.isArray(others) == true ? '입니다.' : '아닙니다.'}`); // true
+
+        // Object.assign(); 함수를 이용한 객체 병합 또는 새로운 객체 생성
+        // 동일한 속성명은 나중의 object객체의 값으로 덮어쓰기 되어 중복속성명이 제거되어 병합됨.
+        var obj1 = { one: '하나', two: '둘', other: -1 };
+        var obj2 = { three: '셋', four: '넷', five: '다섯', other: '테스트' };
+
+        console.log('obj1 객체: ' + obj1);
+        console.log('obj2 객체: ' + obj2);
+        console.log('=========================');
+
+        // => var newObj = { one: '하나', two: '둘', three: '셋', four: '넷', five: '다섯', other: '테스트' };
+        var newObj = Object.assign(obj1, obj2); // obj1 객체로 병합. 원본이 변경됨.
+        // var newObj = Object.assign({}, obj1, obj2); // obj1과 obj2를 병합하여 새로운 {} 객체로 반환함. => 원본 손상 X. 
+        console.log('obj1 객체: ' + obj1);
+        console.log('obj2 객체: ' + obj2);
+        console.log('newObj 객체 ' + newObj);
+        console.log('=========================');
+
+        // 객체 전개 연산자를 이용하여 객체 병합하기
+        console.log('객체 전개 연산자를 이용하여 객체 병합하기');
+        newObj = { ...obj1, ...obj2 }; // obj1 객체의 값을 모두 가져온 후 obj2 객체의 값을 모두 가져와서 newObj 객체에 저장
+        console.log('newObj 객체 ' + newObj);
+        console.log('========================');
+
+        // 객체명 또는 변수명 자리에 {}(중괄호)가 온 경우 : 구조분해할당 변수
+        var { other, ...others } = newObj;
+        // obj를 객체 전개 연산자로 받을 경우에는 반드시 속성명과 동일하게 기술해주어야 한다.
+        // 객체를 ...others로 받는 경우 새로운 object로 반환한다.
+        console.log('other 객체:' + other); // 오브젝트 객체인 경우. 객체의 키값을 의미함. => six로 작성 시 undefined 출력
+        console.log('others 객체:' + others); // 나머지 값을 others 객체에 저장
+        console.log('======================');
+
+        var obj = { 'color': 'red', 'border': 'none', 'checked': 'checked' };
+        let { color, border, checked } = obj;
+        console.log('obj: ' + obj);
+        console.log('color: ' + color); // red
+        console.log('border: ' + border); // none
+        console.log('checked: ' + checked); // checked
+        console.log('=====================');
+    </script>
+</head>
+
+<body>
+    <script>
+        function spread(arg1, ...ttt) { // 여기서 ...ttt는 배열객체 연산자임. => 매개인자로 값을 4개 보냈지만 매개변수로 2개만 있기 때문에
+            console.log('arg1: ' + arg1);
+            console.log('ttt: ' + ttt);
+        }
+        spread([1, 2, 3], 4, 5, 6);
+
+        // 객체 확장하기
+        let x = 5, y = 3;
+        let item = { x, y };
+        // let item = {'x' : x, 'y' : y} // 값 동일함
+        // let item = {'x' : x, 'y' : y};로 선언해야 하나, 속성명과 변수명이 같은 경우는 :값 형식을 생략할 수 있다.
+
+        console.log(`item객체의 x속성이 가지고 있는 값은 ${item.x}이며, y속성이 가지고 있는 값은 ${item.y}입니다.`);
+
+        let items = [1, , 5];
+        let it_1 = items[1] || 'empty인 경우 대신 적용될 수 있는 기본값 설정';
+        // A || B => A의 값이 null, undefined, empty 등 없는 값인 경우, B로 대체 ==> items[1]은 empty이기 때문에 뒤의 문자열로 대체됨
+        console.log('items배열: ' + items);
+        console.log(`it_1: ${it_1}`);
+    </script>
+</body>
+
+</html>

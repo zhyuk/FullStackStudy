@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        화살표함수(fat arrow function) :
+        - 익명함수를 화살표연산자(=>)를 사용하여 단축형식으로 표현한 함수.
+        - 익명함수와 동일하게 함수호출문의 매개인자나 객체변수를 통해 사용,호출이 가능하다.
+        - 실행코드가 한 개인 경우에는 중괄호블록 및 return문 생략이 가능하다.(자동으로 처리됨)
+
+        형식 : ([매개변수, ...]) => {실행할 코드; ... [return 값;]}
+        */
+
+        // window.onload = function(){
+        window.onload = () => {
+            let lis = document.querySelectorAll('li');
+
+            lis.forEach(function (obj) {
+                console.log(`회원이름 : ${obj.innerText}`);
+            });
+
+            console.log('=========================================');
+
+            //화살표함수로 처리한 방법
+            lis.forEach((obj) => console.log(`회원이름 : ${obj.innerText}`));
+        }
+    </script>
+</head>
+
+<body>
+    <h1>회원 리스트</h1>
+    <ul>
+        <li>고길동</li>
+        <li>고철수</li>
+        <li>고영희</li>
+        <li>고희동</li>
+        <li>둘리</li>
+        <li>또치</li>
+        <li>도우너</li>
+        <li>마이콜</li>
+    </ul>
+</body>
+
+</html>
