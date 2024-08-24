@@ -206,7 +206,6 @@
             });
             // =================================================================
 
-
             // 통신사 선택 기능
             $(".telecom_btn").click(function () {
                 $(".telecom-list").toggleClass("active");
@@ -220,8 +219,6 @@
                 $('td.telecom').children('i.icon').css('color', 'var(--color-white)');
             });
             // ====================================================
-
-
 
             // 인증 약관 동의 버튼 클릭 기능
             $('label[for="agree"]').click(function () {
@@ -268,9 +265,6 @@
             });
             // =================================================================
 
-
-
-
             // 유효성 검사
             let uRegex, selectTarget, result = false;
             let msgObj = {
@@ -282,96 +276,7 @@
                 gender: '성별: 성별을 선택해 주세요.'
             };
 
-            // 성별선택
-            // function genderChk() {
-            //     if (!$("ul.gender").is('[check]')) {
-            //         selectTarget = $("ul.gender input").attr('name');
-            //         // console.log('selectTarget: ' + selectTarget);
-            //         $("ul.gender li label").css('border', 'solid 1px red').css('color', 'red');
-            //         // console.log($('.message2 li').hasClass(selectTarget));
-            //         if (!$('.message2 li').hasClass(selectTarget)) {
-            //             // console.log(msgObj[selectTarget]);
-            //             // console.log(msgObj);
-            //             $('.message2').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`);
-            //         }
-            //     } else {
-            //         $("ul.gender li label").css('border', 'solid 1px var(--color-gray)').css('color', 'var(--color-gray)');
-            //     }
-            // }
-
-            document.getElementById('submitBtn').addEventListener('click', validFnc);
             $("input").not("input[name=email]").on('blur', validFncOnce);
-
-
-            function validFnc() {
-                let validInputs = document.querySelectorAll('.valInput');
-                // console.log(validInputs);
-
-                validInputs.forEach(function (obj, idx) {
-                    selectTarget = $(obj).attr('id');
-                    // console.log(selectTarget);
-
-                    let objVal = obj.value;
-                    // console.log(objVal);
-
-                    switch (selectTarget) {
-                        case 'userid': uRegex = /^[a-z0-9-_]{5,20}$/g; break;
-                        case 'password': uRegex = /^(\w|\W){8,16}$/; break;
-                        case 'name': uRegex = /^([a-zA-Z가-힣\s]){2,20}$/; break;
-                        case 'birth': uRegex = /^\d{8}$/; break;
-                        case 'number': uRegex = /^(010)-\d{4}-\d{4}$/; break;
-                    }
-
-                    if (objVal == '') {
-                        msgObj = {
-                            userid: '아이디: 필수 정보입니다.',
-                            password: '비밀번호: 필수 정보입니다.',
-                            name: '이름: 필수 정보입니다.',
-                            birth: '생년월일: 필수 정보입니다.',
-                            number: '휴대전화번호: 필수 정보입니다.',
-                            gender: '성별: 성별을 선택해 주세요.'
-                        };
-
-                        if (!$('.message1 li').hasClass(selectTarget) && !$('.message2 li').hasClass(selectTarget)) {
-                            switch (selectTarget) {
-                                case 'userid': $('.message1').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
-                                case 'password': $('.message1').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
-                                case 'name': case 'birth': case 'number': $('.message2').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
-                            }
-                            result = false;
-                        }
-                    }
-                    if (!uRegex.test(objVal)) {
-                        if (!$('.message1 li').hasClass(selectTarget) && !$('.message2 li').hasClass(selectTarget)) {
-                            switch (selectTarget) {
-                                case 'userid': $('.message1').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
-                                case 'password': $('.message1').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
-                                case 'name': case 'birth': case 'number': $('.message2').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
-                            }
-                            result = false;
-                        }
-                        // console.log($('input').attr('id'));
-                        // console.log(selectTarget);
-                        // console.log($('.message1 li').hasClass(selectTarget));
-                    } else {
-                        $('.message1').children('.' + selectTarget).remove();
-                        $('.message2').children('.' + selectTarget).remove();
-                        $('.message3').children('.' + selectTarget).remove();
-                        $(obj).parent("td").css("border", "1px solid var(--color-gray)");
-                        $(obj).removeClass('active');
-                        result = true;
-                    }
-                    // console.log(result);
-                });
-
-                // 유효성 충족 시 회원가입
-                if ($(this).attr('id') == 'submitBtn') {
-                    // genderChk();
-                    if (result) alert('회원가입 성공');
-                }
-            }
-            // =================================================================
-
             // 인풋태그 벗어나면 실행되는 유효성 검사.
             function validFncOnce() {
                 let obj = this;
@@ -442,6 +347,23 @@
                 //     $("input[name='number']").text(objVal);
                 // }
 
+                // 성별선택
+                // function genderChk() {
+                //     if (!$("ul.gender").is('[check]')) {
+                //         selectTarget = $("ul.gender input").attr('name');
+                //         // console.log('selectTarget: ' + selectTarget);
+                //         $("ul.gender li label").css('border', 'solid 1px red').css('color', 'red');
+                //         // console.log($('.message2 li').hasClass(selectTarget));
+                //         if (!$('.message2 li').hasClass(selectTarget)) {
+                //             // console.log(msgObj[selectTarget]);
+                //             // console.log(msgObj);
+                //             $('.message2').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`);
+                //         }
+                //     } else {
+                //         $("ul.gender li label").css('border', 'solid 1px var(--color-gray)').css('color', 'var(--color-gray)');
+                //     }
+                // }
+
                 // 유효성 충족 시 회원가입
                 if ($(this).attr('id') == 'submitBtn') {
                     // genderChk();
@@ -449,6 +371,77 @@
                 }
             }
             // ==============================================================================
+
+            document.getElementById('submitBtn').addEventListener('click', validFnc);
+
+            function validFnc() {
+                let validInputs = document.querySelectorAll('.valInput');
+                // console.log(validInputs);
+
+                validInputs.forEach(function (obj, idx) {
+                    selectTarget = $(obj).attr('id');
+                    // console.log(selectTarget);
+
+                    let objVal = obj.value;
+                    // console.log(objVal);
+
+                    switch (selectTarget) {
+                        case 'userid': uRegex = /^[a-z0-9-_]{5,20}$/g; break;
+                        case 'password': uRegex = /^(\w|\W){8,16}$/; break;
+                        case 'name': uRegex = /^([a-zA-Z가-힣\s]){2,20}$/; break;
+                        case 'birth': uRegex = /^\d{8}$/; break;
+                        case 'number': uRegex = /^(010)-\d{4}-\d{4}$/; break;
+                    }
+
+                    if (objVal == '') {
+                        msgObj = {
+                            userid: '아이디: 필수 정보입니다.',
+                            password: '비밀번호: 필수 정보입니다.',
+                            name: '이름: 필수 정보입니다.',
+                            birth: '생년월일: 필수 정보입니다.',
+                            number: '휴대전화번호: 필수 정보입니다.',
+                            gender: '성별: 성별을 선택해 주세요.'
+                        };
+
+                        if (!$('.message1 li').hasClass(selectTarget) && !$('.message2 li').hasClass(selectTarget)) {
+                            switch (selectTarget) {
+                                case 'userid': $('.message1').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
+                                case 'password': $('.message1').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
+                                case 'name': case 'birth': case 'number': $('.message2').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
+                            }
+                            result = false;
+                        }
+                    }
+                    if (!uRegex.test(objVal)) {
+                        if (!$('.message1 li').hasClass(selectTarget) && !$('.message2 li').hasClass(selectTarget)) {
+                            switch (selectTarget) {
+                                case 'userid': $('.message1').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
+                                case 'password': $('.message1').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
+                                case 'name': case 'birth': case 'number': $('.message2').append(`<li class='${selectTarget}'> ${msgObj[selectTarget]}</li>`); $(obj).addClass('active'); $(obj).parent("td").css("border", "2px solid red"); break;
+                            }
+                            result = false;
+                        }
+                        // console.log($('input').attr('id'));
+                        // console.log(selectTarget);
+                        // console.log($('.message1 li').hasClass(selectTarget));
+                    } else {
+                        $('.message1').children('.' + selectTarget).remove();
+                        $('.message2').children('.' + selectTarget).remove();
+                        $('.message3').children('.' + selectTarget).remove();
+                        $(obj).parent("td").css("border", "1px solid var(--color-gray)");
+                        $(obj).removeClass('active');
+                        result = true;
+                    }
+                    // console.log(result);
+                });
+
+                // 유효성 충족 시 회원가입
+                if ($(this).attr('id') == 'submitBtn') {
+                    // genderChk();
+                    if (result) alert('회원가입 성공');
+                }
+            }
+            // =================================================================
         })
     </script>
 </body>
