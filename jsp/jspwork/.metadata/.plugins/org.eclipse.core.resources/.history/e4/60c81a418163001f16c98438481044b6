@@ -1,0 +1,8 @@
+package com.dto;
+
+public class MemberBean {
+	private int id;
+	private String name = "이루마";
+	private String[] hobby = new String[3];
+
+}

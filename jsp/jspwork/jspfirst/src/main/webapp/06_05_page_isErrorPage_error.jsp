@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ page isErrorPage="true" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Directives Tag</title>
+</head>
+<body>
+	<h4>에러가 발생되었습니다.</h4>
+	<h5>exception 내장 객체 변수</h5>
+	<%
+		// exception 내장 객체를 사용하여 이전 페이지의 에러 정보를 가져옴. PrintWriter()를 사용하여 body태그에 에러를 출력해줌
+		exception.printStackTrace(new java.io.PrintWriter(out));
+	%>
+</body>
+</html>

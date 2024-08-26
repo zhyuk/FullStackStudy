@@ -1,0 +1,15 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%-- <%@ page isELIgnored="true"%> <!-- 표현언어를 무시한다는 의미. --> --%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Directives Tag</title>
+</head>
+<body>
+	<%
+	request.setAttribute("RequestAttribute", "request 내장 객체");
+	%>
+	${RequestAttribute}
+</body>
+</html>

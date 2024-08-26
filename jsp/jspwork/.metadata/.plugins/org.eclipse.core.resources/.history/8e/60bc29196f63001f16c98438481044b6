@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" padgeEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Directives Tag</title>
+</head>
+<body>
+	<%
+		out.print("에러테스트");
+		String str = null;
+		out.println(str.toString());
+	%>
+	<%-- 주석처리 --%>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="com.dto.MemberBean"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+	MemberBean mb = new MemberBean();
+	mb.setId(240302001);
+	out.print("나이: " + mb.getId() + "<br>");
+	%>
+
+	이름: <%=mb.getName()%><br>
+
+
+	<jsp:useBean id="date" class="java.util.Date"/>
+	<p><% out.print("오늘의 날짜 및 시각"); %></p>
+	<p><%=date.toLocaleString() %><br><br></p>
+</body>
+</html>
