@@ -19,3 +19,26 @@
 8월 26, 2024 17:15:11.178 Created TensorFlow Lite XNNPACK delegate for CPU.
 8월 26, 2024 17:32:32.781 Created TensorFlow Lite XNNPACK delegate for CPU.
 8월 26, 2024 17:33:38.60 Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 27, 2024 09:47:47.908 NEW SESSION
+8월 27, 2024 09:47:47.908 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 09:58:32.595 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 10:57:05.882 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 11:53:43.202 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 12:39:12.41 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 12:39:44.328 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 12:52:03.01 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 13:00:38.936 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 13:18:17.970 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 14:47:44.611 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 16:01:38.816 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 16:08:28.620 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 16:12:20.396 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 16:12:52.853 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 16:31:13.568 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 16:51:17.698 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 16:51:54.713 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 17:20:34.993 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 17:50:42.40 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 17:58:49.12 Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 27, 2024 18:15:33.845 [9692:1040:0827/181533.844:ERROR:device_event_log_impl.cc(196)] [18:15:33.845] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.

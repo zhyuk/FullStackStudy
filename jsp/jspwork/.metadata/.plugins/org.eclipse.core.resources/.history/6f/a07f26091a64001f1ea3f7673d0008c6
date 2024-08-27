@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.Enumeration"%>
+<%@ page import="java.util.Map"%>
+
+<%
+// request의 데이터 영역에 저장된 데이터(post 방식)의 인코딩만 설정할 때 사용함.
+// get 방식은 인코딩 안됨. get 방식은 방식에 따라 웹페이지의 인코딩이나 브라우저의 인코딩으로 적용됨
+request.setCharacterEncoding("utf-8");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>request 객체의 파라미터를 가져오는 메소드 종류</title>
+</head>
+<body>
+
+</body>
+</html>

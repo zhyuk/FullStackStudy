@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+	/* request.setCharacterEncoding("utf-8"); --> post 방식이여도 작성하지 않아도 문제 없음. 
+		=> 아스키코드의 범위에서 벗어날 경우에만 깨지는데, admin과 1234는 범위 벗어나지 X 
+	*/
+		String userid = request.getParameter("id");
+		String password = request.getParameter("passwd");
+	%>
+	
+	<p> 아이디 : <%= userid %></p>
+	<p> 비밀번호 : <%= password %></p>
+</body>
+</html>

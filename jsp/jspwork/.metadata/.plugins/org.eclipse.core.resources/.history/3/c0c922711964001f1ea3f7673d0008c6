@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>폼 생성</title>
+</head>
+<body>
+	<form action="08_05_01_formparameter.jsp" method="post">
+	<!-- 	<form action="08_04_requestInfo.jsp?id=admin" method="post"> -->
+		<label>이름: <input type="text" name="name" size="30"></label><br>
+		<label>주소: <input type="text" name="address" size="30"></label>
+	</form>
+</body>
+</html>

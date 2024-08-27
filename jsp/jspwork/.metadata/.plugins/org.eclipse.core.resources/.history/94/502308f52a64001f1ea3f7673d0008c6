@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+	request.setCharacterEncoding("utf-8");
+	%>
+	
+	<jsp:useBean id="memberBean" class="com.dto.MemberBean"/>
+	<jsp:setProperty name="memberBean" property="*"/>
+	<%-- 	<jsp:setProperty name="memberBean" property="id" param="user_id"/> --%>
+	<%-- 	<jsp:setProperty name="memberBean" property="name" param="name"/> --%>
+	
+	아이디: <jsp:getProperty property="id" name="memberBean"/><br> 
+	이름: <jsp:getProperty property="name" name="memberBean"/><br> 
+	취미: <jsp:getProperty property="hobby" name="memberBean"/>
+</body>
+</html>

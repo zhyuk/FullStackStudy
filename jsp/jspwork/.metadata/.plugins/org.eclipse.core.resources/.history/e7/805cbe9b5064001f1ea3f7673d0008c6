@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.io.*, java.util.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table border="1">
+		<tr><th>요청 파라미터 이름</th><th>요청 파라미터 값</th></tr>
+		<%
+			request.setCharacterEncoding("UTF-8"); // post 방식이라 기술함.
+			
+			// Enumeration : 중복 속성명이 있을 경우, 1개만 가지고 옴.
+			// getParameterNames() : 파라미터의 속성명을 가지고 옴. -> 여기서는 form 태그의 입력요소 name을 의미
+			/*	
+				request Parameter영역(post)
+				속성명(name)	속성값(value)
+				-----------------------------------
+				id		admin
+				passwd		1234
+				phone1		010
+				phone2		1111
+				phone3		1111
+				gender		남성
+				hobby1		"독서"
+				comment		"안녕"
+				-----------------------------------
+			*/
+			Enumeration<String> paramNames = request.getParameterNames();
+			
+			while(paramNames.hasMoreElements()){
+					String name = (String)paramNames.nextElement();
+					out.print("<tr><td>" + name + "</td>\n");
+					
+					String paramValue = request.getParameter(name);
+					out.println("<td>" + paramValue + "</td></tr>");
+			}
+		%>
+	</table>
+</body>
+</html>
