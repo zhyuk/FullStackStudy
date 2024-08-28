@@ -1,0 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%@ page trimDirectiveWhitespaces = "true" %>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그 메시지 기록</title>
+</head>
+<body>
+속성 설정 : <%= application.getAttribute("fruit") %>
+</body>
+</html>

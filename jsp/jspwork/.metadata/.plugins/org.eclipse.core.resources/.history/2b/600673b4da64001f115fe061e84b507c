@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>현재페이지1 url : <%= request.getRequestURL() %></h2>
+	<h2>현재페이지2 url : http://localhost:8090/jspfirst/08_05_03_requestInfo.jsp</h2>
+	<h3>포로토콜 : http</h3>
+	<h3>ip주소(=서버이름) : localhost</h3>
+	<h3>포트번호 : 8090</h3>
+	<h3>경로 : /jspfirst/08_05_03_requestInfo.jsp</h3>
+	<dl>
+		<dt><strong style="font-weight:border">localhost 정보</strong></dt>
+		<dt></dt>
+		<dt></dt>
+	</dl>
+</body>
+</html>

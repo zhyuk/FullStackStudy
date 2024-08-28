@@ -1,0 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLEncoder" %>
+<!DOCTYPE html>
+<%
+	String value = "자바";
+	String encodedValue = URLEncoder.encode(value, "UTF-8");
+// 	response.sendRedirect("08_06_index,jsp?name" + value);
+	response.sendRedirect("08_06_index,jsp?name" + encodedValue);
+	/* sendRedirect : 리다이렉트 방식의 페이지 이동방식.
+		현재 url을 기준으로 상대경로로 작성해야 함.
+	*/
+%>

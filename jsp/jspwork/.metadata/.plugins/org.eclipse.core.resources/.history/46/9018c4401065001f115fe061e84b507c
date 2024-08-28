@@ -1,0 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.Calendar, java.net.URLEncoder"%>
+<%
+	// 시간에 대한 정보 + Calendar 클래스에 담긴 메소드, 변수 등 사용가능하도록 복제한 상태
+	Calendar cal = Calendar.getInstance();
+	request.setAttribute("time", cal);
+// 	application.setAttribute("time", cal);
+	String path = "10_02_viewTime.jsp?time=" + URLEncoder.encode("시간", "UTF-8");
+%>
+<jsp:forward page="<%=path%>" />

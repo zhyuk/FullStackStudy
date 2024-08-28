@@ -1,0 +1,52 @@
+#URI, URL
+	[참고] https://hanamon.kr/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B8%B0%EB%B3%B8-url-uri-urn-%EC%B0%A8%EC%9D%B4%EC%A0%90/
+	* URN : 컨텍스트명부터 파일명까지 또는 컨텍스트명을 제외한 파일명
+	* URL : 프로토콜부터 파일명까지 전부
+
+#데이터 전송하는 방식 및 방법
+	*POST방식 : form태그의 method를 post로 설정하여 전송
+	*GET방식 :
+		1. form태그의 method를 get으로 설정하여 전송
+		2. 페이지를 이동할 수 있는 url경로 뒤에 쿼리문자열을 기술하여 전송
+			예) <a href="08_05_03_request05.jsp?nowPage=1">1</a>
+			예) location.href = "08_05_03_request05.jsp?nowPage="1"
+		3. jsp:param 태그를 사용하여 전송(반드시 보내는 곳에서 인코딩, 받는 곳에서 디코딩처리를 해주어야 한다.)
+
+#jsp 내장객체 response
+	* request => HttpServletRequest 자료형으로 만든 객체
+	* response => 서버가 응답하는 모든 전반적인 정보와 기능을 담고 있는 jsp내장객체. 페이지 이동(리다이렉트 방식만), 파일 생성, 로그 기록, 쿠키 생성, 응답시 필요한 데이터들을 전송하거나 할 때 사용하는 객체. => HttpServletResponse 자료형으로 만든 객체
+
+# 컨텍스트 변경방법 
+** [필독] *.xml, *.java 파일을 수정할 때 서버를 닫고 수정해야한다.
+** [필독] path 설정 시 앞에 /를 먼저 기술해야 한다.
+	
+	* 이클립스에서 변경
+	1. Servers 탭 선택 -> 톰캣 더블클릭 -> 하단의 module 탭 선택하면 나오는 화면에서 변경하고자하는 프로젝트명 선택 -> 좌측의 edit 메뉴 선택 -> 팝업창에서 변경하고자하는 path 입력.
+	예) "/md" 또는 "/"(=>컨텍스트를 없앰) 기본값: "/프로젝트명"
+
+	2. 좌측의 project Explore탭 안의 Servers 폴더 선택 -> 톰캣 폴더 확장하면 나오는 파일 중 server.xml 파일 선택하여 열기 -> 파일 맨 하단 <Host></Host> 태그 안의 가장 마지막에 있는 <Context ~~ /> 태그 수정
+	예) <Context docBase="프로젝트명" path="/변경하고자하는경로명" reloadable="true"/>
+
+	* apache tomcat에서 직접 수정하기
+	1. [apache tomcat-버전] 폴더 선택 ->conf 폴더 -> server.xml 파일 열기 -> 파일 맨 하단 <Host></Host> 태그 안의 가장 마지막에 <Context ~~ /> 태그 기술(추가)
+	예) <Context docBase="프로젝트명" path="/변경하고자하는경로명" reloadable="true"/>
+
+#application 내장객체
+	: jsp에서 제공하는 내장객체로 어플리케이션(프로젝트 단위)의 전반적인 정보와 기능들을 담고 있는 객체임. 프로젝트가 실행되는 순간부터 프로젝트가 종료되는 순간까지 살아있는 가장 넓은 범위의 생명주기를 가진 객체임
+
+	* application.getResourceAsStream("파일경로설정") : 파일경로 앞의 "/"가 의미하는 것은 /앞에 컨텍스트의 경로까지 존재한다는 의미이다.
+	즉, 파일경로에 /message/notice.txt 기술하면  http://localhost:8090/jsptwo/message/notice.txt를 의미하게 된다.
+	만약 notice.txt 파일이 webapp/test/message/안에 존재한다면
+
+* request 객체의 응답이 완료될 때까지 = html로 컴파일하기 전까지를 의미.
+
+#jsp 예외처리
+	* 자바 예외처리
+	1. try ~~ catch
+	2. throws
+
+	* jsp 예외처리 [우선순위가 높은 것부터 기술]
+	1. try ~~ catch
+	2. page지시태그의 errorPage속성
+	3. web.xml에 <error~~~> 태그로 지정하는 예외처리
+	4. 브라우저에서 자동으로 제공하는 기본 예외처리

@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<ul>
+		<li>요청정보 프로토콜 = <%= request.getProtocol() %></li>
+		<li>요청정보 전송방식 = <%= request.getMethod() %></li>
+		<li>
+			현재페이지의 URI(요청 URI) = <%= request.getRequestURI() %><br>
+			현재페이지의 URL(요청 URL) = <%= request.getRequestURL() %><br>
+		</li>
+	</ul>
+</body>
+</html>
