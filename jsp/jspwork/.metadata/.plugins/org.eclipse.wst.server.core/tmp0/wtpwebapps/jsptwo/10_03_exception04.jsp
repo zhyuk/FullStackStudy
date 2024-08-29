@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%
+		// 에러페이지 만들기
+// 		String str = "클래스명 오류";
+// 		out.println(str);
+	%>
 </body>
 </html>

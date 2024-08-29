@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.oreilly.servlet.*" %>
+<%@ page import="com.oreilly.servlet.multipart.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.io.*" %>
+<%
+	// MultipartRequest(request객체, "파일저장경로", 최대허용용량, "인코딩설정",new DefaultFileRenamePolicy());
+	// DefaultFileRenamePolicy() 메소드는 파일이름이 중복될 경우 파일명 뒤에 1과 같은 숫자를 붙여 파일 이름을 rename해주는 역할을 한다.
+	// MultipartRequest는 객체를 생성하자마자 파일을 바로 업로드한다.
+	// 파일을 저장할 경로는 직접 써주기 보다는 톰캣의 내장 객체인 application 객체의 getRealPath() 메소드를 사용하는 것이 좋다.
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

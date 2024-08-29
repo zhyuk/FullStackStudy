@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="org.apache.commons.fileupload.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.io.*" %>
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>File Upload</title>
+</head>
+<body>
+	<%
+		// 현재 파일 위치의 상대경로 지정 가능
+		// String savaPath = application.getRealPath("파일을 저장할 폴더");
+		// 예시: String savaPath = application.getRealPath("\product");
+		String fileUploadPath = "C:\\uploadts";
+		
+		// 파일업로드를 위해 객체 생성
+		DiskFileUpload upload = new DiskFileUpload();
+		
+		// 파일최대크기 용량제한 . 최대로 업로드할 수 있는 파일의 크기를 
+	%>
+</body>
+</html>

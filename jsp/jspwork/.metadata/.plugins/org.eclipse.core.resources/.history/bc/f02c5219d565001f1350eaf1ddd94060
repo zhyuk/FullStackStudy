@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="org.apache.commons.fileupload.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.io.*"%>
+<%@ page import="java.sql.*"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>File Upload</title>
+</head>
+<body>
+	<%
+		// 현재 파일 위치의 상대경로 지정 가능
+		// String savaPath = application.getRealPath("파일을 저장할 폴더");
+		// 예시: String savaPath = application.getRealPath("\product");
+		String fileUploadPath = "C:\\uploadts";
+		
+		// 파일업로드를 위해 객체 생성
+		DiskFileUpload upload = new DiskFileUpload();
+		
+		// 파일최대크기 용량제한 . 최대로 업로드할 수 있는 파일의 크기를 바이트 단위로 지정
+		// upload.setSizeMax(2 * 1024 * 1024); // 2MB 정도 = 1 * 1024 * 1024
+		
+		// 폼페이지에서 전송된 요청 파라미터 가져오기
+		List items = upload.parseRequest(request);
+		// 요청 파라미터를 모아놓은 items 배열객체를 가져오기 쉽게 iterator 객체로 변환함.
+		Iterator<FileItem> params = items.iterator();
+		
+		while (params.hasNext()){
+			FileItem fileItem = params.next();
+			if (fileItem.isFormField()){
+				// 필드 이름 = 파라미터명 = 속성명
+				String name = fileItem.getFieldName();
+				// 필드 값 = 파라미터 값 = 속성값, 한글 인코딩
+				String value = new String(fileItem.getString().getBytes("8859_1"), "utf-8");
+				out.print(name + ": " + value + "<br>");
+			} else {
+				String fileName = fileItem.getName();
+				out.print("originfileName: " + fileName + "<br>");
+				fileName = fileName.substring(fileName.lastIndexOf("\\") +1);
+				File file = new File(fileUploadPath + "/" + fileName);
+				String originName = fileName;
+				
+				// 동일한 파일명이 존재하는 경우 파일명 변경하기
+				// => 동일한 파일이 존재하는 경우 새 이름 생성하기
+				if (file.exists()){
+					Timestamp ts = new Timestamp(System.currentTimeMillis());
+					long stl = ts.getTime();
+					fileName = tsl + fileName.subString(fileName.lastIndexOf("\\") +1);
+				}
+			}
+		}
+	%>
+</body>
+</html>

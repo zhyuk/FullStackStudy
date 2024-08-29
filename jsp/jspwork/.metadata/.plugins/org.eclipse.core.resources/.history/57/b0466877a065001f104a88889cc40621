@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>jsptwo</display-name>
+  <!-- error-page태그는 한 개의 에러 페이지를 지정함. -->
+  	<!-- error-code: http에러코드 값으로 설정 -->
+  	<!-- location: 해당 에러가 발생될 경우 띄울 에러페이지 경로를 설정 -->
+  <error-page>
+	  	<error-code>404</error-code>
+	  	<!--  web.xml에 입력하는 모든 경로의 "/"는 해당 경로 앞에 컨텍스트명까지 존재한다는 의미를 가짐. -->
+	  	<location>/error/error404.jsp</location>
+  </error-page>
+  
+  <error-page>
+  		<error-code>500</error-code>
+  		<location>/error/error500.jsp</location>
+  </error-page>
+  
+  <!-- exception-type태그: 익셉션 종류별로 에러 페이지 지정 가능 -->
+  <error-page>
+  		<exception-type>java.lang.NullPointException</exception-type>
+  		<location>/error/errorNullPointer.jsp</location>
+  </error-page>
+  
+  <!--  url에 컨텍스트까지 입력하고 접속하면 자동으로 출력해줌 -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+</web-app>
