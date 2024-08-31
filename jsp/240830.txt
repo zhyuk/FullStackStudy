@@ -1,0 +1,68 @@
+#JSTL (JSP Standard Tag Library)
+	: jsp표준 태그 라이브러리로 jsp의 기본태그, 액션태그 등으로는 처리하기 힘든 부분들에 대해 편리하게 처리할 수 있는 기능을 제공해주는 커스텀태그임
+	- JSP에서 반복과 조건, 데이터 관리 포맷, XML 조작, 데이터베이스 액세스 등을 구현하는 커스텀 태그 라이브러리 모음.
+	[형식]<%@ taglib prefix="태그명(영어로기술)" uri="jstl태그라이브러리url주소" %>
+
+	* 프리픽스
+	[형식] : <프리픽스명:태그명 속성명=”속성값” /> 또는 <프리픽스명:태그명 속성명="속성값" ></프리픽스명:태그명>
+	정해진 프리픽스 태그명
+	- c => 코어태그
+	- fmt => 다국어태그
+	- fn => 함수태그
+	** 단축 : <%@ taglib prefix="태그명(영어로기술)" uri=까지 기술 후 스페이스바+엔터 입력 시 주소 자동처리 가능
+
+#다국어 지원처리를 위한 properties파일 생성하는 방법
+	**(src/main/java 폴더 안에 생성할 것)**
+
+	* 해당패키지와 파일이름을 생성할때 규칙
+	- 패키지 경로명.해당파일명_언어코드.properties 로 생성할것
+	[예시] 한국어,영어 기반의 properties파일 생성하는 방법
+		한국어 : com.member_ko.properties
+		영어 : com.member_en.properties
+	- 앞뒤 모두 공백을 사용하지 않는 것이 권장. => 예) id=admin idkey=id
+	- 한글로 작성 시 자동으로 유니코드로 변경. 필요 시 유니코드 변환기를 통해 확인 가능
+
+	properties 파일을 만들어두면 브라우저에서 언어를 끌고 온다.
+	- <fmt:bundle basename="패키지경로포함.파일이름까지(_언어코드.properties는 제외)"> => 예) <fmt:bundle basename="com.member">
+	=> com 패키지의 member 파일 2개를 끌어옴. 그 중 한국어 파일을 가져온다.
+
+	* 끌어온 properties파일 사용하기
+		- 출력을 하기 위해서는 var이라는 속성이 없어야 한다. => var 속성은 메세지를 저장할 변수명이기 때문에 해당 속성 입력 시 출력이 아닌 var 속성으로 지정한 변수의 메세지를 저장함.
+		- key 속성명에 해당하는 값을 작성 => <fmt:message key="읽어올 메세지 키 값" />: <fmt:message key="읽어올 메세지 키 값"/>
+			예) <fmt:message key="idkey" />: <fmt:message key="idkey"/> com 패키지의 member 한국어 파일의 idkey라는 키의 값을 가져온다.
+	[예시] <p><fmt:message key="nameKey" />: <fmt:message key="name" var="msg" />${msg}</p> ==> com 패키지의 member 파일 중 한국어 파일의 name이라는 키의 값을 가져와서 msg 변수에 넣음. 이후 ${}(EL 표현언어)를 사용해 msg 변수의 값 출력
+
+#EL(Expression Language : 표현 언어) 
+	: 변수,객체, 메소드호출,jsp액션태그나 jstl태그등에서 자유롭게 사용할수 있는 기능을 제공해줌
+	[형식] ${ 변수 또는 객체 또는 메소드 호출또는 연산식 등을 기술}
+	jsp기본 스크립트로 만든 변수 또는 객체는 가져올수 없다 => <%, <%!, <%= 등을 통해 만든 변수 또는 객체는 사용불가.
+	** jsp:액션태그로 생성한 변수나 객체,jstl로 생성한 변수나 객체, attribute로 설정한 객체등을 가져올 수 있다
+	jstl에서 연산식 정의나 jstl함수태그를 사용할때 이용하는 언어가 EL임
+	body태그에 직접 출력되는 기능을 가지고있으며, 속성값으로 존재하는 경우에는 속성값을 가져오는 기능이 있다
+
+
+#JSTL의 getter메소드 축약
+	* getter, setter메소드 형식 :
+	class Memberbean{
+		private String name;
+		private int age;
+
+		// 해당 멤버필드를 외부에서 접근하기 위해서는 getter,setter 메소드 생성해야함.
+		// getter메소드 : get+멤버필드명 *멤버필드명의 첫글자는 대문자(카멜기법). 값을 리턴하기 때문에 매개변수 필요 X
+		public String getName(){
+			return name;
+		}
+
+		// setter메소드 : set+멤버필드명 *멤버필드명의 첫글자는 대문자(카멜기법). 값을 변경해야하기 때문에 매개변수 필요함.
+		// this.name : 멤버필드 name, name : 매개변수 name
+		public String setName(String name){
+			this.name = name;
+		}
+	}
+	[예시] 13_03_jstl_core.jsp 파일
+	<c:choose>
+		<c:when test="${memberBean.name eq '고길동'}">
+			<p>이름은 ${memberBean.name}입니다.</p>
+		</c:when>
+	</c:choose>
+	여기서 memberBean.name : memberBean 객체의 getName() 메소드를 호출하는 의미임.

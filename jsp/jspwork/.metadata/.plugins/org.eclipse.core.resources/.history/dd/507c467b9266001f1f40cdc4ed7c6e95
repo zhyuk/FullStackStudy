@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Internationalization (i18n - 국제화)</title>
+</head>
+<body>
+	<p>숫자 : <fmt:formatNumber value="3200100"/></p>
+	<p>기본값(천단위구분) : <fmt:formatNumber value="3200100" type="number"/></p>
+	<p>기본값(천단위안함) : <fmt:formatNumber value="3200100" type="number" groupingUsed="false"/></p><hr>
+	
+	<p>기본값(천단위구분, 통화기호 기본 포함) : <fmt:formatNumber value="3200100" type="currency"/></p>
+	<p>기본값(천단위구분, 통화기호 설정) : <fmt:formatNumber value="3200100" type="currency" currencySymbol="&#8361;"/></p>
+	<p>기본값(천단위구분, 통화기호 설정) : <fmt:formatNumber value="3200100" type="currency" currencySymbol="$"/></p><hr>
+</body>
+</html>

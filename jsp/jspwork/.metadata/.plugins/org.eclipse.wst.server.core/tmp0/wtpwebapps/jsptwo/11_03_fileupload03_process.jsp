@@ -59,9 +59,13 @@ import javax.servlet.http.Part;
 				// 파일인 경우만 끌고 옴
 				if(part.getHeader("Content-Disposition").contains("filename=")){
 					String fileName = part.getSubmittedFileName();
+					File f = new File(path + File.separator + fileName);
+										
+					// 동일한 파일명이 있을 경우 파일명 변경하는 코드 추가
 					
 					if(part.getSize() > 0) {
 						writer.print("업로드 파일명 : " + fileName + "<br>");
+						// File.separator : 구분자가 무엇인지 알아오는 방법. 구분자 : / 또는 \\
 						writer.print("File.separator: " + File.separator + "<br><br>");
 						
 						// 실제 파일이 저장되는 시점. // 새파일이름을 설정하지 않으면 기존 파일로 덮어쓰기 됨.

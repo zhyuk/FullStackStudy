@@ -1,2 +1,22 @@
 1724893049670	Delete element
 1724918115319	Move 2 resources to 'webapp'
+1724990125140	Rename resource 'NewFile.jsp'
+1724990449861	Rename package 'combundle'
+1724990458365	Delete element
+1724990497206	Rename resource 'myBundle_m'
+1724990605124	Delete element
+1724990618922	Delete element
+1724990799986	Move file
+1724990806187	Delete element
+1724991270399	Rename resource 'member_en_properties'
+1724991281209	Rename resource 'member_ko_properties'
+1724991295595	Rename resource 'myBundle_m_ko_properties'
+1724991302146	Copy file
+1724995640127	Delete element
+1724995752417	Delete element
+1724995813751	Delete element
+1724995904450	Rename package 'com.com.bundle'
+1724995948735	Rename package 'bundle'
+1725001738935	Move 2 resources to 'webapp'
+1725003974708	Copy file
+1725004208073	Delete element

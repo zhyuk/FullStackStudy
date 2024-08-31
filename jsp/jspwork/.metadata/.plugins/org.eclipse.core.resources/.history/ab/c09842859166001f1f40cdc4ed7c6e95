@@ -1,0 +1,28 @@
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<html>
+<head>
+<title>Internationalization</title>
+</head>
+<body>
+	<p>	--------기본 로케일--------</p>
+		<fmt:setBundle basename="com.bundle.myBundle_m" var="resourceBundle" />
+	<p>	제목 :<fmt:message key="title" bundle="${resourceBundle}" /></p>
+	<p>	<fmt:message key="username" var="userMsg" bundle="${resourceBundle}" /></p>
+		이름 : ${userMsg} <br><br>
+
+	<p>	--------영문 로케일 --------</p>
+		<fmt:setLocale value="en" />
+		<fmt:setBundle basename="com.bundle.myBundle_m" var="resourceBundle" />
+	<p>	제목 :<fmt:message key="title" bundle="${resourceBundle}" /></p>
+	<p>	이름 :<fmt:message key="username" bundle="${resourceBundle}" /></p>
+	
+	<fmt:bundle basename="com.member">
+	<%-- 없는 키 혹은 오류를 가지고 오면 깨진 문자를 출력함. --%>
+		<p><fmt:message key="idKey" />: <fmt:message key="id" /></p>
+		<p><fmt:message key="passwordKey" />: <fmt:message key="password" /></p>
+		<p><fmt:message key="nameKey" />: <fmt:message key="name" var="msg" />${msg}</p>
+	</fmt:bundle>
+	
+</body>
+</html>
