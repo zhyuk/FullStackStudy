@@ -35,17 +35,22 @@
 	replace(str1, src, dest) = "${fn:replace(str1, " ", "-")}" <br>
 	indexOf(str1, str2) = "${fn:indexOf(str1, str2)}" <br>
 	
+	<!-- startsWith(요소, 값) : 요소가 값으로 시작되는지 검사. T/F 반환 -->
 	startsWith(str1, 'Fun') = "${fn:startsWith(str1, 'Fun')}" <br>
-	endsWith(str1, '합니다') = "${fn:endsWith(str1, '합니다')}" <br>
-	contains(str1, str2) = "${fn:contains(str1, str2)}"
-	 <br>
+	<!-- startsWith(요소, 값) : 요소가 값으로 끝나는지 검사. T/F 반환 -->
+	endsWith(str1, '합니다.') = "${fn:endsWith(str1, '합니다.')}" <br>
+	<!-- contains(요소1, 요소2) : 요소1에 요소2가 포함여부 검사. T/F 반환 -->
+	contains(str1, str2) = "${fn:contains(str1, str2)}"<br>
 	
 	<c:set var="smStr" value="java Server Page"/>
 	<c:set var="lgStr" value="JAVA"/>
-	containsIgnoreCase(str1, str2) = "${fn:containsIgnoreCase(smStr, lgStr)}"<br>
+	<!-- containsIgnoreCase(요소1, 요소2) : 요소1에 요소2가 대소문자 무시 후 포함여부 검사. T/F 반환 -->
+	containsIgnoreCase(smStr, lgStr) = "${fn:containsIgnoreCase(smStr, lgStr)}"<br>
 	
 	<c:set var="tokens" value="1,2,3,4,5,6,7,8,9,10"/>
+	<!-- split(요소, '구분자') : 요소를 구분자를 기준으로 짤라서 String[]로 만들어 반환. => ["1", "2", ...] -->
 	<c:set var="arr" value="${fn:split(tokens, ',')}"/>
+	<!-- join(요소, '구분자') : 요소 + 구분자 문자열로 반환. => 1-2-3.. -->
 	join(arr,"-") = "${fn:join(arr, "-")}" <br>
 	
 </body>

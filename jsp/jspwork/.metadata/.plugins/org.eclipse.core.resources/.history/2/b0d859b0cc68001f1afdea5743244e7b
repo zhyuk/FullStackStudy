@@ -1,0 +1,5 @@
+package com.dao;
+
+public class Thermometer {
+	private Map<String, Double> locationCelsiusMap = new HashMap<String, Double>();
+}

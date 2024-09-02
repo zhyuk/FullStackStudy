@@ -1,0 +1,82 @@
+#13_05_el01.jsp
+EL표기법에서 request.getParameter("code") => param.code : 파라미터명이 code인 값 가져오기
+
+#session
+	: jsp 내장객체 (HttpSession 자료형으로 만든 내장객체)
+	브라우저가 종료될 때까지 살아있는 내장객체로 대체로 로그인에 관련된 데이터를 저장하는데 사용되는 내장객체임.
+
+	클라이언트가 서버로 요청을 하면 해당 클라이언트의 세션id를 생성하고 request객체에 담아 전송함. 이 데이터를 받은 서버는 session객체를 생성 후 요청을 한 클라이언트의 서버와 1:1로 대응되는 세션정보로 세션id와 연결시킨다.
+	Attribute 영역만 존재함. -> setAttribute() : 값 설정 / getAttribute() : 값 가져오기
+
+	request객체 : 요청이 시작된 시점부터 응답이 완료된 시점까지 또는 응답완료 전이라도 리다이렉트를 만나기 전까지 살아있는 객체.
+	session객체 : 클라이언트의 요청이 처음 시작된 시작부터 브라우저를  종료한 시점까지 또는 세션객체를 초기화하기 전까지 살아있는 객체. 서버에서 생성되고 서버에서 소멸되는 객체임. 클라이언트에서 정보를 볼 수 없기 때문에 보안을 필요로 하는 데이터를 저장할 때 사용되는 객체임.
+
+	세션id : 유일하게 세선졍보 중에서 클라이언트에 저장되는 정보
+	-> 개발자도구 - Application 탭 - Cookies - 해당 도메인url 클릭하면 세션id값 확인 가능.
+
+#세션, 쿠키 : 웹 서버와 클라이언트간의 상태를 지속적으로 유지하는 방법
+	- 세션 : 웹 서버에 저장됨.
+	-> 보안성이 높으며, 웹서버 메모리 용량내에 저장가능함.
+
+	- 쿠키 : 클라이언트에 저장됨.
+	1. 암호화가 되지 않아 보안성이 낮다.
+	2. 웹서버는 웹브라우저가 전송한 쿠키를 사용해 필요한 데이터를 읽어올 수 있다.
+	3. 유효기간 미 설정 시 웹브라우저에 저장(웹 브라우저 닫을 때 삭제)
+	4. 유효기간 설정 시 사용자의 PC에 저장됨(유효기간이 지나면 자동으로 삭제)
+	5. 쿠키는 그 크기가 하나에 4KB 이하로 제한이 되어 있으며, 총 300개까지 정보를 저장할 수 있다.
+	따라서, 최대로 저장 가능한 쿠키의 용량은 1200KB 즉 1.2MB
+#필터(Filter)
+	: 요청(Request)과 응답(Response)에 대한 정보들을 변경할 수 있게 개발자들에게 제공하는 서블릿 컨테이너를 말함.
+	- javax.servlet 패키지에서 제공하는 Filter 인터페이스를 상속받아서 구현해야 함.
+	* 요청(Request) 필터 :
+	- 인증(사용자 인증)
+	- 요청 정보를 로그 파일로 작성
+	- 암호화 인코딩 작업 등의 기능을 처리
+	
+	* 응답(Response) 필터 :
+	- 응답 결과 데이터 압축
+	- 응답 결과에 내용 추가/수정
+	- 총 서비스 시간 측정
+
+	[web.xml 기술형식]
+	<filter>
+		<filter-name>필터객체명</filter-name>
+		<filter-class>패키지경로들.필터클래스명</filter-class>
+		[<init-param> // 초기파라미터. 가장 처음 1회만 실행됨.
+			<param-name>파라미터명</param-name>
+			<param-value>파라미터값</param-value>
+		</init-param>]
+		// => 패키지경로.필터클래스명 필터객체명 = new 패키지경로.필터클래스명();의 코드와 유사함.
+	</filter>
+	<filter-mapping> // filter-mapping 객체는 메소드 호출문과 유사함. 
+		<filter-name>필터객체명</filter-name>
+		<url-pattern>/url패턴기술</url-pattern> / -> web.xml에 기술하는 모든 경로에서는 컨텍스트까지 의미함.
+	</filter-mapping>
+	** url 패턴
+	/* => 전체 페이지
+	*.do => url 주소가 .do로 끝나는 요청이 들어올 때 전부(앞의 url 주소는 신경쓰지 않음.)
+	*.jsp => url 주소가 .jsp로 끝나는 요청이 들어올 때 전부(앞의 url 주소 신경 X)
+	/abcFilter => 반드시 url주소가 /abcFilter로 요청이 들어올 때(url 주소가 100% 동일해야함)
+
+	[@어노테이션 기술형식]
+	* 어노테이션 : 특정 기능을 수행하는 자바의 특수 주석. @ 기호로 시작.
+	@WebFilter(
+		filterName = "필터명",
+		urlPatterns = { "/url패턴" },
+		initParams = { // 초기파라미터. 가장 처음 1회만 실행됨.
+			@WebInitParam(name = "파라미터명", value = "파라미터값")
+		}
+	)
+
+
+#web.xml 기술순서
+	<display-name>
+	<description>
+	<context-param>
+	<filter>
+	<filter-mapping>
+	<listener>
+	<servlet>
+	<servlet-mapping>
+	<welcome-file-list> : 맨 마지막에 기술하거나 error-page순서전에 기술
+	<error-page> : 맨 마지막에 기술하거나 welcome-file-list순서 전에 기술
