@@ -1,0 +1,13 @@
+package com.dto;
+
+public class AddrVO {
+	private String zipcode;
+	private String address1;
+	private String address2;
+	private String comment;
+	
+	zipcode
+	address1
+	address2
+	comment
+}

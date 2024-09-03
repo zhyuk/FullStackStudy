@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<br>우편번호 : <%= request.getParameter("zipcode") %>
+<br>주소 : <%= request.getParameter("zipcode") %>
+<br>상세주소 : <%= request.getParameter("zipcode") %>
+<br참고사항 : <%= request.getParameter("zipcode") %>
+</body>
+</html>

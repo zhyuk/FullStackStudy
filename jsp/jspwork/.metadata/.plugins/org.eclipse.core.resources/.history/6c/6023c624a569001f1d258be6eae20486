@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>jspthree</display-name>
+
+	<!-- 필터 객체 생성 태그 -->
+	<filter>
+		<filter-name>Filter01</filter-name>
+		<filter-class>com.filter.AuthenFilter</filter-class>
+	</filter>
+
+	<!-- 필터를 실행시킬 필터객체연결 및 url패턴 설정 -->
+	<filter-mapping>
+		<filter-name>Filter01</filter-name>
+		<url-pattern>/18_01_filter01_process.jsp</url-pattern>
+	</filter-mapping>
+
+	<!-- 필터객체 생성 -->
+	<filter>
+		<filter-name>Filter02</filter-name>
+		<filter-class>com.filter.InitParamFilter</filter-class>
+		<init-param>
+			<param-name>param1</param-name>
+			<param-value>admin</param-value>
+		</init-param>
+		<init-param>
+			<param-name>param2</param-name>
+			<param-value>1234</param-value>
+		</init-param>
+	</filter>
+
+	<!-- 필터 객체 실행 조건, url패턴 설정 -->
+	<filter-mapping>
+	<filter-name>Filter02</filter-name>
+	<url-pattern>/18_01_filter02_process.jsp</url-pattern>
+	</filter-mapping>
+
+
+	<!-- 필터 객체 생성 및 초기 파라미터 설정 -->
+	<filter>
+	<filter-name>Filter02_2</filter-name>
+	<filter-class>com.filter.LogFileFilter</filter-class>
+	<init-param>
+	<param-name>filename</param-name>
+	<param-value>monitor.log</param-value>
+	</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>Filter02_2</filter-name>
+		<url-pattern>/18_01_filter02_process.jsp</url-pattern>
+	</filter-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
+</web-app>

@@ -1,0 +1,84 @@
+#Filter
+	같은 url패턴인 경우 : web.xml에 기술된 순서대로 실행
+
+
+#다음우편번호 api
+	https://postcode.map.daum.net/guide
+
+
+#jsp와 DB 연동
+	[ojdbc 다운로드]
+	1. https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6/11.2.0.4에서 jar 파일 다운로드 또는
+	2. C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib ojdbc6 파일 복사
+
+	[오라클 드라이버 준비]
+	: src-webapp-WEB-INF-lib 폴더에 ojdbc.jar 파일 추가
+	
+	[드라이버 설치]
+	: Class.forName("oracle.jdbc.driver.OracleDriver);
+
+	[연결객체 생성]
+	String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	String username = "TEST";
+	String password = "1111";
+	: Connection conn = DriverManager.getConnection(url, username, password);
+
+
+	[기본 구조]
+	<%@ page import="java.sql.*"%>
+	<%
+		Connection conn = null;
+		PreparedStatement ps = null; 또는 Statemenet st = null;
+		ResultSet rs = null; 또는 int cnt = null; // 쿼리문이 select일 때는 ResultSet 사용. 그 외에는 처리한 행 수 반환이므로 int 자료형 사용
+		try{
+			**실행태그에 작성되는 자바코드
+			Class.forName("oracle.jdbc.driver.OracleDriver);
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "사용자명", "비밀번호");
+
+			// 정적쿼리인 경우
+			st = conn.createStatemenet();
+			rs = st.executeQuery(sql문);
+
+			// 동적쿼리인 경우
+			ps = conn.PreparedStatement(sql문); // sql문에 ? 바인드변수가 있어야함.
+			ps.setString(1, 값);
+			rs = ps.executeQuery();
+
+			%>
+			<table>
+			<%
+			while(rs.next()){
+				int deptno = rs.getInt("컬럼명"); 또는 rs.getInt(1); // getInt(1) : 첫번째 컬럼의 값 떼옴. 오라클은 0번째부터 시작 X
+			%>
+				<tr><td><%= deptno %></td></tr>
+			<%
+			}
+			%>
+			</table>
+		%>
+			**body 태그에 작성되는 html 코드
+		<%
+		}catch(SQLException e){
+			**실행태그에 작성되는 자바코드
+		%>
+			**body 태그에 작성되는 html 코드
+		<%
+		}finally{
+			if(rs != null) rs.close();
+			if(st != null) st.close();
+			if(conn != null) conn.close();
+		}
+	%>
+
+#SQL 쿼리문
+	drop table member;
+	create table member(id varchar2(20), passwd varchar2(20), name varchar2(30), primary KEY(id));
+	select * from member;
+	insert into member values('user1', 'user1', '김알지');
+	insert into member values('user2', 'user2', '김수로');
+	insert into member values('user3', 'user3', '박혁거세');
+	insert into member values('admin', '1234', '단군');
+	commit;
+
+#DML, DCL, DQL, DDL
+	[참고] : https://webstudynote.tistory.com/46
