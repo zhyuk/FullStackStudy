@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+		String inputId = request.getParameter("id");
+		String inputPw = request.getParameter("password");
+		
+		// 정적쿼리문
+		String sql = "delete from member where id = '" + inputId + "'and password = '" + inputPw + "'";
+		// 동적쿼리문
+		// String sql = "delete from member where id = ? and password = ?";
+	%>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import ="java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+		Connection conn = null;
+		Statement st = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+	
+		try{
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String user = "test";
+			String password = "1111";
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(url, user, password);
+			System.out.println("데이터베이스 연결이 성공되었습니다.");
+			
+			String inputId = request.getParameter("id");
+			String inputPw = request.getParameter("password");
+			String inputNm = request.getParameter("name");
+			
+			String sql = "select id,password from member where id = '" +inputId+ "'";
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			
+			if(rs.next()) {
+				sql = "update member set name = ? where id = ?";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, inputNm);
+				ps.setString(2, inputId);
+				int cnt = ps.executeUpdate();
+				
+			}else {
+				out.print("해당 id가 존재하지 않습니다.");
+			}
+			
+			
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		
+		
+
+		
+		
+	%>
+</body>
+</html>
