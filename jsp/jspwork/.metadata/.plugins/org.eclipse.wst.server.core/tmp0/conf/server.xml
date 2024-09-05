@@ -162,7 +162,9 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\jspwork\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\jspwork\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mvcproject02" path="/mvcproject02" reloadable="true" source="org.eclipse.jst.jee.server:mvcproject02"/></Host>
+      <Context docBase="C:\jspwork\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\jspwork\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\servletprojectmember04" path="/servletprojectmember04" reloadable="true" source="org.eclipse.jst.jee.server:servletprojectmember04">
+<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory" maxActive="100" maxIdle="100" name="jdbc/OracleDB" password="1111" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="TEST"/>
+</Context></Host>
     </Engine>
   </Service>
 </Server>

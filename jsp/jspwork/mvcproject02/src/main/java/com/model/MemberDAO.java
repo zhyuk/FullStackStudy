@@ -1,0 +1,69 @@
+package com.model;
+
+import java.sql.*;
+import javax.naming.*;
+import javax.sql.*;
+
+// MEMBER 테이블의 데이터에 접근하기 위한 SQL쿼리문을 담고있는 DAO 클래스 생성
+public class MemberDAO {
+	private Connection conn = null;
+
+	private Connection getConnect() {
+		try {
+			Context ctx = new InitialContext();
+			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/OracleDB");
+			conn = ds.getConnection();
+		} catch (Exception n) {
+			System.out.println(n);
+		}
+
+		return conn;
+	}
+
+	// 로그인 메소드
+	public MemberVO login(String id, String pw) {
+		String sql = "select * from member where id = ? and password = ?";
+		PreparedStatement ps = null;
+		ResultSet result = null;
+		getConnect();
+		MemberVO vo = null;
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, pw);
+			result = ps.executeQuery();
+
+			// 한 줄만 반환하기 때문에 if문 사용. 데이터가 없으면 if문 타지 않음
+			if (result.next()) {
+				vo = new MemberVO();
+				vo.setAddress(result.getString("address"));
+				vo.setBirth(result.getString("birth"));
+				vo.setGender(result.getString("gender"));
+				vo.setId(result.getString("id"));
+				vo.setMail(result.getString("mail"));
+				vo.setName(result.getString("name"));
+				vo.setPassword(result.getString("password"));
+				vo.setPhone(result.getString("phone"));
+				vo.setRegist_day(result.getString("regist_day"));
+			}
+			
+//			System.out.println("vo: " + vo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+				try {
+					if(result != null) result.close();
+					if(ps != null) ps.close();
+					if(conn != null) conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		// vo로 데이터를 담아 보냈기 때문에 result, ps, conn 객체 모두 닫아도 됨.
+		return vo;
+
+	}
+
+}

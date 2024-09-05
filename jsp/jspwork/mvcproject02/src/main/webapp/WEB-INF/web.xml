@@ -32,10 +32,14 @@
   	<servlet-class>com.servlet.NowServlet</servlet-class>
   </servlet>
   
-  <!-- 서블릿 실행 조건 설정 -->
+  <!-- 서블릿 실행 조건 설정. 하나의 서블릿에 url 패턴이 두 개일 경우 작성방법 -->
   <servlet-mapping>
   	<servlet-name>now</servlet-name>
-  	<url-pattern>/NowPage</url-pattern>
+  	<url-pattern>/nowServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>now</servlet-name>
+  	<url-pattern>/now</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

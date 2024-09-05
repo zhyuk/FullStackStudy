@@ -1,0 +1,5 @@
+package com.model;
+
+public class MemberSVC {
+	private MemberDAO dao = new MemberDAO();
+}

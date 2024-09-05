@@ -1,0 +1,35 @@
+package com.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.model.*;
+
+
+@WebServlet(name = "member", urlPatterns = { "/member" })
+public class MemberController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private MemberSVC svc = new MemberSVC();
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		MemberVO vo = svc.login(request.getParameter("id"), request.getParameter("password"));
+		
+		// if : 전송할 데이터가 있으면 포워딩 방식으로 're/mvc_success.jsp' 이동
+		// else : 전송할 데이터가 없으면 리다이렉트로 're/mvc_fail.jsp' 이동
+		if (vo != null) {
+			
+		} else {
+			
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		doGet(request, response);
+	}
+
+}

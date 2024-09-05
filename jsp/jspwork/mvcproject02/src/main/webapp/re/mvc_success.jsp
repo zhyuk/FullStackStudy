@@ -5,12 +5,15 @@
 <title>MVC</title>
 </head>
 <body>
-	<p>로그인 성공했습니다.</p>
-	<p><%
-// 		LoginBean bean = (LoginBean) request.getAttribute("bean");
-// 		out.print("아이디 : " + bean.getId());
-	%></p>
-	<p>아이디: ${bean.id }</p>
-	<p>비밀번호: ${bean.password }</p>
+<!-- 	<p>로그인 성공했습니다.</p> -->
+<%-- 	<p><% --%>
+// // 		LoginBean bean = (LoginBean) request.getAttribute("bean");
+// // 		out.print("아이디 : " + bean.getId());
+<%-- 	%></p> --%>
+<%-- 	<p>아이디: ${bean.id }</p> --%>
+<%-- 	<p>비밀번호: ${bean.password }</p> --%>
+	
+	로그인 성공<br>
+	${memberVO.name}님, 안녕하세요.<br>
 </body>
 </html>

@@ -1,0 +1,13 @@
+[naming~~~~ 에러], [jdbc/~~~ 에러], [url ~~~ 에러], [driver ~~~ 에러]
+    1. Connection 객체를 생성하는 로직 중 lookup() 메소드 내부에 작성된 문자열 오타 확인
+    2. context.xml 파일 오타 확인
+
+[invalid number ~ port number 에러]
+    : 포트번호에 숫자자료형으로 유효하지 않은 값이 기술됨을 의미.
+    1. context.xml 파일의 url 속성값에 기술되어있는 port 번호보기
+
+[TOMCAT 구동이 안되는 에러]
+    1. web.xml 파일, Servlet에 연결되어있는 클래스 파일들 확인. -> Servlet은 하나의 url패턴만을 가질 수 있음.
+
+[분명히 데이터가 들어있는데, 값을 못 가져오는 느낌이 드는 에러들]
+    1. 데이터베이스 개발툴에서 작업한 DML명령문 뒤에 commit을 했는지 확인

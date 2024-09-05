@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//@WebServlet(name="now", urlPatterns = {"/nowServlet", "/now"})
 public class NowServlet extends HttpServlet {
 
 	@Override

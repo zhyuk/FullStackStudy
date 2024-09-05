@@ -1,0 +1,17 @@
+#서블릿
+    [주의사항]
+        - 여러 개의 서블릿에 하나의 url패턴을 넣을 수 없음. -> url패턴에 맞았을 때 어느 서블릿을 실행해야하는지를 정할 수 없어 에러
+        
+
+#Project
+    * form 태그의 action="" : 서블릿의 url패턴/파일/일반 URL 중 하나
+        - *.확장자 또는 ../폴더명/*.확장자 등 : 파일
+        - http:// 또는 https:// : 일반 URL
+        - 폴더명/파일명/ 또는 파일명처럼 확장자가 없고, 맨 처음에 /가 없는 경우 : 서블릿의 url패턴 확인
+    * doPost() / doGet() : form 태그의 method에 기술된 값에 따라 결정됨.
+        - doPost()
+            : POST 방식으로 받아오기 때문에 아스키코드 범위 밖의 값(한글)이 올 경우 인코딩처리 해줘야함.
+            -> request.setCharacterEncoding("UTF-8");
+
+     * LoginService.java
+        getConnection()로 생성할 수 있는 이유 : import static db.JdbcUtil.*; => getConnection() 메소드가 있는 static영역을 import 해줬기 때문

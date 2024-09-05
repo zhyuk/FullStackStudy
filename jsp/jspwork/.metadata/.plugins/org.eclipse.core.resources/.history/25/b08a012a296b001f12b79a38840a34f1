@@ -1,0 +1,14 @@
+package com.model;
+
+// MEMBER 테이블과 구조가 동일한 DTO, VO클래스 생성
+public class MemberVO {
+	private String id;
+	private String password;
+	private String name;
+	private String gender;
+	private String birth;
+	private String mail;
+	private String phone;
+	private String address;
+	private String regist_day;
+}

@@ -1,0 +1,13 @@
+package com.model;
+
+public class MemberVO {
+	private String id;
+	private String password;
+	private String name
+	gender	varchar2(200 byte)
+	birth	varchar2(200 byte)
+	mail	varchar2(200 byte)
+	phone	varchar2(200 byte)
+	address	varchar2(2000 byte)
+	regist_day	varchar2(200 byte)
+}
