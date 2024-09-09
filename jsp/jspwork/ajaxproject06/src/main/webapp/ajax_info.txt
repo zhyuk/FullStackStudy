@@ -1,0 +1,5 @@
+<h1>AJAX</h1>
+
+<h3>AJAX는 프로그래밍 언어가 아닙니다.</h3>
+AJAX는 웹 페이지에서 웹 서버에 엑세스하는 기술입니다.<br>
+AJAX는 비동기 JavaScript 및 XML을 나타냅니다.<br>
