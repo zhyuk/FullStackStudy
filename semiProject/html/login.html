@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하이대학교 : 로그인</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+
+        section {
+            width: 600px;
+            margin: 0 auto;
+            padding: 50px;
+            border: 1px solid red;
+        }
+
+        section h1 {
+            text-align: center;
+        }
+
+        /* input[type=radio] {
+            display: none;
+        }  */
+
+        input[type=radio]:checked~label {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <main>
+            <section>
+                <h1>하이대학교</h1>
+
+                <form action="" method="post">
+                    <label for="id">아이디(학번)</label>
+                    <input type="text" id="id" name="id">
+                    <label for="password">비밀번호</label>
+                    <input type="text" id="password" name="password">
+
+                    <ul>
+                        <li>
+                            <input type="radio" name="role" id="professor">
+                            <label for="professor">교수</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="role" id="student">
+                            <label for="student">학생</label>
+                        </li>
+                    </ul>
+
+                    <button type="submit">로그인</button>
+
+
+                </form>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
