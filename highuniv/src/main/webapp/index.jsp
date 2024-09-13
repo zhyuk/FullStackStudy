@@ -37,8 +37,8 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 50px;
-            background: aqua;
-            color: red;
+            background: #0B4DA2;
+            color: #EAEAED;
             font-weight: 600;
         }
 
@@ -53,6 +53,10 @@
             display: inline-block;
             margin-left: 30px;
             font-size: 24px;
+        }
+
+        header .loginBtn {
+            font-size: 20px;
         }
 
         section {

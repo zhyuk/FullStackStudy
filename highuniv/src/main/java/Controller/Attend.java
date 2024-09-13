@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,21 +10,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.AttendDAO;
+import VO.AttendVO;
 
 //@WebServlet("/professor/attend.jsp")
 public class Attend extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println("HI");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("attend 서블릿 실행");
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		AttendDAO attendDAO = new AttendDAO();
+		ArrayList<AttendVO> attendList = attendDAO.attendList();
+		request.setAttribute("AttendList", attendList);
 		RequestDispatcher rd = request.getRequestDispatcher("/professor/attend.jsp");
 		rd.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

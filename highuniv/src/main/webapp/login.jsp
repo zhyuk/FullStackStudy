@@ -35,12 +35,42 @@
                 font-size: 50px;
             }
 
-            /* input[type=radio] {
+            ul {
+                width: 100%;
+                display: flex;
+                margin-top: 30px;
+            }
+
+            li {
+                width: 50%;
+                height: 50px;
+                background: #EAEAED;
+                color: #212121;
+                text-align: center;
+                line-height: 50px;
+                border: 1px solid #212121;
+            }
+
+            li:nth-child(1) {
+                border-radius: 10px 0 0 10px;
+            }
+
+            li:nth-child(2) {
+                border-radius: 0 10px 10px 0;
+            }
+
+            li>label {
+                width: 100%;
+                display: inline-block;
+            }
+
+            input[type=radio] {
                 display: none;
-            } */
+            }
+
             input:not([type=radio]) {
                 width: 100%;
-                height: 60px;
+                height: 50px;
                 padding: 0 10px;
                 border-radius: 10px;
                 border: none;
@@ -52,16 +82,21 @@
             }
 
             label {
-                font-size: 28px;
+                display: inline-block;
+                font-size: 24px;
+            }
+
+            label.password {
+                margin-top: 30px;
             }
 
             button#submitBtn {
                 width: 100%;
-                height: 100px;
+                height: 60px;
                 margin-top: 60px;
                 border: none;
                 border-radius: 10px;
-                font-size: 40px;
+                font-size: 30px;
                 font-weight: 700;
                 cursor: pointer;
             }
@@ -77,7 +112,7 @@
                     <form action="login" method="post">
                         <label for="id">아이디(학번)</label>
                         <input type="text" id="id" name="id">
-                        <label for="password">비밀번호</label>
+                        <label for="password" class="password">비밀번호</label>
                         <input type="text" id="password" name="password">
 
                         <ul>

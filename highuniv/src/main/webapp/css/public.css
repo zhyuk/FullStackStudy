@@ -172,6 +172,7 @@ main {
 	height: 1300px;
 	float: right;
 	margin: 0 auto;
+	margin-top : 130px;
 	border: 1px solid red;
 	
 }
