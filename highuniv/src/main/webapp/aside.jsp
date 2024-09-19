@@ -99,7 +99,7 @@
 				max-width: 1300px;
 				height: 1000px;
 				margin: 0 auto;
-				padding-top: 130px;
+				margin-top: 130px;
 				border: 1px solid red;
 			}
 
@@ -151,7 +151,7 @@
 					<li onclick="location.href='<%=request.getContextPath()%>/professor/';">공지사항</li>
 					<li onclick="location.href='<%=request.getContextPath()%>/professor/';">게시판</li>
 					<li onclick="location.href='<%=request.getContextPath()%>/professor/';">학생정보</li>
-					<li onclick="location.href='<%=request.getContextPath()%>/professor/attend.jsp';">출석정보</li>
+					<li onclick="location.href='<%=request.getContextPath()%>/professor/attend';">출석정보</li>
 				</ul>
 			</nav>
 		</aside>

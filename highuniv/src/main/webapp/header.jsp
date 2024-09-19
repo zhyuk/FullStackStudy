@@ -109,7 +109,7 @@
                     <p class="btn" onclick="location.href='<%=request.getContextPath()%>/index.jsp';">로그아웃</p>
                 </div>
             </header>
-            <jsp:include page="aside.jsp" />
+            <%@ include file="aside.jsp"%>
     </body>
 
     </html>

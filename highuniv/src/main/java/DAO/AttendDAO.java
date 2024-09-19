@@ -1,6 +1,7 @@
-package DAO;
+package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,7 +12,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import VO.AttendVO;
+import vo.AttendVO;
+
+import static util.JdbcUtil.*;
 
 public class AttendDAO {
 	private Connection con;
@@ -61,5 +64,30 @@ public class AttendDAO {
 		}
 
 		return AttendList;
+	}
+
+	public int updateAttend(AttendVO avo) {
+		PreparedStatement ps = null;
+		ResultSet result = null;
+		String sql = "";
+		int rs = 0;
+
+		sql = "UPDATE ATTEND SET STATUS = ?, ATTEND_REMARKS = ? WHERE STUDENT_ID = ?";
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, avo.getStatus());
+			ps.setString(2, avo.getAttend_remarks());
+			ps.setString(3, avo.getStudent_id());
+			rs = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+			close(con);
+		}
+
+		return rs;
+
 	}
 }

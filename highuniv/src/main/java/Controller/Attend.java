@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.AttendDAO;
-import VO.AttendVO;
+import dao.AttendDAO;
+import vo.AttendVO;
 
 //@WebServlet("/professor/attend.jsp")
 public class Attend extends HttpServlet {
@@ -29,8 +29,8 @@ public class Attend extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println("doPost() 실행");
+//		doGet(request, response);
 	}
 
 }

@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.LoginDAO;
-import VO.ProfessorVO;
-import VO.StudentVO;
+import dao.LoginDAO;
+import vo.ProfessorVO;
+import vo.StudentVO;
 
 //@WebServlet("/login")
 public class LoginCheck extends HttpServlet {
@@ -44,7 +44,7 @@ public class LoginCheck extends HttpServlet {
 					session.setAttribute("pw", professorVO.getProfessor_pw());
 					session.setAttribute("name", professorVO.getProfessor_name());
 //					System.out.println(session.getAttribute("id"));
-					response.sendRedirect("./professor/myPage.jsp");
+					response.sendRedirect("./professor/index.jsp");
 				} else {
 					System.out.println("로그인 실패");
 					response.sendRedirect("login.jsp");
@@ -62,7 +62,7 @@ public class LoginCheck extends HttpServlet {
 					session.setAttribute("pw", studentVO.getStudent_pw());
 					session.setAttribute("name", studentVO.getStudent_name());
 //					System.out.println(session.getAttribute("id"));
-					response.sendRedirect("./student/myPage.jsp");
+					response.sendRedirect("./student/index.jsp");
 				} else {
 					System.out.println("로그인 실패");
 					response.sendRedirect("login.jsp");
