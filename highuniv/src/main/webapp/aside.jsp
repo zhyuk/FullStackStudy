@@ -40,7 +40,7 @@
 
 			aside ul li:hover {
 				background: #212121;
-				color: #0B4DA2;
+				color: #005ACD;
 			}
 
 			/* === 햄버거 버튼 === (너비가 1549px보다 작을 때만 보여짐.) */
@@ -87,20 +87,20 @@
 			/* main */
 			main {
 				width: calc(100% - 250px);
-				height: 1300px;
+/* 				height: 1300px; */
 				float: right;
 				margin: 0 auto;
-				border: 1px solid red;
+/* 				border: 1px solid red; */
 
 			}
 
 			section>div.inner {
 				width: 100%;
 				max-width: 1300px;
-				height: 1000px;
+/* 				height: 1000px; */
 				margin: 0 auto;
 				margin-top: 130px;
-				border: 1px solid red;
+/* 				border: 1px solid red; */
 			}
 
 			/* 너비가 1549px일 때까지만 적용 */

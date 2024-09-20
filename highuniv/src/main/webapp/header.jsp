@@ -28,7 +28,9 @@
             }
 
             /* class */
-            .pretendard {}
+            .pretendard {
+                font-family: "Pretendard Variable";
+            }
 
             .clear {
                 clear: both;
@@ -50,7 +52,7 @@
                 padding-right: 40px;
                 font-weight: 700;
                 color: #EAEAED;
-                background: #0B4DA2;
+                background: #005ACD;
             }
 
             header .logo-box {
@@ -98,7 +100,7 @@
             <header>
                 <!-- 로고 이미지 영역 -->
                 <div class="logo-box">
-                    <img src="" alt="로고">
+                    <img src="<%=request.getContextPath()%>/public/img/logo.png" alt="로고">
                     <p>하이대학교</p>
                 </div>
                 <!-- 사용자 영역 -->
@@ -109,7 +111,7 @@
                     <p class="btn" onclick="location.href='<%=request.getContextPath()%>/index.jsp';">로그아웃</p>
                 </div>
             </header>
-            <%@ include file="aside.jsp"%>
+            <%@ include file="aside.jsp" %>
     </body>
 
     </html>

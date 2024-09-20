@@ -23,7 +23,7 @@
                 height: 100vh;
                 margin: 0 auto;
                 padding: 50px;
-                background: #0B4DA2;
+                background: #005ACD;
                 color: #EAEAED;
                 font-weight: 700;
                 border: 1px solid red;
@@ -78,7 +78,7 @@
             }
 
             input[type=radio]:checked~label {
-                color: red;
+                color: #005ACD;
             }
 
             label {
@@ -147,6 +147,7 @@
                         event.preventDefault();
                         alert("아이디와 비밀번호를 모두 입력해주세요.");
                     }
+                   
                 });
             });
         </script>

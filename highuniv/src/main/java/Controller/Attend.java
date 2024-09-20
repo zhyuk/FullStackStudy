@@ -27,8 +27,7 @@ public class Attend extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doPost() 실행");
 //		doGet(request, response);
 	}

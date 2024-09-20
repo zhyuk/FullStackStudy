@@ -51,9 +51,6 @@ public class AttendUpdate extends HttpServlet {
 				jObject.put("message", "OK");
 				response.setContentType("application/x-json; charset=UTF-8");
 				response.getWriter().println(jObject);
-//				out.println("<script>");
-//				out.println("alert('수정성공');");
-//				out.println("</script>");
 			}
 			
 			

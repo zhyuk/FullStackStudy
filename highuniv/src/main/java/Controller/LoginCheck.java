@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +24,7 @@ public class LoginCheck extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-//		System.out.println("로그인");
+		System.out.println("로그인");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("password");
 		String role = request.getParameter("role");
@@ -33,7 +32,7 @@ public class LoginCheck extends HttpServlet {
 		HttpSession session = request.getSession();
 			
 			if(role.equals("professor")) {
-//				System.out.println("교수 로그인");
+				System.out.println("교수 로그인");
 				ProfessorVO professorVO = new ProfessorVO();
 				professorVO.setProfessor_id(id);
 				professorVO.setProfessor_pw(pw);
@@ -47,7 +46,13 @@ public class LoginCheck extends HttpServlet {
 					response.sendRedirect("./professor/index.jsp");
 				} else {
 					System.out.println("로그인 실패");
-					response.sendRedirect("login.jsp");
+					response.setContentType("text/html;charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>");
+					out.println("alert('아이디와 비밀번호를 확인해주세요.');");
+					out.println("location.href='login.jsp';");
+					out.println("</script>");
+//					response.sendRedirect("login.jsp");
 				}
 //				System.out.println("입력한 id : " + professorVO.getProfessor_id());
 			} else if (role.equals("student")) {
@@ -65,7 +70,12 @@ public class LoginCheck extends HttpServlet {
 					response.sendRedirect("./student/index.jsp");
 				} else {
 					System.out.println("로그인 실패");
-					response.sendRedirect("login.jsp");
+					response.setContentType("text/html;charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>");
+					out.println("alert('아이디와 비밀번호를 확인해주세요.');");
+					out.println("location.href='login.jsp';");
+					out.println("</script>");
 				}
 			}
 		}

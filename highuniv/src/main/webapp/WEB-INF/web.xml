@@ -7,7 +7,7 @@
 
 	<servlet>
 		<servlet-name>LoginCheck</servlet-name>
-		<servlet-class>Controller.LoginCheck</servlet-class>
+		<servlet-class>controller.LoginCheck</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -17,7 +17,7 @@
 
 	<servlet>
 		<servlet-name>Attend</servlet-name>
-		<servlet-class>Controller.Attend</servlet-class>
+		<servlet-class>controller.Attend</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -28,7 +28,7 @@
 
 	<servlet>
 		<servlet-name>attendUpdate</servlet-name>
-		<servlet-class>Controller.AttendUpdate</servlet-class>
+		<servlet-class>controller.AttendUpdate</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
