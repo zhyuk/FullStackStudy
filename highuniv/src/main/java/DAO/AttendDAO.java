@@ -37,8 +37,10 @@ public class AttendDAO {
 		ArrayList<AttendVO> AttendList = new ArrayList<AttendVO>();
 		AttendVO avo = null;
 
-		String sql = "SELECT a.course_id, s.subject_name, st.student_id, st.student_name, a.status, a.attend_date, a.attend_remarks FROM attend a JOIN course e ON a.course_id = e.course_id JOIN subject s ON e.subject_id = s.subject_id\n"
-				+ "JOIN course_register cr ON a.course_id = cr.course_id JOIN student st ON cr.student_id = st.student_id";
+		String sql = "SELECT DISTINCT a.course_id, a.student_id, s.subject_name, a.student_name, a.status, a.attend_date, a.attend_remarks FROM attend a JOIN course e ON a.course_id = e.course_id JOIN subject s ON e.subject_id = s.subject_id JOIN course_register cr ON a.course_id = cr.course_id  JOIN student st ON cr.student_id = st.student_id";
+
+
+
 
 		try {
 			con = ds.getConnection();

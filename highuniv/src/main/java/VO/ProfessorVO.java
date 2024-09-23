@@ -5,7 +5,7 @@ public class ProfessorVO {
 	private String professor_pw;
 	private String professor_name;
 	private String professor_email;
-	private int professor_ph;
+	private String professor_ph;
 	private String professor_status;
 
 	public String getProfessor_id() {
@@ -40,11 +40,11 @@ public class ProfessorVO {
 		this.professor_email = professor_email;
 	}
 
-	public int getProfessor_ph() {
+	public String getProfessor_ph() {
 		return professor_ph;
 	}
 
-	public void setProfessor_ph(int professor_ph) {
+	public void setProfessor_ph(String professor_ph) {
 		this.professor_ph = professor_ph;
 	}
 
@@ -54,6 +54,11 @@ public class ProfessorVO {
 
 	public void setProfessor_status(String professor_status) {
 		this.professor_status = professor_status;
+	}
+
+	public void setProfessor_ph1(String int1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

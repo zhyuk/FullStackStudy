@@ -16,13 +16,17 @@
 	font-size: 50px;
 	font-weight: 600;
 }
-
-.inner p.date {
-	float: left;
-	width: calc(100% - 80px);
+div.topBox  {
+	position: relative;
+}
+.inner div.topBox p.date {
+	position: absolute;
+	left: 50%;
+	display: inline-block;
 	text-align: center;
+	font-size: 20px;
 	margin: 40px 0;
-	border: solid 1px red;
+	transform: translate(-50%, -50%);
 }
 
 .inner table {
@@ -108,7 +112,7 @@
 	background: none;
 	font-size: 18px;
 	font-weight: 600;
-	border: solid 1px red;
+	border: none;
 	cursor: pointer;
 }
 </style>
@@ -117,7 +121,7 @@
 <body class="pretendard">
 	<jsp:include page="../header.jsp" />
 	<h1 class="title">출석정보</h1>
-	<div>
+	<div class="topBox">
 		<p class="date">${AttendList[0].attend_date}</p>
 		<button class="button show">수정</button>
 		<button class="button hide">저장</button>

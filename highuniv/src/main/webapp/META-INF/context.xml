@@ -8,6 +8,6 @@
    driverClassName="oracle.jdbc.driver.OracleDriver"
    factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
    url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
-   maxTotal="500" 
+   maxTotal="100" 
    maxIdle="100"/>  
 </Context>

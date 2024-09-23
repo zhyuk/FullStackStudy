@@ -50,7 +50,8 @@ public class LoginDAO {
 				pvo.setProfessor_pw(rs.getString("professor_pw"));
 				pvo.setProfessor_name(rs.getString("professor_name"));
 				pvo.setProfessor_email(rs.getString("professor_email"));
-				pvo.setProfessor_ph(rs.getInt("professor_ph"));
+				pvo.setProfessor_ph(rs.getString("professor_ph"));
+				pvo.setProfessor_status(rs.getString("professor_status"));
 //				System.out.println("로그인 성공");
 				idChk = true;
 			} else {

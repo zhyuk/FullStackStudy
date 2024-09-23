@@ -12,16 +12,19 @@ public class JdbcUtil {
 	private static Connection conn = null;
 	
 	public static Connection getConnection(){
+		Connection con = null;
 		try {
-			Context itx = new InitialContext();
-			DataSource ds = (DataSource)itx.lookup("jdbc/OracleDB");
-			conn = ds.getConnection();
-			conn.setAutoCommit(false);
-			System.out.println("connect succes");
+			Context initCtx = new InitialContext();
+			Context envCtx = (Context)initCtx.lookup("java:comp/env");
+			DataSource ds = (DataSource)envCtx.lookup("jdbc/OracleDB");
+			con = ds.getConnection();
+			con.setAutoCommit(false);
+			
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return conn;
+		return con;
 	}
 	
 	public static void close(Connection con){

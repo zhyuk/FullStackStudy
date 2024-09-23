@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Insert title here</title>
+        <title>하이대학교</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
         <style>
             * {
@@ -12,6 +12,10 @@
                 padding: 0;
                 box-sizing: border-box;
                 list-style: none;
+            }
+
+            .btn {
+                cursor: pointer;
             }
 
             body {
@@ -26,7 +30,7 @@
                 background: #005ACD;
                 color: #EAEAED;
                 font-weight: 700;
-                border: 1px solid red;
+                /* border: 1px solid red; */
             }
 
             section h1 {
@@ -35,13 +39,13 @@
                 font-size: 50px;
             }
 
-            ul {
+            ul.role {
                 width: 100%;
                 display: flex;
                 margin-top: 30px;
             }
 
-            li {
+            ul.role>li {
                 width: 50%;
                 height: 50px;
                 background: #EAEAED;
@@ -51,15 +55,15 @@
                 border: 1px solid #212121;
             }
 
-            li:nth-child(1) {
+            ul.role>li:nth-child(1) {
                 border-radius: 10px 0 0 10px;
             }
 
-            li:nth-child(2) {
+            ul.role>li:nth-child(2) {
                 border-radius: 0 10px 10px 0;
             }
 
-            li>label {
+            ul.role>li>label {
                 width: 100%;
                 display: inline-block;
             }
@@ -100,6 +104,18 @@
                 font-weight: 700;
                 cursor: pointer;
             }
+
+            ul.infoBtn {
+                display: flex;
+                width: fit-content;
+                margin: 0 auto;
+                margin-top: 30px;
+            }
+
+            ul.infoBtn>li {
+                margin: 0 10px;
+            }
+
         </style>
     </head>
 
@@ -113,9 +129,9 @@
                         <label for="id">아이디(학번)</label>
                         <input type="text" id="id" name="id">
                         <label for="password" class="password">비밀번호</label>
-                        <input type="text" id="password" name="password">
+                        <input type="password" id="password" name="password">
 
-                        <ul>
+                        <ul class="role">
                             <li>
                                 <input type="radio" name="role" id="professor" value="professor" checked>
                                 <label for="professor">교수</label>
@@ -127,8 +143,15 @@
                         </ul>
 
                         <button type="submit" id="submitBtn">로그인</button>
-
+                        <ul class="infoBtn">
+                            <li class="btn">아이디 찾기</li>
+                            <li>|</li>
+                            <li class="btn">비밀번호 찾기</li>
+                            <li>|</li>
+                            <li class="btn" onclick="location.href='<%=request.getContextPath()%>/join.jsp';">회원가입</li>
+                        </ul>
                     </form>
+                    
                 </section>
             </main>
         </div>
@@ -147,7 +170,6 @@
                         event.preventDefault();
                         alert("아이디와 비밀번호를 모두 입력해주세요.");
                     }
-                   
                 });
             });
         </script>

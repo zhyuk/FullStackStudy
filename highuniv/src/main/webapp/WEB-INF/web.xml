@@ -7,7 +7,7 @@
 
 	<servlet>
 		<servlet-name>LoginCheck</servlet-name>
-		<servlet-class>controller.LoginCheck</servlet-class>
+		<servlet-class>Controller.LoginCheck</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -17,23 +17,23 @@
 
 	<servlet>
 		<servlet-name>Attend</servlet-name>
-		<servlet-class>controller.Attend</servlet-class>
+		<servlet-class>Controller.Attend</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Attend</servlet-name>
-		<url-pattern>/professor/attend</url-pattern>
+		<url-pattern>/attend</url-pattern>
 	</servlet-mapping>
 
 
 	<servlet>
 		<servlet-name>attendUpdate</servlet-name>
-		<servlet-class>controller.AttendUpdate</servlet-class>
+		<servlet-class>Controller.AttendUpdate</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>attendUpdate</servlet-name>
-		<url-pattern>/professor/attendUpdate</url-pattern>
+		<url-pattern>/attendUpdate</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>
@@ -42,6 +42,6 @@
 		<welcome-file>index.htm</welcome-file>
 		<welcome-file>default.html</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
 </web-app>

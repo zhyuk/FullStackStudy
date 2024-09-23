@@ -6,8 +6,9 @@
         <meta charset="UTF-8">
         <title>Insert title here</title>
         <style>
-            @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable-dynamic-subset.css");
-
+        /* font */
+        @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable-dynamic-subset.css");
+        
             * {
                 margin: 0;
                 padding: 0;
@@ -24,7 +25,6 @@
 
             body {
                 background: #EAEAED;
-                font-family: "Pretendard Variable";
             }
 
             /* class */
@@ -36,7 +36,7 @@
                 clear: both;
             }
 
-            .btn {
+            .Btn {
                 cursor: pointer !important;
             }
 
@@ -52,7 +52,7 @@
                 padding-right: 40px;
                 font-weight: 700;
                 color: #EAEAED;
-                background: #005ACD;
+                background: #0B4DA2;
             }
 
             header .logo-box {
@@ -95,12 +95,12 @@
         </style>
     </head>
 
-    <body>
+    <body class="pretendard">
         <div id="wrap">
             <header>
                 <!-- 로고 이미지 영역 -->
                 <div class="logo-box">
-                    <img src="<%=request.getContextPath()%>/public/img/logo.png" alt="로고">
+                    <img src="<%= request.getContextPath() %>/public/img/logo.png" alt="로고">
                     <p>하이대학교</p>
                 </div>
                 <!-- 사용자 영역 -->
@@ -108,10 +108,10 @@
                     <p>
                         <%=session.getAttribute("name")%>님
                     </p>
-                    <p class="btn" onclick="location.href='<%=request.getContextPath()%>/index.jsp';">로그아웃</p>
+                    <p class="Btn" onclick="location.href='<%= request.getContextPath() %>/index.jsp';">로그아웃</p>
                 </div>
             </header>
-            <%@ include file="aside.jsp" %>
+            <jsp:include page="aside.jsp" />
     </body>
 
     </html>
