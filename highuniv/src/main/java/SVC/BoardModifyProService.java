@@ -7,12 +7,12 @@ import dao.BoardDAO;
 
 public class BoardModifyProService {
 
-	public boolean isArticleWriter(int board_no, String id) throws Exception {
+	public boolean isArticleWriter(int board_no, String session_id) throws Exception {
 		boolean isArticleWriter = false;
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
-		isArticleWriter = boardDAO.isArticleBoardWriter(board_no, id);
+		isArticleWriter = boardDAO.isArticleBoardWriter(board_no, session_id);
 		close(con);
 		return isArticleWriter;
 		

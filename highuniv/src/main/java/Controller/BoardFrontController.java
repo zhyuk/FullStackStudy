@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import action.BoardDeleteAction;
@@ -22,6 +23,8 @@ import action.BoardListAction;
 import action.BoardModifyFormAction;
 import action.BoardModifyProAction;
 import action.BoardWriteProAction;
+import action.CommentDeleteAction;
+import action.CommentWriteAction;
 import vo.ActionForward;
 
 @WebServlet("*.bo")
@@ -42,12 +45,48 @@ public class BoardFrontController extends HttpServlet {
 		if (command.equals("/boardWriteForm.bo")) {
 			forward = new ActionForward();
 //			/board/qna_board_write.jsp로 이동
-			forward.setPath("/board/qna_board_write.jsp");
+			forward.setPath("/board/board_write.jsp");
 
 //		/board/qna_board_write.jsp에서 게시판 글 등록 - 등록
+//		}else if(command.equals("/login.bo")) {
+//			//로그인 로직 추가
+//			String id = request.getParameter("id");
+//			String pw = request.getParameter("password");
+//			String role = request.getParameter("role");
+//			String nm = id.equals("admin") == true ? "관리자" : "사용자";
+//			
+//			HttpSession session = request.getSession();
+//			if(  !(id==null || pw==null || id.equals("") || pw.equals("") )  ) {
+//				session.setAttribute("logid", id);
+//				session.setAttribute("name", nm);
+//				forward = new ActionForward();
+//				forward.setRedirect(true);
+//				forward.setPath("./board/board_index.jsp");
+//			}else {
+//				forward = new ActionForward();	
+//				forward.setRedirect(true);
+//				forward.setPath("./login.jsp");
+//			}
+			
+		}else if(command.equals("/logout.bo")) {
+			//로그아웃 추가
+			HttpSession session = request.getSession();
+			session.invalidate();
+			forward = new ActionForward();
+			forward.setRedirect(true);
+			forward.setPath("./index.jsp");					
+			
 		} else if (command.equals("/boardWritePro.bo")) {
 			// BoardWriteProAction.java 객체 생성
 			action = new BoardWriteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/commentWrite.bo")) {
+			// BoardWriteProAction.java 객체 생성
+			action = new CommentWriteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -90,14 +129,23 @@ public class BoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else {
+		} else if (command.equals("/commentDelete.bo")) { //삭제
+			action = new CommentDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else {
 			// 파일 다운로드 하기
 			try {
 				// fileName 파라미터로 파일명을 가져온다.
 				String fileName = request.getParameter("fname");
 
 				// 파일이 실제 업로드 되어있는(파일이 존재하는) 경로를 지정한다._경로수정
-				String filePath = "C:\\jspwork\\servletproject05\\src\\main\\webapp\\boardUpload\\";
+				String filePath = "C:\\jwork\\highuniv\\src\\main\\webapp\\boardUpload\\";
 
 				// 경로와 파일명으로 파일 객체를 생성한다.
 				File dFile = new File(filePath, fileName);

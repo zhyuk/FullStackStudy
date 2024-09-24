@@ -29,15 +29,16 @@ public class BoardWriteProAction implements Action {
 		
 //		_수정
 		
-//		이미지 파일 업로드 C:\\jspwork\\servletproject05\\src\\main\\webapp\\boardUpload
-		realFolder = "C:\\jspwork\\highuniv\\src\\main\\webapp\\"+saveFolder;
+//		이미지 파일 업로드 C:\\jspwork\\highuniv\\src\\main\\webapp\\boardUpload
+		realFolder = "C:\\jwork\\highuniv\\src\\main\\webapp\\"+saveFolder;
 		File f = new File(realFolder);
 		if(!f.exists()) f.mkdirs();
 		
 		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8",
 				new DefaultFileRenamePolicy()); 
 		boardBean = new BoardBean();
-//		boardBean.setBOARD_NAME(multi.getParameter("BOARD_NAME")); 접속된 아이디(세션 받아와야함)
+		boardBean.setBOARD_ID(multi.getParameter("BOARD_ID"));
+		boardBean.setBOARD_NAME(multi.getParameter("BOARD_NAME"));
 		boardBean.setBOARD_SUBJECT(multi.getParameter("BOARD_SUBJECT"));
 		boardBean.setBOARD_CONTENT(multi.getParameter("BOARD_CONTENT"));
 		boardBean.setBOARD_MAIN(multi.getParameter("BOARD_MAIN"));

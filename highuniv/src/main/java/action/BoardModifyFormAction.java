@@ -16,7 +16,7 @@ public class BoardModifyFormAction implements Action {
 		   	BoardBean article =boardDetailService.getArticle(board_no);
 		   	request.setAttribute("page", request.getParameter("page"));
 		   	request.setAttribute("article", article);
-	   		forward.setPath("/board/qna_board_modify.jsp?BOARD_NUM="+request.getParameter("BOARD_NUM"));
+	   		forward.setPath("/board/board_modify.jsp?BOARD_NUM="+request.getParameter("BOARD_NUM"));
 	   		return forward;
 	   		
 	 }

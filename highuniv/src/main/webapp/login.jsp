@@ -3,10 +3,13 @@
     <html>
 
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <title>하이대학교</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
         <style>
+            @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable-dynamic-subset.css");
+
             * {
                 margin: 0;
                 padding: 0;
@@ -19,6 +22,7 @@
             }
 
             body {
+                font-family: "Pretendard Variable";
                 background: #EAEAED;
             }
 
@@ -110,12 +114,22 @@
                 width: fit-content;
                 margin: 0 auto;
                 margin-top: 30px;
+                font-size: 16px;
             }
 
             ul.infoBtn>li {
                 margin: 0 10px;
             }
 
+            @media screen and (max-width: 425px) {
+                main {
+                    display: flex;
+                }
+
+                ul.infoBtn {
+                    font-size: 14px;
+                }
+            }
         </style>
     </head>
 
@@ -151,7 +165,7 @@
                             <li class="btn" onclick="location.href='<%=request.getContextPath()%>/join.jsp';">회원가입</li>
                         </ul>
                     </form>
-                    
+
                 </section>
             </main>
         </div>
@@ -172,6 +186,7 @@
                     }
                 });
             });
+
         </script>
     </body>
 

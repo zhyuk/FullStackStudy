@@ -32,7 +32,7 @@ public class JoinDAO {
 
 		ps = null;
 		int result = 0;
-		String sql = "insert into professor (professor_id, professor_pw, professor_name, professor_email, professor_ph) values (?, ?, ?, ?, ?)";
+		String sql = "insert into professor values (?, ?, ?, ?, ?, 'N')";
 
 		try {
 			con = ds.getConnection();

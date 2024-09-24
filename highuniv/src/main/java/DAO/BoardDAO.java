@@ -32,6 +32,7 @@ public class BoardDAO {
 		this.con = con;
 	}
 
+	
 	// 글의 개수 구하기.
 	public int selectListCount() {
 
@@ -118,6 +119,7 @@ public class BoardDAO {
 
 			if (rs.next()) {
 				boardBean = new BoardBean();
+				boardBean.setBOARD_ID(rs.getString("BOARD_ID"));
 				boardBean.setBOARD_NO(rs.getInt("BOARD_NO"));
 				boardBean.setBOARD_NAME(rs.getString("BOARD_NAME"));
 				boardBean.setBOARD_SUBJECT(rs.getString("BOARD_SUBJECT"));
@@ -137,6 +139,8 @@ public class BoardDAO {
 
 	}
 
+	
+			
 	// 글 등록.
 	public int insertArticle(BoardBean article) {
 
@@ -146,7 +150,7 @@ public class BoardDAO {
 		ResultSet rs2 = null;
 		int num = 0;
 		int no = 0;
-		String sql = "";
+		String sql = null;
 		int insertCount = 0;
 
 		try {
@@ -174,7 +178,7 @@ public class BoardDAO {
 
 			// Insert query 작성
 			sql = "INSERT INTO board (BOARD_NUM, BOARD_NAME, BOARD_SUBJECT, BOARD_CONTENT, BOARD_FILE, BOARD_READCOUNT, BOARD_DATE, BOARD_NO, BOARD_MAIN, BOARD_ID) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, SYSDATE, ?, ?, ?)";	
+					+ "VALUES (?, ?, ?, ?, ?, ?, SYSDATE, ?, ?, ?)";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -201,6 +205,7 @@ public class BoardDAO {
 		return insertCount;
 	}
 
+	
 	// 글 수정.
 	public int updateArticle(BoardBean article) {
 
@@ -247,18 +252,26 @@ public class BoardDAO {
 	public int deleteArticle(int board_no) {
 
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		String board_delete_sql = "delete from board where BOARD_NO=?";
+		String comment_delete_sql = "delete from board_comment where BOARD_NO=?";
 		int deleteCount = 0;
 
 		try {
+			
 			pstmt = con.prepareStatement(board_delete_sql);
+			pstmt2 = con.prepareStatement(comment_delete_sql);
 			System.out.println("DAO : " + board_no);
+			
 			pstmt.setInt(1, board_no);
+			pstmt2.setInt(1, board_no);
 			deleteCount = pstmt.executeUpdate();
+			pstmt2.executeUpdate();
 		} catch (Exception ex) {
 			System.out.println("boardDelete 에러 : " + ex);
 		} finally {
-			close(pstmt);
+			close(pstmt2);
+			close(pstmt);	
 		}
 
 		return deleteCount;
@@ -286,8 +299,8 @@ public class BoardDAO {
 
 	}
 
-	// 글쓴이인지 확인.
-	public boolean isArticleBoardWriter(int board_no, String id) {
+	// 글쓴이인지 확인.		
+	public boolean isArticleBoardWriter(int board_no, String session_id) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -300,7 +313,7 @@ public class BoardDAO {
 			rs = pstmt.executeQuery();
 			rs.next();
 
-			if (id.equals(rs.getString("BOARD_ID"))) {
+			if (session_id.equals("admin") || session_id.equals(rs.getString("BOARD_ID"))) {
 				isWriter = true;
 			}
 		} catch (SQLException ex) {
@@ -314,3 +327,5 @@ public class BoardDAO {
 	}
 
 }
+
+

@@ -16,12 +16,11 @@ public class BoardModifyProAction implements Action {
 
 		ActionForward forward = null;
 		boolean isModifySuccess = false;
-		BoardBean boardBean = new BoardBean();
 		int board_no=Integer.parseInt(request.getParameter("BOARD_NO"));
-		BoardBean article=new BoardBean();
-		String board_id = boardBean.getBOARD_ID();
+		String session_id = request.getParameter("SESSION_ID");
+		BoardBean boarBean = new BoardBean();
 		BoardModifyProService boardModifyProService = new BoardModifyProService();
-		boolean isRightUser=boardModifyProService.isArticleWriter(board_no, board_id);
+		boolean isRightUser=boardModifyProService.isArticleWriter(board_no, session_id);
 
 		if(!isRightUser){
 			response.setContentType("text/html;charset=UTF-8");
@@ -32,11 +31,11 @@ public class BoardModifyProAction implements Action {
 			out.println("</script>");
 		}
 		else{
-			article.setBOARD_NO(board_no);
-			article.setBOARD_SUBJECT(request.getParameter("BOARD_SUBJECT"));
-			article.setBOARD_CONTENT(request.getParameter("BOARD_CONTENT")); 
-			article.setBOARD_MAIN(request.getParameter("BOARD_MAIN"));
-			isModifySuccess = boardModifyProService.modifyArticle(article);
+			boarBean.setBOARD_NO(board_no);
+			boarBean.setBOARD_SUBJECT(request.getParameter("BOARD_SUBJECT"));
+			boarBean.setBOARD_CONTENT(request.getParameter("BOARD_CONTENT")); 
+			boarBean.setBOARD_MAIN(request.getParameter("BOARD_MAIN"));
+			isModifySuccess = boardModifyProService.modifyArticle(boarBean);
 
 			if(!isModifySuccess){
 				response.setContentType("text/html;charset=UTF-8");
@@ -49,7 +48,7 @@ public class BoardModifyProAction implements Action {
 			else{
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("boardDetail.bo?board_no="+article.getBOARD_NO()+"&page="+request.getParameter("page")); 
+				forward.setPath("boardDetail.bo?board_no="+boarBean.getBOARD_NO()+"&page="+request.getParameter("page")); 
 			}
 
 		}

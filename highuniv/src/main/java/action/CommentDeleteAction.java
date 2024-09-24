@@ -5,23 +5,24 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.BoardDeleteService;
+import svc.CommentDeleteService;
 import vo.ActionForward;
+import vo.CommentBean;
 
-public class BoardDeleteAction implements Action {
-
-    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) 
+public class CommentDeleteAction implements Action {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) 
             throws Exception {     
 
         ActionForward forward = null;
+        CommentBean commentBean = new CommentBean();
         int board_no = Integer.parseInt(request.getParameter("board_no"));
-        String session_id = request.getParameter("session_id");
+        int comment_no = Integer.parseInt(request.getParameter("comment_no"));
+        String comment_id = commentBean.getCOMMENT_ID();
         String nowPage = request.getParameter("page");
-        
-        BoardDeleteService boardDeleteService = new BoardDeleteService();
-        boolean isArticleWriter = boardDeleteService.isArticleWriter(board_no, session_id);
+        CommentDeleteService commentDeleteService = new CommentDeleteService();
+        boolean isCommentWriter = commentDeleteService.isCommentWriter(comment_no, comment_id);
 
-        if (!isArticleWriter) {
+        if (!isCommentWriter) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>");
@@ -30,7 +31,7 @@ public class BoardDeleteAction implements Action {
             out.println("</script>");
             out.close();
         } else {
-            boolean isDeleteSuccess = boardDeleteService.removeArticle(board_no);
+            boolean isDeleteSuccess = commentDeleteService.removeComment(comment_no);
 
             if (!isDeleteSuccess) {
                 response.setContentType("text/html;charset=UTF-8");
@@ -44,7 +45,7 @@ public class BoardDeleteAction implements Action {
             	
                 forward = new ActionForward();
                 forward.setRedirect(true);
-                forward.setPath("boardList.bo?page=" + nowPage);
+                forward.setPath("boardDetail.bo?board_no="+ board_no + "&page=" + nowPage);
             }
         }
 

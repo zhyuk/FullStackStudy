@@ -38,7 +38,8 @@ div.topBox  {
 .inner table, .inner tr, .inner th, .inner td {
 	border: 1px solid black;
 }
-
+.inner tr {
+background: #CEF3FF;}
 .inner th, .inner td {
 	height: 50px;
 }
@@ -248,20 +249,8 @@ div.topBox  {
 																		// 											console.log(typeof response, response);
 																		if (response.message == "OK") {
 																			alert("수정되었습니다.");
-																			$(
-																					statusSpan)
-																					.text(
-																							$row
-																									.find(
-																											"input[name^='attend']:checked")
-																									.val());
-																			$(
-																					commentSpan)
-																					.text(
-																							$row
-																									.find(
-																											"input[type=text]")
-																									.val());
+																			$(statusSpan).text($row.find("input[name^='attend']:checked").val());
+																			$(commentSpan).text($row.find("input[type=text]").val());
 
 																		} else {
 																			alert("수정실패");
@@ -278,6 +267,18 @@ div.topBox  {
 								}
 							});
 		});
+
+		$(".allChk").click(function() {
+// 		    console.log("클릭");
+		    let isChecked = this.checked; // true or false 반환
+		    let elements = document.querySelectorAll(".chk"); // chk 클래스를 가진 체크박스들 가져오기
+		    
+		    elements.forEach(function(obj) {
+		        obj.checked = isChecked; // allChk의 상태에 따라 모든 chk 체크박스 체크 또는 해제
+		    });
+		});
+
+
 	</script>
 	<jsp:include page="../footer.jsp" />
 

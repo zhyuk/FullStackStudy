@@ -1,8 +1,10 @@
 package action;
 
-import java.util.*;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import svc.BoardListService;
 import vo.ActionForward;
 import vo.BoardBean;
@@ -51,7 +53,7 @@ import vo.PageInfo;
 		
 //		/index.jsp로 이동
 		ActionForward forward= new ActionForward();
-   		forward.setPath("/board/index.jsp");
+   		forward.setPath("/board/board_index.jsp");
    		return forward;
    		
 	 }

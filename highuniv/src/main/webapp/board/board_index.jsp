@@ -6,7 +6,45 @@
 		<head>
 			<meta charset="UTF-8" />
 			<title>하이대학교 게시판</title>
-			<link rel="stylesheet" type="text/css" href="./css/board_index.css">
+			<style>
+				* {
+					box-sizing: border-box;
+				}
+
+				h2 {
+					text-align: center;
+				}
+
+				table {
+					border-collapse: collapse;
+					width: 100%;
+				}
+
+				#main {
+					color: red;
+				}
+
+				#tr_top {
+					border-bottom: 1px solid #0b4da2;
+					border-top: 1px solid #0b4da2;
+					background-color: aliceblue;
+					font-weight: bold;
+					text-align: center;
+				}
+
+				table tr {
+					border-bottom: 1px solid #ccc;
+				}
+
+				tr td {
+					text-align: center;
+					padding: 10px 0 10px 0;
+				}
+
+				#pageList {
+					text-align: center;
+				}
+			</style>
 		</head>
 
 		<body>

@@ -36,15 +36,17 @@ public class JoinFrontController extends HttpServlet {
 		int result = joinSVC.insertProf(pvo);
 		
 		if(result > 0) {
+			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('회원가입되었습니다.');");
 			out.println("location.href='login.jsp';");
 			out.println("</script>");
 		} else {
+			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('회원가입실패.');");
+			out.println("alert('이미 존재하는 아이디입니다.');");
 			out.println("location.href='join.jsp';");
 			out.println("</script>");
 		}

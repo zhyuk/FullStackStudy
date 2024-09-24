@@ -3,12 +3,13 @@
     <html>
 
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <title>Insert title here</title>
         <style>
-        /* font */
-        @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable-dynamic-subset.css");
-        
+            /* font */
+            @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable-dynamic-subset.css");
+
             * {
                 margin: 0;
                 padding: 0;
@@ -52,7 +53,7 @@
                 padding-right: 40px;
                 font-weight: 700;
                 color: #EAEAED;
-                background: #0B4DA2;
+                background: #005ACD;
             }
 
             header .logo-box {
@@ -92,6 +93,25 @@
             header .user-box p {
                 font-size: 22px;
             }
+
+
+            @media screen and (max-width: 425px) {
+                header .logo-box {
+                    width: 150px;
+                }
+
+                header .logo-box p {
+                    font-size: 18px;
+                }
+
+                header .user-box p:first-child {
+                    margin-left: auto;
+                }
+
+                header .user-box p {
+                    font-size: 16px;
+                }
+            }
         </style>
     </head>
 
@@ -108,7 +128,7 @@
                     <p>
                         <%=session.getAttribute("name")%>님
                     </p>
-                    <p class="Btn" onclick="location.href='<%= request.getContextPath() %>/index.jsp';">로그아웃</p>
+                    <p class="Btn" onclick="location.href='<%= request.getContextPath() %>/logout';">로그아웃</p>
                 </div>
             </header>
             <jsp:include page="aside.jsp" />

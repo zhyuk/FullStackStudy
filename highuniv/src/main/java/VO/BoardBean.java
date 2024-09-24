@@ -5,15 +5,15 @@ import java.sql.Date;
 public class BoardBean {
 
 	private int BOARD_NUM;
-	private String BOARD_ID = "admin";
-	private String BOARD_NAME = "관리자";
+	private String BOARD_ID;
+	private String BOARD_NAME;
 	private String BOARD_SUBJECT;
 	private String BOARD_CONTENT;
 	private String BOARD_FILE;
 	private int BOARD_READCOUNT;
 	private Date BOARD_DATE;
 	private int BOARD_NO;
-	private String BOARD_MAIN;
+	private String BOARD_MAIN;	
 
 
 	public int getBOARD_NUM() {
