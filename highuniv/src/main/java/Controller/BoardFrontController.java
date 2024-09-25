@@ -14,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import action.Action;
 import action.BoardDeleteAction;
@@ -22,6 +21,7 @@ import action.BoardDetailAction;
 import action.BoardListAction;
 import action.BoardModifyFormAction;
 import action.BoardModifyProAction;
+import action.BoardSearchAction;
 import action.BoardWriteProAction;
 import action.CommentDeleteAction;
 import action.CommentWriteAction;
@@ -46,37 +46,8 @@ public class BoardFrontController extends HttpServlet {
 			forward = new ActionForward();
 //			/board/qna_board_write.jsp로 이동
 			forward.setPath("/board/board_write.jsp");
-
-//		/board/qna_board_write.jsp에서 게시판 글 등록 - 등록
-//		}else if(command.equals("/login.bo")) {
-//			//로그인 로직 추가
-//			String id = request.getParameter("id");
-//			String pw = request.getParameter("password");
-//			String role = request.getParameter("role");
-//			String nm = id.equals("admin") == true ? "관리자" : "사용자";
-//			
-//			HttpSession session = request.getSession();
-//			if(  !(id==null || pw==null || id.equals("") || pw.equals("") )  ) {
-//				session.setAttribute("logid", id);
-//				session.setAttribute("name", nm);
-//				forward = new ActionForward();
-//				forward.setRedirect(true);
-//				forward.setPath("./board/board_index.jsp");
-//			}else {
-//				forward = new ActionForward();	
-//				forward.setRedirect(true);
-//				forward.setPath("./login.jsp");
-//			}
 			
-		}else if(command.equals("/logout.bo")) {
-			//로그아웃 추가
-			HttpSession session = request.getSession();
-			session.invalidate();
-			forward = new ActionForward();
-			forward.setRedirect(true);
-			forward.setPath("./index.jsp");					
-			
-		} else if (command.equals("/boardWritePro.bo")) {
+		}else if (command.equals("/boardWritePro.bo")) {
 			// BoardWriteProAction.java 객체 생성
 			action = new BoardWriteProAction();
 			try {
@@ -122,15 +93,22 @@ public class BoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/boardDelete.bo")) { //삭제
+		} else if (command.equals("/boardDelete.bo")) { //글 삭제
 			action = new BoardDeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/commentDelete.bo")) { //삭제
+		} else if (command.equals("/commentDelete.bo")) { //댓글 삭제
 			action = new CommentDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/boardSearch.bo")) { //글 검색
+			action = new BoardSearchAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

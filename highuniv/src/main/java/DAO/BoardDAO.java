@@ -105,6 +105,80 @@ public class BoardDAO {
 
 	}
 
+	public ArrayList<BoardBean> searchArticleList(String type, String keyword, int page, int limit) {
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+
+	    ArrayList<BoardBean> articleList = new ArrayList<BoardBean>();
+
+	    int startrow = (page - 1) * limit + 1; // 시작 번호
+	    int endrow = page * limit; // 끝 번호
+	    String[] typeArr = type.split(",");
+
+	  
+	    String sql = "";
+	    sql +="SELECT * FROM (";
+	    sql +="  SELECT * FROM (";
+	    sql +="    SELECT rownum rnum, A.* FROM (";
+	    sql +="      SELECT * FROM board WHERE 1=1 ";
+       if(typeArr.length <= 1) {
+    	   sql += " and  "+type +" LIKE ? "; // 검색 조건 추가
+       }else {
+    	   for(int i = 0; i < typeArr.length ;  i++) {
+    		   if(i == 0) sql += " and  ( " + typeArr[i] +" LIKE ? "; // 검색 조건 추가
+    		   else if(i != typeArr.length-1 ) sql += " or  " + typeArr[i] +" LIKE ? "; // 검색 조건 추가
+    		   else sql += " or  " + typeArr[i] +" LIKE ?  )"; // 검색 조건 추가
+    		   
+    	   }
+       }
+       sql +="      ORDER BY CASE WHEN BOARD_MAIN = 'M' THEN 0 ELSE 1 END, ";
+       sql +="               BOARD_NO DESC ";
+       sql +="    ) A";
+       sql +="  ) WHERE rownum <= ?";
+       sql +=") WHERE rnum >= ?";
+	    try {
+	    	
+	        pstmt = con.prepareStatement(sql);
+	        if(typeArr.length <= 1) {
+	        	pstmt.setString(1, "%" + keyword + "%");
+	        	pstmt.setInt(2, endrow);
+	        	pstmt.setInt(3, startrow);
+	        }else {
+	        	int i = 1;
+	        	for( ; i <= typeArr.length ; i++) {
+	        		pstmt.setString(i, "%" + keyword + "%");
+	     	   	}
+	        	
+	        	pstmt.setInt(i, endrow);
+	        	pstmt.setInt(++i, startrow);
+	        	
+	        }
+
+	        rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            BoardBean board = new BoardBean();
+	            board.setBOARD_NO(rs.getInt("BOARD_NO"));
+	            board.setBOARD_NUM(rs.getInt("BOARD_NUM"));
+	            board.setBOARD_NAME(rs.getString("BOARD_NAME"));
+	            board.setBOARD_SUBJECT(rs.getString("BOARD_SUBJECT"));
+	            board.setBOARD_CONTENT(rs.getString("BOARD_CONTENT"));
+	            board.setBOARD_FILE(rs.getString("BOARD_FILE"));
+	            board.setBOARD_READCOUNT(rs.getInt("BOARD_READCOUNT"));
+	            board.setBOARD_DATE(rs.getDate("BOARD_DATE"));
+	            articleList.add(board);
+	        }
+
+	    } catch (Exception ex) {
+	        System.out.println("searchArticleList 에러 : " + ex);
+	    } finally {
+	        close(rs);
+	        close(pstmt);
+	    }
+
+	    return articleList;
+	}
+
 	// 글 내용 보기.
 	public BoardBean selectArticle(int board_no) {
 

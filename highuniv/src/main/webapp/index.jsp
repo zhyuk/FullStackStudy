@@ -3,7 +3,7 @@
     <html>
 
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <title>하이대학교</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
@@ -91,40 +91,39 @@
                 background: #EAEAED;
                 font-weight: 600;
             }
-
-            @media screen and (max-width: 768px) {
-                section .login-box {
-                    width: 50%;
-                }
-
-                section .login-box .login-btn {
-                    width: 200px;
-                    height: 50px;
-                }
-
+            
+            @media screen and (max-width: 768px){
+            	section .login-box {
+            	width: 50%;
+            	}
+            	
+            	section .login-box .login-btn {
+            		width: 200px;
+            		height: 50px;
+            	}
+            	
             }
-
-            @media screen and (max-width: 425px) {
-                section .login-box {
-                    width: 100%;
-                    height: calc(100vh - 50px);
-                }
-
-                section .login-box .login-btn {
-                    width: 200px;
-                    height: 50px;
-                    font-size: 20px;
-                }
-
-                footer {
-                    display: flex;
-                    flex-direction: column;
-                    height: 50px;
-                    padding: 5px 0;
-                    font-size: 10px;
-                }
-
-            }
+            @media screen and (max-width: 425px){
+            	section .login-box {
+            		width: 100%;
+            		height: calc(100vh - 50px);
+            	}
+            	
+            	section .login-box .login-btn {
+            		width: 200px;
+            		height: 50px;
+            		font-size: 20px;
+            	}
+            	
+            	footer {
+            		display:flex;
+            		flex-direction: column;
+            		height: 50px;
+            		padding: 5px 0;
+            		font-size: 10px;
+            	}
+            	
+			}
         </style>
     </head>
 

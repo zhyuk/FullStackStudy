@@ -37,7 +37,6 @@
             border: 1px solid #ccc;
             background-color: #fff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: relative; /* 삭제 버튼을 위한 설정 */
         }
         .lecture-image {
             flex: 1;
@@ -66,6 +65,7 @@
             color: #333;
         }
         .professor-info {
+       	 position: relative; /* 삭제 버튼을 위한 설정 */
             flex: 1;
             background-color: #ececec;
             display: flex;
@@ -139,9 +139,10 @@
             </div>
             <div class="professor-info">
                 <p>교수 | ${subject.PROFESSOR_NAME}</p>
-            </div>
-            <!-- 삭제 버튼 -->
+                <!-- 삭제 버튼 -->
             <button class="delete-button" onclick="deleteSubject('${subject.SUBJECT_ID}')">삭제</button>
+            </div>
+            
         </div>
         </c:if>
     </c:forEach>

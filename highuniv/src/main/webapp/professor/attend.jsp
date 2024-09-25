@@ -13,8 +13,7 @@
 <style>
 .inner h1.title {
 	text-align: center;
-	font-size: 50px;
-	font-weight: 600;
+	font-weight: 700;
 }
 div.topBox  {
 	position: relative;
@@ -116,11 +115,12 @@ background: #CEF3FF;}
 	border: none;
 	cursor: pointer;
 }
+
 </style>
 </head>
 
 <body class="pretendard">
-	<jsp:include page="../header.jsp" />
+	<jsp:include page="../header.jsp"></jsp:include>
 	<h1 class="title">출석정보</h1>
 	<div class="topBox">
 		<p class="date">${AttendList[0].attend_date}</p>

@@ -32,10 +32,20 @@ public class BoardListService {
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
-		articleList = boardDAO.selectArticleList(page,limit);
+		articleList = boardDAO.selectArticleList(page, limit);
 		close(con);
 		return articleList;
 		
+	}
+	
+	public ArrayList<BoardBean> searchArticles(String type, String keyword, int page, int limit) {
+		ArrayList<BoardBean> articleList = new ArrayList<>();
+	    Connection con = getConnection();
+	    BoardDAO boardDAO = BoardDAO.getInstance();
+	    boardDAO.setConnection(con);
+	    articleList = boardDAO.searchArticleList(type, keyword, page, limit);
+		close(con);
+		return articleList;
 	}
 
 }

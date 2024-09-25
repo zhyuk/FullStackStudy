@@ -82,6 +82,7 @@
 				padding-top: 0;
 				background: #444444;
 				display: none;
+	            z-index: 3;
 			}
 
 			/* === 햄버거 기능 종료 === */
@@ -121,6 +122,16 @@
 					width: calc(100% - 50px);
 				}
 			}
+			
+			@media screen and (max-width: 425px) {
+				aside {
+					display: none;
+				}
+				
+				main {
+					width: 100%;
+				}
+			}
 		</style>
 	</head>
 
@@ -157,7 +168,7 @@
 			    <c:when test="${sessionScope.role == 'professor'}">
 					<nav class="ham-menu">
 						<ul>
-							<li onclick="location.href='<%=request.getContextPath()%>/professor/';">강의정보</li>
+							<li onclick="location.href='<%=request.getContextPath()%>/ProfessorLectureServlet';">강의정보</li>
 							<li onclick="location.href='<%=request.getContextPath()%>/professor/studentlist.pr';">학생정보</li>
 							<li onclick="location.href='<%=request.getContextPath()%>/attend';">출석정보</li>
 							<li onclick="location.href='<%=request.getContextPath()%>/professor/noticeList.nt';">공지사항</li>
@@ -166,7 +177,7 @@
 					</nav>
 					<nav>
 						<ul>
-							<li onclick="location.href='<%=request.getContextPath()%>/ProfessorCourseList.jsp';">강의정보</li>
+							<li onclick="location.href='<%=request.getContextPath()%>/ProfessorLectureServlet';">강의정보</li>
 							<li onclick="location.href='<%=request.getContextPath()%>/professor/studentlist.pr';">학생정보</li>
 							<li onclick="location.href='<%=request.getContextPath()%>/attend';">출석정보</li>
 							<li onclick="location.href='<%=request.getContextPath()%>/professor/noticeList.nt';">공지사항</li>

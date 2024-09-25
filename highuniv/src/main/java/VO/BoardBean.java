@@ -13,7 +13,7 @@ public class BoardBean {
 	private int BOARD_READCOUNT;
 	private Date BOARD_DATE;
 	private int BOARD_NO;
-	private String BOARD_MAIN;	
+	private String BOARD_MAIN;
 
 
 	public int getBOARD_NUM() {

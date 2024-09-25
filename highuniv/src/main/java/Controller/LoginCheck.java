@@ -44,7 +44,7 @@ public class LoginCheck extends HttpServlet {
             	session.setAttribute("name", professorVO.getProfessor_name());
             	session.setAttribute("role", role);
 //               System.out.println(session.getAttribute("id"));
-               response.sendRedirect("professor/noticeList.nt");
+               response.sendRedirect("main.jsp");
             } else {
             	if(!loginDAO.IdCheck(professorVO)) {
 				System.out.println("로그인 실패");
@@ -78,7 +78,7 @@ public class LoginCheck extends HttpServlet {
                session.setAttribute("name", studentVO.getStudent_name());
                session.setAttribute("role", role);
 //               System.out.println(session.getAttribute("id"));
-               response.sendRedirect("professor/noticeList.nt");
+               response.sendRedirect("main.jsp");
             } else {
 				System.out.println("로그인 실패");
 				response.setContentType("text/html;charset=UTF-8");
