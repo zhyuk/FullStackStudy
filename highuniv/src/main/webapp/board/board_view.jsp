@@ -215,7 +215,8 @@ h2 {
         <%
             pageContext.setAttribute("lf", "\n");
         %>
-        <div id="articleContentArea"><p>${fn:replace(article.BOARD_CONTENT, lf, "<br>")}</p></div>
+        <div id="articleContentArea"><p>${fn:replace(article.BOARD_CONTENT, lf, "<br>")}</p>
+        <img src="/highuniv/boardUpload/${article.BOARD_FILE}"> </div>
     </section>
 
     <section id="commentsSection">

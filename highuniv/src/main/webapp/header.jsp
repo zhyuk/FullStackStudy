@@ -75,13 +75,20 @@
 					/* border: 1px solid red; */
 				}
 
-				header .logo-box p {
-					position: absolute;
-					top: 50%;
-					display: inline;
-					margin-left: 10px;
-					float: left;
+				.mainrogo {
 					font-size: 24px;
+					color: white;
+					text-decoration: none;
+				}
+
+				.mainrogo:hover {
+					color: white;
+					text-decoration: none;
+				}
+
+				.mainrogo p {
+					position: relative;
+					top: 50%;
 					transform: translateY(-50%);
 				}
 
@@ -138,14 +145,14 @@
 					width: 100%;
 					display: none;
 					background: rgba(0, 0, 0, 0.6);
-					z-index: 2;
+					z-index: 11;
 				}
 
-				#modal ul {
+				#modal nav {
 					position: absolute;
 					width: 100%;
-					background: #444444;
-					z-index: 3;
+					background: #212121;
+					z-index: 12;
 				}
 
 				#modal ul li {
@@ -158,11 +165,22 @@
 					border: 1px solid #212121;
 				}
 
+
+				#modal ul.sub-menu {
+					display: none;
+				}
+				
+				#modal ul.sub-menu li {
+					background: #444444;
+				}
+
 				#modal button {
 					position: absolute;
-					top: 346px;
 					left: 50%;
+					width: auto;
 					height: 30px;
+					margin-top: 10px;
+					padding: 5px;
 					font-size: 14px;
 					color: #EAEAED;
 					font-weight: 700;
@@ -208,8 +226,10 @@
 				<header>
 					<!-- 로고 이미지 영역 -->
 					<div class="logo-box">
+						<a class="mainrogo" href="<%=request.getContextPath()%>/main">
 						<img src="<%= request.getContextPath() %>/public/img/logo.png" alt="로고">
 						<p>하이대학교</p>
+						</a>
 					</div>
 					<div class="clear"></div>
 					<!-- 사용자 영역 -->
@@ -226,13 +246,19 @@
 				</header>
 
 				<div id="modal">
+				<nav>
 					<c:choose>
 						<c:when test="${sessionScope.role == 'professor'}">
 							<ul>
 								<li onclick="location.href='<%=request.getContextPath()%>/ProfessorLectureServlet';">
 									강의정보</li>
-								<li onclick="location.href='<%=request.getContextPath()%>/professor/studentlist.pr';">
-									학생정보</li>
+								<li onclick="toggleSubMenu(this)">학생정보</li>
+								<ul class="sub-menu">
+									<li onclick="location.href='<%=request.getContextPath()%>/professor/student_info/pr_student_into.jsp';">
+										학생등록</li>
+									<li onclick="location.href='<%=request.getContextPath()%>/professor/student_info/studentlist.pr';">
+										학생리스트</li>
+								</ul>
 								<li onclick="location.href='<%=request.getContextPath()%>/attend';">출석정보</li>
 								<li onclick="location.href='<%=request.getContextPath()%>/professor/noticeList.nt';">
 									공지사항</li>
@@ -245,12 +271,12 @@
 
 						<c:when test="${sessionScope.role == 'student'}">
 							<ul>
-								<li onclick="location.href='<%=request.getContextPath()%>/mypage.jsp'">내정보</li>
+								<li onclick="location.href='<%=request.getContextPath()%>/my.jsp'">내정보</li>
 								<li
 									onclick="location.href='<%=request.getContextPath()%>/course_register/Courselist.cl';">
 									수강신청</li>
-								<li onclick="location.href='<%=request.getContextPath()%>/ProfessorLectureServlet';">
-									강의정보</li>
+								<li onclick="location.href='<%=request.getContextPath()%>/StudentLectureServlet';">강의정보
+								</li>
 								<li onclick="location.href='<%=request.getContextPath()%>/professor/noticeList.nt';">
 									공지사항</li>
 								<li onclick="location.href='<%=request.getContextPath()%>/boardList.bo';">게시판</li>
@@ -260,6 +286,7 @@
 								onclick="location.href='<%= request.getContextPath() %>/logout';">로그아웃</button>
 						</c:when>
 					</c:choose>
+					</nav>
 				</div>
 				<jsp:include page="aside.jsp" />
 

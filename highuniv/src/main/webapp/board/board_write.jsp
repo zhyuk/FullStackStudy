@@ -18,6 +18,7 @@ h2 {
 
 table {
 	margin: auto;
+	margin-top: 20px;
 	width: 90%;
 }
 
@@ -30,15 +31,19 @@ table {
 
 .td_right {
 	width: 90%;
-	background: skyblue;
+	border: solid 1px black;
+}
+
+#BOARD_SUBJECT {
+	width: 90%;
+	height: 30px;
 }
 
 #BOARD_CONTENT {
 	width: 100%;
 }
 
-#BOARD_SUBJECT {
-	width: 90%;
+#BOARD_FILE {
 	margin: 5px;
 }
 
