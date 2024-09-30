@@ -22,20 +22,12 @@ public class BoardWriteProAction implements Action {
 		String realFolder = "";
 		String saveFolder = "/boardUpload";
 		int fileSize = 5 * 1024 * 1024; //바이트 단위로 지정 5MB
-		
-		//실제 톰캣 서버에 배포할 경우 변경해야하는 경로
-//		ServletContext context = request.getServletContext();
-//		realFolder = context.getRealPath(saveFolder);
-		
-//		_수정
-		
-//		이미지 파일 업로드 C:\\jspwork\\highuniv\\src\\main\\webapp\\boardUpload
+
 		realFolder = "C:\\jwork\\highuniv\\src\\main\\webapp\\"+saveFolder;
 		File f = new File(realFolder);
 		if(!f.exists()) f.mkdirs();
 		
-		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8",
-				new DefaultFileRenamePolicy()); 
+		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy()); 
 		boardBean = new BoardBean();
 		boardBean.setBOARD_ID(multi.getParameter("BOARD_ID"));
 		boardBean.setBOARD_NAME(multi.getParameter("BOARD_NAME"));

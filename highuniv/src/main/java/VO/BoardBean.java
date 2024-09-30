@@ -14,6 +14,7 @@ public class BoardBean {
 	private Date BOARD_DATE;
 	private int BOARD_NO;
 	private String BOARD_MAIN;
+	private int COMMENT_COUNT;
 
 
 	public int getBOARD_NUM() {
@@ -113,6 +114,17 @@ public class BoardBean {
 
 	public void setBOARD_MAIN(String bOARD_MAIN) {
 		BOARD_MAIN = bOARD_MAIN;
+	}
+
+	
+
+	public int getCOMMENT_COUNT() {
+		return COMMENT_COUNT;
+	}
+
+
+	public void setCOMMENT_COUNT(int cOMMENTCOUNT) {
+		COMMENT_COUNT = cOMMENTCOUNT;
 	}
 
 

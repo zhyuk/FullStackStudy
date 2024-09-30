@@ -48,8 +48,6 @@ public class CommentDAO {
 			} else {
 				no = 1; // 댓글이 없을 경우 1부터 시작
 			}
-			System.out.println(comment.getCOMMENT_NAME());
-			System.out.println(comment.getCOMMENT_ID());
 			
 			sql = "INSERT INTO board_comment (BOARD_NO, COMMENT_ID, COMMENT_NAME, COMMENT_CONTENT, COMMENT_DATE, COMMENT_NO)"
 					+ "VALUES (?, ?, ?, ?, SYSDATE, ?)";

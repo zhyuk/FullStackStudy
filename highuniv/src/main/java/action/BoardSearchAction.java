@@ -32,7 +32,7 @@ public class BoardSearchAction implements Action {
 //			BoardListService 객체 생성
 		BoardListService boardListService = new BoardListService();
 //			BoardListService getListCount메소드 실행
-		int listCount = boardListService.getListCount(); // 총 목록 개수를 받아옴.
+		int listCount = boardListService.getSearchListCount(type, keyword); // 총 목록 개수를 받아옴.
 //			BoardListService getArticleList메소드 실행
 		// 검색 조건에 따라 게시글 목록 가져오기
 		articleList = boardListService.searchArticles(type, keyword, page, limit);

@@ -1,6 +1,8 @@
 package dao;
 
 import static util.JdbcUtil.close;
+import static util.JdbcUtil.commit;
+import static util.JdbcUtil.rollback;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +14,6 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import util.JdbcUtil;
 import vo.StudentVO;
 
 public class StudentDAO {
@@ -112,6 +113,35 @@ public class StudentDAO {
 		return insertCount;
 	}
 	
+	//학생 아이디 중복검사
+		public int studentid_chk(String student_id) {
+			pstmt = null;
+			ResultSet rs = null;
+			String sql = "";
+		
+			int chkCount = 0;
+			
+			try {
+				sql = "select count(*) from student where student_id = ? ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, student_id);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()){
+					chkCount=rs.getInt(1);
+				}
+				
+			} catch (Exception e) {
+				System.out.println("studentid_chk 에러 : "+e);
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+
+			return chkCount;
+		}
+	
 	//학생 목록 구하기
 	public int StudentListCount() {
 
@@ -156,7 +186,7 @@ public class StudentDAO {
 				student.setStudent_pw(rs.getString("student_pw"));
 				student.setStudent_name(rs.getString("student_name"));
 				student.setStudent_email(rs.getString("student_email"));
-				student.setStudent_ph(rs.getString("student_ph"));
+				student.setStudent_ph(rs.getString("student_ph").replaceFirst("(\\d{3})(\\d{4})(\\d+)", "$1-$2-$3"));
 				student.setStudent_birth(rs.getString("student_birth"));
 				student.setStudent_intoday(rs.getString("student_intoday"));
 				student.setStudent_year(rs.getInt("student_year"));;
@@ -176,6 +206,7 @@ public class StudentDAO {
 
 		}catch(Exception ex){
 			System.out.println("studentArticleList 에러 : " + ex);
+			ex.printStackTrace();
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -215,8 +246,6 @@ public class StudentDAO {
 			sql = "UPDATE student SET student_pw = ?, student_name = ?, student_email = ?, student_ph = ?, student_birth = ?, "
 				+ "student_intoday = ?, student_year = ?, student_major = ?, student_address = ?, student_gender = ?, student_status = ?, "
 				+ "student_use = ?, student_image = ? WHERE student_id = ?";
-			System.out.println(sql);
-			System.out.println(student);
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, student.getStudent_pw());
@@ -238,6 +267,7 @@ public class StudentDAO {
 				
 		} catch (Exception e) {
 			System.out.println("updateStudent 에러 : "+e);
+			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}
@@ -296,7 +326,7 @@ public class StudentDAO {
 	            student.setStudent_pw(rs.getString("student_pw"));
 	            student.setStudent_name(rs.getString("student_name"));
 	            student.setStudent_email(rs.getString("student_email"));
-	            student.setStudent_ph(rs.getString("student_ph"));
+	            student.setStudent_ph(rs.getString("student_ph").replaceFirst("(\\d{3})(\\d{4})(\\d+)", "$1-$2-$3"));
 	            student.setStudent_birth(rs.getString("student_birth"));
 	            student.setStudent_intoday(rs.getString("student_intoday"));
 	            student.setStudent_year(rs.getInt("student_year"));
@@ -323,6 +353,34 @@ public class StudentDAO {
 	    
 	    return studentList;
 	}
+	
+	public StudentVO authenticate(String id, String password) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        StudentVO student = null;
+
+        try {
+            String sql = "SELECT * FROM student WHERE student_id = ? AND student_pw = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.setString(2, password);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                student = new StudentVO();
+                student.setStudent_id(rs.getString("student_id"));
+                student.setStudent_pw(rs.getString("student_pw"));
+                student.setStudent_name(rs.getString("student_name"));
+                // 필요한 필드들을 설정
+            }
+        } finally {
+            if (rs != null) try { rs.close(); } catch (Exception ignore) {}
+            if (pstmt != null) try { pstmt.close(); } catch (Exception ignore) {}
+        }
+
+        return student;
+    }
+	
 	public boolean updateStudentInfo(String studentId, Map<String, String> updateFields) throws SQLException {
 	    if (updateFields.isEmpty()) {
 	        return false;
@@ -352,10 +410,10 @@ public class StudentDAO {
 
 	        int rowsAffected = pstmt.executeUpdate();
 	        if(rowsAffected > 0) {
-	        	JdbcUtil.commit(con);
+	        	commit(con);
 	        	return true;
 	        }else {
-	        	JdbcUtil.rollback(con);
+	        	rollback(con);
 	        	return false;
 	        	
 	        }

@@ -37,7 +37,8 @@ public class AttendDAO {
 		ArrayList<AttendVO> AttendList = new ArrayList<AttendVO>();
 		AttendVO avo = null;
 
-		String sql = "SELECT DISTINCT a.course_id, a.student_id, s.subject_name, a.student_name, a.status, a.attend_date, a.attend_remarks FROM attend a JOIN course e ON a.course_id = e.course_id JOIN subject s ON e.subject_id = s.subject_id JOIN course_register cr ON a.course_id = cr.course_id  JOIN student st ON cr.student_id = st.student_id";
+		String sql = "select distinct cr.course_id, su.subject_name, a.attend_date,  cr.student_id, st.student_name, a.status, a.attend_remarks from course c join course_register cr on c.course_id = cr.course_id join subject su on su.subject_id = c.subject_id join subject su on su.subject_id = c.subject_id join student st on cr.student_id = st.student_id join attend a on a.course_id = cr.course_id order by student_id";
+//		String sql = "SELECT DISTINCT a.course_id, a.student_id, s.subject_name, a.student_name, a.status, a.attend_date, a.attend_remarks FROM attend a JOIN course e ON a.course_id = e.course_id JOIN subject s ON e.subject_id = s.subject_id JOIN course_register cr ON a.course_id = cr.course_id  JOIN student st ON cr.student_id = st.student_id";
 
 
 
@@ -74,13 +75,14 @@ public class AttendDAO {
 		String sql = "";
 		int rs = 0;
 
-		sql = "UPDATE ATTEND SET STATUS = ?, ATTEND_REMARKS = ? WHERE STUDENT_ID = ?";
+		sql = "UPDATE ATTEND SET STATUS = ?, ATTEND_REMARKS = ? WHERE STUDENT_ID = ? and course_id = ?";
 		try {
 			con = ds.getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, avo.getStatus());
 			ps.setString(2, avo.getAttend_remarks());
 			ps.setString(3, avo.getStudent_id());
+			ps.setString(4, avo.getCourse_id());
 			rs = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

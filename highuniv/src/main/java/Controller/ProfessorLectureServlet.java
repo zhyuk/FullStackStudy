@@ -20,42 +20,44 @@ import vo.Subject;
 
 @WebServlet("/ProfessorLectureServlet")
 public class ProfessorLectureServlet extends HttpServlet {
-    private SubjectService subjectService;
+    private SubjectService subjectService = null;
 
-    @Override
-    public void init() throws ServletException {
-        try {
-            ServletContext context = getServletContext();
-            Connection conn = (Connection) context.getAttribute("DBConnection");
-            if (conn == null) {
-                // 새로운 DBConnection을 생성하고 ServletContext에 설정
-                conn = JdbcUtil.getConnection();
-                if (conn == null) {
-                    throw new ServletException("DBConnection을 설정할 수 없습니다.");
-                }
-                context.setAttribute("DBConnection", conn);
-                System.out.println("DBConnection을 생성하여 ServletContext에 설정했습니다.");
-            } else {
-                System.out.println("기존의 DBConnection을 사용합니다.");
-            }
-
-            // SubjectDAO의 싱글턴 인스턴스를 가져오고 연결 설정
-            SubjectDAO subjectDAO = SubjectDAO.getInstance();
-            subjectDAO.setConnection(conn);
-
-            // SubjectService를 SubjectDAO로 초기화
-            subjectService = new SubjectService(subjectDAO);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new ServletException("초기화 중 오류 발생: " + e.getMessage());
-        }
-    }
+//    @Override
+//    public void init() throws ServletException {
+//        try {
+//            ServletContext context = getServletContext();
+//            Connection conn = (Connection) context.getAttribute("DBConnection");
+//            if (conn == null) {
+//                // 새로운 DBConnection을 생성하고 ServletContext에 설정
+//                conn = JdbcUtil.getConnection();
+//                if (conn == null) {
+//                    throw new ServletException("DBConnection을 설정할 수 없습니다.");
+//                }
+//                context.setAttribute("DBConnection", conn);
+//                System.out.println("DBConnection을 생성하여 ServletContext에 설정했습니다.");
+//            } else {
+//                System.out.println("기존의 DBConnection을 사용합니다.");
+//            }
+//
+//            // SubjectDAO의 싱글턴 인스턴스를 가져오고 연결 설정
+//            SubjectDAO subjectDAO = SubjectDAO.getInstance();
+//            subjectDAO.setConnection(conn);
+//
+//            // SubjectService를 SubjectDAO로 초기화
+//            subjectService = new SubjectService(subjectDAO);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            throw new ServletException("초기화 중 오류 발생: " + e.getMessage());
+//        }
+//    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Subject> subjectList = null;
+        
         try {
             // 데이터베이스에서 강의 목록 가져오기
+        	subjectService = new SubjectService();
             subjectList = subjectService.getAllSubjects();
 
             System.out.println("강의 목록: " + subjectList);
@@ -78,10 +80,12 @@ public class ProfessorLectureServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         String subjectId = request.getParameter("subjectId");
-
+        
+        System.out.println(subjectId);
         if ("delete".equals(action) && subjectId != null) {
             try {
                 // 삭제 로직 수행
+            	subjectService = new SubjectService();
                 boolean isDeleted = subjectService.deleteSubject(subjectId);
                 if (isDeleted) {
                     System.out.println("강의 삭제 성공: " + subjectId);

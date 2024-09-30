@@ -51,13 +51,13 @@ public class LoginDAO {
 				pvo.setProfessor_name(rs.getString("professor_name"));
 				pvo.setProfessor_email(rs.getString("professor_email"));
 				pvo.setProfessor_ph(rs.getString("professor_ph"));
-				pvo.setProfessor_status(rs.getString("professor_status"));
-//				System.out.println("로그인 성공");
+
 				idChk = true;
 			} else {
 				idChk = false;
 			}
 		} catch (SQLException e) {
+			System.out.println("IdCheck 여기에러" + e.getMessage());
 			e.printStackTrace();
 		}
 		

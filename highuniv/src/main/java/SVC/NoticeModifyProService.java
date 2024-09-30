@@ -15,11 +15,11 @@ public class NoticeModifyProService {
 
 	public boolean isNoticeWriter(int notice_num, String pass) throws Exception {
 		
-		boolean isNoticeWriter = false;
+		boolean isNoticeWriter = true;
 		Connection con = getConnection();
 		NoticeDAO noticeDAO = NoticeDAO.getInstance();
 		noticeDAO.setConnection(con);
-		isNoticeWriter = noticeDAO.isNoticesWriter(notice_num, pass);//noticesWriter는 비밀번호를 입력하여 작성자인지 확인하는 메소드입니다. 
+//		isNoticeWriter = noticeDAO.isNoticesWriter(notice_num, pass);
 		close(con);
 		return isNoticeWriter;
 		

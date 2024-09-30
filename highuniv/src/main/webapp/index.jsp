@@ -200,7 +200,7 @@
                 <section>
                     <div class="login-box">
                         <img src="./public/img/logo-blue.png" alt="로고이미지">
-                    <form action="login" method="post">
+                        <form action="login" method="post">
                         <label for="id">아이디(학번)</label>
                         <input type="text" id="id" name="id">
                         <label for="password" class="password">비밀번호</label>
@@ -239,21 +239,21 @@
         
 
 <!--         <script> -->
-//             $(document).ready(function () {
-//                 // 폼의 submit 버튼 클릭 시
-//                 $("form").submit(function (event) {
-//                     // id와 password의 입력값을 가져옴
-//                     let idValue = $("#id").val();
-//                     let passwordValue = $("#password").val();
+<!-- //             $(document).ready(function () { -->
+<!-- //                 // 폼의 submit 버튼 클릭 시 -->
+<!-- //                 $("form").submit(function (event) { -->
+<!-- //                     // id와 password의 입력값을 가져옴 -->
+<!-- //                     let idValue = $("#id").val(); -->
+<!-- //                     let passwordValue = $("#password").val(); -->
 
-//                     // id와 password 값이 빈 문자열이 아닌지 확인
-//                     if (idValue === "" || passwordValue === "") {
-//                         // 값이 비어있으면 submit 방지
-//                         event.preventDefault();
-//                         alert("아이디와 비밀번호를 모두 입력해주세요.");
-//                     }
-//                 });
-//             });
+<!-- //                     // id와 password 값이 빈 문자열이 아닌지 확인 -->
+<!-- //                     if (idValue === "" || passwordValue === "") { -->
+<!-- //                         // 값이 비어있으면 submit 방지 -->
+<!-- //                         event.preventDefault(); -->
+<!-- //                         alert("아이디와 비밀번호를 모두 입력해주세요."); -->
+<!-- //                     } -->
+<!-- //                 }); -->
+<!-- //             }); -->
 
 <!--         </script> -->
     </body>

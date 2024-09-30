@@ -1,7 +1,7 @@
 package vo;
 
 public class CourseVO {
-	
+
 	private String subjectStartTime;
 	private String subjectEndTime;
 	private int courseMaxPeople;
@@ -13,12 +13,14 @@ public class CourseVO {
 	private int subjectCredit;
 	private String subjectTime;
 	private String subjectDay;
-	private String professorId;
+	private String professorName;
 	private String subjectRoom;
-	private int subjectMax;
-	private String courseStatus;
 	private int courseGrade;
 	private int registerPeople;
+	private int subjectMax;
+	private String courseStatus;
+	private int maxCount;
+
 
 	public int getRegisterPeople() {
 		return registerPeople;
@@ -40,16 +42,16 @@ public class CourseVO {
 		return subjectStartTime;
 	}
 
-	public void setSubjectStartTime(String subjectFirstTime) {
-		this.subjectStartTime = subjectFirstTime;
+	public void setSubjectStartTime(String subjectStartTime) {
+		this.subjectStartTime = subjectStartTime;
 	}
 
 	public String getSubjectEndTime() {
 		return subjectEndTime;
 	}
 
-	public void setSubjectEndTime(String subjectLastTime) {
-		this.subjectEndTime = subjectLastTime;
+	public void setSubjectEndTime(String subjectEndTime) {
+		this.subjectEndTime = subjectEndTime;
 	}
 
 	public int getCourseMaxPeople() {
@@ -83,8 +85,6 @@ public class CourseVO {
 	public void setCourseStatus(String courseStatus) {
 		this.courseStatus = courseStatus;
 	}
-
-	private int maxCount;
 
 	public int getMaxCount() {
 		return maxCount;
@@ -142,12 +142,12 @@ public class CourseVO {
 		this.subjectDay = subjectDay;
 	}
 
-	public String getProfessorId() {
-		return professorId;
+	public String getProfessorName() {
+		return professorName;
 	}
 
-	public void setProfessorId(String professorId) {
-		this.professorId = professorId;
+	public void setProfessorName(String professorName) {
+		this.professorName = professorName;
 	}
 
 	public String getSubjectRoom() {

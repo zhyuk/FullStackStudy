@@ -25,6 +25,22 @@ public class BoardListService {
 		return listCount;
 		
 	}
+	
+	public int getSearchListCount(String type, String keyword) throws Exception {
+	    int listCount = 0; // 글의 개수
+	    Connection con = getConnection();
+	    
+	    // BoardDAO 객체 생성
+	    BoardDAO boardDAO = BoardDAO.getInstance();
+	    // BoardDAO의 setConnection 메소드 실행
+	    boardDAO.setConnection(con);
+	    // BoardDAO의 selectSearchListCount 메소드 실행 (검색 조건에 맞는 글의 개수)
+	    listCount = boardDAO.selectSearchListCount(type, keyword);
+	    
+	    close(con);
+	    return listCount;
+	}
+
 
 	public ArrayList<BoardBean> getArticleList(int page, int limit) throws Exception{
 		
@@ -33,6 +49,10 @@ public class BoardListService {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		articleList = boardDAO.selectArticleList(page, limit);
+		for (BoardBean article : articleList) {
+	        int commentCount = boardDAO.getCommentCount(article.getBOARD_NO());
+	        article.setCOMMENT_COUNT(commentCount);
+	    }
 		close(con);
 		return articleList;
 		
@@ -47,5 +67,8 @@ public class BoardListService {
 		close(con);
 		return articleList;
 	}
+	
+	
+
 
 }

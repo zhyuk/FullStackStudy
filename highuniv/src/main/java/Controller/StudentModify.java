@@ -56,7 +56,7 @@ public class StudentModify extends HttpServlet {
 			}
 			if (postcode != null && !postcode.trim().isEmpty()) {
 				// 주소 정보를 하나의 필드로 합쳐서 저장하거나, 각각의 필드로 저장할 수 있습니다.
-				String fullAddress = addr1 + " " + addr2 + " " + comment;
+				String fullAddress = "["+ postcode+"]"+ addr1 + " " + comment + " " + addr2;
 				updateFields.put("STUDENT_ADDRESS", fullAddress.trim());
 			}
 

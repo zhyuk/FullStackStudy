@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -19,6 +20,7 @@ public class CourseDAO {
 	DataSource ds;
 	Statement stmt;
 	ResultSet rs;
+	PreparedStatement pstmt;
 
 	private CourseDAO() {
 	}
@@ -36,38 +38,6 @@ public class CourseDAO {
 		this.con = con;
 	}
 
-	public int updateCourseStatus(String courseId) {
-		System.out.println("다오입장1");
-		PreparedStatement pstmt = null;
-		int updateCount = 0;
-		String sql = "UPDATE course SET course_status = '신청완료' WHERE course_id = ?";
-
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, courseId);
-			updateCount = pstmt.executeUpdate();
-
-			if (updateCount > 0) {
-				con.commit();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-
-		return updateCount;
-	}
-
-//		String str = "";
-//
-//		for (int i = 0; i < registerList.size(); i++) {
-//			if (i != registerList.size() - 1)
-//				str += registerList.get(i) + ",";
-//			else
-//				str += registerList.get(i);
-//			System.out.println("str: " + str);
-//		}
 	public ArrayList<CourseVO> getRegisterList(String[] subjectIds, String studentId) {
 		System.out.println("다오입장");
 		ArrayList<CourseVO> registerList = new ArrayList<>();
@@ -75,7 +45,6 @@ public class CourseDAO {
 		rs = null;
 		PreparedStatement pstmtInsert = null;
 		PreparedStatement pstmtSelect = null;
-		PreparedStatement pstmtTotalCredit = null;
 
 		try {
 			String insertSql = "INSERT INTO course_register (course_id, student_id, course_status, course_grade) "
@@ -84,7 +53,6 @@ public class CourseDAO {
 					+ "	INNER JOIN subject s ON c.subject_id = s.subject_id	WHERE s.subject_id = ?"
 					+ " GROUP BY c.course_id";
 
-//			String sql2 = "SELECT course_id, ? as student_id, course_status, course_grade FROM course_register WHERE subject_id = ?";
 
 			String selectSql = "SELECT course_id, student_id, course_status, course_grade " + " FROM course_register"
 					+ " WHERE student_id = ? and course_id = ?";
@@ -151,59 +119,68 @@ public class CourseDAO {
 		return registerList;
 	}
 
-	public int getCourseRegisterCount(String courseId) {
-		System.out.println("카운트 다오입장");
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int count = 0;
-		String sql = "SELECT COUNT(*) as count FROM course_register WHERE course_id = ?";
+
+	public int getRegisterDelete(String[] courseIds, String studentId) {
+		System.out.println("DAO 입장 3: " + "courseId: " + courseIds + " studentId: " + studentId);
+		pstmt = null;
+		rs = null;
+
+		int registerdelete = 0;
+		String sql = "DELETE FROM course_register WHERE course_id in(?) and student_id = ?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, courseId); // 첫 번째 ?에 courseId 값을 바인딩
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				count = rs.getInt(1); // 첫 번째 컬럼에서 count 값을 가져옴
+			for (String courseId : courseIds) {
+				pstmt.setString(1, courseId);
+				pstmt.setString(2, studentId);
+				registerdelete += pstmt.executeUpdate();
 			}
+			System.out.println("registerdelete: " + registerdelete);
 		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
 
-		return count; // 해당 course_id의 등록된 수강생 수 반환
+		} finally {
+
+		}
+		return registerdelete;
 	}
 
+
 	// 전체과목 조회
-	public ArrayList<CourseVO> getCourseList(String login_id) {
+	public ArrayList<CourseVO> getCourseList(String login_id, String subjectSearch) {
 		System.out.println("DAO들어옴");
 		ArrayList<CourseVO> courseList = new ArrayList<>();
-//    	PreparedStatement pstmt = null;
-		stmt = null;
+		PreparedStatement pstmt = null;
 		rs = null;
-//    	CourseVO cs = null;
-		String sql = "select c.course_id as COURSE_ID, s.subject_id as SUBJECT_ID, "
-				+ " s.subject_name as SUBJECT_NAME, c.course_maxpeople as COURSE_MAXPEOPLE, "
-				+ " s.subject_semester as SUBJECT_SEMESTER, s.subject_credit as SUBJECT_CREDIT,"
-				+ " s.subject_starttime as SUBJECT_STARTTIME, s.subject_endtime as SUBJECT_ENDTIME,"
-				+ "	s.subject_day as SUBJECT_DAY, s.professor_id as PROFESSOR_ID,"
-				+ "	s.subject_room as SUBJECT_ROOM " + "	from course c" + " inner join subject s "
-				+ " on c.subject_id = s.subject_id";
+
+
+		String sql = "SELECT c.course_id, s.subject_id, s.subject_name, c.course_maxpeople, s.subject_semester,"
+					+ " s.subject_credit, s.subject_starttime, s.subject_endtime, s.subject_day, p.professor_name,"
+					+ " s.subject_room, COALESCE(c.max_count, 0) AS max_count, COALESCE(c.status, '가능') AS status"
+					+ " FROM subject s LEFT JOIN ("
+					+ "     SELECT c.subject_id, c.course_id, c.course_maxpeople, COUNT(r.course_id) AS max_count, CASE WHEN COUNT(CASE WHEN r.student_id = ? THEN 1 END) > 0 THEN '완료' ELSE '가능' END AS status"
+					+ "	 FROM course_register r FULL OUTER JOIN course c ON r.course_id = c.course_id"
+					+ "	 GROUP BY c.subject_id, c.course_id, c.course_maxpeople"
+					+ ") c ON s.subject_id = c.subject_id"
+					+ " LEFT JOIN professor p ON s.professor_id = p.professor_id";
+		
+		if (!subjectSearch.equals("")) {
+		    sql += " WHERE s.subject_name LIKE ? OR p.professor_name LIKE ? OR s.subject_day LIKE ?";
+		}
+		
+		sql += " ORDER BY c.course_id";
+		
 		try {
-//    		stmt = con.createStatement();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
-//    		pstmt = con.prepareStatement(sql);
-//    		pstmt.setString(1, studentId); // 학생 ID를 SQL에 바인딩
-//    		rs = pstmt.executeQuery();
-//			private String subjectId	;
-			// 결과 집합을 순회하며 CourseVO 객체 생성 및 리스트에 추가
-//    		int total = 0;
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, login_id); // 학생 ID를 SQL에 바인딩
+
+		    if (!subjectSearch.equals("")) {
+		        pstmt.setString(2, "%" + subjectSearch + "%");
+		        pstmt.setString(3, "%" + subjectSearch + "%");
+		        pstmt.setString(4, "%" + subjectSearch + "%");
+		    }
+			
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				System.out.println(rs);
-//    			int count = 0;
 				CourseVO cs = new CourseVO();
 				cs.setCourseId(rs.getString("course_id"));
 				cs.setSubjectId(rs.getString("subject_id"));
@@ -214,17 +191,16 @@ public class CourseDAO {
 				cs.setSubjectStartTime(rs.getString("subject_starttime"));
 				cs.setSubjectEndTime(rs.getString("subject_endtime"));
 				cs.setSubjectDay(rs.getString("subject_day"));
-				cs.setProfessorId(rs.getString("professor_id"));
+				cs.setProfessorName(rs.getString("professor_name"));
 				cs.setSubjectRoom(rs.getString("subject_room"));
+				cs.setCourseStatus(rs.getString("status"));
+				cs.setMaxCount(rs.getInt("max_count"));
 
 				courseList.add(cs);
 			}
 		} catch (Exception e) {
 			e.printStackTrace(); // 예외 처리
 		} finally {
-			// 자원 해제
-//    		if (rs != null) rs.close();
-//    		if (stmt != null) stmt.close();
 			if (rs != null)
 				close(rs);
 			if (stmt != null)
@@ -233,4 +209,45 @@ public class CourseDAO {
 		return courseList;
 	}
 
+	public ArrayList<CourseVO> getMyCourseList(String login_id) {
+		ArrayList<CourseVO> MyCourseList = new ArrayList<>();
+		pstmt = null;
+		rs = null;
+
+		String sql = " SELECT c.course_id, s.subject_id, s.subject_name, s.subject_semester, s.subject_credit,"
+				+ " s.subject_starttime, s.subject_endtime, s.subject_day, p.professor_name, s.subject_room"
+				+ "	from course_register cr" + "	inner join course c	on cr.course_id = c.course_id"
+				+ "	inner join subject s on c.subject_id = s.subject_id"
+				+ "	left join professor p on s.professor_id = p.professor_id" + "	where cr.student_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, login_id);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+
+				CourseVO cs = new CourseVO();
+				cs.setCourseId(rs.getString("course_id"));
+				cs.setSubjectId(rs.getString("subject_id"));
+				cs.setSubjectName(rs.getString("subject_name"));
+				cs.setSubjectSemester(rs.getString("subject_semester"));
+				cs.setSubjectCredit(rs.getInt("subject_credit"));
+				cs.setSubjectStartTime(rs.getString("subject_starttime"));
+				cs.setSubjectEndTime(rs.getString("subject_endtime"));
+				cs.setSubjectDay(rs.getString("subject_day"));
+				cs.setProfessorName(rs.getString("professor_name"));
+				cs.setSubjectRoom(rs.getString("subject_room"));
+
+				MyCourseList.add(cs);
+			}
+		} catch (Exception e) {
+			e.printStackTrace(); // 예외 처리
+		} finally {
+			if (rs != null)
+				close(rs);
+			if (stmt != null)
+				close(stmt);
+		}
+		return MyCourseList;
+	}
 }

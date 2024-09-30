@@ -1,9 +1,14 @@
 package action;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import svc.BoardModifyProService;
 import vo.ActionForward;
@@ -11,14 +16,14 @@ import vo.BoardBean;
 
 public class BoardModifyProAction implements Action {
 
-	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) 
-			throws Exception{
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ActionForward forward = null;
 		boolean isModifySuccess = false;
 		int board_no=Integer.parseInt(request.getParameter("BOARD_NO"));
-		String session_id = request.getParameter("SESSION_ID");
-		BoardBean boarBean = new BoardBean();
+		int board_num=Integer.parseInt(request.getParameter("BOARD_NUM"));
+		String session_id = request.getParameter("SESSION_ID");		
+		BoardBean boardBean = new BoardBean();
 		BoardModifyProService boardModifyProService = new BoardModifyProService();
 		boolean isRightUser=boardModifyProService.isArticleWriter(board_no, session_id);
 
@@ -31,12 +36,13 @@ public class BoardModifyProAction implements Action {
 			out.println("</script>");
 		}
 		else{
-			boarBean.setBOARD_NO(board_no);
-			boarBean.setBOARD_SUBJECT(request.getParameter("BOARD_SUBJECT"));
-			boarBean.setBOARD_CONTENT(request.getParameter("BOARD_CONTENT")); 
-			boarBean.setBOARD_MAIN(request.getParameter("BOARD_MAIN"));
-			isModifySuccess = boardModifyProService.modifyArticle(boarBean);
-
+			boardBean.setBOARD_NO(board_no);
+			boardBean.setBOARD_NUM(board_num);
+			boardBean.setBOARD_SUBJECT(request.getParameter("BOARD_SUBJECT"));
+			boardBean.setBOARD_CONTENT(request.getParameter("BOARD_CONTENT")); 
+			boardBean.setBOARD_MAIN(request.getParameter("BOARD_MAIN"));
+			isModifySuccess = boardModifyProService.modifyArticle(boardBean);
+			
 			if(!isModifySuccess){
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out=response.getWriter();
@@ -48,10 +54,11 @@ public class BoardModifyProAction implements Action {
 			else{
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("boardDetail.bo?board_no="+boarBean.getBOARD_NO()+"&page="+request.getParameter("page")); 
+				forward.setPath("boardDetail.bo?board_no="+boardBean.getBOARD_NO()+"&page="+request.getParameter("page")); 
 			}
 
 		}
+			
 
 		return forward;
 	}

@@ -34,4 +34,17 @@ public class NoticeListService {
         close(con);
         return noticeList;
     }
+    
+    // 글 목록 조회
+    public ArrayList<NoticeBean> searchNotices(String type, String keyword, int page, int limit) {
+		ArrayList<NoticeBean> noticeList = new ArrayList<>();
+	    Connection con = getConnection();
+	    NoticeDAO noticeDAO = NoticeDAO.getInstance();
+	    noticeDAO.setConnection(con);
+	    noticeList = noticeDAO.searchNoticeList(type,keyword,page,limit);
+		close(con);
+		return noticeList;
+	}
+    
+    
 }

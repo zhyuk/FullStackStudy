@@ -8,13 +8,9 @@ public class PageInfo {
 	private int endPage; //현재 페이지에 보여줄 마지막 페이지 번호(endBtn 마지막 버튼 버튼번호)
 	private int listCount; //전체 목록 개수(totalListCnt해당)
 	
+	public PageInfo() {}
 	
-	
-	public PageInfo() {
-	}
-
 	public PageInfo(int page, int maxPage, int startPage, int endPage, int listCount) {
-		super();
 		this.page = page;
 		this.maxPage = maxPage;
 		this.startPage = startPage;

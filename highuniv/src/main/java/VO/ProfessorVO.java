@@ -56,4 +56,9 @@ public class ProfessorVO {
 		this.professor_status = professor_status;
 	}
 
+	public void setProfessor_ph1(String int1) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -85,21 +85,37 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-<a href="${pageContext.request.contextPath}/StudentLectureServlet" class="btn">강의조회</a>
-   
+
 
     <c:forEach var="subject" items="${subjectList}" varStatus="status">
-     <c:if test="${status.index < 4}">
+    
         <!-- 강의 정보 카드 -->
         <div class="lecture-container">
             <div class="lecture-image">
                 <!-- 이미지 표시 -->
-               <img src="<%=request.getContextPath() %>/image/${subject.IMAGE_NAME}"alt="강의 이미지" style="max-width: 100%; max-height: 100%;">
-
+<%--                <img src="<%=request.getContextPath() %>/image/${subject.IMAGE_NAME}"alt="강의 이미지" style="max-width: 100%; max-height: 100%;"> --%>
+	<c:choose>
+     
+                <c:when test="${subject.IMAGE_NAME ne null && subject.IMAGE_NAME.startsWith('upload_')}">
+<%--                     <img src="${pageContext.request.contextPath}/uploads/${subject.IMAGE_NAME}" alt="강의 이미지" style="max-width: 100%; max-height: 100%;"> --%>
+                    <img src="${pageContext.request.contextPath}/uploads/${subject.IMAGE_NAME}" alt="강의 이미지" style="max-width: 100%; max-height: 100%;">
+                </c:when>
+    
+   
+        <c:when test="${subject.IMAGE_NAME ne null}">
+            <!-- 동적으로 이미지 출력 -->
+            <img src="<%=request.getContextPath() %>/uploads/${subject.IMAGE_NAME}" alt="강의 이미지" style="max-width: 100%; max-height: 100%;">
+<%--             <img src="<%=request.getContextPath() %>/image/${subject.IMAGE_NAME}" alt="강의 이미지" style="max-width: 100%; max-height: 100%;"> --%>
+        </c:when>
+        <c:otherwise>
+            <!-- 이미지가 없을 경우 기본 이미지 출력 -->
+            <img src="${pageContext.request.contextPath}/IMAGE/default.jpg" alt="강의 이미지" style="max-width: 100%; max-height: 100%;">
+        </c:otherwise>
+    </c:choose>
             </div>
             <div class="lecture-details">
-                <h2>(강의명) ${subject.SUBJECT_NAME}</h2>
-                <p>(세부 강의 설명) ${subject.SUBJECT_CONTENT}</p>
+                <h2> ${subject.SUBJECT_NAME}</h2>
+                <p> ${subject.SUBJECT_CONTENT}</p>
                 <p>강의 시간 : ${subject.SUBJECT_DAY} ${subject.SUBJECT_STARTTIME} ~ ${subject.SUBJECT_ENDTIME}</p>
                 <p>학점 : ${subject.SUBJECT_CREDIT}학점</p>
             </div>
@@ -107,7 +123,7 @@
                 <p>교수 | ${subject.PROFESSOR_NAME}</p>
             </div>
         </div>
-          </c:if>
+         
     </c:forEach>
     <jsp:include page="footer.jsp"></jsp:include>
 </body>

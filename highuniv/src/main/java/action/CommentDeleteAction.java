@@ -17,7 +17,7 @@ public class CommentDeleteAction implements Action {
         CommentBean commentBean = new CommentBean();
         int board_no = Integer.parseInt(request.getParameter("board_no"));
         int comment_no = Integer.parseInt(request.getParameter("comment_no"));
-        String comment_id = commentBean.getCOMMENT_ID();
+        String comment_id = request.getParameter("comment_id");
         String nowPage = request.getParameter("page");
         CommentDeleteService commentDeleteService = new CommentDeleteService();
         boolean isCommentWriter = commentDeleteService.isCommentWriter(comment_no, comment_id);

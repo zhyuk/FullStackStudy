@@ -22,6 +22,8 @@
 table {
 	border-collapse: collapse;
 	width: 100%;
+	overflow: hidden;  /* 넘치는 텍스트를 숨김 */
+    text-overflow: ellipsis;  /* 넘치는 텍스트를 ...으로 표시 */
 }
 
 table tr:nth-child(1) {
@@ -49,9 +51,21 @@ tr td {
 
 @media screen and (max-width: 1000px) {
 	/* 테이블의 특정 열 숨기기 */
-	.student_list table th:nth-child(2), /* 전공 열 숨기기 */ 
+	.student_list table th:nth-child(2), /* 전공 열 숨기기 */
+	.student_list table th:nth-child(4),
+	.student_list table th:nth-child(6), 
 	.student_list table th:nth-child(7) /* 이메일 열 숨기기 */ {display: none; }
 	
 	.student_list table td:nth-child(2),
+	.student_list table td:nth-child(4),
+	.student_list table td:nth-child(6),
 	.student_list table td:nth-child(7){ display: none; }
+	
+	table{
+		font-size:0.9em;
+	}
+	
+	button{
+		width:40px;
+	}
 }

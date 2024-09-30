@@ -28,8 +28,17 @@ public class LoginCheck extends HttpServlet {
 //      System.out.println("로그인");
       String id = request.getParameter("id");
       String pw = request.getParameter("password");
-      String role = request.getParameter("role"); 
+      String role = request.getParameter("role");
       
+      if(id.equals("") || pw.equals("")) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('아이디와 비밀번호를 모두 입력하세요.');");
+			out.println("location.href='index.jsp';");
+			out.println("</script>");
+      }
+   
       HttpSession session = request.getSession();
          
          if(role.equals("professor")) {
@@ -37,32 +46,22 @@ public class LoginCheck extends HttpServlet {
             professorVO.setProfessor_id(id);
             professorVO.setProfessor_pw(pw);
             LoginDAO loginDAO = new LoginDAO();
-            if(loginDAO.IdCheck(professorVO) && professorVO.getProfessor_status().equals("Y")) {
-            	System.out.println("로그인 성공");
-            	session.setAttribute("id", professorVO.getProfessor_id());
-            	session.setAttribute("pw", professorVO.getProfessor_pw());
-            	session.setAttribute("name", professorVO.getProfessor_name());
-            	session.setAttribute("role", role);
+            if(loginDAO.IdCheck(professorVO)) {
+               System.out.println("로그인 성공");
+               session.setAttribute("id", professorVO.getProfessor_id());
+               session.setAttribute("pw", professorVO.getProfessor_pw());
+               session.setAttribute("name", professorVO.getProfessor_name());
+               session.setAttribute("role", role);
 //               System.out.println(session.getAttribute("id"));
-               response.sendRedirect("main.jsp");
+               response.sendRedirect("main");
             } else {
-            	if(!loginDAO.IdCheck(professorVO)) {
 				System.out.println("로그인 실패");
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('아이디와 비밀번호를 확인해주세요.');");
-				out.println("location.href='login.jsp';");
+				out.println("location.href='index.jsp';");
 				out.println("</script>");
-            	} else if (!professorVO.getProfessor_status().equals("Y")) {
-            		System.out.println("로그인 실패");
-    				response.setContentType("text/html;charset=UTF-8");
-    				PrintWriter out = response.getWriter();
-    				out.println("<script>");
-    				out.println("alert('사용할 수 없는 상태인 아이디입니다.');");
-    				out.println("location.href='login.jsp';");
-    				out.println("</script>");
-            	}
             }
 //            System.out.println("입력한 id : " + professorVO.getProfessor_id());
          } else if (role.equals("student")) {
@@ -78,14 +77,14 @@ public class LoginCheck extends HttpServlet {
                session.setAttribute("name", studentVO.getStudent_name());
                session.setAttribute("role", role);
 //               System.out.println(session.getAttribute("id"));
-               response.sendRedirect("main.jsp");
+               response.sendRedirect("main");
             } else {
 				System.out.println("로그인 실패");
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('아이디와 비밀번호를 확인해주세요.');");
-				out.println("location.href='login.jsp';");
+				out.println("location.href='index.jsp';");
 				out.println("</script>");
             }
          }

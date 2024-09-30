@@ -35,6 +35,18 @@ public class StudentService {
 		return insertCount; 
 	}
 	
+	//학생학번중복검사
+	public int studentid_chk(String student_id) {
+		Connection con = getConnection();
+		StudentDAO studentDAO = StudentDAO.getInstance();
+		studentDAO.setConnection(con);
+
+		int chkCount = studentDAO.studentid_chk(student_id);
+
+		close(con);
+		return chkCount;
+	}
+	
 	//학생수정
 	public int updateStudent(StudentVO student) {
 			

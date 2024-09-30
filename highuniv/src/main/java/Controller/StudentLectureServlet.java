@@ -43,8 +43,9 @@ public class StudentLectureServlet extends HttpServlet {
             SubjectDAO subjectDAO = SubjectDAO.getInstance();
             subjectDAO.setConnection(conn);
 
+            /// 잘 모르지만 여기 건듬
             // SubjectService를 SubjectDAO로 초기화
-            subjectService = new SubjectService(subjectDAO);
+            subjectService = new SubjectService();
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServletException("초기화 중 오류 발생: " + e.getMessage());

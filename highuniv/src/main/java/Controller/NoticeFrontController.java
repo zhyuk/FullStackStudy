@@ -14,21 +14,20 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import action.Action;
-import action.NoticeDetailAction;
-import action.NoticeDeleteProAction;
-import action.NoticeListAction;
-import action.NoticeWriteProAction;
-import action.SetNoticeAsPrivateAction;
-import action.SetNoticeAsPublicAction;
-import action.NoticeModifyFormAction;
-import action.NoticeModifyProAction;
 
+import action.Action;
+import action.notice.NoticeDeleteProAction;
+import action.notice.NoticeDetailAction;
+import action.notice.NoticeListAction;
+import action.notice.NoticeModifyFormAction;
+import action.notice.NoticeModifyProAction;
+import action.notice.NoticeSearchAction;
+import action.notice.NoticeWriteProAction;
 import vo.ActionForward;
 
 @WebServlet("*.nt")
 public class NoticeFrontController extends javax.servlet.http.HttpServlet  {
-   private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
@@ -62,105 +61,97 @@ public class NoticeFrontController extends javax.servlet.http.HttpServlet  {
                 e.printStackTrace();
             }
         }else if(command.equals("/professor/noticeModifyForm.nt")){
-         action = new NoticeModifyFormAction();
-         try{
-            forward=action.execute(request, response);
-         }catch(Exception e){
-            e.printStackTrace();
-         }
-      }else if(command.equals("/professor/noticeModifyPro.nt")){
-         action = new NoticeModifyProAction();
-         try{
-            forward=action.execute(request, response);
-         }catch(Exception e){
-            e.printStackTrace();
-         }
-      }else if(command.equals("/professor/noticeDeleteForm.nt")){
-         String nowPage = request.getParameter("page");
-         request.setAttribute("page", nowPage);
-         int notice_id=Integer.parseInt(request.getParameter("notice_id"));
-         request.setAttribute("notice_id",notice_id);
-         forward=new ActionForward();
-         forward.setPath("/professor/notice_delete.jsp");
-      }else if(command.equals("/professor/noticeDeletePro.nt")){
-         action = new NoticeDeleteProAction();
-         try{
-            forward=action.execute(request, response);
-         }catch(Exception e){
-            e.printStackTrace();
-         }
-      }else if (command.equals("/professor/noticeDetail.nt")) {
+			action = new NoticeModifyFormAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/professor/noticeModifyPro.nt")){
+			action = new NoticeModifyProAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/professor/noticeDeletePro.nt")){
+			String nowPage = request.getParameter("page");
+			request.setAttribute("page", nowPage);
+			int notice_id=Integer.parseInt(request.getParameter("notice_id"));
+			request.setAttribute("notice_id",notice_id);
+			
+			
+			action = new NoticeDeleteProAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if (command.equals("/professor/noticeDetail.nt")) {
             action = new NoticeDetailAction();
             try {
                 forward = action.execute(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if (command.equals("/professor/setNoticeAsPublic.nt")) {
-            action = new SetNoticeAsPublicAction();
-            try {
-                forward = action.execute(request, response);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        
-        }else if (command.equals("/professor/setNoticeAsPrivate.nt")) {
-            action = new SetNoticeAsPrivateAction();
-            try {
-                forward = action.execute(request, response);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        }else if (command.equals("/professor/noticeSearch.nt")) { //글 검색
+			action = new NoticeSearchAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
         else {
-         //파일 다운로드 하기
-           try {
-               // fileName 파라미터로 파일명을 가져온다 (콤마로 분리)
-               String fileNamesParam = request.getParameter("fname");
-               String[] fileNames = fileNamesParam.split(",");
+			//파일 다운로드 하기
+        	try {
+        	    // fileName 파라미터로 파일명을 가져온다 (콤마로 분리)
+        	    String fileNamesParam = request.getParameter("fname");
+        	    String[] fileNames = fileNamesParam.split(",");
 
-               ServletContext context = request.getServletContext();
-               String filePath = context.getRealPath("/noticeUpload/"); // 동적으로 파일 경로 설정
+        	    ServletContext context = request.getServletContext();
+        	    String filePath = context.getRealPath("/noticeUpload/"); // 동적으로 파일 경로 설정
 
-               // 여러 개의 파일 처리
-               for (String fileName : fileNames) {
-                   File dFile = new File(filePath, fileName.trim());
+        	    // 여러 개의 파일 처리
+        	    for (String fileName : fileNames) {
+        	        File dFile = new File(filePath, fileName.trim());
 
-                   // 파일이 존재하는지 확인
-                   if (dFile.exists()) {
-                       int fSize = (int) dFile.length();
+        	        // 파일이 존재하는지 확인
+        	        if (dFile.exists()) {
+        	            int fSize = (int) dFile.length();
 
-                       if (fSize > 0) {
-                           // 파일명을 URLEncoder 하여 attachment, Content-Disposition Header로 설정
-                           String encodedFilename = "attachment; filename*=" + "UTF-8" + "''" + URLEncoder.encode(fileName, "UTF-8");
+        	            if (fSize > 0) {
+        	                // 파일명을 URLEncoder 하여 attachment, Content-Disposition Header로 설정
+        	                String encodedFilename = "attachment; filename*=" + "UTF-8" + "''" + URLEncoder.encode(fileName, "UTF-8");
 
-                           // ContentType 설정 (application/octet-stream: 8비트 바이너리 데이터)
-                           response.setContentType("application/octet-stream; charset=utf-8");
-                           response.setHeader("Content-Disposition", encodedFilename);
-                           response.setContentLengthLong(fSize);
+        	                // ContentType 설정 (application/octet-stream: 8비트 바이너리 데이터)
+        	                response.setContentType("application/octet-stream; charset=utf-8");
+        	                response.setHeader("Content-Disposition", encodedFilename);
+        	                response.setContentLengthLong(fSize);
 
-                           try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(dFile));
-                                BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream())) {
+        	                try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(dFile));
+        	                     BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream())) {
 
-                               byte[] buffer = new byte[4096];
-                               int bytesRead;
-                               while ((bytesRead = in.read(buffer)) != -1) {
-                                   out.write(buffer, 0, bytesRead);
-                               }
-                               out.flush();
-                           }
-                       } else {
-                           throw new FileNotFoundException("파일이 없습니다.");
-                       }
-                   } else {
-                       throw new FileNotFoundException("파일이 없습니다: " + fileName);
-                   }
-               }
-           } catch (Exception e) {
-               e.printStackTrace();
-           }
+        	                    byte[] buffer = new byte[4096];
+        	                    int bytesRead;
+        	                    while ((bytesRead = in.read(buffer)) != -1) {
+        	                        out.write(buffer, 0, bytesRead);
+        	                    }
+        	                    out.flush();
+        	                }
+        	            } else {
+        	                throw new FileNotFoundException("파일이 없습니다.");
+        	            }
+        	        } else {
+        	            throw new FileNotFoundException("파일이 없습니다: " + fileName);
+        	        }
+        	    }
+        	} catch (Exception e) {
+        	    e.printStackTrace();
+        	}
 
-          
+			 
         }
 
         if (forward != null) {
@@ -170,10 +161,10 @@ public class NoticeFrontController extends javax.servlet.http.HttpServlet  {
                 RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
                 dispatcher.forward(request, response);
             }
-      }
+		}
         
-      
-   }
+		
+	}
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {

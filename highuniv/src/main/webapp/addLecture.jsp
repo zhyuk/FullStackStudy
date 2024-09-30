@@ -64,10 +64,16 @@
     </style>
 </head>
 <body>
+	<jsp:include page="header.jsp"></jsp:include>
     <div class="form-container">
         <h2>강의 추가</h2>
         <!-- Change enctype to multipart/form-data -->
-        <form action="AddLectureServlet" method="POST" enctype="multipart/form-data">
+        <form action="AddSubjectServlet" method="POST" enctype="multipart/form-data">
+        	<div class="form-group">
+                <label for="subjectId">과목 ID</label>
+                <input type="text" id="subjectId" name="subjectId" required>
+            </div>
+        
             <div class="form-group">
                 <label for="subjectId">과목 ID</label>
                 <input type="text" id="subjectId" name="subjectId" required>
@@ -116,5 +122,6 @@
             <button type="submit" class="btn-submit">추가</button>
         </form>
     </div>
+    <jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

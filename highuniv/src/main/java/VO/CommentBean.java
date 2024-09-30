@@ -11,10 +11,6 @@ public class CommentBean {
 	private Date COMMENT_DATE;
 	private int COMMENT_NO;
 
-	public CommentBean() {
-		this.COMMENT_ID = "admin"; // 기본값 설정
-		this.COMMENT_NAME = "관리자"; // 기본값 설정
-	}
 
 	public int getBOARD_NO() {
 		return BOARD_NO;

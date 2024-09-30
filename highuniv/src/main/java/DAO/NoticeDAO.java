@@ -73,6 +73,7 @@ public class NoticeDAO {
                 notice = new NoticeBean();
                 notice.setNotice_id(rs.getInt("notice_id"));
                 notice.setNotice_writer(rs.getString("notice_writer"));
+                notice.setNotice_writer_id(rs.getString("notice_writer_id"));
                 notice.setNotice_title(rs.getString("notice_title"));
                 notice.setNotice_content(rs.getString("notice_content"));
                 notice.setNotice_date(rs.getString("notice_date"));
@@ -90,7 +91,6 @@ public class NoticeDAO {
         return notice;
     }
 
-    // 공지사항 작성
     public int insertNotice(NoticeBean notice) {
         PreparedStatement pstmt = null;
         int insertCount = 0;
@@ -100,8 +100,9 @@ public class NoticeDAO {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String currentDate = sdf.format(new Date());
 
-            String sql = "INSERT INTO notice (notice_id, notice_writer, notice_title, notice_content, notice_date, notice_view, notice_writer_id, notice_file) "
-                    + "VALUES (notice_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+            // 공지 여부(is_notice)도 포함한 쿼리
+            String sql = "INSERT INTO notice (notice_id, notice_writer, notice_title, notice_content, notice_date, notice_view, notice_writer_id, notice_file, is_notice) "
+                       + "VALUES (notice_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, notice.getNotice_writer());  // 작성자 이름
             pstmt.setString(2, notice.getNotice_title());   // 제목
@@ -109,7 +110,8 @@ public class NoticeDAO {
             pstmt.setString(4, currentDate);                // 작성 날짜
             pstmt.setInt(5, notice.getNotice_view());       // 조회수 (기본값 0)
             pstmt.setString(6, notice.getNotice_writer_id()); // 작성자 ID (세션에서 가져온 값)
-            pstmt.setString(7, (notice.getNotice_file() != null) ? notice.getNotice_file() : "");
+            pstmt.setString(7, (notice.getNotice_file() != null) ? notice.getNotice_file() : ""); // 파일 첨부 여부
+            pstmt.setString(8, notice.getIs_notice());      // 공지 여부 ("Y" 또는 "N")
             
             insertCount = pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -125,15 +127,18 @@ public class NoticeDAO {
     public int updateNotice(NoticeBean notice) {
         PreparedStatement pstmt = null;
         int updateCount = 0;
-//        String sql = "UPDATE notice SET notice_title = ?, notice_content = ? WHERE notice_id = ?";
-        String sql = "UPDATE notice SET notice_title = ?, notice_content = ?, notice_writer = ? WHERE notice_id = ?";
+
+        // 공지 여부(is_notice)를 업데이트하는 쿼리로 수정
+        String sql = "UPDATE notice SET notice_title = ?, notice_content = ?, notice_writer = ?, is_notice = ? , notice_file = ? WHERE notice_id = ?";
 
         try {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, notice.getNotice_title());
             pstmt.setString(2, notice.getNotice_content());
             pstmt.setString(3, notice.getNotice_writer());
-            pstmt.setInt(4, notice.getNotice_id());
+            pstmt.setString(4, notice.getIs_notice());  // 공지 여부 설정
+            pstmt.setString(5, (notice.getNotice_file() != null) ? notice.getNotice_file() : ""); // 파일 첨부 여부
+            pstmt.setInt(6, notice.getNotice_id());
 
             updateCount = pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -144,6 +149,7 @@ public class NoticeDAO {
 
         return updateCount;
     }
+
 
     // 공지사항 삭제
     public int deleteNotice(int noticeId) {
@@ -214,72 +220,7 @@ public class NoticeDAO {
         return isWriter;
     }
     
-    // 공지를 등록하는 메서드
-    public int updateNoticesToPublic(String[] noticeIds) throws SQLException {
-        PreparedStatement pstmt = null;
-        int updateCount = 0;
-
-        try {
-            String sql = "UPDATE notice SET is_notice = 'Y' WHERE notice_id IN (";
-
-            // notice_id 배열을 사용해 동적으로 SQL 생성
-            for (int i = 0; i < noticeIds.length; i++) {
-                sql += "?";
-                if (i < noticeIds.length - 1) {
-                    sql += ",";
-                }
-            }
-            sql += ")";
-
-            pstmt = con.prepareStatement(sql);
-
-            // 각 notice_id 값을 설정
-            for (int i = 0; i < noticeIds.length; i++) {
-                pstmt.setString(i + 1, noticeIds[i]);
-            }
-
-            // 업데이트 실행
-            updateCount = pstmt.executeUpdate();
-        } finally {
-            close(pstmt);
-        }
-
-        return updateCount;
-    }
-
-    // 공지를 취소하는 메서드
-    public int updateNoticesToPrivate(String[] noticeIds) throws SQLException {
-        PreparedStatement pstmt = null;
-        int updateCount = 0;
-
-        try {
-            String sql = "UPDATE notice SET is_notice = 'N' WHERE notice_id IN (";
-
-            // notice_id 배열을 사용해 동적으로 SQL 생성
-            for (int i = 0; i < noticeIds.length; i++) {
-                sql += "?";
-                if (i < noticeIds.length - 1) {
-                    sql += ",";
-                }
-            }
-            sql += ")";
-
-            pstmt = con.prepareStatement(sql);
-
-            // 각 notice_id 값을 설정
-            for (int i = 0; i < noticeIds.length; i++) {
-                pstmt.setString(i + 1, noticeIds[i]);
-            }
-
-            // 업데이트 실행
-            updateCount = pstmt.executeUpdate();
-        } finally {
-            close(pstmt);
-        }
-
-        return updateCount;
-    }
-
+    
     
 
 //     [공지] 공지사항 조회 (is_notice = 'Y')
@@ -398,48 +339,88 @@ public class NoticeDAO {
         return noticeList;
     }
 
-
-
-
-
-//    // 일반 게시글 조회 (is_notice = 'N')
-//    public ArrayList<NoticeBean> selectGeneralNotices(int page, int limit) {
-//        ArrayList<NoticeBean> noticeList = new ArrayList<>();
-//        PreparedStatement pstmt = null;
-//        ResultSet rs = null;
-//        String sql = "SELECT * FROM notice WHERE is_notice = 'N' ORDER BY notice_id DESC LIMIT ?, ?";
-//
-//        int startRow = (page - 1) * limit; // 시작 행 계산
-//        int endRow = limit; // 페이지 당 표시할 게시글 수
-//
-//        try {
-//            pstmt = con.prepareStatement(sql);
-//            pstmt.setInt(1, startRow);
-//            pstmt.setInt(2, endRow);
-//            rs = pstmt.executeQuery();
-//
-//            while (rs.next()) {
-//                NoticeBean notice = new NoticeBean();
-//                notice.setNotice_id(rs.getInt("notice_id"));
-//                notice.setNotice_writer(rs.getString("notice_writer"));
-//                notice.setNotice_title(rs.getString("notice_title"));
-//                notice.setNotice_date(rs.getString("notice_date"));
-//                notice.setNotice_view(rs.getInt("notice_view"));
-//                notice.setIs_notice(rs.getString("is_notice"));
-//                noticeList.add(notice);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            close(rs);
-//            close(pstmt);
-//        }
-//
-//        return noticeList;
-//    }
-
-
     
-    
+    // 공지사항 검색 메서드
+ // 공지사항 검색 메서드
+    public ArrayList<NoticeBean> searchNoticeList(String type, String keyword, int page, int limit) {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        ArrayList<NoticeBean> noticeList = new ArrayList<NoticeBean>();
+
+        int startrow = (page - 1) * limit + 1; // 시작 번호
+        int endrow = page * limit; // 끝 번호
+        String[] typeArr = type.split(",");
+
+        String sql = "";
+        sql += "SELECT * FROM (";
+        sql += "  SELECT * FROM (";
+        sql += "    SELECT rownum rnum, A.* FROM (";
+        sql += "      SELECT * FROM notice WHERE 1=1 ";
+
+        // 검색 조건 추가
+        if (typeArr.length <= 1) {
+            sql += " AND " + type + " LIKE ? ";  // 단일 검색 조건
+        } else {
+            for (int i = 0; i < typeArr.length; i++) {
+                if (i == 0) sql += " AND ( " + typeArr[i] + " LIKE ? ";  // 첫 번째 조건
+                else if (i != typeArr.length - 1) sql += " OR " + typeArr[i] + " LIKE ? ";  // 중간 조건
+                else sql += " OR " + typeArr[i] + " LIKE ? )";  // 마지막 조건
+            }
+        }
+
+        // 정렬: 공지사항 상단, 나머지 내림차순
+        sql += "      ORDER BY CASE WHEN IS_NOTICE = 'Y' THEN 0 ELSE 1 END, ";
+        sql += "               NOTICE_ID DESC ";
+        sql += "    ) A";
+        sql += "  ) WHERE rownum <= ?";  // endrow, 페이지 끝 번호
+        sql += ") WHERE rnum >= ?";  // startrow, 페이지 시작 번호
+
+        try {
+            pstmt = con.prepareStatement(sql);
+
+            // 파라미터 설정
+            if (typeArr.length <= 1) {
+                pstmt.setString(1, "%" + keyword + "%");
+                pstmt.setInt(2, endrow);
+                pstmt.setInt(3, startrow);
+            } else {
+                int i = 1;
+                for (; i <= typeArr.length; i++) {
+                    pstmt.setString(i, "%" + keyword + "%");
+                }
+                pstmt.setInt(i, endrow);
+                pstmt.setInt(++i, startrow);
+            }
+
+            rs = pstmt.executeQuery();
+
+            // 결과 처리
+            while (rs.next()) {
+                NoticeBean notice = new NoticeBean();
+                notice.setNotice_id(rs.getInt("NOTICE_ID"));
+                notice.setNotice_writer(rs.getString("NOTICE_WRITER"));
+                notice.setNotice_title(rs.getString("NOTICE_TITLE"));
+                notice.setNotice_content(rs.getString("NOTICE_CONTENT"));
+                notice.setNotice_date(rs.getString("NOTICE_DATE"));
+                notice.setNotice_view(rs.getInt("NOTICE_VIEW"));
+                notice.setNotice_writer_id(rs.getString("NOTICE_WRITER_ID"));
+                notice.setNotice_file(rs.getString("NOTICE_FILE"));
+                notice.setIs_notice(rs.getString("IS_NOTICE"));
+                noticeList.add(notice);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("searchNoticeList 에러 : " + ex);
+        } finally {
+            close(rs);
+            close(pstmt);
+        }
+
+        return noticeList;
+    }
+
+
+
     
 }

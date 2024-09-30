@@ -23,6 +23,11 @@
 					text-decoration: none;
 					color: #242424;
 				}
+				
+				a.link{
+					text-decoration: underline;
+					color: #005ACD;
+				}
 
 				div#wrap {
 					width: 100%;
@@ -91,6 +96,8 @@
 					top: 50%;
 					transform: translateY(-50%);
 				}
+
+
 
 				header .user-box {
 					width: 200px;
@@ -173,7 +180,7 @@
 				#modal ul.sub-menu li {
 					background: #444444;
 				}
-
+				
 				#modal button {
 					position: absolute;
 					left: 50%;
@@ -227,8 +234,8 @@
 					<!-- 로고 이미지 영역 -->
 					<div class="logo-box">
 						<a class="mainrogo" href="<%=request.getContextPath()%>/main">
-						<img src="<%= request.getContextPath() %>/public/img/logo.png" alt="로고">
-						<p>하이대학교</p>
+							<img src="<%= request.getContextPath() %>/public/img/logo.png" alt="로고">
+							<p>하이대학교</p>
 						</a>
 					</div>
 					<div class="clear"></div>

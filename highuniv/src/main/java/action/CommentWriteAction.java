@@ -15,12 +15,16 @@ public class CommentWriteAction implements Action {
        
         
         String boardNo = request.getParameter("board_no");
+        String commentId = request.getParameter("COMMENT_ID");
+        String commentName = request.getParameter("COMMENT_NAME");
         String commentContent = request.getParameter("COMMENT_CONTENT");
         String page = request.getParameter("page");
         
         // CommentBean 객체 생성 및 정보 설정
         CommentBean commentBean = new CommentBean();
         commentBean.setBOARD_NO(Integer.parseInt(boardNo)); // 보드 번호 설정
+        commentBean.setCOMMENT_ID(commentId);
+        commentBean.setCOMMENT_NAME(commentName);
         commentBean.setCOMMENT_CONTENT(commentContent); // 댓글 내용 설정
 
         // CommentDAO 객체 생성 및 댓글 저장

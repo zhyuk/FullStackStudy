@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import vo.ProfessorVO;
 
-
 public class ProfessorDAO {
     private Connection conn;
 
