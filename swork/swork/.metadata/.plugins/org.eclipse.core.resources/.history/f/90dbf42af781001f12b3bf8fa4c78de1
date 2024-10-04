@@ -1,0 +1,21 @@
+package com.kr.co;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class AppContext {
+
+	@Bean(initMethod = "initSamsung")
+	public Samsung stv() {
+		Samsung s = new Samsung();
+		return s;
+	}
+	
+	@Bean
+	public Greeter greeter() {
+		Greeter g = new Greeter("0");
+		g.setFormat("%s, 안녕하세요!");
+		return g;
+	}
+}

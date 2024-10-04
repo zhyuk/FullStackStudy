@@ -1,0 +1,31 @@
+package com.kr.co;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class Main {
+
+	public static void main(String[] args) throws ClassNotFoundException {
+		// AnnotationConfigApplicationContext 어노테이션으로 설정한 스프링 빈 설정파일 (자바 설정) 정보를 읽어오는 클래스
+		// AnnotationConfigApplicationContext 객체명 = new AnnotationConfigApplicationContext(AppContext.class);
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Class.forName("com.kr.co.AppContext"));
+		
+//		Greeter g = (Greeter)ctx.getBean("greeter");
+		Greeter g = ctx.getBean("greeter", Greeter.class);
+		Greeter g1 = ctx.getBean("greeter", Greeter.class);
+		
+		String msg = g.greet("스프링");
+		System.out.println(msg);
+		
+		String msg1 = g1.greet("스프링1");
+		System.out.println(msg1);
+		System.out.println(msg);
+		
+		Greeter s1 = ctx.getBean("greeter1", Greeter.class);
+		msg = s1.greet("스프링");
+		System.out.println(msg);
+		
+		int i = ctx.getBean("inter", Integer.class);
+		System.out.println("i의 값은 : " + i);
+	}
+
+}

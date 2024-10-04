@@ -1,0 +1,12 @@
+package com.kr.co;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class Main {
+
+	public static void main(String[] args) throws ClassNotFoundException {
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Class.forName("com.kr.co.AppContext"));
+		Greeter g = ctx.getBean("greeter", Greeter.class);
+	}
+
+}

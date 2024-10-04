@@ -1,0 +1,27 @@
+package com.kr.co;
+
+public class Lg implements TV {
+
+	@Override
+	public void powerOn() {
+		
+	}
+
+	@Override
+	public void powerOff() {
+		
+	}
+
+	@Override
+	public void volumeUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void volumeDown() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

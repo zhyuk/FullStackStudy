@@ -1,0 +1,23 @@
+package com.kr.co;
+
+public class TVMain {
+
+	public static void main(String[] args) {
+		TV tv = new Samsung();
+		// 자식 클래스에만 존재하는 메소드를 사용하기 위해서는 자식 클래스로 형 변환
+		((Samsung)tv).initSamsung();
+		
+		tv.powerOn();
+		tv.volumeUp();
+		tv.volumeDown();
+		tv.powerOff();
+		((Samsung)tv).destroySamsung();
+		
+		tv = new Lg();
+		tv.powerOn();
+		tv.volumeUp();
+		tv.volumeDown();
+		tv.powerOff();
+	}
+
+}

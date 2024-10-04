@@ -1,0 +1,15 @@
+package com.kr.co;
+
+public class TVMain {
+
+	public static void main(String[] args) {
+		Samsung tv = new Samsung();
+		tv.initSamsung();
+		
+		tv.powerOn();
+		tv.volumeUp();
+		tv.volumeDown();
+		tv.powerOff();
+	}
+
+}

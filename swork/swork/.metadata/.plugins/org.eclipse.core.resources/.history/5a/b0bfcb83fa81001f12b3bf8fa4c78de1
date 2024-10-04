@@ -1,0 +1,12 @@
+package com.kr.co;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class Main {
+
+	public static void main(String[] args) throws ClassNotFoundException{
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(class.forName())
+
+	}
+
+}

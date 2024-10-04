@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="sony" class="com.springbook.biz.SonySpeaker"/>
+	<bean id="apple" class="com.springbook.biz.AppleSpeaker"/>
+	<bean id="tv" class="com.springbook.biz.Samsung">
+		<!-- 매개변수를 선언하는 자리. 객체를 던질 때는 ref 속성으로, 값을 던질 때는 value 속성으로 던짐. -->
+		<constructor-arg ref="sony"/>
+		<constructor-arg value="2500000"/>
+	</bean>
+
+</beans>

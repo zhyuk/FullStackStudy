@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--  매개인자가 2개인 생성자가 1개만 있는 경우는 순서 상관없이 자동으로 매칭된다. -->
+	<!--  매개인자가 2개인 생성자가 2개 이상 있는 경우는 인자의 순서를 확인하여 해당 생성자에 매칭된다. -->
+
+</beans>

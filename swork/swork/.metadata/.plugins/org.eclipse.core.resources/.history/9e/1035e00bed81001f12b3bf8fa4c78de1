@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!--
+	* JAVA
+	import com.kr.co.lg;
+	Lg lg = new Lg();
+	
+	* JSP
+	<jsp:useBean id="lg" class="com.kr.co.lg"/>
+	
+	* Spring
+	<bean id="lg" class="com.kr.co.Lg"/>
+	
+	-->
+	<bean id="lg" class="com.kr.co.Lg"/>
+
+</beans>

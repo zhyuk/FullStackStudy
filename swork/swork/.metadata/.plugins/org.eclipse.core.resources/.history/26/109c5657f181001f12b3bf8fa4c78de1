@@ -1,0 +1,12 @@
+package com.kr.co;
+
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+public class TVMain {
+
+	public static void main(String[] args) {
+		AbstractApplicationContext ac = new GenericXmlApplicationContext("applicationContext.xml");
+	}
+
+}
