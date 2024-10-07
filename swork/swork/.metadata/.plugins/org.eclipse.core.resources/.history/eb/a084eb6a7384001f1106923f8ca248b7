@@ -1,0 +1,9 @@
+package com.springbook.biz.user;
+
+public class UserVO {
+	private String id;
+	private String pw;
+	private String id;
+	private String id;
+	
+}

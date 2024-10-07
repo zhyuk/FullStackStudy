@@ -1,0 +1,53 @@
+package com.springbook.biz.board;
+
+// 시분초 정보는 가져올 수 없음.
+import java.sql.Date;
+import java.util.Date;
+
+
+public class BoardVO {
+	private int seq;
+	private String title;
+	private String write;
+	private String content;
+	private Date regdate;
+	private int cnt;
+	
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getWrite() {
+		return write;
+	}
+	public void setWrite(String write) {
+		this.write = write;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	
+}

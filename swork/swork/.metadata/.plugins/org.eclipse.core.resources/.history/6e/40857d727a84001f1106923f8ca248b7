@@ -1,0 +1,22 @@
+package com.springbook.biz.user;
+
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+public class UserServiceClient {
+
+	public static void main(String[] args) {
+		AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
+		
+		UserService userService = (UserService) container.getBean("userService");
+		
+		UserVO userVO = new UserVO();
+		userVO.setId("admin");
+		userVO.setPassword("1111");
+		userVO.setName("관리자");
+		userVO.setRole("Admin");
+		userService.loginUser(userVO);
+
+	}
+
+}

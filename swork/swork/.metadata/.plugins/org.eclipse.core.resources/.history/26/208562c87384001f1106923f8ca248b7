@@ -1,0 +1,20 @@
+package com.springbook.biz.user.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class UserDAO {
+	//JDBC 관련 변수
+	private Connection conn = null;
+	private PreparedStatement stmt = null;
+	private ResultSet rs = null;
+	
+	try {
+		String login = "select * from users where id = ? and password = ?";
+	}catch(Exception e) {
+		e.printStackTrace();
+	}finally {
+		
+	}
+}

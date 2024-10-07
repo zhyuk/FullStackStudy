@@ -1,0 +1,35 @@
+package com.springbook.biz.user;
+
+import java.util.List;
+
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import com.springbook.biz.board.BoardVO;
+
+public class UserServiceClient {
+
+	public static void main(String[] args) {
+		AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
+
+		UserService userService = (UserService) container.getBean("userService");
+
+		// 로그인
+		UserVO userVO = new UserVO();
+		userVO.setId("admin");
+		userVO.setPassword("1111");
+		userVO.setName("관리자");
+		userVO.setRole("Admin");
+		userService.loginUser(userVO);
+		System.out.println("로그인 정보 : " + userVO);
+
+		List<UserVO> userList = userService.getUserList(userVO);
+		for (UserVO user : userList) {
+			System.out.println(user);
+		}
+
+		
+		container.close();
+	}
+
+}

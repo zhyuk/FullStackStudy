@@ -1,0 +1,6 @@
+package com.springbook.biz.board.impl;
+
+@Repository
+public class BoardDAO {
+
+}

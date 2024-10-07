@@ -1,0 +1,110 @@
+# 객체생성할 수 있는 어노테이션 종류
+
+	xml파일에서 component scan에 대한 설정을 해주어야 한다.
+	1. namespace에서 context 태그에 대한 네임스페이스를 선택(저장)
+	2. <context:component-scan base-package="경로(패키지)"></context:component-scan>
+	예시 : com.spring.biz, com.spring.comp, com.spring.setter
+
+	경로값 : com.spring, com.spring.comp
+
+	[형식]
+	@Component : 자동으로 객체명 생성. 클래스명을 가져와 앞 글자만 소문자로 변경한 것이 객체명으로 인식.
+	@Component("객체명") : 객체명으로 지정해 준 이름을 객체명으로 인식.
+
+	DAO클래스, DTO(=VO)클래스, Controller클래스, Service클래스(비지니스 클래스 = 서비스 로직 : 직접 처리하는 일 없이 남에게 시키기만 하는 클래스)
+
+	- @Component 어노테이션 : DAO, Controller, Service 클래스들을 제외한 클래스들을 객체화시킬 때 사용하는 어노테이션. 
+	위치 : 클래스명 위에 위치함.(기술함)
+	- @Service 또는 @Service("객체명") : 비지니스 로직을 처리하는 Service 클래스 객체를 의미. DAO클래스에 일을 시키는 기능만을 가지고 있다. 
+	위치 : 인터페이스를 상속받은 impl클래스에 기술
+	- @Repository 또는 @Repository("객체명") : DAO 클래스 객체를 의미. 데이터베이스와 가장 접점에 닿아있는 클래스로 SQL명령문을 제어하는 클래스.
+	위치 : DAO클래스에 기술
+
+	- @Controller : Controller 클래스 객체를 의미. 클라이언트의 요청을 서블릿(FrontController)으로부터 넘겨받아서 직접적인 처리를 하는 클래스(서브 컨트롤러를 스프링프레임워크에서는 컨트롤러로 명칭)
+	위치 : 사용자 요청을 제어한느 클래스에 기술
+
+# 객체 자동주입 (의존성 주입 = Dependency Injection = DI)
+	스프링 컨테이너가 직접 객체들 사이에 의존관계를 처리하는 것을 의미.
+	필요한 데이터들(멤버필드, 메소드나 생성자의 매개변수들)을 스프링컨테이너가 자동으로 주입해주는 방식(개발자가 수동으로 처리하던 부분을 스프링 컨테이너에 의존하여 처리하는 방식을 말함)
+
+	- byType 방식(= 자료형 주입) : 컨테이너에 있는 객체 중 자료형을 찾아서 주입하는 방식
+	@Autowired
+	- 주로 변수 위, 매개변수가 있는 메소드의 위, 매개변수의 앞에 기술가능.
+	- 해당 어노테이션이 기술된 변수나 매개변수의 자료형으로 생성된 객체가 있는지 확인하여 존재하는 경우 자동으로 해당 객체를 주입시킨다.
+	[예시]
+	// 멤버필드 위
+	@Autowired
+	private Speaker speaker;
+
+	// 생성자 위
+	@Autowired
+	public Samsung(Speaker speaker){ ... }
+
+	// 매개변수의 앞
+	@Autowired
+	public voide volumnUp(@Qualifier("sony") Speaker speaker){ ... }
+
+	===================================================================================
+
+	@Resource : @Autowired와 동일한 기능을 하는 어노테이션
+	@Inject : @Autowired와 동일한 기능을 하는 어노테이션
+
+	===================================================================================
+	- byName 방식(= 객체명 주입) : 컨테이너에 있는 객체 중 객체명을 찾아서 주입하는 방식
+
+	@Qualifier("객체명")
+	- @Autowired와 같이 사용됨. 동일한 자료형인 객체가 2개 이상 존재할 경우 @Autowired만으로 처리를 할 수 없기 때문에 이 부분을 보완하여 같이 사용하는 어노테이션이다.
+
+	@Named("객체명")
+	- @Inject와 같이 사용됨. 동일한 자료형인 객체가 2개 이상 존재할 경우 @Inject만으로 처리를 할 수 없기 때문에 이 부분을 보완하여 같이 사용하는 어노테이션이다.
+
+	@Resource(name="객체명")
+	- @Autowired + @Qualifier("객체명")를 합쳐놓은 어노테이션이다.
+	- @Inject + @Named("객체명")를 합쳐놓은 어노테이션이다.
+
+#자바와 DB 연결
+	: 사용하는 자바 버전에 맞춰 라이브러리의 버전도 맞춰줘야 함. 자바 버전은 11임.
+	- 오라클 : ojdbc6.jar
+	- 마리아DB : maridadb-java-client (2.7.3)
+	- MySQL : mysql-connector-java (8.0.25)
+
+
+#four 프로젝트 com.springbook.component 패키지
+(AppContext 실행결과)
+컨테이너 객체 factory =>  
+
+객체들
+1. apple => 자료형 : AppleSpeaker, Speaker, 싱글톤, 즉시로딩
+2. sony => (@Primary) 자료형 : SonySpeaker, Speaker, 싱글톤, 즉시로딩
+3. lg => 자료형 : Lg, TV, prototype(호출 때마다 생성), 게으른 로딩
+4. tv => 자료형 : Lg, TV, 싱글톤, 즉시로딩
+5. price => 자료형 : Integer, int, 싱글톤, 즉시로딩 (값 = 500000)
+6. stv => 자료형 : Samsung, TV, 싱글톤, 즉시로딩 **자동주입처리대기**(int => 5번 객체. Speaker => 1,2번 객체. ==> @Primary로 인하여 sony 객체 주입.)
+
+* @Primary : 자동주입처리를 할 때 동일한 자료형이 있을 경우, 해당 어노테이션이 작성된 객체가 우선으로 주입된다.
+
+
+====================================================================================
+[사용쿼리문]
+create table users(
+id varchar(20) primary key,
+password varchar(50) not null,
+name varchar(50) not null,
+role varchar(20) not null)
+default charset=utf8;
+
+insert into users values ('admin', '1111', '관리자', 'Admin');
+insert into users values ('user1', '1111', '홍길동', 'User');
+
+create table board(
+seq int(11) auto_increment primary key,
+title varchar(200) not null,
+writer varchar(20) not null,
+content varchar(2000) default null,
+regdate date default current_timestamp(),
+cnt int(11) default 0
+) default charset=utf8;
+
+insert into board (title, writer, content) values ('가입인사', '홍길동', '잘 부탁드립니다.');
+
+**current_timestamp() 또는 now() : 오라클의 sysdate와 동일한 기능

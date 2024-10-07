@@ -1,0 +1,66 @@
+package com.springbook.biz.user.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.springbook.biz.common.JDBCUtil;
+import com.springbook.biz.user.UserVO;
+
+public class UserDAO {
+	// JDBC 관련 변수
+	private Connection conn = null;
+	private PreparedStatement stmt = null;
+	private ResultSet rs = null;
+
+	private final String LOGIN = "select * from users where id = ? and password = ?";
+	private final String USER_LIST = "select * from user";
+	private final String USER_UPDATE = "update users set password = ? , name = ?, role = ? where id = ?";
+	private final String USER_INSERT = "insert into users (id, password, name) values (?, ?, ?)";
+	private final String USER_DELETE = "delete table";
+
+	public void loginUser(UserVO vo) {
+		try {
+			conn = JDBCUtil.getConnection();
+			stmt = conn.prepareStatement(LOGIN);
+			stmt.setString(1, vo.getId());
+			stmt.setString(2, vo.getPassword());
+			rs = stmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(rs, stmt, conn);
+		}
+	}
+
+	public void getUserList(UserVO vo) {
+		UserVO user = null;
+		try {
+			conn = JDBCUtil.getConnection();
+			stmt = conn.prepareStatement(USER_LIST);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				user = new UserVO();
+				user.setId(rs.getString("id"));
+				user.setPassword(rs.getString("password"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+		}
+	}
+
+	public void insertUser(UserVO vo) {
+		try {}catch() {}finally {}
+	}
+
+	public void updateUser(UserVO vo) {
+		try {}catch() {}finally {}
+	}
+
+	public void deleteUser(UserVO vo) {
+		try {}catch() {}finally {}
+	}
+}

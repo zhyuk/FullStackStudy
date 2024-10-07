@@ -1,0 +1,23 @@
+package com.springbook.biz.common;
+
+public class JDBCUtil {
+	try {
+		String user = "root";
+		String pw = "1111";
+		
+		// MariaDB 연결
+		String url = "jdbc:mariadb://localhost:3306/test";
+		Class.forName("org.mariadb.jdbc.Driver");
+		
+		// MySQL 연결
+//		String url = "jdbc:mysql//localhost:3306/test";
+//		Class.forName("com.mysql.jdbc.Driver");
+		
+		// 오라클 연결
+//		String user = "test";
+//		String pw = "1111"
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	}catch() {
+		
+	}
+}

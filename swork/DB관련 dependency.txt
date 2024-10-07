@@ -1,0 +1,27 @@
+#DB관련 Dependency
+pom.xml에 기술.
+
+
+- 오라클 : ojdbc6.jar
+<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
+<dependency>
+    <groupId>com.oracle.database.jdbc</groupId>
+    <artifactId>ojdbc6</artifactId>
+    <version>11.2.0.4</version>
+</dependency>
+
+- 마리아DB : maridadb-java-client (2.7.3)
+<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+<dependency>
+    <groupId>org.mariadb.jdbc</groupId>
+    <artifactId>mariadb-java-client</artifactId>
+    <version>2.7.3</version>
+</dependency>
+
+- MySQL : mysql-connector-java (8.0.25)
+<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.25</version>
+</dependency>

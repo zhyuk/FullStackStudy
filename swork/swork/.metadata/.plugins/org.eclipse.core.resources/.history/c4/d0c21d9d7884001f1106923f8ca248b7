@@ -1,0 +1,38 @@
+package com.springbook.biz.user.impl;
+
+import com.springbook.biz.user.UserService;
+import com.springbook.biz.user.UserVO;
+
+public class UserServiceImpl implements UserService {
+
+	private UserDAO userDAO = new UserDAO();
+	@Override
+	public void loginUser(UserVO vo) {
+		userDAO.loginUser(vo);
+	}
+
+	@Override
+	public UserVO getUserList(UserVO vo) {
+		userDAO.getUserList(vo)
+		return null;
+	}
+
+	@Override
+	public void insertUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

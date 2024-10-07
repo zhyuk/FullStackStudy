@@ -1,0 +1,10 @@
+package com.springbook.biz.common;
+
+public class JDBCUtil {
+	try {
+		String user = "root";
+		String pw = "1111";
+	}catch() {
+		
+	}
+}

@@ -11,6 +11,7 @@
 		<config>src/main/resources/speaker/speakerContext.xml</config>
 		<config>src/main/resources/applicationContext1.xml</config>
 		<config>src/main/resources/applicationContext2.xml</config>
+		<config>src/main/resources/annotContext.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

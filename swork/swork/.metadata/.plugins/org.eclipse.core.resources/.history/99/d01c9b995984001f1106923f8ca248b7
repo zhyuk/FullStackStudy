@@ -1,0 +1,11 @@
+package com.springbook.biz.board;
+
+public class BoardVO {
+
+private int seq; 
+private String title; 
+write 
+content 
+regdate 
+cnt
+}
