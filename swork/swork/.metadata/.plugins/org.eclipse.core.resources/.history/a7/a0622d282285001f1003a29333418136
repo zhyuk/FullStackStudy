@@ -1,0 +1,8 @@
+package com.springbook.aop;
+
+import org.springframework.stereotype.Service;
+
+@Service("testService")
+public class TestImpl {
+
+}

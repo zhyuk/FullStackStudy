@@ -1,0 +1,131 @@
+# AOP(Aspect Oriented Programming) : 관점지향 프로그래밍 또는 관심분리 프로그래밍
+	종단관심(핵심관심), 횡단관심(공통관심) 중 횡단관심을 표현하는 방법이며, 런타임(실행시점)에 프록시 객체를 생성하여 공통기능을 삽입하는 방식임. AOP는 프록시 객체(Aspect)를 자동 생성하여 사용한다.
+
+	** 대상 객체 : 핵심 기능을 실행하는 객체를 말함
+	** 프록시 : 핵심 기능은 다른 객체가 실행하도록 하고, 부가적인 기능(공통적인 기능)을 제공하는 객체를 말함.
+	** Advice : 공통로직을 기술한 클래스를 말함.
+	** JoinPoint : Pointcut이 될 수 있는 모든 후보 지점을 말함.
+	** Pointcut : JoinPoint 중 공통로직이 적용되는 실제 지점을 의미함.
+	** Aspect : advice와 Pointcut 결합 및 적용 시점 정의
+	** Weaving : 공통로직이 실제로 적용(삽입)되는 과정을 말함.
+
+	- AOP에 필요한 선수작업
+	** pom.xml에서 springframework-version버전과 비슷한 시기에 출시된 aspectj-version과 slf4j-version버전을 확인하여 버전 변경함. 변경하지 않고 그대로 사용해도 괜찮다.
+	<properties>
+		<java-version>11</java-version>
+		<org.springframework-version>5.3.9</org.springframework-version>
+		<org.aspectj-version>1.9.7</org.aspectj-version>
+		<org.slf4j-version>2.0.0</org.slf4j-version>
+	</properties>
+
+	1-1. maven repository에서 aspectjweaver 라이브러리 다운받기
+	<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+	<dependency>
+    		<groupId>org.aspectj</groupId>
+   		<artifactId>aspectjweaver</artifactId>
+   		<version>${org.aspectj-version}</version>
+    		<scope>runtime</scope>
+	</dependency>
+
+	1-2. Aspect에 필요한 라이브러리 추가하기 (스프링 레거시 프로젝트는 자동으로 포함되어있음)
+	<!-- AspectJ -->
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjrt</artifactId>
+		<version>${org.aspectj-version}</version>
+	</dependency>
+
+	1-3. 공통로직(Advice) 클래스를 생성
+
+	2. Spring Bean Configuration File(xml) 파일의 namespace에서 aop 선택 후 저장
+	3. Spring Bean Configuration File(xml) 파일에 기술할 내용
+	형식 (xml 방식) : => aop 관련 advice, point, aspect 태그 기술할 것
+	-- advice 객체 생성
+	<bean id="공통로직(advice)객체명" class="패키지경로포함.공통로직(advice)객체 클래스명"></bean>
+	[예시]
+	<bean id="before" class="com.springbook.biz.BeforeAdvice"></bean>
+
+	-- aop 설정
+	<aop:config>
+		-- pointcut 설정
+		<aop:pointcut id="포인트컷객체명" expression="execution(표현식설정)"/>
+
+		-- aspect 설정 : advice와 pointcut 결합 및 적용 시점 정의
+		<aop:aspect ref="공통로직(advice)객체명">
+			<aop:시점태그 pointcut-ref="포인트컷객체명" method="공통로직(advice)객체 안에 있는 공통로직 메소드명"/>
+		</aop:aspect>
+	</aop:config>
+	[예시]
+	<aop:config>
+		-- pointcut 설정
+		<aop:pointcut id="pointCut" expression="execution( * com.springbook.biz..*ImpI.get*(..) )"/>
+
+		-- aspect 설정 : advice와 pointcut 결합 및 적용 시점 정의
+		<aop:aspect ref="before">
+			<aop:before pointcut-ref="pointCut" method="beforeMethod"/>
+		</aop:aspect>
+	</aop:config>
+
+================================================================================
+	형식 (annotation 방식) : 스프링 빈 설정파일에 지정해 줘야하는 선수 작업
+	<context:component-scan base-package="com.springbook.biz"></context:component-scan>
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+	4. 이 부분은 어노테이션 방식만 처리할 것
+	- advice 클래스의 클래스명 위에 @Service와 @Aspect 기술할 것
+	- advice 클래스의 메소드 위에 시점관련 어노테이션 기술 및 포인트컷 표현범위 지정할 것
+	예 : @After(execution( * com.springbook.biz..*ImpI.get*(..))")
+	** 어노테이션은 시점명으로 지정되어 있음. @Before, @After ...
+	- 만약 pointcut 따로 advice 따로 지정할 경우
+	--- pointcut에 해당되는 클래스 생성 후 클래스명 위에 @Aspect만 기술한 후에
+	--- pointcut에 해당되는 클래스의 메소드 위에 @Pointcut 어노테이션 기술 및 포인트컷 표현범위 지정할 것
+	예 : @Pointcut(execution( * com.springbook.biz..*ImpI.get*(..))")
+	--- advice 클래스의 클래스명 위에 @Service와 @Aspect 기술할 것
+	- advice 클래스의 메소드 위에 시점관리 어노테이션 기술 및 포인트컷 표현범위 지정할 것
+	[형식] : @ㅇ시점어노테이션명("포인트컷클래스명.포인트컷메소드명()")
+	예 : @Before("PointcutCommon.allPointcut()")
+	위의 경우 해당 메소드가 static이 아니어도 클래스명.메소드()로 접근가능하다.
+
+	# AOP 동작 시점
+	1. before : 포인트컷으로 지정한 메소드(비즈니스 로직)가 실행되기 전에 실행됨.
+	2. after 
+	 - after-returning : 포인트컷으로 지정한 메소드(비즈니스 로직)가 정상적으로 실행완료되면 실행됨(리턴할 데이터가 있는 경우 returning 속성 사용)
+	 - after-throwing : 포인트컷으로 지정한 메소드(비즈니스 로직) 실행 중 예외 발생 시 실행됨.(try-catch문에서 catch문과 동일한 기능, 예외처리할 데이터가 있는 경우 throwing 속성 사용)
+	 - after : 포인트컷으로 지정한 메소드(비즈니스 로직)가 완료되면 실행됨. (try-catch-finally문에서 finally에 해당됨.)
+
+	3. around : 포인트컷으로 지정한 메소드(비즈니스 로직)룰 실행하기 전 포인트컷 메소드(핵심로직)의 정보를 담은 객체를 공통로직 클래스에 전달하여 해당 핵심로직이 실행될 위치를 지정해주면 그 순서대로 처리를 하게끔 해주는 시점
+	- 포인트컷 메소드의 실행전과 후 모두 실행되어야 하므로 포인트컷의 메소드를 객체화시킨(ProceedingJoinPoint 클래스로 정보를 담아놓는다.) 정보를 가지고 있으며, around 공통로직에서 해당 포인트컷 메소드가 실행되는 위치를 proceed() 메소드로 지정해주어야 한다.
+
+	** JoinPoint : 포인트컷 메소드의 정보를 담는 클래스
+	** getSignature() : 포인트컷 메소드의 메소드명, 매개변수 등의 정보를 가져옴.
+	** getName() : getSignature() 메소드가 가진 정보 중 메소드 명만 가져옴.
+	** getArgs() : getSignature() 메소드가 가진 정보 중 매개변수 정보만 가져옴.
+
+	# AOP execution 명시적 표현식(패턴)
+
+	- 형식 (Syntax) : execution([수식어패턴] 리턴타입패턴 [경로포함클래스명패턴.]메소드패턴(파라미터패턴))
+
+	1. 수식어패턴 : 생략가능. AOP는 (public, private가 있지만) public만 가능함. 따라서 디폴트(public)값임.
+	2. 리턴타입패턴 : 
+	void -> 리턴타입 없음
+	String-> 리턴타입이 String형임
+	* -> 모든 리턴타입 (void 포함)
+
+	3. 경로포함클래스명패턴 : 생략가능
+	예 : com.springbook.biz로 시작하는 패키지 또는 하위 패키지까지 포함, 그리고 그 안에 클래스명이 impl로 끝나는 클래스인 경우 => com.springbook.biz..*impl
+	com.springbook.biz.*impl => com.springbook.biz 패키지 안에 존재하는 클래스명이 impl로 끝날 때만 적용.
+
+	4. 메소드패턴
+	예 : 
+	- com.springbook.biz로 시작하는 패키지 또는 하위 패키지까지 포함, 그리고 그 안에 클래스명이 impl로 끝나는 클래스안의 모든 메소드인 경우 => com.springbook.biz..*impl.*()
+	- 모든 메소드인 경우 => *(), 이름이 set으로 시작하는 모든 메소드인 경우 : set*()
+
+	5. 메소드의 파라미터 패턴 : 
+	예 : set*(..) : 파라미터가 0개 이상인 경우(매개변수의 유무, 개수 상관 X)
+	예 : set*(*) : 파라미터가 1개인 경우(매개변수가 반드시 1개만 존재하는. 매개변수의 자료형 상관 X)
+	예 : set*(*, *) : 파라미터가 2개인 경우(매개변수가 반드시 2개만 존재하는. 매개변수의 자료형 상관 X)
+	예 : set*(Integer, ..) : 첫번째 파라미터 타입이 Integer이고 한 개 이상의 파라미터를 갖는 경우
+
+	==> execution(public * com.springbook.biz..Impl.get*(..) ) // 대부분 public은 생략함
+	==> execution(* com.springbook.biz..Impl.get*(..) ) // 리턴타입 상관없이 com.springbook.biz 패키지 속 Impl 클래스 안의 get으로 시작하는 메소드만
+	==> execution(* get*(..) )

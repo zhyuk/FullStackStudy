@@ -1,0 +1,14 @@
+package com.springbook.person;
+
+import org.springframework.stereotype.Component;
+
+@Component("yeongHui")
+public class YeongHui implements People {
+
+	@Override
+	public void getHome() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

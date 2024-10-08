@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
+<aop-project name="four"/>
+<aop-project name="three"/>
 <aop-project name="first"/>
 <aop-project name="two"/>
 </aop-reference-model>

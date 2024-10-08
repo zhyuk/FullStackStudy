@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<context:component-scan base-package="com.springbook.biz.board.impl"/>
+	
+	<bean id="afterAdvice" class="com.springbook.biz.common.AfterAdvice"/>
+	<bean id="afterReturningAdvice" class="com.springbook.biz.common.AfterReturningAdvice"/>
+	<bean id="afterThrowingAdvice" class="com.springbook.biz.common.AfterThrowingAdvice"/>
+	<bean id="aroundAdvice" class="com.springbook.biz.common.AroundAdvice"/>
+	<bean id="beforeAdvice" class="com.springbook.biz.common.BeforeAdvice"/>
+	
+	<aop:config>
+		<aop:pointcut id="allPointCut" expression="execution( * com.springbook.biz.board..*Impl.*(..))"/>
+		
+		<aop:aspect ref="afterAdvice">
+			<aop:after pointcut-ref="allPointCut" method="finallyLog"/>
+		</aop:aspect>
+		
+<!-- 		<aop:aspect ref="afterReturningAdvice"> -->
+<!-- 			<aop:after-returning pointcut-ref="allPointCut" method="afterLog"/> -->
+<!-- 		</aop:aspect> -->
+		
+<!-- 		<aop:aspect ref="afterThrowingAdvice"> -->
+<!-- 			<aop:after-throwing pointcut-ref="allPointCut" method="afterThrowingLog"/> -->
+<!-- 		</aop:aspect> -->
+		
+<!-- 		<aop:aspect ref="aroundAdvice"> -->
+<!-- 			<aop:around pointcut-ref="allPointCut" method="aroundLog"/> -->
+<!-- 		</aop:aspect> -->
+		
+<!-- 		<aop:aspect ref="beforeAdvice"> -->
+<!-- 			<aop:before pointcut-ref="allPointCut" method="beforeLog"/> -->
+<!-- 		</aop:aspect> -->
+	</aop:config>
+
+</beans>

@@ -1,0 +1,45 @@
+컨테이너 객체명 : container
+
+- 컨테이너에 저장된 객체들 및 설정 정보 
+1. testDAO : 자료형 => TestDAO, 싱글톤, 즉시로딩
+2. testService : 자료형 => TestImpl, 싱글톤, 즉시로딩
+=> @Autowired TestDAO td ==> testDAO 주입
+3. logAdvice : 자료형 => Log4jAdvice, 싱글톤, 즉시로딩
+4. aop 설정 :
+시점 : before
+포인트컷 : TestImpl -> setNum(String str, int no)
+공통로직 : Log4jAdvice => printLogging() 메소드
+
+==============================================================================================
+
+com.springbook.aop 패키지 안의 클래스들 중 TestImpl 클래스를 선택하여 그 클래스 안의 메소드들 중 setNum(...) 메소드가 실행되기 전에 공통로직을 처리하는 방법
+
+공통로직 => AOP 설정해야함. => 스프링빈 설정파일의 namespace에서 AOP 선택(추가)
+=> 공통로직 클래스(Log4jAdvice) 생성 => aop 설정에 필요한 정보 생각
+
+aop 설정에 필요한 정보
+1. 공통로직 클래스로 객체생성하기 (bean)
+<bean id="logAdvice" class="com.springbook.biz.common.Log4jAdvice"/>
+
+2. 포인트컷 : 포인트컷 객체 생성하기 => aop:config 태그 안에 aop:pointcut 태그로 생성가능
+	포인트컷으로 설정할 메소드 패턴지정 => execution() 필요 --> execution(* com.springbook.aop.TestImpl.setNum(*, *))
+
+<aop:config>
+	<aop:pointcut id="setPointCut" expression="execution(* com.springbook.aop.TestImpl.setNum(*, *))"/>
+</aop:config>
+
+3. 공통로직객체(객체명 : logAdvice)와 포인트컷(객체명 : setPointCut) 연결하고 시점(실행되기 전 : before => aop:before 태그 사용) 정의하기 위해 Aspect 객체 설정 => aop:config 태그 안에aop:pointcut 태그 밑에 aop:aspect 태그 기술
+
+<aop:aspect ref="logAdvice">
+	<aop:before pointcut-ref="setPointCut" method="printLogging"/>
+</aop:aspect>
+
+
+==============================================================================================
+<bean id="logAdvice" class="com.springbook.biz.common.Log4jAdvice"/>
+<aop:config>
+	<aop:pointcut id="setPointCut" expression="execution(* com.springbook.aop.TestImpl.setNum(*, *))"/>
+	<aop:aspect ref="logAdvice">
+		<aop:before pointcut-ref="setPointCut" method="printLogging"/>
+	</aop:aspect>
+</aop:config>

@@ -1,0 +1,12 @@
+package com.springbook.aop;
+
+import org.springframework.stereotype.Repository;
+
+@Repository("testDAO")
+public class TestDAO {
+
+	public int getNum() {
+		System.out.println("getNum() 메소드 호출");
+		return 1;
+	}
+}

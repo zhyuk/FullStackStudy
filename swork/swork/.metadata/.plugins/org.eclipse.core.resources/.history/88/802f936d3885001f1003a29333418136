@@ -1,0 +1,18 @@
+package com.springbook.person;
+
+import org.springframework.stereotype.Component;
+
+@Component("culSu")
+public class CulSu implements People {
+
+	@Override
+	public void getHome() {
+		System.out.println("철수가 집에 들어오는 과정");
+		System.out.println("열쇠를 가져온다.");
+	}
+
+	public void getAdd() {
+		System.out.println("호출");
+	}
+
+}
