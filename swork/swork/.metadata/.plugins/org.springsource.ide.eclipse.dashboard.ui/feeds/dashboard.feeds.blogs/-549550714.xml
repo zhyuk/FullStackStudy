@@ -1,4 +1,331 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 08 Oct 2024 02:09:02 GMT</lastBuildDate><item><title><![CDATA[From Spring Cloud Data Flow 2.11.x to 3.0]]></title><link>https://spring.io/blog/2024/10/07/from-spring-cloud-data-flow-2-11-x-to-3-0</link><guid isPermaLink="true">https://spring.io/blog/2024/10/07/from-spring-cloud-data-flow-2-11-x-to-3-0</guid><dc:creator><![CDATA[Ilayaperumal Gopinathan]]></dc:creator><pubDate>Mon, 07 Oct 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 10 Oct 2024 00:32:36 GMT</lastBuildDate><item><title><![CDATA[Spring Cloud 2024.0.0-M2 (aka Moorgate) Has Been Released]]></title><link>https://spring.io/blog/2024/10/09/spring-cloud-2024-0-0-m2-aka-moorgate-has-been-released</link><guid isPermaLink="true">https://spring.io/blog/2024/10/09/spring-cloud-2024-0-0-m2-aka-moorgate-has-been-released</guid><dc:creator><![CDATA[Ryan Baxter]]></dc:creator><pubDate>Wed, 09 Oct 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the community, I am pleased to announce that the Milestone 2 (M2) of the &lt;a href=&quot;https://cloud.spring.io&quot;&gt;Spring Cloud 2024.0.0&lt;/a&gt; Release Train is available today. The release can be found in &lt;a href=&quot;https://repo.spring.io/milestone/&quot;&gt;Spring Milestone&lt;/a&gt; repository. You can check out the 2024.0.0 &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2024.0-Release-Notes&quot;&gt;release notes for more information&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;notable-changes-in-the-202400-m2-release-train&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#notable-changes-in-the-202400-m2-release-train&quot; aria-label=&quot;notable changes in the 202400 m2 release train permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Notable Changes in the 2024.0.0-M2 Release Train&lt;/h2&gt;
+&lt;p&gt;This release of Spring Cloud is based on Spring Boot 3.4.0-M3.&lt;/p&gt;
+&lt;p&gt;The GitHub project for this release can be found &lt;a href=&quot;https://github.com/orgs/spring-cloud/projects/153/views/1&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;spring-cloud-openfeign&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-openfeign&quot; aria-label=&quot;spring cloud openfeign permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud OpenFeign&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Support &lt;code&gt;ignorecase&lt;/code&gt; with &lt;code&gt;Pageable&lt;/code&gt; (&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-openfeign/pull/1047&quot;&gt;#1047&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;spring-cloud-commons&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-commons&quot; aria-label=&quot;spring cloud commons permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Commons&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a TrustStore without requiring a KeyStore (&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-commons/pull/1394&quot;&gt;#1394&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;spring-cloud-config&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-config&quot; aria-label=&quot;spring cloud config permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Config&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Resources can be stored and received with a given charset (&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-config/issues/2115&quot;&gt;#2115&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Add MongoDB environment repository support &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-config/pull/2390&quot;&gt;(#2390)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Support Multiple Labels In Environment Repositories &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-config/issues/2449&quot;&gt;(#2449)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;spring-cloud-gateway&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-gateway&quot; aria-label=&quot;spring cloud gateway permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Gateway&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Webflux Java DSL gets a method to nest boolean predicates &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/pull/2598&quot;&gt;(#2598 )&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Adds an enabled flag to a route &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/pull/3026&quot;&gt;(#3026)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;QPS, Latency etc metrics added to grafana template &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/pull/3014&quot;&gt;(#3014)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix for same redis rate limiter bucket used with multiple routes &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/pull/2517&quot;&gt;(#2517)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;spring-cloud-stream&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-stream&quot; aria-label=&quot;spring cloud stream permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Stream&lt;/h3&gt;
+&lt;p&gt;Spring Cloud Stream &lt;code&gt;4.2.0-M2&lt;/code&gt; release contains some new enhancements and bug fixes. For more information, see &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-stream/releases/tag/v4.2.0-M2&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For further details, see the &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-stream/milestone/98?closed=1&quot;&gt;4.2.0-M2 milestone&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The following modules were updated as part of 2024.0.0-M2:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Module&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;th&gt;Issues&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Bus&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-bus/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Contract&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-contract/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Circuitbreaker&lt;/td&gt;
+&lt;td&gt;3.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-circuitbreaker/releases/tag/v3.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Zookeeper&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-zookeeper/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Task&lt;/td&gt;
+&lt;td&gt;3.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-task/releases/tag/v3.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Kubernetes&lt;/td&gt;
+&lt;td&gt;3.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-kubernetes/releases/tag/v3.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Starter Build&lt;/td&gt;
+&lt;td&gt;2024.0.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-starter-build/releases/tag/v2024.0.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Netflix&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-netflix/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Openfeign&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-openfeign/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Commons&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-commons/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Consul&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-consul/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Config&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-config/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Vault&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-vault/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Build&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-build/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Gateway&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Stream&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-stream/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Function&lt;/td&gt;
+&lt;td&gt;4.2.0-M2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-function/releases/tag/v4.2.0-M2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;As always, we welcome feedback on &lt;a href=&quot;https://github.com/spring-cloud/&quot;&gt;GitHub&lt;/a&gt;, on &lt;a href=&quot;https://gitter.im/spring-cloud/spring-cloud&quot;&gt;Gitter&lt;/a&gt;, on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-cloud&quot;&gt;Stack Overflow&lt;/a&gt;, or on &lt;a href=&quot;https://twitter.com/SpringCloud&quot;&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To get started with Maven with a BOM (dependency management only):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;    &amp;#x3C;repositories&gt;
+        &amp;#x3C;repository&gt;
+            &amp;#x3C;id&gt;spring-milestones&amp;#x3C;/id&gt;
+            &amp;#x3C;name&gt;Spring Milestones&amp;#x3C;/name&gt;
+            &amp;#x3C;url&gt;https://repo.spring.io/milestone&amp;#x3C;/url&gt;
+            &amp;#x3C;snapshots&gt;
+                &amp;#x3C;enabled&gt;false&amp;#x3C;/enabled&gt;
+            &amp;#x3C;/snapshots&gt;
+        &amp;#x3C;/repository&gt;
+    &amp;#x3C;/repositories&gt;
+&amp;#x3C;dependencyManagement&gt;
+    &amp;#x3C;dependencies&gt;
+        &amp;#x3C;dependency&gt;
+            &amp;#x3C;groupId&gt;org.springframework.cloud&amp;#x3C;/groupId&gt;
+            &amp;#x3C;artifactId&gt;spring-cloud-dependencies&amp;#x3C;/artifactId&gt;
+            &amp;#x3C;version&gt;2024.0.0-M2&amp;#x3C;/version&gt;
+            &amp;#x3C;type&gt;pom&amp;#x3C;/type&gt;
+            &amp;#x3C;scope&gt;import&amp;#x3C;/scope&gt;
+        &amp;#x3C;/dependency&gt;
+    &amp;#x3C;/dependencies&gt;
+&amp;#x3C;/dependencyManagement&gt;
+&amp;#x3C;dependencies&gt;
+    &amp;#x3C;dependency&gt;
+        &amp;#x3C;groupId&gt;org.springframework.cloud&amp;#x3C;/groupId&gt;
+        &amp;#x3C;artifactId&gt;spring-cloud-starter-config&amp;#x3C;/artifactId&gt;
+    &amp;#x3C;/dependency&gt;
+    &amp;#x3C;dependency&gt;
+        &amp;#x3C;groupId&gt;org.springframework.cloud&amp;#x3C;/groupId&gt;
+        &amp;#x3C;artifactId&gt;spring-cloud-starter-netflix-eureka-client&amp;#x3C;/artifactId&gt;
+    &amp;#x3C;/dependency&gt;
+    ...
+&amp;#x3C;/dependencies&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or with Gradle:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-groovy&quot;&gt;plugins {
+  id &apos;java&apos;
+  id &apos;org.springframework.boot&apos; version &apos;3.4.0-M3&apos;
+  id &apos;io.spring.dependency-management&apos; version &apos;1.1.6&apos;
+}
+
+repositories {
+  mavenCentral()
+  maven { url &apos;https://repo.spring.io/milestone&apos; }
+}
+
+ext {
+  set(&apos;springCloudVersion&apos;, &quot;2024.0.0-M2&quot;)
+}
+
+dependencies {
+  implementation &apos;org.springframework.cloud:spring-cloud-starter-config&apos;
+  implementation &apos;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&apos;
+}
+
+dependencyManagement {
+  imports {
+    mavenBom &quot;org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}&quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[Spring AI 1.0.0 M3 Released]]></title><link>https://spring.io/blog/2024/10/08/spring-ai-1-0-0-m3-released</link><guid isPermaLink="true">https://spring.io/blog/2024/10/08/spring-ai-1-0-0-m3-released</guid><dc:creator><![CDATA[Mark Pollack]]></dc:creator><pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;We are happy to announce the 1.0.0 Milestone 3 release of Spring AI.&lt;/p&gt;
+&lt;p&gt;This release brings significant enhancements and new features across various areas.&lt;/p&gt;
+&lt;h2 id=&quot;observability&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#observability&quot; aria-label=&quot;observability permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Observability&lt;/h2&gt;
+&lt;p&gt;This release introduces many refinements to the observability stack, particularly for streaming responses from Chat Models.
+Many thanks to Thomas Vitale and Dariusz Jedrzejczyk for all their help in this area!&lt;/p&gt;
+&lt;p&gt;Observability covers the ChatClient, ChatModel, Embedding Models and Vector stores enabling you to view all touchpoints with your AI infrstructure in fine grained detail..&lt;/p&gt;
+&lt;p&gt;In the M2 release we introduced observability support for OpenAI, OIlama, Mistral and Anthropic models.  Now we have expanded this to include support for&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Azure OpenAI&lt;/li&gt;
+&lt;li&gt;Google Vertex  AI&lt;/li&gt;
+&lt;li&gt;Transformers (ONNX)&lt;/li&gt;
+&lt;li&gt;MiniMax&lt;/li&gt;
+&lt;li&gt;Moonshot&lt;/li&gt;
+&lt;li&gt;Baidu QianFan&lt;/li&gt;
+&lt;li&gt;Zhipu AI&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thanks to Geng Rong for implementing observability to the Chinese models.&lt;/p&gt;
+&lt;p&gt;You can find more detailed information on the available metrics and traces that are available in the &lt;a href=&quot;https://docs.spring.io/spring-ai/reference/observabilty/index.html&quot;&gt;observability reference documentation&lt;/a&gt;.  Here are some graphs to demonstrate what&apos;s possible.&lt;/p&gt;
+&lt;h3 id=&quot;grafana-dashboard&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#grafana-dashboard&quot; aria-label=&quot;grafana dashboard permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Grafana Dashboard&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;//images.ctfassets.net/mnrwi97vnhts/5ujIisbD7ZH1XLR8cKtAut/455952c1de2d75279a06f28324e6ec14/grafana-spring-ai.png&quot; alt=&quot;Grafana Dashboard&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;tracing-dashboard&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#tracing-dashboard&quot; aria-label=&quot;tracing dashboard permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Tracing Dashboard&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;//images.ctfassets.net/mnrwi97vnhts/ayqJ1lUDb4gr5NaFW51d1/b482bedd33d21c2875856350ab507a58/tempo-spring-ai.png&quot; alt=&quot;Tempo Dashboard&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;advisor-improvements&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#advisor-improvements&quot; aria-label=&quot;advisor improvements permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Advisor Improvements&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.spring.io/spring-ai/reference/api/advisors.html&quot;&gt;Spring AI Advisors&lt;/a&gt; are components that intercept and potentially modify the flow of chat-completion requests and responses in your AI applications.
+Advisors can also choose to block the request by not making the call to invoke the next advisor in the chain.&lt;/p&gt;
+&lt;p&gt;The key player in this system is the AroundAdvisor, which allows developers to dynamically transform or utilize information within these interactions.&lt;/p&gt;
+&lt;p&gt;The main benefits of using Advisors include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Encapsulation of Recurring Tasks:&lt;/strong&gt; Package common GenAI patterns into reusable units.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transformation:&lt;/strong&gt; Augment data sent to Language Models (LLMs) and format responses sent back to clients.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Portability:&lt;/strong&gt; Create reusable transformation components that work across various models and use cases.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We have revisited the Advisor API model and made many design changes and improved it&apos;s ability to apply to streaming request and responses.  You can also explicitly define the order of the advisor&apos;s using Spring&apos;s &lt;code&gt;Ordered&lt;/code&gt; interface.&lt;/p&gt;
+&lt;p&gt;Depending on what areas of the API you have used, there can be breaking changes, see the &lt;a href=&quot;https://docs.spring.io/spring-ai/reference/api/advisors.html#_breaking_api_changes&quot;&gt;docs&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;The flow of the around advisor is depicted below.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//images.ctfassets.net/mnrwi97vnhts/3pLYS0XVnehcx6e7s0zTSF/3374ca5501f7137205848019d063c8ae/spring-ai-advisors-flow.svg&quot; alt=&quot;Advisor Flow&quot;&gt;&lt;/p&gt;
+&lt;p&gt;You can read Christian Tzolov&apos;s recent blog &lt;a href=&quot;https://spring.io/blog/2024/10/02/supercharging-your-ai-applications-with-spring-ai-advisors&quot;&gt;Supercharging Your AI Applications with Spring AI Advisors&lt;/a&gt; for more detials.&lt;/p&gt;
+&lt;h2 id=&quot;function-calling-improvements&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#function-calling-improvements&quot; aria-label=&quot;function calling improvements permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Function calling improvements&lt;/h2&gt;
+&lt;p&gt;Spring AI now supports passing additional contextual information to function callbacks through a &lt;code&gt;ToolContext&lt;/code&gt; class that contains key-value pairs.
+This feature allows you to provide extra data that can be used within the function execution.&lt;/p&gt;
+&lt;p&gt;In this example we are passing in a &lt;code&gt;sessionId&lt;/code&gt;, so that the context is aware of that value:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String content = chatClient.prompt(&quot;What&apos;s the weather like in San Francisco, Tokyo, and Paris?&quot;)
+    .functions(&quot;weatherFunctionWithContext&quot;)
+    .toolContext(Map.of(&quot;sessionId&quot;, &quot;123&quot;))
+    .call()
+    .content();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Also note that you can pass the user text in the &lt;code&gt;prompt&lt;/code&gt; method as an alternative to using the &lt;code&gt;user&lt;/code&gt; method.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;ToolContext&lt;/code&gt; is available by using a java.util.BiFunction.  Here is the bean definition:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@Bean
+@Description(&quot;Get the weather in location&quot;)
+public BiFunction&amp;#x3C;WeatherService.Request, ToolContext, WeatherService.Response&gt; weatherFunctionWithContext() {
+    return (request, toolContext) -&gt; {
+        String sessionId = (String) toolContext.getContext().get(&quot;sessionId&quot;);
+
+        // use session id as appropriate...
+        System.out.println(sessionId);
+
+        return new WeatherService().apply(request);
+    };
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;fine-grained-control-over-function-calling&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#fine-grained-control-over-function-calling&quot; aria-label=&quot;fine grained control over function calling permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Fine grained control over function calling&lt;/h2&gt;
+&lt;p&gt;If you prefer to handle the function calling conversation yourself, you can set the &lt;code&gt;proxyToolCalls&lt;/code&gt; option.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;PortableFunctionCallingOptions functionOptions = FunctionCallingOptions.builder()
+    .withFunction(&quot;weatherFunction&quot;)
+    .withProxyToolCalls(true)
+    .build();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And passing these optionsa call to the model via a ChatModel or ChatClient will return a ChatResponse that contains the first message sent at the start of the AI model°Øs function calling conversation.&lt;/p&gt;
+&lt;h2 id=&quot;fact-based-evaluation&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#fact-based-evaluation&quot; aria-label=&quot;fact based evaluation permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Fact-based Evaluation&lt;/h2&gt;
+&lt;p&gt;There have been some notable innovations in the area of factual evaluation with a new leaderboard named &lt;a href=&quot;https://llm-aggrefact.github.io/&quot;&gt;LLM-AggreFact&lt;/a&gt;. A model currently leading the benchmark is °∞bespoke-minicheck°± developed by &lt;a href=&quot;https://bespokelabs.ai/&quot;&gt;Bespoke Labs&lt;/a&gt;.
+Part of what makes this model compelling is that is much smaller and cheaper to run as compared to so called °∞flagship°± models such as GPT4o.
+You can read more into the research behind this model in the paper °∞&lt;a href=&quot;https://arxiv.org/pdf/2404.10774&quot;&gt;MiniCheck:  Efficient Fact-Checking of LLMs of Grounding Documents&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The Spring AI FactCheckingEvaluator is based on that work and can be used with the &lt;a href=&quot;https://ollama.com/blog/reduce-hallucinations-with-bespoke-minicheck&quot;&gt;Bespoke-minicheck model deployed on Ollama&lt;/a&gt;.  See the &lt;a href=&quot;https://docs.spring.io/spring-ai/reference/api/testing.html#_factcheckingevaluator&quot;&gt;documentation&lt;/a&gt; for more information.  Thanks to Edd? Mel?ndez for his work in this area.&lt;/p&gt;
+&lt;h2 id=&quot;embedding-model-batch-processing&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#embedding-model-batch-processing&quot; aria-label=&quot;embedding model batch processing permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Embedding Model Batch Processing&lt;/h2&gt;
+&lt;p&gt;Previously, embedding a list of documents required making calls item by item, which was not very performant.
+Spring AI now supports batching multiple documents together so that multiple embeddings can be computed in a single call to the model.
+Since embedding models have token limits, documents are grouped such that each batch doesn&apos;t exceed the token limit for the embedding model.&lt;/p&gt;
+&lt;p&gt;The new class TokenCountingBatchingStrategy takes into account the token size and allocates a 10% reserve buffer, as token estimation isn&apos;t an exact science.
+You can customize your own implementations of the BatchingStrategy interface.&lt;/p&gt;
+&lt;p&gt;Additionally, JDBC-based embedding models can now more easily customize the batch size to use when doing bulk inserts.&lt;/p&gt;
+&lt;p&gt;Thanks to Soby Chacko for his work in this area and other contributions as a new member of the Spring AI team.&lt;/p&gt;
+&lt;h2 id=&quot;some-model-providers-specific-details&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#some-model-providers-specific-details&quot; aria-label=&quot;some model providers specific details permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Some model providers specific details&lt;/h2&gt;
+&lt;p&gt;Azure AI&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Added Observability&lt;/li&gt;
+&lt;li&gt;Fixed streaming responses&lt;/li&gt;
+&lt;li&gt;Enabled custom HTTP headers&lt;/li&gt;
+&lt;li&gt;Added previously missing calling options&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vertex AI&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Added Observability&lt;/li&gt;
+&lt;li&gt;Added support for Google Search as a tool&lt;/li&gt;
+&lt;li&gt;Implemented retry support&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;general-improvements&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#general-improvements&quot; aria-label=&quot;general improvements permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;General improvements&lt;/h2&gt;
+&lt;p&gt;Many refactoring, bug fixing, documentation enhancements across the board by a wide range of contributors. If we haven°Øt gotten to your PR yet, we will, please be patient. Thanks to&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/mudabirhussain&quot;&gt;Mudabir Hussain (mudabirhussain)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/l-trotta&quot;&gt;Laura Trotta (l-trotta)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jang990&quot;&gt;Jang990 (Jang990)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ktm&quot;&gt;ktm (ktm)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/threos&quot;&gt;Eray Ocak (threos)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Claudio-code&quot;&gt;claudio-code (Claudio-code)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/alexcheng1982&quot;&gt;Fu Cheng (alexcheng1982)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/habuma&quot;&gt;Craig Walls (habuma)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Hyune-c&quot;&gt;Hyune-c (Hyune-c)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/PARK-afk&quot;&gt;PARK-afk (PARK-afk)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/anders-swanson&quot;&gt;Anders Swanson (anders-swanson)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ricken07&quot;&gt;Ricken Bazolo (ricken07)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ilopezluna&quot;&gt;Ignasi (ilopezluna)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/sobychacko&quot;&gt;Soby Chacko (sobychacko)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/jxblum&quot;&gt;John Blum (jxblum)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/dafriz&quot;&gt;dafriz (dafriz)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/eddumelendez&quot;&gt;Edd? Mel?ndez (eddumelendez)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/PabloSanchi&quot;&gt;PabloSanchi (PabloSanchi)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/junsepar&quot;&gt;π⁄¡ÿº≠ (junsepar)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/yuhangbin&quot;&gt;cboy (yuhangbin)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ashni-mongodb&quot;&gt;ashni (ashni-mongodb)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/bruno-oliveira&quot;&gt;Bruno Oliveira (bruno-oliveira)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/tzolov&quot;&gt;Christian Tzolov (tzolov)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ThomasVitale&quot;&gt;Thomas Vitale (ThomasVitale)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/izeye&quot;&gt;Johnny Lim (izeye)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Peter Dolukhanov&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/inpink&quot;&gt;inpink (inpink)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/StudiousXiaoYu&quot;&gt;“Ω’ÙÓ‹·≥ÈÎ (StudiousXiaoYu)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[This Week in Spring - October 8th, 2024]]></title><link>https://spring.io/blog/2024/10/08/this-week-in-spring-october-8th-2024</link><guid isPermaLink="true">https://spring.io/blog/2024/10/08/this-week-in-spring-october-8th-2024</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! I&apos;m in Antwerp, Belgium, for the amazing Devoxx Belgium 2024 event! I am so happy to be back here, one of the best shows in the Java ecosystem!&lt;/p&gt;
+&lt;p&gt;We&apos;ve got a lot to get into so let&apos;s dive right in!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/10/07/from-spring-cloud-data-flow-2-11-x-to-3-0&quot;&gt;From Spring Cloud Data Flow 2.11.x to 3.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/10/02/supercharging-your-ai-applications-with-spring-ai-advisors&quot;&gt;Supercharging your AI Applications with Spring AI Advisors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://andresalmiray.com/maven-verify-or-clean-install/&quot;&gt;&lt;code&gt;mvn clean install&lt;/code&gt; or &lt;code&gt;mvn verify&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://mail.openjdk.org/pipermail/jdk-dev/2024-October/009433.html&quot;&gt;the new informational JEP: 14&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.wimdeblauwe.com/blog/2024/10/03/authoring-web-components-in-a-spring-boot-thymeleaf-project/&quot;&gt;authoring webcomponents in a Spring Boot Thymeleaf project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&quot;...After evaluating various options, &lt;a href=&quot;https://github.com/spring-projects/spring-framework/issues/28797#issuecomment-2387137015&quot;&gt;we have decided to tentatively migrate Spring Framework 7 to JSpecify annotations and deprecate Spring null-safety annotations&lt;/a&gt;&quot; - woohoo!&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://x.com/tschuehly/status/1840765081799344438?s=12&quot;&gt;Did we mention that JTE is on the Spring Initializr?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/spring-boot-banner-change-hide-customize-ascii-art-example-remove&quot;&gt;What is this blasphemy? Who would want to change the Spring Boot banner?&lt;/a&gt; - this article is an example of what never to do!&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=KoWgHSWA1cc&quot;&gt;I love this video looking at the newly supported JTE templating library in Spring Boot&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.mongodb.com/resources/products/compatibilities/spring-boot&quot;&gt;MongoDB has a nice page on using Spring Boot and MongoDB together&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[From Spring Cloud Data Flow 2.11.x to 3.0]]></title><link>https://spring.io/blog/2024/10/07/from-spring-cloud-data-flow-2-11-x-to-3-0</link><guid isPermaLink="true">https://spring.io/blog/2024/10/07/from-spring-cloud-data-flow-2-11-x-to-3-0</guid><dc:creator><![CDATA[Ilayaperumal Gopinathan]]></dc:creator><pubDate>Mon, 07 Oct 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
 &lt;p&gt;With the recent announcement of Spring Framework 7.0 and Spring Boot 4.0, the Spring Cloud Data Flow team is pleased to announce the next major release, SCDF 3.0, to align with both Spring Framework 7.0 and Spring Boot 4.0.&lt;/p&gt;
 &lt;p&gt;This will bring the following SCDF ecosystem of projects in line with Spring Framework 7.0 and Spring Boot 4.0:&lt;/p&gt;
 &lt;ul&gt;
@@ -1063,31 +1390,4 @@ public class Pet extends NamedEntity {
 &lt;p&gt;&lt;img src=&quot;//images.ctfassets.net/mnrwi97vnhts/7qHfBwhw66YjMf4VeMDclF/34e92a1ca7d7001181c28f42068d6c0c/ff606400-d784-47cb-a34a-0319849ec0fe.png&quot; alt=&quot;ff606400-d784-47cb-a34a-0319849ec0fe&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;next-steps&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#next-steps&quot; aria-label=&quot;next steps permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Next Steps&lt;/h3&gt;
 &lt;p&gt;In the first part of this article, we explored how to harness Spring AI to work with large language models. We built a custom ChatClient, utilized Function Calling, and refined prompt engineering for our specific needs.&lt;/p&gt;
-&lt;p&gt;In &lt;a href=&quot;https://spring.io/blog/2024/09/27/ai-meets-spring-petclinic-implementing-an-ai-assistant-with-spring-ai-part&quot;&gt;Part II&lt;/a&gt;, we°Øll dive into the power of Retrieval-Augmented Generation (RAG) to integrate the model with large, domain-specific datasets that are too extensive to fit within the Function Calling approach.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: Oracle Java Developer Advocate Billy Korando on Java 23, Structured Concurrency, and more]]></title><link>https://spring.io/blog/2024/09/26/a-bootiful-podcast-oracle-java-developer-advocate-billy-korando-on-java-23</link><guid isPermaLink="true">https://spring.io/blog/2024/09/26/a-bootiful-podcast-oracle-java-developer-advocate-billy-korando-on-java-23</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 26 Sep 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment I talk to Java Developer advocate at Oracle, Billy Korando, about the amazing new features in Java 23 and beyond!&lt;/p&gt;
-&lt;iframe title=&quot;Java developer advocate Billy Korando&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=p6gi4-16e67ee-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[This Week in Spring - September 24th, 2024]]></title><link>https://spring.io/blog/2024/09/24/this-week-in-spring-september-24th-2024</link><guid isPermaLink="true">https://spring.io/blog/2024/09/24/this-week-in-spring-september-24th-2024</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Tue, 24 Sep 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! I&apos;m in delightful Dallas, TX, at the amazing JConf.dev show. Then I&apos;m off to Germany, and then back home to do some laundry before heading out to Denver, CO, for the amazing Dev2Next show, before then heading out to Belgium for Devoxx Belgium. It&apos;s going to be a fun few weeks. How&apos;re you doin&apos;?&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.hashicorp.com/blog/reload-ssl-certificates-from-hashicorp-vault-for-spring-boot&quot;&gt;Reload SSL certificates from HashiCorp Vault for Spring Boot&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Huge thanks to S?bastien Deleuze for finding this amazing demonstration from Dr. Fabio Niephaus, which &lt;a href=&quot;https://t.co/MujPNPV4TP&quot;&gt;invokes a Rust image processing library that&apos;s compiled to WebAssembly from a Spring Boot application running in the JVM using GraalWasm&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Love to see this: applications are being upgraded &lt;a href=&quot;https://t.co/r966zQDhGp&quot;&gt;to Java 23 left and right!&lt;/a&gt;. Have you upgraded yet?&lt;/li&gt;
-&lt;li&gt;Speaking of Java 23: &lt;a href=&quot;https://www.graalvm.org/release-notes/JDK_23/&quot;&gt;it&apos;s out!&lt;/a&gt; Get the bits now! My favorite installation? &lt;code&gt;sdk install java 23-graalce&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Did you see the new support in Spring Tools 4 (supporting Visual Studio Code and Eclipse) that offers an &lt;a href=&quot;https://x.com/springtools4/status/1836312110122324244?s=12&quot;&gt;inlay hint for query parameters, showing you the name of the method parameter right where you reference it in the query&lt;/a&gt;?&lt;/li&gt;
-&lt;li&gt;I love this article looking at Spring AI on &lt;a href=&quot;https://thenewstack.io/spring-ai-transforms-java-for-genai-app-delivery&quot;&gt;The New Stack&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Also, another cool feature in Spring Tools 4: the new release brings you a nice little code lens on top of Spring Expression Language expressions, query statements, &lt;a href=&quot;https://x.com/springtools4/status/1835680743525122488?s=12&amp;#x26;t=n-UflcIbnx1lage-TBk0Cg&quot;&gt;and AOP pointcut expressions that tell Copilot to explain them for you&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=E8CtE7qTb-Q&quot;&gt;I love this documentary looking back at the history of Kotlin&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/09/23/spring-shell-3-2-8-3-3-3-and-3-4-0-m2-are-now-available&quot;&gt;Spring Shell 3.2.8, 3.3.3, and 3.4.0-M2 are now available&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/09/20/spring-modulith-1-3-m3-1-2-4-and-1-1-9-released&quot;&gt;Spring Modulith 1.3 M3, 1.2.4, and 1.1.9 released&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/09/19/spring-boot-3-4-0-m3-available-now&quot;&gt;Spring Boot 3.4.0-M3 available now&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/09/19/spring-cloud-dataflow-2-11-5-released&quot;&gt;Spring Cloud Dataflow 2.11.5 released&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/09/19/spring-boot-3-3-4-available-now&quot;&gt;Spring Boot 3.3.4 available now&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/09/19/spring-boot-3-2-10-available-now&quot;&gt;Spring Boot 3.2.10 available now&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;In last week&apos;s installment of A Bootiful Podcast, &lt;a href=&quot;https://spring.io/blog/2024/09/19/a-bootiful-podcast-flowable-cofounder-and-my-friend-joram-barrez-on-workflow&quot;&gt;I talk to Flowable co-founder and my friend Joram Barrez about workflow, case management, AI, Spring, and more&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/09/18/spring-integration-6-4-0-m3-available&quot;&gt;Spring Integration 6.4.0-M3 available&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/09/18/spring-amqp-3-2-m3-available&quot;&gt;Spring AMQP 3.2-M3 available&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/09/18/spring-batch-5-2-0-m1-is-out&quot;&gt;Spring Batch 5.2.0-M1 is out&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/09/18/spring-for-apache-kafka-3-3-0-m3-3-2-4-and-3-1-9-available-now&quot;&gt;Spring for Apache Kafka 3.3.0-M3, 3.2.4, and 3.1.9 are out&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/09/17/spring-authorization-server-1-4-0-m2-available-now&quot;&gt;Spring Authorization Server 1.4.0-M2 is available now&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Spring Shell 3.2.8, 3.3.3 and 3.4.0-M2 are now available]]></title><link>https://spring.io/blog/2024/09/23/spring-shell-3-2-8-3-3-3-and-3-4-0-m2-are-now-available</link><guid isPermaLink="true">https://spring.io/blog/2024/09/23/spring-shell-3-2-8-3-3-3-and-3-4-0-m2-are-now-available</guid><dc:creator><![CDATA[Corneil du Plessis]]></dc:creator><pubDate>Mon, 23 Sep 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I&apos;m happy to announce that Spring Shell &lt;code&gt;3.2.8&lt;/code&gt;, &lt;code&gt;3.3.3&lt;/code&gt; and &lt;code&gt;3.4.0-M2&lt;/code&gt; has been released and are now available from Maven Central and &lt;a href=&quot;https://repo.spring.io/milestone&quot;&gt;Milestone Repo&lt;/a&gt; respectively.&lt;/p&gt;
-&lt;p&gt;Please see the &lt;a href=&quot;https://github.com/spring-projects/spring-shell/releases/tag/v3.2.8&quot;&gt;release notes 3.2.8&lt;/a&gt;, &lt;a href=&quot;https://github.com/spring-projects/spring-shell/releases/tag/v3.3.3&quot;&gt;release notes 3.3.3&lt;/a&gt; and &lt;a href=&quot;https://github.com/spring-projects/spring-shell/releases/tag/v3.4.0-M2&quot;&gt;release notes 3.4.0-M2&lt;/a&gt; for more details.&lt;/p&gt;
-&lt;p&gt;Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;
-&lt;h3 id=&quot;how-can-you-help&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#how-can-you-help&quot; aria-label=&quot;how can you help permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-shell/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-shell&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-shell/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-shell/reference/index.html&quot;&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;In &lt;a href=&quot;https://spring.io/blog/2024/09/27/ai-meets-spring-petclinic-implementing-an-ai-assistant-with-spring-ai-part&quot;&gt;Part II&lt;/a&gt;, we°Øll dive into the power of Retrieval-Augmented Generation (RAG) to integrate the model with large, domain-specific datasets that are too extensive to fit within the Function Calling approach.&lt;/p&gt;</content:encoded></item></channel></rss>

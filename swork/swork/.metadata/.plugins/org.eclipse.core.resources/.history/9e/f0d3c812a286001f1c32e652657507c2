@@ -1,0 +1,9 @@
+package com.springbook.biz.common;
+
+import org.aspectj.lang.JoinPoint;
+
+public class AfterReturningAdvice {
+	
+	public void afterLog(JoinPoint j, Object robj) {
+		String method = j.getSignature().getName();
+}

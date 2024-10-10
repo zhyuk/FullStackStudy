@@ -1,0 +1,6 @@
+package com.springbook.biz.common;
+
+public class PointcutCommon {
+	@Pointcut("execution(* com.springbook.biz..*Impl.*(..))")
+	public void allPointcut() {}
+}

@@ -1,0 +1,33 @@
+package com.springbook.biz.common;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Service;
+
+import com.springbook.biz.board.BoardVO;
+
+@Service
+@Aspect
+public class BeforeAdvice {
+
+	@Pointcut("execution(* com.springbook.biz..*Impl.*(..))")
+	public void allPointcut() {}
+	
+	@Before("allPointcut()")
+//	@Before("execution(* com.springbook.biz..*Impl.*(..))")
+	public void beforeLog(JoinPoint jp) {
+		String method = jp.getSignature().getName();
+		Object[] args = jp.getArgs();
+
+		System.out.print("args.length: ");
+		System.out.println(args.length);
+
+		BoardVO b = (BoardVO) args[0];
+		System.out.println("b.getSeq(): " + b.getSeq());
+		System.out.println("b.getTitle(): " + b.getTitle());
+
+		System.out.println("[사전처리] " + method + "() 메소드 args 정보 : " + args[0].toString());
+	}
+}

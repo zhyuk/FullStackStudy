@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:component-scan base-package="com.springbook.biz"/>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
+		<property name="url" value="jdbc:mariadb://localhost:3306/test"/>
+		<property name="username" value="root"/>
+		<property name="password" value="1111"/>
+	</bean>
+	
+<!-- 	context:property-placeholder 태그는 맨 처음 한 개의 태그만 인식 가능하다. -->
+<!-- 	<context:property-placeholder location="classpath:config/db.properties, classpath:config/test.properties"/> // properties 파일은 스프링빈 설정파일 당 1개만 연결할 수 있다. 두 개 작성 시 먼저 작성한 것이 적용. -->
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDateSource" destroy-method="close"> -->
+<!-- 		<property name="driverClassName" value="${jdbc.driver}"/> -->
+<!-- 		<property name="url" value="${jdbc.url}"/> -->
+<!-- 		<property name="username" value="${jdbc.username}"/> -->
+<!-- 		<property name="password" value="${jdbc.password}"/>	 -->
+<!-- 	</bean> -->
+	
+	<!--  Spring JDBC 설정 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+</beans>

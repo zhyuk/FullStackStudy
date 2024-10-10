@@ -66,4 +66,36 @@ after-returning => afterLog 메소드 실행
 around => aroundLog 메소드 실행
 before => beforeLog 메소드 실행
 
+====================================================================================
 
+#five1 프로젝트 com.springbook.biz.board / com.springbook.biz.board.impl
+
+* 컨테이너 객체 : container
+* 객체들
+1. boardDAO => 자료형 : BoardDAO, 싱글톤, 즉시로딩
+2. boardService => 자료형 : BoardServiceImpl, BoardService, 싱글톤, 즉시로딩
+=> @Autowired BoardDAO boardDAO; => 1번 객체 자동주입
+3. udao => 자료형 : UserDAO, 싱글톤, 즉시로딩
+4. userService => 자료형 : UserServiceImpl, UserService, 싱글톤, 즉시로딩
+=>@Autowired UserDAO userDAO; => 3번 객체 자동주입
+
+* 어드바이스(공통로직)
+5. before => 자료형 : BeforeAdvice, 싱글톤, 즉시로딩
+6. around => 자료형 : AroundAdvice, 싱글톤, 즉시로딩
+7. afterReturning => 자료형 : AfterReturningAdvice, 싱글톤, 즉시로딩
+8. afterThrowing => 자료형 : AfterThrowingAdvice, 싱글톤, 즉시로딩
+
+* AOP 설정
+포인트컷 : allPointCut=> * com.springbook.biz..*Impl.*(..)) => BoardServiceImpl, UserServiceImpl 안의 모든 메소드(매개변수 상관 X)
+시점 : after-throwing
+어드바이스 및 공통 메소드 : AfterReturningAdvice 클래스의 afterThrowingLog메소드, exceptObj 예외정보객체
+
+
+
+BoardVO vo =>
+	private int seq; //0
+	private String title; //null -> after-throwing 테스트
+	private String writer; //null -> 관리자
+	private String content; //null -> after-throwing 테스트입니다.
+	private Date regdate; //null
+	private int cnt; //0

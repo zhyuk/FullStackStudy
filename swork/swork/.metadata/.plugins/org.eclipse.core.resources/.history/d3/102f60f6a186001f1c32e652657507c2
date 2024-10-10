@@ -1,0 +1,10 @@
+package com.springbook.biz.common;
+
+import org.aspectj.lang.JoinPoint;
+
+public class AfterReturningAdvice {
+	
+	public void afterLog(JoinPoint j, Object robj) {
+		System.out.println("[after-returning시점] 비즈니스 로직 수행 후 동작");
+	}
+}

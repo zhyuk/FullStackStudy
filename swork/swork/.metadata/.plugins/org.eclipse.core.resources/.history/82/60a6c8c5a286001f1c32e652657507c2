@@ -1,0 +1,10 @@
+package com.springbook.biz.common;
+
+import org.aspectj.lang.JoinPoint;
+
+public class AfterThrowingAdvice {
+	
+	public void afterThrowingLog(JoinPoint jp, Exception exceopObj) {
+		String method = jp.getSignature().getName();
+	}
+}

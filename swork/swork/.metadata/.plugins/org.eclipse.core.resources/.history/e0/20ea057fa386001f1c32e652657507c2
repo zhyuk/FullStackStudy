@@ -1,0 +1,16 @@
+package com.springbook.biz.common;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.springframework.util.StopWatch;
+
+public class AroundAdvice {
+
+	// (ProceedingJoinPoint pjp : 핵심로직(포인트컷메소드) 정보를 담고 있는 객체
+	public Object aroundLog(ProceedingJoinPoint pjp) throws Throwable {
+		String method = pjp.getSignature().getName();
+		Object[] args = pjp.getArgs();
+		
+		StopWatch stopWatch = new StopWatch();
+		return returnObj;
+	}
+}
