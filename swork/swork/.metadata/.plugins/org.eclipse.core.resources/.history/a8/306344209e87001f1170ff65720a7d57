@@ -1,0 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@ include file="../../header.jsp" %>
+		<% String sts="" ; if(session.getAttribute("userId")==null){ sts="disabled" ; } %>
+
+			<body>
+				<div class="jumbotron">
+					<h1>상세 보기</h1>
+				</div>
+				<%@ include file="../../menu.jsp" %>
+
+					<div class="container-fluid">
+
+						<form action="updateBoard.do" name="fm" method="post">
+							<input type="hidden" name="seq" value="${board.seq}">
+
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">제목</span>
+								</div>
+								<input type="text" class="form-controll innm" name="title" value="${board.title}" <%=sts
+									%> readonly>
+							</div>
+
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">작성자</span>
+								</div>
+								<input type="text" class="form-control innm" name="writer" value="${board.writer}"
+									<%=sts %> readonly>
+							</div>
+
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">내용</span>
+								</div>
+								<textarea class="form-control innm" rows="10" id="comment" name="content" value="${board.writer}"
+									<%=sts %> readonly></textarea>
+							</div>
+
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">내용</span>
+								</div>
+								<input type="text" class="form-control innm" name="writer" value="${board.writer}"
+									<%=sts %> readonly>
+							</div>
+						</form>
+					</div>
+			</body>
+
+			</html>

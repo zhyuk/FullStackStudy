@@ -1,0 +1,28 @@
+package com.springbook.view.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.springbook.biz.user.UserService;
+import com.springbook.biz.user.UserVO;
+
+@Controller
+public class LoginController {
+
+	@Autowired
+	private UserService userService;
+
+	@RequestMapping("/join.do")
+	public String userInsert(UserVO vo) {
+		userService.userInsert(vo);
+		return "redirect:login.jsp?result=1";
+	}
+
+	@RequestMapping("/selUser.do")
+	public String selUser(UserVO vo, Model model) {
+		model.addAttribute("user", userService.selUser(vo));
+		return "/WEB-INF/user/selUser.jsp";
+	}
+}

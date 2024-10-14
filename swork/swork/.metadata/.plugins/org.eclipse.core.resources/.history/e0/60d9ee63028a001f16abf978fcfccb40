@@ -1,0 +1,26 @@
+package com.springbook.view.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import com.springbook.biz.board.BoardService;
+
+//@Component
+@Controller
+//@SessionAttributes("board")
+public class BoardController {
+
+	@Autowired
+	private BoardService boardService;
+	
+	@ModelAttribute("conditionMap")
+	public Map<String, String> searchConditionMap(){
+		Map<String, String> conditionMap = new HashMap<String, String>();
+		conditionMap.put("내용", "CONTENT");
+		conditionMap.put("제목", "TITLE");
+	}
+}

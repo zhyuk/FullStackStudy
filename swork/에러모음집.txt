@@ -1,0 +1,8 @@
+[에러]
+WARN : org.springframework.context.support.GenericXmlApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userDAOSpring': Unsatisfied dependency expressed through method 'setSuperDataSource' parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.apache.tomcat.jdbc.pool.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+===============================================================================================
+[해석]
+'org.apache.tomcat.jdbc.pool.DataSource' 타입의 적합한 빈을 찾을 수 없음: 자동 주입 후보로 적합한 빈이 적어도 1개 이상 존재해야 함
+
+# 해결방법
+DataSource 클래스를 import할 때 javax.sql.DataSource;로 임포트해줘야 함.

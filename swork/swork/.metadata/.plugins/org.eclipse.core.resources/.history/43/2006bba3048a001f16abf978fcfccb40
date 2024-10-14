@@ -1,0 +1,6 @@
+package com.springbook.view.controller;
+
+@Controller
+public class LoginController {
+	
+}

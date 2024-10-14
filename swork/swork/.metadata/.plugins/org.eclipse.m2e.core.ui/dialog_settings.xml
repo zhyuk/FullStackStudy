@@ -14,12 +14,15 @@
 	</section>
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="com.springbook"/>
 			<item value="com.kr"/>
 		</list>
 		<list key="name">
+			<item value="seven"/>
 			<item value="first"/>
 		</list>
 		<list key="artifactId">
+			<item value="biz"/>
 			<item value="co"/>
 		</list>
 		<list key="version">

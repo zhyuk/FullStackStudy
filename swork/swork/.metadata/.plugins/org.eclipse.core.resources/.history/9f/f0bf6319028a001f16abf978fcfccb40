@@ -1,0 +1,9 @@
+package com.springbook.view.controller;
+
+import org.springframework.stereotype.Controller;
+
+//@Component
+@Controller
+public class BoardController {
+
+}
