@@ -1,0 +1,100 @@
+@RequestMapping 어노테이션 : 
+1. request객체를 가지고 있으며, 전송된 request의 파라미터 및 정보를 모두 가지고 있다.
+2. handler Mapper기능을 함.
+해당 어노테이션에 지정되어 있는 url패턴이 handler맵퍼의 key속성이되며,
+해당 어노테이션 아래에 기술되어 있는 메소드가 handler맵퍼의 value속성값이 된다.
+따라서 url패턴이 일치하면 해당 메소드가 자동으로 실행됨.
+3. 종속된 메소드의 매개변수들을 자동으로 객체 생성 및 커맨드 객체의 setter주입까지 짝을 이루어 처리한다.
+**반드시 @Controller 어노테이션이 있어야만 활성화됨. 
+(@Controller어노테이션과 짝을 이루어 사용됨)
+**주의사항
+하나의 프로젝트 내에 존재하는 모든 컨트롤러에서 url패턴은 중복값을 가질 수 없다.
+단, url패턴을 중복으로 지정할 수 있는 경우는 method방식을 post, get으로 나누어 사용할 경우만 가능하다. 
+
+
+어노테이션 사용 형식
+1. @RequestMapping("/url패턴지정") : doGet, doPost방식 모두 처리됨 
+예시 => @RequestMapping("/userList.do")
+2. @RequestMapping(value="/url패턴지정")  : doGet, doPost방식 모두 처리됨 
+예시 =>@GetMapping(value = "/login.do")
+3. @RequestMapping(value="/url패턴지정", method= RequestMethod.데이터전송방식기술)
+: doPost방식만 처리됨.
+=> @RequestMapping(value = "/login.do", method = RequestMethod.POST)
+
+
+@GetMapping, @PostMapping 어노테이션 (스프링프레임워크 5버전 이상부터 사용가능)
+
+@GetMapping("/url패턴지정" 또는 value="/url패턴지정")
+=> @RequestMapping(value = "/login.do", method = RequestMethod.GET)과 동일
+
+@PostMapping("/url패턴지정" 또는 value="/url패턴지정")
+=> @RequestMapping(value = "/login.do", method = RequestMethod.POST)과 동일
+
+
+Command객체 : 
+- httpServletRequest를 통해 들어온 요청 파라미터들을 setter 메소드를 이용해 
+ 객체에 정의되어 있는 속성(=setter)에 자동으로 바인딩되는 객체를 의미함.
+-VO, DTO(빈 객체)여야 하고, KEY값과 동일한 속성(=멤버변수, 프로퍼티)들이 있어야 하며,
+ setter메소드를 가지고 있어야 한다.
+
+@RequestMapping처리되어 있는 메소드의 매개변수로 존재하는 VO, DTO클래스 객체를 의미함. 또는 멤버필드와 해당 getter, setter메소드를 가지고 있는 클래스 객체 모두 가능함.
+request의 파라미터와 동일한 멤버필드(대소문자 가림)가 해당 커맨드 객체에 존재하면 해당 멤버필드의 setter메소드를 실행시켜 멤버필드의 값을 자동 초기화 시킨다.
+
+
+
+@RequestParam 어노테이션 : 커맨드 객체는 request객체가 보낸 파라미터 중 자신의 클래스에 존재하는 멤버필드에 해당되는 setter주입만 가능한데, 별도로 vo클래스에는 존재하지 않고 일시적으로 처리해야하는 검색어와 같은 파라미터 데이터들을 처리할 때, 해당 파라미터와 동일한 멤버필드가 존재하지 않으면 맵핑 시킬 수 있는 방법이 없다. 따라서 이러한 부분을 보완하기 위해 나온 어노테이션이다. 
+**쉽게 말해 커맨드 객체에 없는 파라미터를 일시적으로 맵핑처리하기 위한 어노테이션 임
+형식 : 
+@RequestParam(value = "request에 담긴 파라미터명", defaultValue = "기본값지정", required = false 또는 true 지정) String 매개변수명
+
+=> request의 파라미터명을 매개변수에 담는 기능을 함. 만약 해당 데이터의 값이 null인 경우 defaultValue에 설정한 값이 기본값으로 대체된다. 단, 값이 존재하는 경우는 무시되는 속성임.
+required속성은 true인 경우는 반드시 존재해야 하는 데이터이며, false인 경우는 있어도 되고, 없어도 되는 데이터라는 의미이다.
+
+=====================================================
+ModelAndView :
+- 모델과 뷰 기능을 모두 반환하는 객체(클래스) 임
+
+Model : 
+- 모델만 반환하는 객체(인터페이스) 임.
+- ModelAttribute를 저장하는 인터페이스 임. 
+- Map형식으로 접근 가능. 
+- 속성 설정 형식은 addAttribute("key(name)", value);
+- 접근 형식
+=> value가 String인 경우 : ${key}
+=> value가 객체인 경우: ${key.멤버변수명}
+
+
+
+@ModelAttribute 어노테이션
+@ModelAttribute("board") BoardVO vo
+= model.addAttribute("board", vo) 과 동일한 기능을 하는 어노테이션
+= request.setAttribute("board", vo) 과 동일한 기능을 하는 어노테이션
+= @SessionAttributes의 데이터를 동기화 시키는 기능을 함.
+=> 파라미터 안에 선언된 경우: Command객체와 동일한 기능을 하며, 객체 생성을 한다.
+예시: public String loginView(@ModelAttribute("user" UserVO vo)
+1. 파라미터로 넘겨 준 타입(자료형=클래스)의 오브젝트를 자동으로 생성한다.
+   단, bean 클래스만 가능. getter, setter가 명명규칙에 맞게 생성되어 있어야 함.
+2. 생성된 오브젝트에 http로 넘어온 값들을 자동으로 바인딩(=연결)함.
+   =파라미터들을 자동으로 setter 주입함.(멤버변수 초기화)
+3. 리턴할 객체가 있어야 한다.
+
+=> 메소드 위에 선언된 경우
+예시:
+@ModelAttribute("conditionMap")
+public Map<String, String> searchConditionMap() {
+1. 해당 메소드에 기술된 이름으로 객체생성. 데이터 값은 리턴값이 된다.
+2. 리턴할 객체나 값이 있어야 한다.
+
+@ModelAttribute로 선언된 객체는 view에서 EL(표현식)로 끌어다 사용할 수 있다.
+EL(표현식= Expression Language) 데이터를 JSP 페이지 내에 표현 하는 기술
+
+===================================================
+
+
+@SessionAttributes("객체명")
+=> session.setAttribute("name(key)명", value값) 기능을 처리하는 어노테이션임.
+=> name속성은 어노테이션 생성시 넣는 "객체명"이 되며, value 값은 
+model.addAttribute("name(key)명", value값)메소드의 name명이 session의 name속성과 일치하거나
+@ModelAttribute("객체명")의 객체명이 session의 name속성과 일치하는 객체의 데이터를 값으로 가져온다. 또한 model객체의 attribute와 동기화 처리 된다.
+순서는 model에 없는 데이터가 있으면 session에서 찾아서 채우고 난 뒤, model의 최신 데이터를 그대로 session객체에 그대로 덮어쓰기하여 동기화 시킨다.
+반드시 session에 담는 첫 데이터는 @ModelAttribute("객체명")으로 생성한 객체가 아닌, model.addAttribute("name(key)명", value값)로 생성한 객체여야 한다.

@@ -1,0 +1,47 @@
+파일 업로드로직에 필요한 선수작업 : commons-fileUpload, commons-io이용할 예정
+
+1. 형상관리파일(pom.xml)에 dependency commons-fileUpload 관련 설정만 추가할 것
+
+<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+<dependency>
+	<groupId>commons-fileupload</groupId>
+	<artifactId>commons-fileupload</artifactId>
+	<version>1.4</version>
+</dependency>
+
+
+2. Spring Bean Configuration File에 파일업로드 객체 생성하기
+생성전 BoardVO클래스에 해당 file객체에 대한 멤버필드와 filename을 받을 멤버필드를 추가해준다. (getter, setter포함) 
+형식: id="multipartResolver"는 반드시 이 이름으로 지정해주어야 함. 이름을 변경하거나 다른 이름으로 지정 안됨.
+
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="maxUploadSize" value="500000"></property>
+</bean>
+
+
+3. jsp파일에 input type="file"인 태그 기술
+form태그의  method="post"으로 설정, enctype="multipart/form-data"으로 설정할 것
+
+4. Controller객체에 있는 insertBoard메소드 안에 파일 업로드 로직을 구현한다.
+//상대경로 추가시 
+//	public String insertBoard(MultipartHttpServletRequest request, BoardVO vo) throws IllegalStateException, IOException {
+@RequestMapping(value = "/insertBoard.do", method=RequestMethod.POST)
+public String insertBoard(BoardVO vo) throws IllegalStateException, IOException {
+	MultipartFile uplodFile = vo.getUploadFile();
+	//상대 경로 추가 시 realPath 추가
+    //String realPath = request.getSession().getServletContext().getRealPath("/img/");
+	String realPath = "c:/swork/ten/src/main/webapp/img/" ;
+    String fileName = uplodFile.getOriginalFilename();
+	if(!uplodFile.isEmpty()) {
+		vo.setFilename(fileName);
+		uplodFile.transferTo(new File(realPath+fileName));
+	}
+	boardService.insertBoard(vo);
+	return "getBoardList.do";
+}
+
+5. BoardRowMapper클래스에 filename이름 가져오는 로직추가, 
+board테이블에 filename컬럼추가
+
+ALTER TABLE board ADD (filename varchar(200));
+BoardDAODBCP클래스의 insert, delete, getBoard등의 로직에 filename에 대한 로직 추가 구현하기

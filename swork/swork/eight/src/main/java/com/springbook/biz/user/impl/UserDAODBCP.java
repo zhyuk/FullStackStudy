@@ -35,7 +35,7 @@ public class UserDAODBCP {
 
 		String USER_LIST = "SELECT * FROM USERS WHERE 1=1";
 		if (keyword != null) {
-			USER_LIST += "AND ID LIKE CONCAT('%', ? '%') OR NAME LIKE CONCAT('%', ?, '%')";
+			USER_LIST += " AND ID LIKE CONCAT('%', ? '%') OR NAME LIKE CONCAT('%', ?, '%')";
 			Object[] args = { keyword, keyword };
 			if (jdbcTemplate.query(USER_LIST, new UserRowMapper(), args).isEmpty()) {
 				return null;
@@ -60,6 +60,7 @@ public class UserDAODBCP {
 		jdbcTemplate.update(USER_UPDATE, args);
 	}
 
+	// 회원가입
 	public final String USER_INSERT = "INSERT INTO USERS VALUES (?, ? ,?, ?)";
 
 	public void userInsert(UserVO vo) {

@@ -198,3 +198,37 @@
 10월 14, 2024 12:41:47.444 Created TensorFlow Lite XNNPACK delegate for CPU.
 10월 14, 2024 17:55:57.601 Created TensorFlow Lite XNNPACK delegate for CPU.
 10월 14, 2024 17:59:11.942 Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 14, 2024 18:15:06.537 [10812:11640:1014/181506.537:ERROR:device_event_log_impl.cc(201)] [18:15:06.537] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+10월 14, 2024 18:15:13.611 [10812:7832:1014/181513.611:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+10월 14, 2024 18:15:41.371 [10812:7832:1014/181541.370:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+10월 14, 2024 18:16:26.467 [10812:7832:1014/181626.467:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+10월 14, 2024 18:16:38.51 [10812:11640:1014/181638.051:ERROR:sharing_service.cc(268)] Device un-registration failed with fatal error
+10월 14, 2024 18:16:39.126 [10812:11640:1014/181639.126:ERROR:device_event_log_impl.cc(201)] [18:16:39.125] Bluetooth: bluetooth_adapter_winrt.cc:1055 Getting Default Adapter failed.
+10월 14, 2024 18:17:10.781 Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 14, 2024 18:17:10.970 [2208:12152:1014/181710.970:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+10월 14, 2024 18:17:33.892 [2208:12152:1014/181733.891:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+10월 14, 2024 18:18:27.865 [2208:12152:1014/181827.864:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+10월 14, 2024 18:19:54.292 [2208:12152:1014/181954.292:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+
+10월 15, 2024 09:30:01.754 NEW SESSION
+10월 15, 2024 09:30:01.754 Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 15, 2024 09:45:00.637 Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 15, 2024 11:03:16.117 Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 15, 2024 13:38:07.299 [8500:12456:1015/133807.298:ERROR:interface_endpoint_client.cc(725)] Message 0 rejected by interface blink.mojom.WidgetHost
+10월 15, 2024 14:40:25.462 Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 15, 2024 16:16:37.816 [12768:9484:1015/161637.815:ERROR:cert_verify_proc_builtin.cc(1063)] CertVerifyProcBuiltin for sync.pubwise.io failed:
+10월 15, 2024 16:16:37.816 ----- Certificate i=0 (CN=sync.pubwise.io) -----
+10월 15, 2024 16:16:37.816 ERROR: Time is after notAfter
+10월 15, 2024 16:16:37.816 
+10월 15, 2024 16:16:37.817 
+10월 15, 2024 16:34:28.24 [12768:11448:1015/163428.024:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+10월 15, 2024 16:34:28.628 [12768:11448:1015/163428.628:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+10월 15, 2024 16:34:29.169 [12768:11448:1015/163429.169:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+10월 15, 2024 16:34:29.745 [12768:11448:1015/163429.744:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+10월 15, 2024 16:34:30.642 [12768:11448:1015/163430.642:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+10월 15, 2024 16:34:30.827 [12768:11448:1015/163430.827:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+10월 15, 2024 16:34:31.35 [12768:11448:1015/163431.035:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+10월 15, 2024 16:34:31.162 [12768:11448:1015/163431.162:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+10월 15, 2024 16:34:31.745 [12768:11448:1015/163431.745:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+10월 15, 2024 16:34:32.03 [12768:11448:1015/163432.003:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+10월 15, 2024 16:34:32.182 [12768:11448:1015/163432.182:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)

@@ -6,3 +6,22 @@ WARN : org.springframework.context.support.GenericXmlApplicationContext - Except
 
 # 해결방법
 DataSource 클래스를 import할 때 javax.sql.DataSource;로 임포트해줘야 함.
+
+=====================================================
+[에러]
+javax.servlet.ServletException: 서블릿 [action]을(를) 위한 Servlet.init() 호출이 예외를 발생시켰습니다.
+
+[해석]
+'서블릿'에서 예외 발생
+
+# 해결방법
+.jsp 경로는 제대로 동작하나, .do 경로는 제대로 동작하지 않았기 때문에 서블릿의 문제임을 인지.
+web.xml 파일 오타 확인 중
+<listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+가 아닌 
+<listener>
+	<listener-class>org.springframework.web.context.ContextLoader</listener-class>
+</listener>
+로 작성되어 있던 것을 발견.

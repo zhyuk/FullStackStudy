@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="close"/>
+		<item key="selection" value="&lt;servlet-"/>
 		<list key="findhistory">
+			<item value="&lt;servlet-"/>
+			<item value="servlet"/>
 			<item value="close"/>
 			<item value="start"/>
 		</list>

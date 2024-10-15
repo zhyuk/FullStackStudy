@@ -36,7 +36,7 @@
 <!-- 4. ---------------------------------------------- -->
     <div class="input-group mb-3">
 <div class="input-group-prepend"><span class="input-group-text">등록일</span></div>
-<input type="text" class="form-control innm" name="regDate" value="${board.regdate}" readonly <%=sts %>>      
+<input type="text" class="form-control innm" name="regdate" value="${board.regdate}" readonly <%=sts %>>      
     </div>
     
 <!-- 5. ---------------------------------------------- -->

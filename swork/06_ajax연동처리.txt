@@ -1,0 +1,20 @@
+ajax데이터 주고 받기
+
+1. jackson-databind 라이브러리 추가하기
+- POJO기반의 데이터를 js에서 받아들일 수 있는 json데이터로 변환해준다.
+<dependency>
+	<groupId>com.fasterxml.jackson.core</groupId>
+	<artifactId>jackson-databind</artifactId>
+	<version>2.12.6</version>
+</dependency>
+
+
+2. presentation layer단의 Spring Bean Configuration파일에 mvc네임스페이스를 추가해준다.
+
+3. presentation layer단의 Spring Bean Configuration파일에
+<<mvc:annotation-driven />태그를 추가해준다.
+반드시 presentation layer단에 추가할 것. Business Layer단의 Spring Bean Configuration파일에 추가하는 경우
+제대로 실행이 안될 수 있다. 데이터를 웹페이로 내보내는 것으로 presentation Layer단을 기본으로 인식한다.
+이 태그가 있어야 @ResponseBody 어노테이션이 적용된다.
+
+4. ajax데이터를 받는 맵핑메소드의 @RequestMapping어노테이션의 위나 아래에 @ResponseBody어노테이션을 기술해주어야 한다. 
