@@ -12,9 +12,77 @@ ajax데이터 주고 받기
 2. presentation layer단의 Spring Bean Configuration파일에 mvc네임스페이스를 추가해준다.
 
 3. presentation layer단의 Spring Bean Configuration파일에
-<<mvc:annotation-driven />태그를 추가해준다.
+<mvc:annotation-driven />태그를 추가해준다.
+*************************************************************
+<mvc:annotation-driven /> : context:component-scan태그가 처리할 수 없는 어노테이션의 객체 생성 및 활성화 시키는 기능을 제공 (@ResponsBody , @RequestBody, @ControllerAdvice, @ExceptionHandler등등)
+*************************************************************
 반드시 presentation layer단에 추가할 것. Business Layer단의 Spring Bean Configuration파일에 추가하는 경우
 제대로 실행이 안될 수 있다. 데이터를 웹페이로 내보내는 것으로 presentation Layer단을 기본으로 인식한다.
 이 태그가 있어야 @ResponseBody 어노테이션이 적용된다.
 
 4. ajax데이터를 받는 맵핑메소드의 @RequestMapping어노테이션의 위나 아래에 @ResponseBody어노테이션을 기술해주어야 한다. 
+*********************************************************
+>>페이지가 이동이 안되고 처리되는 것은 동일함.
+
+-@ResponseBody어노테이션을 기술해주어야 하는 경우 : 
+전송할 데이터의 종류가 json형태, 문자열 형태, 텍스트 형태등의 값인 경우
+
+-@ResponseBody어노테이션을 기술하지 말아야 하는 경우:
+전송할 데이터의 종류가 html형태의 값인 경우
+
+*********************************************************
+제이쿼리 $.ajax()를 이용한 비동기처리 형식: 
+
+$.ajax({
+	url :  "요청url값", //form의 action속성
+	type  :  "데이터전송방식", //form의 method속성
+	//form태그의 입력요소의 name과 value기능
+	data : {파라미터명: 파라미터값, 파라미터명: 값, ... } ,
+	[dataType : "응답받을 데이터 형식 값",]
+	[contentType : "전송할 데이터 형식 값",]
+	[cache : false, //true, false중 선택 -캐시 저장여부]
+	//true(비동기), false(동기)중 선택 -비동기(순차적선택) 여부, 
+	//동기: 해당 ajax가 완료될때까지 다른 코드 실행 못함. 순서대로 처리해야할 때 작성
+	[async : false, ]
+	//비동기통신응답이 성공적일때 실행
+	//code = 200, state = 4(DONE상태)
+	success: function(data){ 실행할 코드들...;  },
+	//비동기통신응답이 에러일때 실행
+	error : function(request, status){ 실행할 코드들...; }
+});
+
+
+=============================================================
+dataType : 서버에서 결과 값으로 반환해주는 데이터를 어떤 자료형으로 받을 것인지 정의. 
+생략했을경우에는 jQuery가 MIME타입들을 보면서 자동으로 결정한다.
+- dataType의 종류 -
+1. xml - XML문서
+2. html - HTML을 텍스트 데이터로 여기에 script태그가 포함된 경우 처리가 실행됩니다.
+3. script - JavaScript코드를 텍스트 데이터로
+4. json - JSON형식 데이터로 평가하고 JavaScript의 개체로 변환합니다.
+5. text - 일반 텍스트
+ 
+contentType : 서버로 데이터를 보낼때에 어떤 자료형(타입)으로 보낼것인지를 정의.
+1. application/json; charset-utf-8 (utf-8로 인코딩 된 json데이터로 전송)
+2. application/x-www-form-urlencoded; charset=utf-8 (디폴트 값, utf-8로 인코딩 된 파라미터로 전송)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

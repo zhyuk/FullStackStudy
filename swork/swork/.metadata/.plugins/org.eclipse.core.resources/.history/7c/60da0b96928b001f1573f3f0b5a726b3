@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="해당맵퍼파일객체명">
+
+	<!-- resultType : 패키지포함.자료형명(클래스명) 또는 자료형 별칭을 기술 
+		** 자료형 별칭은 https://mybatis.org/mybatis-3/configuration.html#typealiases 참고 
+		[예시] 
+		- 결과값이 한 줄 한 칸 String 자료형일 경우, java.lang.String 또는 string(자료형 별칭) 
+		- 결과값이 Byte 자료형일 경우, java.lnag.Byte 또는 byte(자료형 별칭) 
+		- 결과값이 내가 생성한 BoardVO 클래스일 경우, com.springbook.biz.board.BoardVO 또는 맵퍼설정파일에 기술된 별칭 
+		
+		속성에 result가 들어가 있으면 : SQL쿼리문을 실행한 후의 결과값에 대한 자료형을 설정하는 속성 ** result속성들은 select쿼리문(태그)에는 반드시 
+		기술해야한다.(생략불가) 속성에 parameter가 들어가 있으면 : SQL쿼리문의 바인드변수에 필요한 데이터의 자료형을 설정하는 
+		속성 ** parameter속성은 생략가능. 자동으로 자료형인식함. -->
+	<select id="현재 select 태그객체명" resultType="쿼리문이 실행된 결과의 자료형">
+		<!-- select 쿼리문 기술 및 바인드변수 기술 -->
+		<!-- 반드시 바인드변수는 보내는 파라미터에 있는 이름과 동일하게 기술 -->
+		select * from Blog where id = #{id}
+	</select>
+	<insert id="현재 insert 태그객체명">
+		<!-- insert 쿼리문 기술 및 바인드변수 기술 -->
+		<!-- 반드시 바인드변수는 보내는 파라미터에 있는 이름과 동일하게 기술 -->
+		insert into Author (id,username,password,email,bio)
+		values
+		(#{id},#{username},#{password},#{email},#{bio})
+	</insert>
+
+	<update id="현재 update 태그객체명">
+		<!-- update 쿼리문 기술 및 바인드변수 기술 -->
+		<!-- 반드시 바인드변수는 보내는 파라미터에 있는 이름과 동일하게 기술 -->
+		update Author set
+		username = #{username},
+		password = #{password},
+		email =
+		#{email},
+		bio = #{bio}
+		where id = #{id}
+	</update>
+
+	<delete id="현재 delete 태그객체명">
+		<!-- delete 쿼리문 기술 및 바인드변수 기술 -->
+		<!-- 반드시 바인드변수는 보내는 파라미터에 있는 이름과 동일하게 기술 -->
+		delete from Author where id = #{id}
+	</delete>
+</mapper>

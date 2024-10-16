@@ -1,0 +1,42 @@
+
+[Tips]
+    컨트롤러의 메소드 리턴타입이 void => 페이지 이동없이 현재 페이지에서 동작해야하는 경우에 void 처리
+
+    파일을 클라이언트로 보낼 때는 버퍼를 사용함.
+    * 버퍼 : 임시저장소. 버퍼의 용량이 다 차거나 작업을 완료할 때까지 담아두고 바로 클라이언트에 보내 속도가 빠른 것처럼 보여지게 됨.
+    따라서 버퍼를 다 사용한 후에는 제대로 보여지게 하기 위해 close() 처리 해야함.
+
+    커맨드 객체가 자동주입처리할 수 있는 데이터는 form-data(파라미터)만 가능하다. json 형태의 데이터를 setter처리 불가.
+#Ajax
+    : 비동기 통신(페이지 이동없이(로딩작업 없이) 내가 원하는 부분에 대해서만 작업을 처리)
+
+#Mybatis
+    * Mapper 파일
+        <select id="현재 select 태그객체명" resultType="쿼리문이 실행된 결과의 자료형">SQL select 쿼리문</select>
+        <insert id="현재 insert 태그객체명">SQL insert 쿼리문</insert>
+        <update id="현재 update 태그객체명">SQL update 쿼리문</update>
+        <delete id="현재 delete 태그객체명">SQL delete 쿼리문</delete>
+
+        * 반드시 바인드변수는 보내는 파라미터에 있는 이름과 동일하게 기술
+
+        resultType : 패키지포함.자료형명(클래스명) 또는 자료형 별칭을 기술 
+		** 자료형 별칭은 https://mybatis.org/mybatis-3/configuration.html#typealiases 참고 
+		[예시] 
+		- 결과값이 한 줄 한 칸 String 자료형일 경우, java.lang.String 또는 string(자료형 별칭) 
+		- 결과값이 Byte 자료형일 경우, java.lnag.Byte 또는 byte(자료형 별칭) 
+		- 결과값이 내가 생성한 BoardVO 클래스일 경우, com.springbook.biz.board.BoardVO 또는 맵퍼설정파일에 기술된 별칭 
+		
+		속성에 result가 들어가 있는 경우 : SQL쿼리문을 실행한 후의 결과값에 대한 자료형을 설정하는 속성 
+		** result속성들은 select쿼리문(태그)에는 반드시 기술해야한다.(생략불가) 
+		속성에 parameter가 들어가 있는 경우 : SQL쿼리문의 바인드변수에 필요한 데이터의 자료형을 설정하는 속성 
+		** parameter속성은 생략가능. 자동으로 자료형인식함. 
+
+    * Mapper 설정파일
+        Mapper 파일을 모아서 연결해두는 역할을 함. => 보통 설정파일은 1개임.
+
+#JavaORM 플러그인
+    *****반드시 sts 종료 후 작업할 것*****
+    https://sourceforge.net/projects/java-orm-plugin/ 에서 다운로드
+    압축해제 후 plugins 폴더에 있는 jar파일 복사 후 C:\sts-bundle\sts-3.9.17.RELEASE\plugins 경로에 붙여넣기.
+
+    플러그인 작업 시, Mapper 파일을 우클릭 - New - Others - Java ORM Plugin - Mybatis Mapper XML 또는 Mybatis Configuration XML 파일을 바로생성 가능.

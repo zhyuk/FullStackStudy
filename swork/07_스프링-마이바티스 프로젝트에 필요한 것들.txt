@@ -1,0 +1,488 @@
+
+
+*** Mybatis Mapper, Configuration파일 생성에 필요한 javaORM Plugin 다운로드 및 sts에 적용하기
+(반드시 sts는 종료하고 난 후에 해야한다.)
+https://sourceforge.net/projects/java-orm-plugin/ 접속
+-> Download 클릭 (프로그래스바가 다 될때까지 기다리면 파일 다운로드 됨) 파일명: JavaORMPlugin.zip (69KB)
+-> JavaORMPlugin.zip 파일 압축해제
+-> JavaORMPlugin > plugins > JavaORMPlugin_1.0.0.201411180016.jar 파일 복사
+-> sts-bundle > sts-3.9.17.RELEASE > plugins 폴더 안에 복사한 JavaORMPlugin_1.0.0.201411180016.jar 파일 붙여넣기
+-> sts실행하여 생성한 프로젝트에서 New -> Other -> Java ORM Plugin생성된 것 확인하면 됨.
+=========================================================================================
+
+*** 필요한 기본적인 라이브러리들 ***
+
+<!-- MariaDB관련 -->
+<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+<dependency>
+    <groupId>org.mariadb.jdbc</groupId>
+    <artifactId>mariadb-java-client</artifactId>
+    <version>2.7.3</version>
+</dependency>
+
+
+<!-- DBCP관련 -->
+<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+<dependency>
+    <groupId>commons-dbcp</groupId>
+    <artifactId>commons-dbcp</artifactId>
+    <version>1.4</version>
+</dependency>
+
+
+<!-- Mybatis관련 -->
+<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.5.7</version>
+</dependency>
+
+
+<!-- Mybatis-spring관련 -->
+<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-spring</artifactId>
+    <version>2.0.6</version>
+</dependency>
+
+<!-- jdbcTemplate객체 생성 라이브러리 -->
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-jdbc</artifactId>
+	<version>${org.springframework-version}</version>
+</dependency>
+<!-- spring-jdbc관련 -->
+
+=========================================================================================
+
+*** 필요한 web.xml 기술 내용들 ***
+
+<!-- 디스패쳐 서블릿 : Front Controller -->
+<servlet>
+	<servlet-name>appServlet</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<init-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+	</init-param>
+	<load-on-startup>1</load-on-startup>
+</servlet>
+	
+<servlet-mapping>
+	<servlet-name>appServlet</servlet-name>
+	<url-pattern>/</url-pattern>
+</servlet-mapping>
+
+
+<!-- 디스패쳐 서블릿외 필요한 서블릿(선택) -->
+<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+<context-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>/WEB-INF/spring/root-context.xml</param-value>
+</context-param>
+
+<context-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>classpath:applicationContext.xml</param-value>
+</context-param>
+
+또는 
+<context-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>
+	/WEB-INF/spring/root-context.xml,
+	classpath:applicationContext.xml
+	</param-value>
+</context-param>
+
+<listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+
+<!-- 애플리케이션 구동 시 처음 실행될 파일 지정 -->
+<welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+</welcome-file-list>
+
+
+========================================================================
+
+*** DataBase 관련 .properties파일 만들기 ***
+-경로 : src/main/resources(business layer경로)에 넣는다.
+jdbc.driver=해당DB 드라이버경로
+jdbc.url=해당DB url경로
+jdbc.username=해당DB 사용자계정 정보
+jdbc.password=해당DB 사용자계정의 비번 정보
+
+(예시)↓
+jdbc.driver=org.mariadb.jdbc.Driver
+jdbc.url=jdbc:mariadb://localhost:3306/samp
+jdbc.username=root
+jdbc.password=1111
+
+========================================================================
+
+*** SpringBean Configuration File에 기술해야할 내용들 ***
+<!-- 데이터베이스 정보 끌어오기 -->
+<context:property-placeholder location="classpath:config/database.properties"/>
+
+<!-- 데이터베이스 connect 객체 생성 -->
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<property name="driverClassName" value="${jdbc.driver}" />
+	<property name="url" value="${jdbc.url}" />
+	<property name="username" value="${jdbc.username}" />
+	<property name="password" value="${jdbc.password}" />
+</bean>
+
+<!-- Mybatis의 설정파일과 데이터베이스 connect 객체를 담을 SqlSessionFactoryBean객체 생성하기 -->
+<bean id="sqlsession" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"></property>
+	<property name="configLocation" value="classpath:sql-map-config.xml"></property>
+</bean>
+
+<!-- Mybatis의 문법을 사용할 수 있는 템플릿 객체 생성하기 -->
+<bean class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg ref="sqlsession"></constructor-arg>
+</bean>
+
+
+========================================================================
+
+*** MariaDB 데이터베이스 생성하기 ***
+
+CREATE DATABASE 데이터베이스명 DEFAULT CHARACTER SET UTF8;
+(예시)↓
+CREATE DATABASE samp DEFAULT CHARACTER SET UTF8;
+
+*** 생성한 데이터베이스에 테이블 생성하기 ***
+CREATE TABLE 테이블명(
+	컬럼명 자료형 제약조건들...,
+	컬럼명 자료형 제약조건들...,
+	컬럼명 자료형 제약조건들...,
+	컬럼명 자료형 제약조건들...,
+	컬럼명 자료형 제약조건들...
+) DEFAULT CHARSET=UTF8;
+
+(예시)↓
+CREATE TABLE dept(
+	deptno INT AUTO_INCREMENT PRIMARY KEY,
+	deptnm VARCHAR(200) NOT NULL,
+	loc VARCHAR(200)
+) DEFAULT CHARSET=UTF8;
+
+
+========================================================================
+
+*** 생성한 테이블 기준으로 자바빈객체(VO 또는 DTO클래스) 생성하기 ***
+
+public class DetpVO{
+	private int deptno;
+	private String deptnm;
+	private String loc;
+
+	public void setDeptno(int deptno){
+		this.deptno = deptno;
+	}
+
+	public int getDeptno( ){
+		return deptno;
+	}
+
+	public void setDeptnm(String deptnm){
+		this.deptnm = deptnm;
+	}
+
+	public String getDeptnm( ){
+		return deptnm;
+	}
+
+	public void setLoc(String loc){
+		this.loc = loc;
+	}
+
+	public String getLoc( ){
+		return loc;
+	}
+}
+
+
+========================================================================
+
+*** 생성한 테이블, 자바빈객체 기준으로 상황에 따른  SQL문 생성하기 ***
+
+--DEPT테이블의 목록 가져오기(DEPTNO 내림차순으로)
+SELECT * FROM DEPT ORDER BY DEPTNO DESC;
+
+--DEPT테이블에서 원하는 번호에 해당하는 1줄 목록만 가져오기
+SELECT * FROM DEPT WHERE DEPTNO = ? ;
+
+--DEPT테이블에서 원하는 번호에 해당하는 목록의 DEPTNM, LOC값 변경하기
+UPDATE DEPT SET DEPTNM=?, LOC=? WHERE DEPTNO=?;
+
+--DEPT테이블에서 원하는 번호에 해당하는 목록을 삭제하기
+DELETE FROM DEPT WHERE DEPTNO=?;
+
+--DEPT테이블에 새로운 글 하나 등록하기
+INSERT INTO DEPT (DEPTNM, LOC) VALUES ( ?, ? );
+
+========================================================================
+
+*** 생성한 SQL문 기준으로 Mybatis Mapper파일 만들기
+-경로 : src/main/resources에 생성하기
+
+프로젝트에서 마우스 우버튼 클릭
+-> New -> Other -> Java ORM Plugin선택 
+-> Mybatis Mapper XML선택
+-> Container 옆의 [Browse...]버튼 클릭
+-> Folder Selection에서 프로젝트선택 후 [OK] 클릭
+-> Mybatis Mapper name에 mapper파일 생성하기. (예시: dept-mapper.xml)
+-> Finish 하면 presentation layer단의 src에 파일이 생성됨.
+-> 이 파일을 business layer단의 src/main/resources 안으로 옮길 것
+
+
+mapper파일 열어서 <mapper> 시작태그안에 있는 namespace명을 변경하기
+(예시)↓
+<mapper namespace="DeptDAO">
+
+쿼리문에 맞춰 <select>, <insert>, <delete>, <update>태그로 위에 작성한 sql쿼리문 넣기
+**!!! 바인드변수에 해당되는 자리는 #{자바빈객체의 맴버필드명과 동일(대소문자구분)} 형식으로 맞춰주어야 한다.
+**!!! 되도록이면 sql쿼리문에 해당되는 곳은 대문자로, 변수명에 해당되는 자리는 소문자로 올 수 있도록 설정을 잡아주는 것이 좋다.
+
+--DEPT테이블에 새로운 글 하나 등록하기
+INSERT INTO DEPT (DEPTNM, LOC) VALUES ( ?, ? );
+↓
+<insert id="insertDept">
+INSERT INTO DEPT (DEPTNM, LOC) VALUES ( #{deptnm}, #{loc} )
+</insert>
+
+
+--DEPT테이블에서 원하는 번호에 해당하는 목록을 삭제하기
+DELETE FROM DEPT WHERE DEPTNO=?;
+↓
+<delete id="deleteDept">
+DELETE FROM DEPT WHERE DEPTNO=#{deptno}
+</delete>
+
+
+--DEPT테이블에서 원하는 번호에 해당하는 목록의 DEPTNM, LOC값 변경하기
+UPDATE DEPT SET DEPTNM=?, LOC=? WHERE DEPTNO=?;
+↓
+<update id="updateDept">
+UPDATE DEPT SET DEPTNM=#{deptnm}, LOC=#{loc} WHERE DEPTNO=#{deptno};
+</update>
+
+** DML(delete, insert, update처럼 데이터 조작을 하는 sql명령 언어)은 resultType이나 resultMap이 필요없다. 없어도 _int로 처리한 행 수를 반환함.
+** DQL(select처럼 데이터에 대한 조작 없이 검색만하는 sql명령 언어)은 resultType이나 resultMap이 필요하다.
+예를 들어 select count(*) from dept;와 같이 쿼리문이 반환하는 데이터값이 int인 경우는 resultType="_int"로 처리해주는 것이 좋다.
+_int => java의 int자료형, int => java의 Integer자료형으로 반환함.
+예시: 
+<select id="selCnt" resultType="_int">
+SELECT COUNT(*) FROM DEPT
+</select>
+
+resultType값에는 기본자료형, 랩퍼클래스자료형, 참조자료형(클래스급) 등이 올 수 있다.
+단 참조자료형인 경우에는 "경로포함.클래스명"까지 기술해주어야 한다.
+<select id="selList" resultType="com.springbook.biz.vo.DeptVO">
+SELECT * FROM DEPT
+</select>
+
+아니면 Mybatis Configuration 파일에 해당 자료형의 Alias를 설정해주고, 설정한 Alias를 resultType로 끌어올 수 있다.
+
+resultMap생성하기 
+- <id>태그는 데이터베이스의 primary key로 지정된 컬럼과 매칭되는 속성을 기술한다.(선택)
+- primary key컬럼이라고 해서 반드시 <id>태그로 기술해야하는 것은 아니다.
+- 전부 <result>태그로 기술해도 상관없다.
+- 단 <id>태그는 데이터베이스의 primary key로 지정된 컬럼과 매칭되는 속성만 가능하며,
+- resultMap에서 1번만 기술해야 한다.
+
+<resultMap type="경로.클래스명 또는 alias명" id="객체아이디지정">
+	<id property="자바빈객체의 멤버필드명과 동일" column="데이터베이스의 컬럼명과 동일" />
+	<result property="자바빈객체의 멤버필드명과 동일" column="데이터베이스의 컬럼명과 동일" />
+	<result property="자바빈객체의 멤버필드명과 동일" column="데이터베이스의 컬럼명과 동일" />
+</resultMap>
+
+(예시)↓
+<resultMap type="com.springbook.biz.vo.DeptVO" id="deptMap">
+	<id property="deptno" column="DEPTNO" />
+	<result property="deptnm" column="DEPTNM" />
+	<result property="loc" column="LOC" />
+</resultMap>
+
+생성한 resultMap을 select태그에 연결하기(속성은 resultType이 아닌 resultMap을 사용해야 한다.)
+<select id="아이디생성" resultMap="resultMap에 생성한 id명">
+SQL 쿼리문
+</select>
+
+(예시)↓
+<select id="selList" resultMap="deptMap">
+SELECT * FROM DEPT
+</select>
+=======================================================
+
+*** Mybatis Configuration 파일 생성 및 설정하기 ***
+-경로 : src/main/resources에 생성하기
+
+프로젝트에서 마우스 우버튼 클릭
+-> New -> Other -> Java ORM Plugin선택 
+-> Mybatis Configuration XML선택
+-> Container 옆의 [Browse...]버튼 클릭
+-> Folder Selection에서 프로젝트선택 후 [OK] 클릭
+-> Mybatis Configuration name에 mapper파일 생성하기. (예시: mybatis-config.xml)
+-> Finish 하면 presentation layer단의 src에 2개의 파일이 생성됨.
+(mybatis-config.xml, db.properties)
+-> 이 파일을 business layer단의 src/main/resources 안으로 옮길 것
+(이때 필요없는 db.properties파일은 제거하고 옮긴다)
+
+mybatis-config.xml파일 내용 기술하기
+1. 필요없는 태그 제거하기(아래 태그들 제거)
+<properties resource="db.properties" />
+<environments default="development">
+	<environment id="development">
+		<transactionManager type="JDBC" />
+		<dataSource type="POOLED">
+		<property name="driver" value="${jdbc.driverClassName}" />
+			<property name="url" value="${jdbc.url}" />
+			<property name="username" value="${jdbc.username}" />
+			<property name="password" value="${jdbc.password}" />
+		</dataSource>
+	</environment>
+</environments>
+
+2. 위의 mapper에서 사용할 자료형의 alias설정하기
+<typeAliases>
+	<typeAlias type="kr.co.samp.vo.DeptVO" alias="dept" />
+	<typeAlias type="kr.co.samp.vo.QnaVO" alias="qna" />
+</typeAliases>
+
+3. mapper파일 연결하기
+<mappers>
+	<mapper resource="mappers/dept-mapper.xml" />
+	<mapper resource="mappers/qna-mapper.xml" />
+</mappers>
+
+==========================================================================
+
+Mybatis Configuration 파일에 생성한 typeAlias을 select태그에 연결하기
+<select id="아이디생성" resultType="config파일에 생성한 typeAlias의 alias명">
+SQL 쿼리문
+</select>
+
+(예시)↓
+<select id="selList" resultMap="dept">
+SELECT * FROM DEPT
+</select>
+
+==========================================================================
+
+DAO파일 만들기 실제로 DataBase연동에 필요한 로직이 기술되는 곳
+
+@Repository
+public class DeptDAO{
+	@Autowired
+	private SqlSessionTemplate mybatis;
+
+	/*
+	mapper파일 형식이 아래와 같은 경우
+	<mapper namespace="DeptDAO">
+	<insert id="insertDept">
+	INSERT INTO DEPT (DEPTNM, LOC) VALUES ( #{deptnm}, #{loc} )
+	</insert>
+	
+	↓↓
+	
+	public void insertDept(DeptVO vo){
+		mybatis.insert("mapper파일의Namespace명.mapper파일의insert태그의id명",vo);
+	}
+
+	*/
+	
+	public void insertDept(DeptVO vo){
+		mybatis.insert("DeptDAO.insertDept",vo);
+	}
+
+	
+	/*
+	mapper파일 형식이 아래와 같은 경우
+	<mapper namespace="DeptDAO">
+	<select id="selList" resultType="dept>
+	SELECT * FROM DEPT WHERE 1=1 AND LOC LIKE CONCAT('%', #{loc}, '%')
+	</select>
+
+	=> 매개변수가 필요한 쿼리문이면서 리스트를 가져와야 하는 경우
+
+	↓↓
+	
+	public void selList(DeptVO vo){
+		mybatis.selectList("mapper파일의Namespace명.mapper파일의select태그의id명",vo);
+	}
+	*/
+
+	public void selList(DeptVO vo){
+		mybatis.selectList("DeptDAO.selList", vo);
+	}
+
+	/*
+	mapper파일 형식이 아래와 같은 경우
+	<mapper namespace="DeptDAO">
+	<select id="selList" resultType="dept>
+	SELECT * FROM DEPT WHERE 1=1 AND LOC LIKE CONCAT('%', #{loc}, '%')
+	</select>
+
+	=> 매개변수가 없는 쿼리문이면서 리스트를 가져와야 하는 경우
+	↓↓	
+	public void selList( ){
+		mybatis.selectList("mapper파일의Namespace명.mapper파일의select태그의id명");
+	}
+	*/
+
+	public void selList( ){
+		mybatis.selectList("DeptDAO.selList");
+	}
+	
+	/*
+	mapper파일 형식이 아래와 같은 경우
+	<mapper namespace="DeptDAO">
+	<select id="selOne" resultType="dept">
+	SELECT * FROM DEPT WHERE DEPTNO = #{deptno}
+	</select>
+
+	=> 매개변수가 필요한 쿼리문이면서 목록 1개만 가져와야 하는 경우
+
+	↓↓
+	
+	public void selList(DeptVO vo){
+		mybatis.selectOne("mapper파일의Namespace명.mapper파일의select태그의id명",vo);
+	}
+	*/
+
+}
+
+
+==========================================================================
+
+DAO의 메소드를 호출할 Service클래스과 Service클래스의 부모 인터페이스 생성하기
+
+==========================================================================
+
+Service로직을 호출할 Controller클래스 생성하기
+
+===========================================================================
+
+Spring Bean Configuration 파일에 객체생성에 관련된 어노테이션을 처리할 수 있는 로직 넣기
+- context태그를 사용하기 위해서는 namespace에서 context를 먼저 설정한 후 사용 가능하다.
+<context:component-scan base="패키지경로" />
+또는 
+- mvc태그를 사용하기 위해서는 namespace에서 mvc를 먼저 설정한 후 사용 가능하다.
+<mvc:annotation-driven />
+
+
+
+
+
+
+

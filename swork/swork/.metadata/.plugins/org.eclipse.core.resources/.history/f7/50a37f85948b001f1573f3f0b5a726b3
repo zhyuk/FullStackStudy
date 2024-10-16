@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="해당맵퍼파일객체명">
+
+	<select id="현재 select 태그객체명" resultType="쿼리문이 실행된 결과의 자료형">
+		<!-- select 쿼리문 기술 및 바인드변수 기술 -->
+		<!-- 반드시 바인드변수는 보내는 파라미터에 있는 이름과 동일하게 기술 -->
+		SELECT * FROM BOARD WHERE SEQ = #{seq}
+	</select>
+
+	<insert id="insertBoard">
+		<!-- insert 쿼리문 기술 및 바인드변수 기술 -->
+		<!-- 반드시 바인드변수는 보내는 파라미터에 있는 이름과 동일하게 기술 -->
+		INSERT INTO BOARD(TITLE, WRITER, CONTENT, FILENAME) VALUES(#{title},
+		#{writer}, #{content}, #{filename})
+	</insert>
+</mapper>

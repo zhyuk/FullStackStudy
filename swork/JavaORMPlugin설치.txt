@@ -1,0 +1,10 @@
+
+	1. https://sourceforge.net/projects/java-orm-plugin/
+
+	2. Java ORM Plugin for Eclipse > Download > JavaORMPlugin.zip파일(69kb) 다운로드 
+
+	3. zip파일 압축 해제 > JavaORMPlugin/plugins > JavaORMPlugin_1.0.0.201411180016.jar 만 복사
+
+	4. C:/sts-bundle/sts-3.9.13.RELEASE/plugins 폴더 안에 JavaORMPlugin_1.0.0.201411180016.jar파일
+
+	   붙여넣기

@@ -15,5 +15,7 @@
 		<property name="maxUploadSize" value="5242880"/>
 		<!-- 5242880 : 5MB를 의미. 원하는 만큼 5 * 1024 계산하여 계산된 숫자값만 넣을 수 있음.-->
 	</bean>
+	
+	<mvc:annotation-driven/>
 
 </beans>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- mapper파일에서 resultType 속성, parameterType 속성의 값으로 사용할 수 있는 자료형 별칭 지정. -->
+	<typeAliases>
+		<typeAlias type="com.springbook.biz.board.BoardVO" alias="board"/>
+		<typeAlias type="com.springbook.biz.user.UserVO" alias="user"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mapping/board-mapping.xml" />
+		<mapper resource="mapping/user-mapping.xml" />
+	</mappers>
+</configuration>
