@@ -1,0 +1,16 @@
+# defaultServlet으로 url패턴 설정시 ("/") 조건
+    1. 프로젝트(application)의 web.xml 파일에 있는 디스패쳐서블릿의 url패턴을 "/"로 변경할 것
+    2. src/main/webapp 폴더 안에 resources폴더를 생성하여 html, css, js, img 파일들을(jsp파일을 제외한 모든 파일) 이 안에 넣어둔다.
+    3. presentation layer의 SpringBean Configuration File에 <mvc:resources location="/resources/" mapping="/resources/**" />태그를 기술하여 톰캣의 defaultServlet을 탈 수 있도록 예외처리를 해둔다.
+    4. 톰캣의 contextpath를 "/"로 변경해준다.
+
+# Interceptor
+    <mvc:exclude-mapping path="/deleteBoard.do"/> : 해당 url은 인터셉터 객체를 타지 않음.
+    <mvc:mapping path="/deleteBoard.do" /> : 해당 url만 인터셉터 객체를 탐.
+
+
+
+
+[할일]
+1. 글 상세페이지에서 글목록눌렀을때 전에 있던 페이지로
+2. 검색 후 페이지 버튼이 유지되도록

@@ -29,7 +29,7 @@
 <c:forEach items="${userList}" var="user">
 	<tr onclick="selUser('${user.id}')" style="cursor:pointer;">
 	  <td class="tdCenter">${user.id}</td>
-	  <td>${user.name}</td>
+	  <td class="tdCenter">${user.password}</td>
 	  <td class="tdCenter">${user.name}</td>
 	  <td class="tdCenter">
 	  <c:choose>

@@ -5,14 +5,15 @@
 <mapper namespace="BoardDAOMapper">
 
 	<insert id="insertBoard">
-		INSERT INTO BOARD(TITLE, WRITER, CONTENT, FILENAME)
-		VALUES(#{title},
-		#{writer}, #{content}, #{filename})
+		INSERT INTO BOARD(TITLE, WRITER, CONTENT,FILENAME)
+		VALUES(#{title}, #{writer}, #{content} , #{filename})
 	</insert>
 
 	<update id="updateBoard">
-		UPDATE BOARD SET TITLE = #{title}, WRITER =
-		#{writer}, CONTENT = #{content}, WHERE SEQ = #{seq}
+		UPDATE BOARD
+		SET TITLE = #{title}, WRITER =#{writer},
+		CONTENT = #{content}
+		WHERE SEQ = #{seq}
 	</update>
 
 	<delete id="deleteBoard">
@@ -20,7 +21,26 @@
 	</delete>
 
 	<select id="getBoard" resultType="board">
-		SELECT * FROM BOARD WHERE SEQ = #{seq}
+		SELECT * FROM BOARD WHERE SEQ =#{seq}
 	</select>
-	
+
+	<select id="getBoardList" resultType="board">
+		SELECT * FROM board WHERE 1=1
+		<if test="searchCondition == 'TITLE' "> 
+			AND TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'CONTENT' "> 
+			AND CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		ORDER BY SEQ DESC
+	</select>
+
+
 </mapper>
+
+
+
+
+
+
+

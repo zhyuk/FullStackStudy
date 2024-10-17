@@ -1,0 +1,30 @@
+javascript의 location.href
+html의 form태그의 action속성, a태그의 href속성
+java의 response.sendRedirect속성 
+=> "/"의미 => contextPath(rootPath)를 제거하라는 의미
+
+java의 forward로 설정한 path,
+web.xml에 url패턴으로 설정한 path
+=> "/"의 의미 => 앞에 contextPath(rootPath)가 존재한다는 의미
+
+==================================================================================
+
+https://developer.mozilla.org/ko/docs/Web/API/History/replaceState
+context패스만 나오도록 처리하는 방법
+
+javascrip로 
+window.onload = function(){
+   //url의 파라미터지우기
+   history.replaceState({}, null, 'http://localhost:8090/servletproject');
+};
+모든 파일에 위의 로직을 타도록 설정할 것
+
+모든 파일에서 url이동 시 반드시 contextPath도 같이 기술해서 url붙여줄것 ${pageContext.request.contextPath}/  이렇게 기술해주면 됨.
+
+
+<script>
+window.onload = function(){
+   //url의 파라미터지우기
+   history.replaceState({},null, location.pathname);
+};
+</script>

@@ -13,7 +13,7 @@ public class TestController {
 	@ResponseBody
 	@RequestMapping("/test.do")
 	public String testView() {
-		System.out.println("test 처리");
+//		System.out.println("test 처리");
 //		LocalDateTime now = LocalDateTime.now();
 //		System.out.println(now);
 //		String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));

@@ -1,0 +1,48 @@
+스프링 예외처리
+
+★ 어노테이션기반으로 처리하는 방법
+1. Spring Bean Configuration파일(presentation Layer, Business Layer상관없음)에 mvc 네임스페이스 추가 후
+<mvc:annotation-driven />추가
+
+2. 예외처리할 클래스 생성 후 클래스 위에 @ControllerAdvice어노테이션 기술
+import org.springframework.web.bind.annotation.ControllerAdvice;
+형식:
+-com.springbook.view패키지 안의 소스코드 실행시 예외 처리할 경우
+@ControllerAdvice("com.springbook.view")
+- 모든 곳에서 발생하는 예외를 처리할 경우
+@ControllerAdvice 만 기술
+
+3. @Controller와 @RequestMapping어노테이션이 짝이듯, 
+@ControllerAdvice와 @ExceptionHandler어노테이션은 짝임.
+
+
+형식:
+@ExceptionHandler(처리할Exception클래스명.class)
+public ModelAndView 메소드명(처리할 Exception클래스명 객체명){
+	ModelAndView mav = new ModelAndView();
+	mav.addObject("exception",객체명);
+	mav.setViewName("보여질 에러페이지 경로");
+	return mav;
+}
+
+-예시 :
+@ExceptionHandler(ArithmeticException.class)
+public ModelAndView handleException(ArithmeticException e) {
+	ModelAndView mav = new ModelAndView();
+	mav.addObject("exception",e);
+	mav.setViewName("/error/errorArithmetic.jsp");
+	return mav;
+}
+
+★ xml기반으로 처리하는 방법
+<!-- 예외처리관련 -->
+<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<property name="exceptionMappings">
+		<props>
+			<prop key="java.lang.ArithmeticException">/error/errorArithmetic.jsp</prop>
+			<prop key="java.lang.NullPointerException">/error/errorNullPointer.jsp</prop>
+			<prop key="java.lang.IllegalArgumentException">/error/errorException.jsp</prop>
+		</props>
+	</property>
+	<property name="defaultErrorView" value="/error/errorException.jsp"/>
+</bean>

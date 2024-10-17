@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BoardDAO">
+<!-- 	<insert id="insertBoard"> -->
+<!-- 		INSERT INTO BOARD(SEQ, TITLE, WRITER, CONTENT, FILENAME) -->
+<!-- 		VALUES((SELECT NVL(MAX(SEQ),0)+1 FROM BOARD ),#{title},#{writer},#{content},#{filename}) -->
+<!-- 	</insert> -->
+	<insert id="insertBoard">
+		INSERT INTO BOARD(TITLE, WRITER, CONTENT, FILENAME)
+		VALUES(#{title},#{writer},#{content},#{filename})
+	</insert>
+	
+	<update id="updateBoard">
+		UPDATE board
+		SET TITLE = #{title}, WRITER = #{writer}, CONTENT = #{content} 
+		WHERE SEQ = #{seq}
+	</update>
+	
+	<delete id="deleteBoard">
+		DELETE FROM board WHERE seq = #{seq}
+	</delete>
+	
+	<select id="getBoard" resultType="board">
+		SELECT * FROM board WHERE seq = #{seq}
+	</select>	
+
+	<select id="getBoardList" resultType="board">
+		SELECT * FROM board WHERE 1=1 
+		<if test="searchCondition == 'TITLE' "> AND TITLE LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="searchCondition == 'CONTENT' "> AND CONTENT LIKE  CONCAT('%',#{searchKeyword},'%')</if>
+		ORDER BY SEQ DESC
+	</select>
+
+</mapper>

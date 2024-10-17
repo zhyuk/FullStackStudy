@@ -10,8 +10,14 @@
 	        url : 'test.do',
 	        success : function(data) {
 	        	let a = data.split(" ");
+	        	// data : 2024-10-17 11:45:33
+	        	// a : ["2024-10-17", "11:45:33"]
 	        	let t = a[1].split(":");
+	        	// a[1] : "11:45:33"
+	        	// t : ["11", "45", "33"]
 	        	let tm = t[0]+":"+t[1]+":"+t[2];
+	        	// t[0]: 11 , t[1]: 45, t[2]: 33
+	        	// tm : 11:45:33
 	        	
 	        	document.getElementById("text").innerHTML = "현재 접속  시각: "+tm;
 	        },
