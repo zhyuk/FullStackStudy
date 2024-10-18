@@ -7,10 +7,3 @@
 # Interceptor
     <mvc:exclude-mapping path="/deleteBoard.do"/> : 해당 url은 인터셉터 객체를 타지 않음.
     <mvc:mapping path="/deleteBoard.do" /> : 해당 url만 인터셉터 객체를 탐.
-
-
-
-
-[할일]
-1. 글 상세페이지에서 글목록눌렀을때 전에 있던 페이지로
-2. 검색 후 페이지 버튼이 유지되도록

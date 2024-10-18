@@ -38,6 +38,7 @@ url패턴
 ★★★참고★★★: *과 달리 **는 AntPathMatcher패턴 **끝에서만 지원된다.
 /pages/{**} 가능
 /pages/{**}/details 불가능
+=> **은 url경로 중간에 작성할 수 없음.
 
 예시
 1.  /pages/t?st.html 패턴인 경우 :  

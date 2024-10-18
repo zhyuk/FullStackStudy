@@ -1,0 +1,8 @@
+package com.my.web.interceptor;
+
+import org.springframework.web.servlet.HandlerInterceptor;
+
+public class Interceptor implements HandlerInterceptor {
+
+	static final String[] EXCLUDE_URL_LIST = {"/login", "/join", "/home"};
+}

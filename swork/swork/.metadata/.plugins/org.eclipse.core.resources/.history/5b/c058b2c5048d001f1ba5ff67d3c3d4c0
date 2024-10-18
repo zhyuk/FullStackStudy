@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- com.my.web패키지의 객체생성, 자동주입관련 어노테이션 처리할 수 있는 태그 -->
+	<context:component-scan base-package="com.my.web"/>
+	
+	<!-- component-scan으로 처리할 수 없는 어노테이션들을 처리할 수 있는 태그 -->
+	<mvc:annotation-driven/>
+	
+	<!-- 해당 폴더에 있는 파일은 서블릿을 타지 않음 -->
+	<mvc:resources location="/resources/" mapping="/resources/**"/>
+	
+	<!-- viewResolver 객체 생성 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!-- intercept 객체 생성 및 설정 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/resources/**"/>
+		
+<!-- 			<mvc:mapping path="/main*" /> -->
+<!-- 			<mvc:exclude-mapping path="/login*"/> -->
+<!-- 			<mvc:exclude-mapping path="/join*"/> -->
+<!-- 			<mvc:exclude-mapping path="/home*"/> -->
+<!-- 			<mvc:exclude-mapping path="/pathvar/**"/> -->
+			<bean class="com.my.web.interceptor.Interceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+</beans>

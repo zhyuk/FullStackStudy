@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+}
+
+#US_JOIN #US_JOIN_DIV {
+	width: 650px;
+	max-width: 95%;
+	margin: 0 auto;
+}

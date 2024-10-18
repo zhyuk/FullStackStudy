@@ -1,0 +1,6 @@
+package com.my.web;
+
+@Controller
+public class HomeController {
+
+}

@@ -890,3 +890,12 @@
 10월 17, 2024 18:15:51.544 [648:10888:1017/181551.544:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
 10월 17, 2024 18:15:52.64 [648:10888:1017/181552.064:ERROR:CONSOLE(1)] "Unknown VE context: border-spacing", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
 10월 17, 2024 18:15:52.64 [648:10888:1017/181552.064:ERROR:CONSOLE(1)] "Unknown VE context: -webkit-text-size-adjust", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+
+10월 18, 2024 09:45:43.190 NEW SESSION
+10월 18, 2024 09:45:43.190 Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 18, 2024 12:39:01.853 Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 18, 2024 14:24:38.958 Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 18, 2024 14:26:11.40 Created TensorFlow Lite XNNPACK delegate for CPU.
+
+10월 18, 2024 18:16:04.162 NEW SESSION
+10월 18, 2024 18:16:04.162 Created TensorFlow Lite XNNPACK delegate for CPU.

@@ -1,0 +1,26 @@
+# PathVariable
+    
+    Restful 방식 : 주소 재정의, url주소를 통해 자원(resource)을 주고받는 방식.
+
+    http://localhost:8090/pathvar/page/{변수명}
+    public void 메소드명(@PathVariable("변수명") String 매개변수명){...} 또는 public void 메소드명(@PathVariable String 변수명){...}
+
+# resources mapping
+    기능 : 
+        1. 서블릿을 타지 못하게 제외함.
+        2. webapp/resources/의 url 별칭처리를 진행함.
+    - <mvc:resources location="/resources/" mapping="/resources/**"/>
+    http://localhost:8090/resources/css/commons.css (mapping 패턴 일치)
+    http://localhost:8090/resources/commons.js (mapping 패턴 일치)
+    http://localhost:8090/front/css/commons.css (mapping 패턴 불일치)
+    http://localhost:8090/front/commons.js (mapping 패턴 불일치)
+
+    - <mvc:resources location="/resources/" mapping="/front/**"/>
+    http://localhost:8090/resources/css/commons.css (mapping 패턴 불일치)
+    http://localhost:8090/resources/commons.js (mapping 패턴 불일치)
+    http://localhost:8090/front/css/commons.css (mapping 패턴 일치)
+    http://localhost:8090/front/commons.js (mapping 패턴 일치)
+
+    
+    [Tips.]
+        * 경로변수로 설정한 변수나 객체도 EL표기법으로 가져올 수 있음.
